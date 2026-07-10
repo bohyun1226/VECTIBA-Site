@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vectiba — AI-Powered Cross-Border Vehicle Transaction Platform</title>
+<meta name="description" content="Vectiba connects European vehicle supply with dealers across the Gulf and Africa. Buy cross-border from your office — we handle inspection, customs, shipping and settlement. Dubai HQ."/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+  :root{
+    --bg:#F8F5EE; --card:#FFFDF9; --panel:#EFEADF; --line:#E4DED1;
+    --txt:#183028; --sub:#5F6B62; --green:#135A4B; --green2:#0E4A3E; --gold:#BE8B39;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  /* Nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(248,245,238,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:var(--green);letter-spacing:-.3px}
+  .vmark{width:26px;height:26px}
+  .nlinks{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:500;color:var(--sub)}
+  .nlinks a:hover{color:var(--green)}
+  .btn{display:inline-block;background:var(--green);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:10px;border:none;cursor:pointer}
+  .btn:hover{background:var(--green2)}
+  .btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+  .btn.ghost:hover{background:#EAF3EF}
+  @media(max-width:760px){.nlinks a{display:none}}
+  /* Hero */
+  .hero{padding:64px 0 48px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  h1{font-size:44px;line-height:1.12;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
+  .lead{font-size:17px;color:var(--sub);margin:0 0 28px;max-width:520px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .heroArt{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px;position:relative;overflow:hidden}
+  .heroArt .bigV{position:absolute;right:-30px;bottom:-40px;opacity:.10}
+  .heroArt h3{margin:0 0 4px;font-size:16px}
+  .heroArt p{margin:0;color:var(--sub);font-size:14px}
+  .flowrow{display:flex;flex-direction:column;gap:12px;margin-top:20px;position:relative;z-index:1}
+  .flowrow .step{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+  .dot{width:26px;height:26px;border-radius:50%;background:#EAF3EF;color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+  @media(max-width:820px){.hero{grid-template-columns:1fr}h1{font-size:34px}}
+  /* Sections */
+  section{padding:56px 0}
+  .stag{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  h2{font-size:30px;font-weight:800;margin:0 0 12px;letter-spacing:-.4px}
+  .ssub{color:var(--sub);font-size:16px;max-width:640px;margin:0 0 30px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .card .ic{font-size:24px;margin-bottom:10px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--sub);font-size:14.5px}
+  .band{background:var(--green);color:#fff}
+  .band .stag{color:#CDBB86}
+  .band h2{color:#fff}
+  .band .ssub{color:rgba(255,255,255,.75)}
+  .band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+  .band .card h3{color:#fff}.band .card p{color:rgba(255,255,255,.8)}
+  @media(max-width:820px){.grid3,.grid2{grid-template-columns:1fr}h2{font-size:25px}}
+  /* Founder / contact */
+  .founder{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  .clist{list-style:none;padding:0;margin:14px 0 0}
+  .clist li{display:flex;gap:12px;padding:9px 0;font-size:15px;border-top:1px solid var(--line)}
+  .clist li:first-child{border-top:0}
+  .clist .ci{color:var(--gold);width:22px}
+  @media(max-width:820px){.founder{grid-template-columns:1fr}}
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--sub);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .divider{height:1px;background:var(--line)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <a class="brand" href="#top">
+    <svg class="vmark" viewBox="0 0 48 48" fill="none"><path d="M6 7 L24 41 L42 7 L33 7 L24 25 L15 7 Z" fill="#135A4B"/></svg>
+    Vectiba
+  </a>
+  <div class="nlinks">
+    <a href="#how">How it works</a>
+    <a href="#who">Who it's for</a>
+    <a href="#about">About</a>
+    <a class="btn" href="mailto:ceo@vectiba.com?subject=Vectiba%20—%20request%20materials">Contact</a>
+  </div>
+</div></nav>
+
+<a id="top"></a>
+<header class="wrap hero">
+  <div>
+    <span class="kicker">Dubai HQ · Cross-border used-car platform</span>
+    <h1>Buy and sell used cars across borders — from your office.</h1>
+    <p class="lead">Vectiba is an AI-powered platform that connects European vehicle supply with dealers across the Gulf and Africa. See the full landed cost before you bid — we handle inspection, language, customs, shipping and settlement.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:ceo@vectiba.com?subject=Vectiba%20—%20request%20company%20materials">Request the deck</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+  </div>
+  <div class="heroArt">
+    <svg class="bigV" width="220" height="220" viewBox="0 0 48 48"><path d="M6 7 L24 41 L42 7 L33 7 L24 25 L15 7 Z" fill="#135A4B"/></svg>
+    <h3>One car, dealers worldwide</h3>
+    <p>A single listing, opened to qualified dealers across borders.</p>
+    <div class="flowrow">
+      <div class="step"><span class="dot">1</span> Vehicle listed &amp; inspected</div>
+      <div class="step"><span class="dot">2</span> Landed cost calculated per country</div>
+      <div class="step"><span class="dot">3</span> Dealers bid across borders</div>
+      <div class="step"><span class="dot">4</span> We handle export, customs &amp; shipping</div>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="stag">The problem</div>
+    <h2>Cross-border car trade is slow, opaque and risky.</h2>
+    <p class="ssub">Three barriers keep dealers from sourcing the best cars abroad. Vectiba removes all three.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic">🛃</div><h3>Borders &amp; tariffs</h3><p>Tariff codes and paperwork change constantly. One mistake means a container held at port and penalties.</p></div>
+      <div class="card"><div class="ic">💬</div><h3>Language</h3><p>Listings and documents in a foreign language are hard to trust when tens of thousands are on the line.</p></div>
+      <div class="card"><div class="ic">📦</div><h3>Buying unseen</h3><p>Dealers can't fly out to inspect every car. Without verified data, remote purchase is a gamble.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="stag">How Vectiba works</div>
+    <h2>From listing to your lot — one platform.</h2>
+    <p class="ssub">The dealer stays in the office. Vectiba and its local partners do the rest, and the AI agent flags problems before they happen.</p>
+    <div class="grid3">
+      <div class="card"><h3>1 · Choose your inspection</h3><p>You pick the checks that matter. Our agent assigns a certified inspector near the seller, so you bid on verified facts — not pretty photos.</p></div>
+      <div class="card"><h3>2 · See the landed cost</h3><p>Vehicle price plus shipping and customs to your destination, in one number, before you bid.</p></div>
+      <div class="card"><h3>3 · Bid across borders</h3><p>Bid directly on cars in other countries. Win, and the platform books export, customs and shipping.</p></div>
+      <div class="card"><h3>4 · Problems caught early</h3><p>Tariff-code changes, blocked shipping lanes and missing inspection items are detected and handled before they cost you.</p></div>
+      <div class="card"><h3>5 · Track door to door</h3><p>Follow every car from the seller's yard to your lot, like a delivery app.</p></div>
+      <div class="card"><h3>6 · Safe settlement</h3><p>Escrow-backed payment so you focus on buying and selling — not chasing money.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <div class="stag">Who it's for</div>
+    <h2>Built for the people who move cars.</h2>
+    <div class="grid2">
+      <div class="card"><div class="ic">🚗</div><h3>Dealers</h3><p>Source cross-border inventory from your office, and open your own stock to buyers in the Gulf and Africa. A new sales channel for cars that don't turn locally — no exclusivity, keep your existing business.</p></div>
+      <div class="card"><div class="ic">🚢</div><h3>Forwarders &amp; logistics partners</h3><p>Become Vectiba's operating partner in your country. Our growing deal volume fills your trucks and containers — the more we grow, the more you earn.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap founder">
+    <div>
+      <div class="stag">About</div>
+      <h2>Dealer-built, for dealers.</h2>
+      <p class="ssub" style="margin-bottom:14px">Vectiba is led by <strong>Dustin Yoo</strong>, a founder with eight years across the automotive value chain — new-car sales, used-car dealerships, an export company, and auto finance and insurance. Headquartered in Dubai, with a technology and sourcing team in Korea.</p>
+      <p style="color:var(--sub);font-size:14.5px;margin:0">Asset-light by design: Vectiba owns the platform, the data and the partner network — local partners handle inspection, logistics and customs on the ground. Launching 2026.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 2px;color:var(--green)">Vectiba</h3>
+      <p style="margin:0;color:var(--sub);font-size:14px">AI-Powered Cross-Border Vehicle Transaction Platform</p>
+      <ul class="clist">
+        <li><span class="ci">✉</span> <a href="mailto:ceo@vectiba.com">ceo@vectiba.com</a></li>
+        <li><span class="ci">🌐</span> vectiba.com</li>
+        <li><span class="ci">📍</span> Mina Jebel Ali, Jebel Ali Freezone, Dubai, UAE</li>
+        <li><span class="ci">in</span> <a href="https://www.linkedin.com/in/ceo-vectiba">linkedin.com/in/ceo-vectiba</a></li>
+      </ul>
+      <a class="btn" style="margin-top:16px;width:100%;text-align:center" href="mailto:ceo@vectiba.com?subject=Vectiba%20—%20request%20company%20materials">Request materials</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap foot">
+  <div><strong style="color:var(--green)">Vectiba</strong> · Cross-border vehicle transactions · Dubai</div>
+  <div>© 2026 Vectiba. Dustin Yoo, Founder &amp; CEO · ceo@vectiba.com</div>
+</div></footer>
+
+</body>
+</html>
