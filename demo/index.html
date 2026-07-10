@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vectiba — Seller demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+  :root{
+    --bg:#F8F5EE; --card:#FFFFFF; --line:#E4DED1; --txt:#183028; --sub:#6E7A70;
+    --green:#135A4B; --green2:#0E4A3E; --gold:#BE8B39;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',-apple-system,sans-serif;background:#ECE7DC;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
+  .phone{width:390px;height:800px;background:var(--bg);border-radius:44px;border:10px solid #12140f;
+    overflow:hidden;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:26px;background:#12140f;border-radius:0 0 18px 18px;z-index:60}
+  .scr{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transition:opacity .5s;pointer-events:none}
+  .scr.on{opacity:1}
+  .top{padding:40px 20px 10px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:800;font-size:19px;color:var(--green);letter-spacing:-.3px}
+  .pill{font-size:9px;font-weight:700;color:#2A2008;background:var(--gold);padding:3px 9px;border-radius:20px}
+  .body{flex:1;padding:0 20px;display:flex;flex-direction:column;overflow:hidden}
+
+  /* Home */
+  .hHead{text-align:center;margin-top:24px}
+  .hHead h1{font-size:25px;font-weight:800;line-height:1.25;color:var(--txt)}
+  .hHead p{color:var(--sub);font-size:14px;margin-top:8px}
+  .micWrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+  .mic{width:118px;height:118px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 0 rgba(19,90,75,.4);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(19,90,75,.35)}70%{box-shadow:0 0 0 26px rgba(19,90,75,0)}100%{box-shadow:0 0 0 0 rgba(19,90,75,0)}}
+  .mic svg{width:46px;height:46px;fill:#fff}
+  .wave{display:flex;align-items:center;gap:4px;height:30px}
+  .wave i{width:4px;background:var(--green);border-radius:3px;animation:w 1s infinite ease-in-out}
+  .wave i:nth-child(1){height:10px;animation-delay:0s}.wave i:nth-child(2){height:22px;animation-delay:.1s}
+  .wave i:nth-child(3){height:30px;animation-delay:.2s}.wave i:nth-child(4){height:16px;animation-delay:.3s}
+  .wave i:nth-child(5){height:26px;animation-delay:.15s}.wave i:nth-child(6){height:12px;animation-delay:.25s}
+  .wave i:nth-child(7){height:20px;animation-delay:.05s}
+  @keyframes w{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+  .listening{color:var(--sub);font-size:13px;font-weight:500}
+
+  /* Chat */
+  .chatHead{padding:2px 0 12px;border-bottom:1px solid var(--line);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .avatar{width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .chatHead .n{font-weight:700;font-size:14px}.chatHead .s{color:var(--sub);font-size:11px}
+  .msgs{flex:1;display:flex;flex-direction:column;gap:9px;overflow-y:auto;padding-bottom:6px;scrollbar-width:none}
+  .msgs::-webkit-scrollbar{display:none}
+  .msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.4;opacity:0;transform:translateY(8px);transition:.4s}
+  .msg.show{opacity:1;transform:none}
+  .ai{background:var(--card);border:1px solid var(--line);border-top-left-radius:5px;align-self:flex-start;color:var(--txt)}
+  .me{background:var(--green);color:#fff;border-top-right-radius:5px;align-self:flex-end}
+  .utag{display:flex;align-items:center;gap:6px;font-size:10px;opacity:.9;margin-bottom:4px;font-weight:500}
+  .utag .vw{display:flex;gap:2px;height:11px}.utag .vw i{width:2px;background:#fff;border-radius:2px;animation:w .8s infinite}
+  .utag .vw i:nth-child(2){height:11px;animation-delay:.1s}.utag .vw i:nth-child(1){height:6px}.utag .vw i:nth-child(3){height:8px;animation-delay:.2s}
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:3px}
+  .pt{height:66px;border-radius:10px;position:relative;overflow:hidden;display:flex;align-items:flex-end;
+    background:#232f2a center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+  .pt::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 60%)}
+  .pt span{position:relative;font-size:10px;font-weight:600;color:#fff;padding:5px 7px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .pt::after{content:'✓';position:absolute;top:4px;right:5px;font-size:9px;font-weight:800;color:var(--green);
+    background:#fff;border-radius:50%;width:15px;height:15px;display:flex;align-items:center;justify-content:center}
+  .typing{padding:13px 15px !important;display:inline-flex;gap:5px;align-items:center}
+  .typing i{width:6px;height:6px;border-radius:50%;background:var(--sub);animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+
+  /* Value */
+  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+  .valBox{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;width:100%}
+  .valHero{height:130px;border-radius:14px;background:#232f2a center/cover no-repeat;margin-bottom:16px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+  .valBox .lab{color:var(--sub);font-size:13px}
+  .valBox .car{font-weight:700;font-size:16px;margin:2px 0 14px}
+  .valBox .amt{font-size:34px;font-weight:800;color:var(--green)}
+  .valBox .sub{color:var(--sub);font-size:12px;margin-top:4px}
+  .startAuc{margin-top:20px;color:var(--gold);font-weight:600;font-size:14px}
+  .spin{width:20px;height:20px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:sp 1s linear infinite;margin:0 auto}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* Auction */
+  .aHead{text-align:center;margin:6px 0 12px}
+  .aHead .t{font-weight:800;font-size:18px}
+  .aHead .car{color:var(--sub);font-size:13px}
+  .aStat{display:flex;justify-content:space-around;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 0;margin-bottom:14px}
+  .aStat .k{font-size:10px;color:var(--sub)}.aStat .v{font-size:16px;font-weight:800;color:var(--green)}
+  .topbid{text-align:center;margin-bottom:14px}
+  .topbid .k{font-size:11px;color:var(--sub)}
+  .topbid .v{font-size:40px;font-weight:900;color:var(--txt);line-height:1.1}
+  .topbid .up{color:var(--green);font-size:13px;font-weight:700}
+  .bids{flex:1;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+  .bid{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;opacity:0;transform:translateX(20px);transition:.4s}
+  .bid.show{opacity:1;transform:none}
+  .bid .fl{font-size:18px}
+  .bid .who{flex:1;font-size:13px;font-weight:600}
+  .bid .who small{display:block;color:var(--sub);font-weight:400;font-size:10px}
+  .bid .amt{font-weight:800;font-size:15px}
+
+  /* Won */
+  .wonWrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
+  .check{width:74px;height:74px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:8px;
+    animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+  .check svg{width:38px;height:38px;stroke:#fff;stroke-width:3.5;fill:none}
+  .wonWrap h2{font-size:26px;font-weight:800}
+  .wonCard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;width:100%;margin-top:14px;text-align:left}
+  .wonCard .row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-top:1px solid var(--line)}
+  .wonCard .row:first-child{border-top:0}
+  .wonCard .row .g{color:var(--sub)}
+  .wonCard .row b{color:var(--green)}
+  .wonCard .strike{color:var(--sub);text-decoration:line-through}
+  .up2{color:var(--green);font-size:11px;font-weight:700}
+  .nextline{font-size:12px;color:var(--sub);margin-top:14px;line-height:1.5}
+
+  .replay{display:flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;padding:12px 22px;border-radius:30px;
+    font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}
+  .replay:hover{background:var(--green2)}
+  .note{color:#8a8474;font-size:12px}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+
+  <!-- HOME -->
+  <div class="scr on" id="s-home">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SELLER</span></div>
+    <div class="body">
+      <div class="hHead">
+        <h1>Sell your car.<br>Just talk to me.</h1>
+        <p>No forms. Tell me about your car and I'll get you the best global price.</p>
+      </div>
+      <div class="micWrap">
+        <div class="mic"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12h-2z"/></svg></div>
+        <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="listening" id="listenTxt">Listening…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="scr" id="s-chat">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SELLER</span></div>
+    <div class="body">
+      <div class="chatHead"><div class="avatar">V</div><div><div class="n">Vectiba Assistant</div><div class="s">Voice · AI</div></div></div>
+      <div class="msgs" id="msgs"></div>
+    </div>
+  </div>
+
+  <!-- VALUE -->
+  <div class="scr" id="s-value">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SELLER</span></div>
+    <div class="body"><div class="center">
+      <div class="valBox">
+        <div class="valHero" style="background-image:url('img/ext.jpg')"></div>
+        <div class="lab">Your car</div>
+        <div class="car">Toyota Land Cruiser 300 · 2022 · 31,000 km</div>
+        <div class="lab">Price to beat — your local quote</div>
+        <div class="amt" id="valAmt">$60,000</div>
+        <div class="sub">No accident · 1 owner · AI-verified</div>
+      </div>
+      <div class="startAuc" id="startAuc"><div class="spin"></div><div style="margin-top:8px">Taking it to dealers worldwide…</div></div>
+    </div></div>
+  </div>
+
+  <!-- AUCTION -->
+  <div class="scr" id="s-auc">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">LIVE</span></div>
+    <div class="body">
+      <div class="aHead"><div class="t">Live auction</div><div class="car">Toyota Land Cruiser 300 · 2022</div></div>
+      <div class="aStat">
+        <div><div class="k">Bidders</div><div class="v" id="aBidders">0</div></div>
+        <div><div class="k">Countries</div><div class="v" id="aCountries">0</div></div>
+        <div><div class="k">Time left</div><div class="v">47h</div></div>
+      </div>
+      <div class="topbid">
+        <div class="k">Highest bid</div>
+        <div class="v" id="topAmt">$60,000</div>
+        <div class="up" id="topUp">start</div>
+      </div>
+      <div class="bids" id="bids"></div>
+    </div>
+  </div>
+
+  <!-- WON -->
+  <div class="scr" id="s-won">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SOLD</span></div>
+    <div class="body"><div class="wonWrap">
+      <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+      <h2>Sold!</h2>
+      <div class="note">+$7,500 over the quote you already had</div>
+      <div class="wonCard">
+        <div class="row"><span class="g">Your local quote</span><span class="strike">$60,000</span></div>
+        <div class="row"><span class="g">Vectiba final price</span><b>$67,500 &nbsp;<span class="up2">+12.5%</span></b></div>
+        <div class="row"><span class="g">Winning country</span><span>Morocco 🇲🇦</span></div>
+        <div class="row"><span class="g">Your net payout</span><b>$65,100</b></div>
+        <div class="row"><span class="g">Route</span><span>Germany → Morocco</span></div>
+      </div>
+      <div class="nextline">Vectiba handles export, customs, shipping and secure payment. You'll get the money once the car ships — track it in the app.</div>
+    </div></div>
+  </div>
+</div>
+
+<button class="replay" id="replay" style="display:none" onclick="play()">↻ Replay demo</button>
+<div class="note" id="hint">Preview · sample data · plays automatically</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const scr=n=>['home','chat','value','auc','won'].forEach(x=>$('s-'+x).classList.toggle('on',x===n));
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const fmt=n=>'$'+n.toLocaleString();
+
+const SCRIPT=[
+  {who:'ai',t:"Hi! I'm Vectiba 👋 Which car are you looking to sell?"},
+  {who:'voice',t:"A 2022 Toyota Land Cruiser 300."},
+  {who:'ai',t:"Nice. Do you already have a price you've been quoted?"},
+  {who:'typed',t:"Yes — a local dealer offered $60,000."},
+  {who:'ai',t:"Good to know. Let's see if the world will pay more. How many kilometers?"},
+  {who:'voice',t:"Around 31,000 km. No accidents, one owner."},
+  {who:'ai',t:"Perfect. Now let's take a few photos so dealers can trust it — front, side, interior and exterior."},
+  {who:'photos',imgs:[['Front','img/front.jpg'],['Side','img/side.jpg'],['Interior','img/interior.jpg'],['Exterior','img/ext.jpg']]},
+  {who:'ai',t:"Thanks! Analyzing your photos…"},
+  {who:'ai',t:"✓ Verified. Bodywork looks clean, interior is well-kept, and the dashboard confirms 31,000 km."},
+  {who:'ai',t:"You're all set. Ready to beat that $60,000 quote?"},
+  {who:'typed',t:"Yes, let's go 🚀"},
+  {who:'ai',t:"Opening your worldwide auction now 🌍"},
+];
+const BIDS=[
+  {fl:'🇦🇪',who:'United Arab Emirates',sub:'Gulf',amt:58000},
+  {fl:'🇸🇳',who:'Senegal',sub:'West Africa',amt:61500},
+  {fl:'🇸🇦',who:'Saudi Arabia',sub:'Gulf',amt:63200},
+  {fl:'🇨🇮',who:"Côte d'Ivoire",sub:'West Africa',amt:65000},
+  {fl:'🇲🇦',who:'Morocco',sub:'North Africa',amt:67500},
+];
+
+const scrollMsgs=()=>{const m=$('msgs');m.scrollTop=m.scrollHeight;};
+async function addMsg(m){
+  const el=document.createElement('div');
+  el.className='msg '+(m.who==='ai'?'ai':'me');
+  let html;
+  if(m.who==='voice') html='<div class="utag"><div class="vw"><i></i><i></i><i></i></div>Voice</div>'+m.t;
+  else if(m.who==='typed') html='<div class="utag">⌨️ Typed</div>'+m.t;
+  else if(m.who==='photos'){ el.style.maxWidth='90%';
+    html='<div class="utag">📷 Photos · '+m.imgs.length+'</div><div class="pgrid">'+m.imgs.map(x=>`<div class="pt" style="background-image:url('${x[1]}')"><span>${x[0]}</span></div>`).join('')+'</div>'; }
+  else html=m.t;
+  el.innerHTML=html;
+  $('msgs').appendChild(el); scrollMsgs();
+  requestAnimationFrame(()=>{el.classList.add('show');setTimeout(scrollMsgs,60);});
+}
+function typingOn(){const el=document.createElement('div');el.className='msg ai typing show';el.innerHTML='<i></i><i></i><i></i>';$('msgs').appendChild(el);scrollMsgs();return el;}
+function countTo(el,to,dur){
+  const from=parseInt(el.textContent.replace(/[^0-9]/g,''))||0, t0=performance.now();
+  (function step(t){const p=Math.min(1,(t-t0)/dur);el.textContent=fmt(Math.round(from+(to-from)*p));if(p<1)requestAnimationFrame(step);})(t0);
+}
+
+async function play(){
+  $('replay').style.display='none';
+  // reset
+  $('msgs').innerHTML=''; $('bids').innerHTML='';
+  $('aBidders').textContent='0'; $('aCountries').textContent='0';
+  $('topAmt').textContent='$60,000'; $('topUp').textContent='start';
+  $('valAmt').textContent='$60,000';
+
+  scr('home'); await wait(1800);
+  scr('chat');
+  for(const m of SCRIPT){
+    if(m.who==='ai'){ const d=typingOn(); await wait(900); d.remove(); await addMsg(m); await wait(1150); }
+    else { await wait(650); await addMsg(m); await wait(m.who==='photos'?1500:1000); }
+  }
+  await wait(700);
+  scr('value'); await wait(2400);
+  scr('auc'); await wait(600);
+  let n=0, cset=new Set();
+  for(const b of BIDS){
+    n++; cset.add(b.fl);
+    const el=document.createElement('div'); el.className='bid';
+    el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span>`;
+    $('bids').prepend(el); requestAnimationFrame(()=>el.classList.add('show'));
+    $('aBidders').textContent=n+2; $('aCountries').textContent=cset.size;
+    countTo($('topAmt'),b.amt,600);
+    $('topUp').textContent='+'+Math.round((b.amt-60000)/60000*100)+'% vs your quote';
+    await wait(1250);
+  }
+  await wait(1400);
+  scr('won');
+  await wait(1200);
+  $('replay').style.display='flex';
+}
+window.go=n=>['home','chat','value','auc','won'].forEach(x=>$('s-'+x).classList.toggle('on',x===n));
+if(location.hash==='#static'){
+  let cs=new Set();
+  BIDS.forEach(b=>{cs.add(b.fl);const el=document.createElement('div');el.className='bid show';el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span>`;$('bids').prepend(el);});
+  $('aBidders').textContent='7';$('aCountries').textContent=cs.size;$('topAmt').textContent='$67,500';$('topUp').textContent='+12.5% vs your quote';
+  SCRIPT.forEach(addMsg); setTimeout(()=>document.querySelectorAll('.msg').forEach(m=>m.classList.add('show')),50);
+  $('replay').style.display='flex';
+}else{ play(); }
+</script>
+</body>
+</html>
