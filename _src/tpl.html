@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vectiba — Buy and sell used cars across borders</title>
+<meta name="description" content="Vectiba connects your car with the dealer who pays the most, even in another country. We handle inspection, shipping and customs. Dubai HQ, Seoul tech team."/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+  :root{--bg:#F8F5EE;--card:#FFFDF9;--panel:#EFEADF;--line:#E4DED1;--txt:#183028;--sub:#5F6B62;--green:#135A4B;--green2:#0E4A3E;--gold:#BE8B39;--wa:#25D366;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  nav{position:sticky;top:0;z-index:20;background:rgba(248,245,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:var(--green);letter-spacing:-.3px}
+  .vmark{height:24px;width:auto;display:block}
+  .nlinks{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:500;color:var(--sub)}
+  .nlinks a:hover{color:var(--green)}
+  .btn{display:inline-block;background:var(--green);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:10px;border:none;cursor:pointer}
+  .btn:hover{background:var(--green2)}
+  .btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+  .btn.ghost:hover{background:#EAF3EF}
+  .lang{font-family:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--card);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer}
+  @media(max-width:940px){.nlinks a{display:none}}
+  .hero{padding:60px 0 44px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
+  .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .heroArt{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+  .heroArt .bigV{position:absolute;right:-24px;bottom:-40px;height:250px;width:auto;opacity:.10}
+  .heroArt h3{margin:0 0 4px;font-size:16px}
+  .heroArt p{margin:0;color:var(--sub);font-size:14px}
+  .flowrow{display:flex;flex-direction:column;gap:12px;margin-top:20px;position:relative;z-index:1}
+  .flowrow .step{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+  .dot{width:26px;height:26px;border-radius:50%;background:#EAF3EF;color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+  @media(max-width:820px){.hero{grid-template-columns:1fr}h1{font-size:32px}}
+  section{padding:54px 0}
+  .stag{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  h2{font-size:28px;font-weight:800;margin:0 0 12px;letter-spacing:-.4px}
+  .ssub{color:var(--sub);font-size:16px;max-width:680px;margin:0 0 28px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .card .ic{font-size:22px;margin-bottom:10px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--sub);font-size:14.5px}
+  .band{background:var(--green);color:#fff}
+  .band .stag{color:#CDBB86}.band h2{color:#fff}.band .ssub{color:rgba(255,255,255,.78)}
+  .band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+  .band .card h3{color:#fff}.band .card p{color:rgba(255,255,255,.82)}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}h2{font-size:23px}}
+  .story{max-width:780px}
+  .story p{font-size:18px;line-height:1.65;margin:0}
+  .story .by{margin-top:16px;color:var(--gold);font-weight:700;font-size:14px}
+  .note{margin-top:24px;font-size:16px;font-weight:600;color:#fff;max-width:760px;line-height:1.55}
+  .demoWrap{display:flex;justify-content:center;margin-top:24px}
+  .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
+  .founder2{display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start;margin-top:8px}
+  .fphoto{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+  .fphoto img{width:100%;display:block}
+  .fname{font-size:22px;font-weight:800;line-height:1.1}
+  .ftitle{color:var(--gold);font-weight:600;font-size:14px;margin:3px 0 12px}
+  .teamnote{margin-top:26px;color:var(--sub);font-size:15px;max-width:760px}
+  .teamquote{margin:16px 0 4px;padding-left:16px;border-left:3px solid var(--gold);font-size:16.5px;font-weight:500;line-height:1.55;color:#fff;max-width:640px}
+  @media(max-width:820px){.founder2{grid-template-columns:1fr}.fphoto{max-width:280px}}
+  .contacts{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 18px}
+  .cbtn{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 18px;font-weight:600;font-size:15px}
+  .cbtn:hover{border-color:var(--green);color:var(--green)}
+  .cbtn.wa:hover{border-color:var(--wa);color:#128C4B}
+  .cbtn .ci{font-size:17px}
+  .cloc{color:var(--sub);font-size:14.5px}
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--sub);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  [dir=rtl] .lead,[dir=rtl] .ssub,[dir=rtl] .story,[dir=rtl] .teamnote,[dir=rtl] .note{margin-left:auto}
+  [dir=rtl] .heroArt .bigV{right:auto;left:-30px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <a class="brand" href="#top">
+    <img class="vmark" src="img/vectiba-logo.png" alt="Vectiba"/>
+    Vectiba
+  </a>
+  <div class="nlinks">
+    <a href="#why" data-i18n="nav_why">Why we started</a>
+    <a href="#service" data-i18n="nav_service">Service</a>
+    <a href="#team" data-i18n="nav_team">Team</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+    <select class="lang" id="langsel" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ko">한국어</option>
+      <option value="ar">العربية</option>
+      <option value="fa">فارسی</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+      <option value="it">Italiano</option>
+      <option value="nl">Nederlands</option>
+      <option value="pl">Polski</option>
+      <option value="tr">Türkçe</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="ja">日本語</option>
+      <option value="sw">Kiswahili</option>
+    </select>
+  </div>
+</div></nav>
+
+<a id="top"></a>
+<header class="wrap hero">
+  <div>
+    <span class="kicker" data-i18n="hero_kicker">Dubai · Buy and sell cars across borders</span>
+    <h1 data-i18n="hero_h1">Sell your car to the dealer who pays the most — even if they're in another country.</h1>
+    <p class="lead" data-i18n="hero_lead">List your car once. Dealers in different countries bid on it. You see the real price after shipping and customs, then pick the best offer. We handle the inspection, the paperwork and the shipping.</p>
+    <div class="cta">
+      <a class="btn" href="#service" data-i18n="hero_cta1">See how it works</a>
+      <a class="btn ghost" href="#contact" data-i18n="hero_cta2">Contact us</a>
+    </div>
+  </div>
+  <div class="heroArt">
+    <img class="bigV" src="img/vectiba-logo.png" alt=""/>
+    <h3 data-i18n="art_h3">One car, dealers everywhere</h3>
+    <p data-i18n="art_p">List it once — buyers in many countries can bid.</p>
+    <div class="flowrow">
+      <div class="step"><span class="dot">1</span> <span data-i18n="art_s1">You list your car on your phone</span></div>
+      <div class="step"><span class="dot">2</span> <span data-i18n="art_s2">We check it and add the cost to each country</span></div>
+      <div class="step"><span class="dot">3</span> <span data-i18n="art_s3">Dealers abroad bid on it</span></div>
+      <div class="step"><span class="dot">4</span> <span data-i18n="art_s4">We ship it and handle customs</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <div class="stag" data-i18n="why_tag">Why we started</div>
+    <h2 data-i18n="why_h2">It began with one question: am I selling my car for too little?</h2>
+    <p class="ssub" style="max-width:840px;font-size:17px;color:var(--txt)" data-i18n="why_story">'Is this a good price? Am I letting it go for too little?' — that question is where Vectiba began. The same car sells for a different price in each country, and somewhere there is always a buyer who would pay more for the car you're selling. Cars already move through referrals and brokers offline, yet the seller and the buyer have never been connected directly — kept apart by distance, language and complicated paperwork. Vectiba connects them directly, using AI.</p>
+    <div class="grid3" style="margin-top:28px">
+      <div class="card"><div class="ic">🏷️</div><h3 data-i18n="prob_c1h">Sellers settle for the local price</h3><p data-i18n="prob_c1p">Most people take the first easy offer nearby, before a buyer in another country ever hears about the car.</p></div>
+      <div class="card"><div class="ic">🌍</div><h3 data-i18n="prob_c2h">The best buyer is far away</h3><p data-i18n="prob_c2p">Distance, language and complicated paperwork keep the seller and the buyer who'd pay most from ever meeting.</p></div>
+      <div class="card"><div class="ic">➗</div><h3 data-i18n="prob_c3h">Middlemen take the difference</h3><p data-i18n="prob_c3p">Referrals and brokers move cars, but the seller and the buyer never connect directly — so the extra money goes to the middle.</p></div>
+    </div>
+    <p class="ssub" style="margin-top:26px;font-weight:500;color:var(--green);max-width:840px" data-i18n="why_now">Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.</p>
+  </div>
+</section>
+
+<section id="service">
+  <div class="wrap">
+    <div class="stag" data-i18n="sol_tag">The service</div>
+    <h2 data-i18n="sol_h2">We open your car to dealers in many countries at once.</h2>
+    <p class="ssub" data-i18n="sol_sub">Before anyone bids, we make the car easy to trust and easy to price. Then dealers compete, and the best real offer wins.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic">📸</div><h3 data-i18n="sol_c1h">We check the car</h3><p data-i18n="sol_c1p">Photos, mileage, history, and an inspection when it's needed — so a dealer far away can trust it without flying out to see it.</p></div>
+      <div class="card"><div class="ic">🧾</div><h3 data-i18n="sol_c2h">We show the full cost</h3><p data-i18n="sol_c2p">Shipping, customs and fees to each country, added up — so everyone sees the real delivered price before they bid.</p></div>
+      <div class="card"><div class="ic">🤝</div><h3 data-i18n="sol_c3h">Dealers bid, you choose</h3><p data-i18n="sol_c3p">Dealers in different countries make offers. You see how much you would actually get from each one, and you pick.</p></div>
+    </div>
+    <div class="demoWrap">
+      <iframe class="demoFrame" src="demo/" loading="lazy" title="Vectiba seller demo"></iframe>
+    </div>
+    <p class="ssub" style="margin:22px auto 0;text-align:center" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.</p>
+  </div>
+</section>
+
+<section id="team" class="band">
+  <div class="wrap">
+    <div class="stag" data-i18n="team_tag">The team</div>
+    <h2 data-i18n="team_h2">The people who built it.</h2>
+    <div class="founder2">
+      <div class="fphoto"><img src="img/dustin.jpg" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/></div>
+      <div>
+        <div class="fname">Dustin Yoo</div>
+        <div class="ftitle" data-i18n="team_role">Founder &amp; CEO</div>
+        <p style="margin:0;font-size:15.5px;color:rgba(255,255,255,.9)" data-i18n="team_bio">Dustin Yoo spent eight years in the car business — new-car sales, then his own used-car dealership and export company, shipping around 1,500 cars a year to Russia, Central Asia, the Middle East, South America and Africa. He runs Vectiba from Dubai.</p>
+        <p class="teamquote" data-i18n="team_story">"When a platform like this launched in Korea, I was a dealer selling two cars a month. Once I learned to use it well, I was selling 120 cars a month on my own. That is where Vectiba comes from."</p>
+        <p class="teamnote" style="color:rgba(255,255,255,.72)" data-i18n="team_note">A small app and AI team in Seoul builds the product, and trusted local partners in each country handle inspection, shipping and customs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="stag" data-i18n="info_tag">Contact</div>
+    <h2 data-i18n="info_h2">Let's talk.</h2>
+    <p class="ssub" data-i18n="info_sub">Reach the founder directly.</p>
+    <div class="contacts">
+      <a class="cbtn wa" href="https://wa.me/821032778222" target="_blank" rel="noopener"><span class="ci">💬</span> WhatsApp</a>
+      <a class="cbtn" href="https://www.linkedin.com/in/ceo-vectiba" target="_blank" rel="noopener"><span class="ci">in</span> LinkedIn</a>
+      <a class="cbtn" href="mailto:ceo@vectiba.com"><span class="ci">✉</span> ceo@vectiba.com</a>
+    </div>
+    <div class="cloc" data-i18n="info_loc">Mina Jebel Ali, Jebel Ali Freezone, Dubai, UAE · Tech team in Seoul</div>
+    <div style="margin-top:20px"><a class="btn" href="mailto:ceo@vectiba.com?subject=Vectiba%20—%20request%20materials" data-i18n="info_cta">Request materials</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap foot">
+  <div data-i18n="foot_1"><strong style="color:var(--green)">Vectiba</strong> · Buy and sell cars across borders · Dubai / Seoul</div>
+  <div data-i18n="foot_2">© 2026 Vectiba. Dustin Yoo, Founder &amp; CEO · ceo@vectiba.com</div>
+</div></footer>
+
+<script>
+const I18N = __I18N_JSON__;
+const RTL = ['ar','fa'];
+function applyLang(lang){
+  const dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.includes(lang) ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  try{ localStorage.setItem('vlang', lang); }catch(e){}
+  var sel = document.getElementById('langsel'); if(sel) sel.value = lang;
+}
+function detectLang(){
+  var saved; try{ saved = localStorage.getItem('vlang'); }catch(e){}
+  if(saved && I18N[saved]) return saved;
+  var navs = navigator.languages || [navigator.language || 'en'];
+  for(var i=0;i<navs.length;i++){ var c = (navs[i]||'').slice(0,2).toLowerCase(); if(I18N[c]) return c; }
+  return 'en';
+}
+document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
+applyLang(detectLang());
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+import json, glob, os
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+en = {
+"nav_why":"Why we started","nav_service":"Service","nav_team":"Team","nav_contact":"Contact",
+"hero_kicker":"Dubai · Buy and sell cars across borders",
+"hero_h1":"Sell your car to the dealer who pays the most — even if they're in another country.",
+"hero_lead":"List your car once. Dealers in different countries bid on it. You see the real price after shipping and customs, then pick the best offer. We handle the inspection, the paperwork and the shipping.",
+"hero_cta1":"See how it works","hero_cta2":"Contact us",
+"art_h3":"One car, dealers everywhere","art_p":"List it once — buyers in many countries can bid.",
+"art_s1":"You list your car on your phone","art_s2":"We check it and add the cost to each country","art_s3":"Dealers abroad bid on it","art_s4":"We ship it and handle customs",
+"why_tag":"Why we started","why_h2":"It began with one question: am I selling my car for too little?",
+"why_story":"'Is this a good price? Am I letting it go for too little?' — that question is where Vectiba began. The same car sells for a different price in each country, and somewhere there is always a buyer who would pay more for the car you're selling. Cars already move through referrals and brokers offline, yet the seller and the buyer have never been connected directly — kept apart by distance, language and complicated paperwork. Vectiba connects them directly, using AI.",
+"why_by":"Dustin Yoo · Founder & CEO",
+"why_now":"Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.",
+"prob_tag":"The problem","prob_h2":"The buyer who would pay the most usually never sees the car.",
+"prob_sub":"A dealer in another country might pay far more than your local one. Today they can't find your car, so that extra money goes to middlemen.",
+"prob_c1h":"Sellers settle for the local price","prob_c1p":"Most people take the first easy offer nearby, before a buyer in another country ever hears about the car.",
+"prob_c2h":"The best buyer is far away","prob_c2p":"Distance, language and complicated paperwork keep the seller and the buyer who'd pay most from ever meeting.",
+"prob_c3h":"Middlemen take the difference","prob_c3p":"Referrals and brokers move cars, but the seller and the buyer never connect directly — so the extra money goes to the middle.",
+"sol_tag":"The service","sol_h2":"We open your car to dealers in many countries at once.",
+"sol_sub":"Before anyone bids, we make the car easy to trust and easy to price. Then dealers compete, and the best real offer wins.",
+"sol_c1h":"We check the car","sol_c1p":"Photos, mileage, history, and an inspection when it's needed — so a dealer far away can trust it without flying out to see it.",
+"sol_c2h":"We show the full cost","sol_c2p":"Shipping, customs and fees to each country, added up — so everyone sees the real delivered price before they bid.",
+"sol_c3h":"Dealers bid, you choose","sol_c3p":"Dealers in different countries make offers. You see how much you would actually get from each one, and you pick.",
+"demo_sub":"The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.",
+"team_tag":"The team","team_h2":"The people who built it.","team_role":"Founder & CEO",
+"team_bio":"Dustin Yoo spent eight years in the car business — new-car sales, then his own used-car dealership and export company, shipping around 1,500 cars a year to Russia, Central Asia, the Middle East, South America and Africa. He runs Vectiba from Dubai.",
+"team_story":"\"When a platform like this launched in Korea, I was a dealer selling two cars a month. Once I learned to use it well, I was selling 120 cars a month on my own. That is where Vectiba comes from.\"",
+"team_note":"A small app and AI team in Seoul builds the product, and trusted local partners in each country handle inspection, shipping and customs.",
+"info_tag":"Contact","info_h2":"Let's talk.","info_sub":"Reach the founder directly.",
+"info_loc":"Mina Jebel Ali, Jebel Ali Freezone, Dubai, UAE · Tech team in Seoul","info_cta":"Request materials",
+"foot_1":"<strong style=\"color:var(--green)\">Vectiba</strong> · Buy and sell cars across borders · Dubai / Seoul",
+"foot_2":"© 2026 Vectiba. Dustin Yoo, Founder & CEO · ceo@vectiba.com"
+}
+I18N = {"en": en}
+for f in sorted(glob.glob(os.path.join(ROOT,"i18n","*.json"))):
+    lang = os.path.splitext(os.path.basename(f))[0]
+    d = json.load(open(f))
+    if "foot_1" in d and "<strong>" in d["foot_1"]:
+        d["foot_1"] = d["foot_1"].replace("<strong>", "<strong style=\"color:var(--green)\">")
+    I18N[lang] = d
+tpl = open(os.path.join(ROOT,"_src","tpl.html")).read()
+out = tpl.replace("__I18N_JSON__", json.dumps(I18N, ensure_ascii=False))
+open(os.path.join(ROOT,"index.html"), "w").write(out)
+json.dump(en, open(os.path.join(ROOT,"_src","en.json"), "w"), ensure_ascii=False, indent=0)
+print("built:", len(out), "bytes | keys:", len(en), "| langs:", sorted(I18N))
