@@ -15,7 +15,7 @@
   nav{position:sticky;top:0;z-index:20;background:rgba(248,245,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:var(--green);letter-spacing:-.3px}
-  .vmark{width:26px;height:26px}
+  .vmark{height:24px;width:auto;display:block}
   .nlinks{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:500;color:var(--sub)}
   .nlinks a:hover{color:var(--green)}
   .btn{display:inline-block;background:var(--green);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:10px;border:none;cursor:pointer}
@@ -30,7 +30,7 @@
   .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
   .cta{display:flex;gap:12px;flex-wrap:wrap}
   .heroArt{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;position:relative;overflow:hidden}
-  .heroArt .bigV{position:absolute;right:-30px;bottom:-40px;opacity:.10}
+  .heroArt .bigV{position:absolute;right:-24px;bottom:-40px;height:250px;width:auto;opacity:.10}
   .heroArt h3{margin:0 0 4px;font-size:16px}
   .heroArt p{margin:0;color:var(--sub);font-size:14px}
   .flowrow{display:flex;flex-direction:column;gap:12px;margin-top:20px;position:relative;z-index:1}
@@ -80,7 +80,7 @@
 
 <nav><div class="wrap nav">
   <a class="brand" href="#top">
-    <svg class="vmark" viewBox="0 0 48 48" fill="none"><path d="M7.5 5 L14 7 L20 31 L16.5 32.5 Z" fill="#135A4B"/><path d="M31 5.5 L37.5 3.8 L26 42 L23 42.5 Z" fill="#135A4B"/></svg>
+    <img class="vmark" src="img/vectiba-logo.png" alt="Vectiba"/>
     Vectiba
   </a>
   <div class="nlinks">
@@ -121,7 +121,7 @@
     </div>
   </div>
   <div class="heroArt">
-    <svg class="bigV" width="220" height="220" viewBox="0 0 48 48"><path d="M7.5 5 L14 7 L20 31 L16.5 32.5 Z" fill="#135A4B"/><path d="M31 5.5 L37.5 3.8 L26 42 L23 42.5 Z" fill="#135A4B"/></svg>
+    <img class="bigV" src="img/vectiba-logo.png" alt=""/>
     <h3 data-i18n="art_h3">One car, dealers everywhere</h3>
     <p data-i18n="art_p">List it once — buyers in many countries can bid.</p>
     <div class="flowrow">
