@@ -88,5 +88,21 @@
 "team_p1": "私は自動車業界で8年間働いてきました。新車の営業として始まり、中古車ディーラーになり、その後は自己資本を投じて自ら車を仕入れて販売するディーラーになりました。CEOとして中古車販売法人と輸出法人を経営しました。その間、世界の約15カ国へ年間1,000台以上を売買・輸出してきました。",
 "team_p2": "2025年9月から6か月間、市場調査だけに費やし、本質を見つけられずに何度もプロダクトを作り直しました。数々の挫折と失敗の中でも耐え抜きました。今、市場が本当に必要とするサービスを見つけ、まもなくローンチしようとしています。そして、誰もが必要とするものへと育て続けていきます。",
 "team_p3": "私は10カ国以上を自ら訪ね、コールドメールやコールドアプローチ、そして既存のネットワークからの紹介を通じて各国のパートナーと出会っています。このビジョンを共有できるパートナーを見つけるため、地球の裏側で現場に立っています。",
-"team_p4": "私自身、月に2台も売れないディーラーでした。このようなプラットフォームを活用して、年間1,000台以上を売るディーラーになりました。その経験がVectibaの出発点です。各国の信頼できるパートナーやディーラーとともに夢を実現し、その過程で、売り手は既に所有している車をより高い価格で売れるようになります。"
+"team_p4": "私自身、月に2台も売れないディーラーでした。このようなプラットフォームを活用して、年間1,000台以上を売るディーラーになりました。その経験がVectibaの出発点です。各国の信頼できるパートナーやディーラーとともに夢を実現し、その過程で、売り手は既に所有している車をより高い価格で売れるようになります。",
+"nav_seller": "For sellers",
+"nav_buyer": "For buyers",
+"seller_tag": "Service · For sellers",
+"seller_h2": "We show your car to dealers in many countries at once.",
+"seller_sub": "The same car is valued differently in each country, and the real price differs too. Vectiba lets you sell to the dealer who values your car the most — even if that dealer is in another country, entirely remotely.",
+"seller_how": "The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.",
+"buyer_tag": "Service · For buyers & partners",
+"buyer_h2": "Reach every used car in the world.",
+"buyer_sub": "Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?",
+"buyer_c1h": "Reach cars worldwide",
+"buyer_c1p": "Access used cars anywhere in the world and deal directly with the owner, remotely — no agencies, no introductions in between.",
+"buyer_c2h": "AI inspection checklist",
+"buyer_c2p": "Ask Vectiba AI to check exactly what matters before you buy to resell. You're the pro — the AI backs your judgment.",
+"buyer_c3h": "Logistics handled",
+"buyer_c3p": "Language, distance, duties, customs and sea freight — all solved. Vectiba was built by a dealer who sold more cars than anyone.",
+"buyer_note": "Shorten the chain, and sellers earn more while buyers land a more reasonable end cost. Buy in the most efficient, structured way of the AI era — and see your revenue and net profit grow several times over."
 }
