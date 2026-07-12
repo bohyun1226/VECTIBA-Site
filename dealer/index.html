@@ -6,88 +6,107 @@
 <title>Vectiba — For dealers</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-  :root{--bg:#F8F5EE;--card:#FFFDF9;--panel:#EFEADF;--line:#E4DED1;--txt:#183028;--sub:#5F6B62;--green:#135A4B;--green2:#0E4A3E;--gold:#BE8B39;}
+  :root{--bg:#F8F5EE;--card:#FFFDF9;--panel:#EFEADF;--line:#E4DED1;--txt:#183028;--sub:#5F6B62;--green:#135A4B;--emerald:#0B7A5A;--emerald2:#0A6A4E;--gold:#BE8B39;}
   *{box-sizing:border-box}
   body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
   img{display:block;max-width:100%}
-  .top{position:sticky;top:0;z-index:10;background:rgba(248,245,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 20px}
-  .toprow{display:flex;align-items:center;gap:12px;max-width:1180px;margin:0 auto}
-  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--green)}
-  .brand img{height:22px}
-  .fordealer{font-size:11px;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:2px 9px;letter-spacing:.5px}
-  .filters{display:flex;gap:8px;flex-wrap:wrap;max-width:1180px;margin:10px auto 0}
+  /* header (emerald) */
+  .topbar{background:var(--emerald);color:#fff}
+  .toprow{display:flex;align-items:center;gap:12px;max-width:1200px;margin:0 auto;height:58px;padding:0 22px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;color:#fff}
+  .logochip{width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .logochip img{height:19px}
+  .fordealer{font-size:11px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:20px;padding:3px 10px;letter-spacing:.5px}
+  .topnav{margin-left:auto;display:flex;gap:20px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.85)}
+  .topnav .on{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:2px}
+  /* filter bar (white, sticky) */
+  .filterbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:12px 22px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;max-width:1200px;margin:0 auto}
   .filters select,.filters input{font-family:inherit;font-size:13px;color:var(--txt);background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;font-weight:500}
-  .filters .search{flex:1;min-width:150px}
-  .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 40px}
-  .rowhead{display:flex;align-items:center;gap:8px;margin:22px 0 12px}
-  .rowhead h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.3px}
-  .rowhead .cnt{font-size:12.5px;color:var(--sub)}
-  .row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}
+  .filters .search{flex:1;min-width:160px}
+  .wrap{max-width:1200px;margin:0 auto;padding:18px 22px 44px}
+  /* grid (airbnb-ish) */
+  .rowhead{display:flex;align-items:center;gap:8px;margin:22px 0 14px}
+  .rowhead h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.4px}
+  .row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(236px,1fr);gap:18px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}
   .row::-webkit-scrollbar{height:7px}.row::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
-  .cardc{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;scroll-snap-align:start;transition:transform .12s,box-shadow .12s}
-  .cardc:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(19,90,75,.12)}
-  .cardimg{position:relative;aspect-ratio:16/10;background:var(--panel)}
-  .cardimg img{width:100%;height:100%;object-fit:cover}
-  .badge{position:absolute;top:9px;left:9px;background:rgba(255,255,255,.94);color:var(--green);font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:20px}
-  .heart{position:absolute;top:8px;right:9px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub)}
-  .timer{position:absolute;bottom:9px;left:9px;background:rgba(24,48,40,.82);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
-  .cardbody{padding:12px 13px 14px}
-  .cardtitle{font-size:14.5px;font-weight:700;line-height:1.25}
-  .cardmeta{font-size:12.5px;color:var(--sub);margin:3px 0 8px}
-  .cardfoot{display:flex;align-items:center;justify-content:space-between}
-  .bidcnt{font-size:11.5px;color:var(--sub)}
-  .qbtn{background:var(--green);color:#fff;border:none;font-family:inherit;font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:9px;cursor:pointer}
-  .qbtn:hover{background:var(--green2)}
+  .cardc{cursor:pointer;scroll-snap-align:start}
+  .cardimg{position:relative;aspect-ratio:20/15;background:var(--panel);border-radius:14px;overflow:hidden}
+  .cardimg img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+  .cardc:hover .cardimg img{transform:scale(1.04)}
+  .badge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.94);color:var(--emerald);font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .heart{position:absolute;top:9px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff}
+  .timer{position:absolute;bottom:10px;left:10px;background:rgba(24,48,40,.82);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+  .cardbody{padding:10px 2px 4px}
+  .cardtitle{font-size:15px;font-weight:700;line-height:1.25}
+  .cardmeta{font-size:13px;color:var(--sub);margin:2px 0 3px}
+  .bidcnt{font-size:12.5px;color:var(--emerald);font-weight:600}
   /* detail */
   #detail{display:none}
-  .back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--green);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;margin-bottom:14px;padding:0}
-  .dgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
-  @media(max-width:840px){.dgrid{grid-template-columns:1fr}}
-  .gallery .hero{border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--panel)}
-  .gallery .hero img{width:100%;height:100%;object-fit:cover}
-  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}
-  .thumbs img{aspect-ratio:4/3;object-fit:cover;border-radius:9px;border:1.5px solid var(--line);cursor:pointer}
-  .thumbs img.sel{border-color:var(--green)}
-  .dtitle{font-size:23px;font-weight:800;margin:16px 0 2px}
+  .back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--emerald);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;margin-bottom:16px;padding:0}
+  .dgrid{display:grid;grid-template-columns:1fr 344px;gap:30px;align-items:start}
+  @media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+  .photobox{display:flex;gap:10px;align-items:flex-start}
+  .mainphoto{flex:0 0 auto;width:400px;max-width:58%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel);cursor:zoom-in;position:relative}
+  .mainphoto img{width:100%;height:100%;object-fit:cover}
+  .mainphoto .zoom{position:absolute;bottom:10px;right:10px;background:rgba(24,48,40,.8);color:#fff;font-size:11px;font-weight:600;padding:4px 9px;border-radius:20px}
+  .thumbgrid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-content:flex-start}
+  .thumbgrid img{aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1.5px solid var(--line);cursor:pointer}
+  .thumbgrid img.sel{border-color:var(--emerald)}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 6px}
+  .chk{background:#E7F3EE;color:var(--emerald);font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px}
+  .dtitle{font-size:24px;font-weight:800;margin:8px 0 2px}
   .dsub{color:var(--sub);font-size:14px}
-  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+  .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+  @media(max-width:560px){.specs{grid-template-columns:repeat(2,1fr)}.mainphoto{width:100%;max-width:100%}.photobox{flex-direction:column}}
   .spec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
   .spec .k{font-size:11.5px;color:var(--sub)}
   .spec .v{font-size:15px;font-weight:700}
-  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-  .chk{background:#EAF3EF;color:var(--green);font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px}
-  /* calc panel */
-  .calc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;position:sticky;top:150px}
-  .calc h4{margin:0 0 4px;font-size:16px}
-  .sealed{font-size:12px;color:var(--sub);background:var(--panel);border-radius:9px;padding:7px 10px;margin:8px 0 14px}
+  /* bid panel (right, heydealer-style) */
+  .bidpanel{border:1px solid var(--line);border-radius:16px;padding:18px;position:sticky;top:80px;background:var(--card)}
+  .aucrow{display:flex;justify-content:space-between;align-items:center}
+  .aucrow .st{color:var(--emerald);font-weight:800;font-size:15px}
+  .aucrow .views{color:var(--sub);font-size:12.5px}
+  .timer2{font-size:24px;font-weight:800;letter-spacing:1px;margin:2px 0 12px;font-variant-numeric:tabular-nums}
+  .sealed{font-size:12px;color:var(--sub);background:var(--panel);border-radius:9px;padding:8px 10px;margin-bottom:14px}
   .fld{margin-bottom:12px}
   .fld label{display:block;font-size:12px;color:var(--sub);font-weight:600;margin-bottom:5px}
   .fld select,.fld input{width:100%;font-family:inherit;font-size:14px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--txt);font-weight:600}
   .toggle{display:flex;gap:6px}
   .toggle button{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--sub);border-radius:9px;padding:9px;cursor:pointer}
-  .toggle button.on{border-color:var(--green);background:#EAF3EF;color:var(--green)}
+  .toggle button.on{border-color:var(--emerald);background:#E7F3EE;color:var(--emerald)}
   .lines{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
   .line{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--sub)}
   .line b{color:var(--txt);font-weight:600}
   .total{border-top:1px solid var(--line);margin-top:6px;padding-top:12px}
   .total .big{display:flex;justify-content:space-between;align-items:baseline}
   .total .big .lbl{font-size:13px;color:var(--sub)}
-  .total .big .amt{font-size:22px;font-weight:800;color:var(--green)}
+  .total .big .amt{font-size:22px;font-weight:800;color:var(--emerald)}
   .total .eur{text-align:right;font-size:12px;color:var(--sub);margin-top:2px}
   .fx{font-size:11px;color:var(--sub);margin-top:8px}
-  .submit{width:100%;background:var(--green);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:11px;cursor:pointer;margin-top:14px}
-  .submit:hover{background:var(--green2)}
-  .done{display:none;text-align:center;background:#EAF3EF;color:var(--green);font-weight:700;font-size:14px;padding:14px;border-radius:11px;margin-top:14px}
+  .submit{width:100%;background:var(--emerald);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:11px;cursor:pointer;margin-top:14px}
+  .submit:hover{background:var(--emerald2)}
+  .done{display:none;text-align:center;background:#E7F3EE;color:var(--emerald);font-weight:700;font-size:13.5px;padding:14px;border-radius:11px;margin-top:14px}
   .note{font-size:11px;color:var(--sub);text-align:center;margin-top:10px}
+  /* lightbox */
+  .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:100;align-items:center;justify-content:center}
+  .lb.on{display:flex}
+  .lb img{max-width:90%;max-height:86%;border-radius:10px}
+  .lb .x{position:absolute;top:16px;right:26px;color:#fff;font-size:30px;cursor:pointer;line-height:1}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:46px;cursor:pointer;padding:0 22px;user-select:none;opacity:.85}
+  .lb .prev{left:6px}.lb .next{right:6px}
 </style>
 </head>
 <body>
 
-<div class="top">
+<div class="topbar">
   <div class="toprow">
-    <span class="brand"><img src="../img/vectiba-logo.png" alt="Vectiba"/> Vectiba</span>
-    <span class="fordealer" id="t_fordealer">딜러 · FOR DEALERS</span>
+    <span class="brand"><span class="logochip"><img src="../img/vectiba-logo.png" alt="Vectiba"/></span> Vectiba</span>
+    <span class="fordealer" id="t_fordealer">FOR DEALERS</span>
+    <span class="topnav"><span class="on" id="t_nav1">경매장</span><span id="t_nav2">내 입찰</span><span id="t_nav3">매입시세</span></span>
   </div>
+</div>
+<div class="filterbar">
   <div class="filters">
     <input class="search" id="f_search" oninput="applyFilters()"/>
     <select id="f_brand" onchange="applyFilters()"></select>
@@ -103,40 +122,32 @@
   <div id="detail">
     <button class="back" onclick="showBrowse()">← <span id="t_back">목록으로</span></button>
     <div class="dgrid">
-      <div>
-        <div class="gallery">
-          <div class="hero"><img id="heroImg" src="img/bmw_g30.jpg" alt="BMW 530i"/></div>
-          <div class="thumbs" id="thumbs"></div>
+      <div class="dleft">
+        <div class="photobox">
+          <div class="mainphoto" onclick="openLB(curIdx)"><img id="mainImg" src="" alt=""/><span class="zoom" id="t_zoom">🔍 크게 보기</span></div>
+          <div class="thumbgrid" id="thumbgrid"></div>
         </div>
-        <div class="badges" style="margin-top:16px">
-          <span class="chk" id="t_chk1">✓ 무사고</span>
-          <span class="chk" id="t_chk2">✓ AI 검수완료</span>
-          <span class="chk" id="t_chk3">✓ 이력 확인</span>
-        </div>
-        <div class="dtitle">BMW 530i · G30</div>
-        <div class="dsub" id="t_dsub">2019 · M Sport · 블루스톤 메탈릭 · 🇩🇪 독일 뮌헨 출발</div>
-        <div class="specs">
-          <div class="spec"><div class="k" id="t_s1">연식</div><div class="v">2019</div></div>
-          <div class="spec"><div class="k" id="t_s2">주행거리</div><div class="v">62,000 km</div></div>
-          <div class="spec"><div class="k" id="t_s3">연료</div><div class="v" id="t_s3v">가솔린</div></div>
-          <div class="spec"><div class="k" id="t_s4">매물가</div><div class="v">€18,400</div></div>
-        </div>
+        <div class="badges" id="badges"></div>
+        <div class="dtitle" id="dTitle"></div>
+        <div class="dsub" id="dSub"></div>
+        <div class="specs" id="specs"></div>
       </div>
 
-      <div class="calc">
-        <h4 id="t_calc_h">도착가 계산 · 견적 넣기</h4>
-        <div class="sealed" id="t_sealed">🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다. 처음부터 최고가를 써내세요.</div>
+      <div class="bidpanel">
+        <div class="aucrow"><span class="st" id="t_auction">경매 중</span><span class="views" id="views"></span></div>
+        <div class="timer2" id="timer2">00:00:00</div>
+        <div class="sealed" id="t_sealed">🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다.</div>
 
         <div class="fld">
           <label id="t_l_dest">도착지 (내 나라 · 항구)</label>
-          <select id="dest" onchange="calc()"></select>
+          <select id="dest" onchange="destChanged()"></select>
         </div>
         <div class="fld">
           <label id="t_l_ccy">표시 통화</label>
           <select id="ccy" onchange="calc()"></select>
         </div>
         <div class="fld">
-          <label id="t_l_road">로드탁송 (뮌헨 → 함부르크항)</label>
+          <label id="t_l_road">로드탁송</label>
           <div class="toggle">
             <button id="carrier" class="on" onclick="setRoad('carrier')">🚛 <span id="t_carrier">캐리어</span></button>
             <button id="driver" onclick="setRoad('driver')">🧑‍✈️ <span id="t_driver">기사운행</span></button>
@@ -144,18 +155,17 @@
         </div>
         <div class="fld">
           <label id="t_l_bid">내 입찰가 (EUR)</label>
-          <input id="bid" type="number" value="18900" oninput="calc()"/>
+          <input id="bid" type="number" value="0" oninput="calc()"/>
         </div>
 
         <div class="lines" id="lines"></div>
-
         <div class="total">
           <div class="big"><span class="lbl" id="t_endcost">예상 도착가 (엔드코스트)</span><span class="amt" id="totAmt">—</span></div>
           <div class="eur" id="totEur"></div>
         </div>
-        <div class="fx" id="fx">환율 불러오는 중…</div>
+        <div class="fx" id="fx"></div>
 
-        <button class="submit" id="t_submit" onclick="submitBid()">입찰 제출</button>
+        <button class="submit" id="t_submit" onclick="submitBid()">입찰하기</button>
         <div class="done" id="done">✓ <span id="t_done">입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.</span></div>
         <div class="note" id="t_note">숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.</div>
       </div>
@@ -163,57 +173,61 @@
   </div>
 </div>
 
+<div class="lb" id="lb"><span class="x" onclick="closeLB()">✕</span><span class="nav prev" onclick="lbStep(-1)">‹</span><img id="lbImg" src="" alt=""/><span class="nav next" onclick="lbStep(1)">›</span></div>
+
 <script>
-var L = (new URLSearchParams(location.search).get('lang')||'ko');
-var KO = (L==='ko');
-
-// ---- 다국어 (ko / en) ----
-var T = {
-  ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",
-      row1:"지금 입찰 가능",row2:"마감 임박",row3:"독일발 매물",bidcnt:"명 견적 중",qbtn:"견적 넣기",
-      f_all_brand:"브랜드 전체",f_all_year:"연식 전체",f_all_km:"주행거리 전체",f_all_origin:"출발국 전체",result:"결과",cars:"대",noresult:"조건에 맞는 매물이 없습니다.",
-      calc_h:"도착가 계산 · 견적 넣기",sealed:"🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다. 처음부터 최고가를 써내세요.",
-      l_dest:"도착지 (내 나라 · 항구)",l_ccy:"표시 통화",l_road:"로드탁송 (뮌헨 → 함부르크항)",l_bid:"내 입찰가 (EUR)",
-      carrier:"캐리어",driver:"기사운행",endcost:"예상 도착가 (엔드코스트)",submit:"입찰 제출",
-      done:"입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.",
-      note:"숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.",
-      dsub:"2019 · M Sport · 블루스톤 메탈릭 · 🇩🇪 독일 뮌헨 출발",
-      chk:["✓ 무사고","✓ AI 검수완료","✓ 이력 확인"],speck:["연식","주행거리","연료","매물가"],fuel:"가솔린",
-      ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"}},
-  en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",
-      row1:"Open for bids now",row2:"Ending soon",row3:"From Germany",bidcnt:" dealers bidding",qbtn:"Place quote",
-      f_all_brand:"All brands",f_all_year:"All years",f_all_km:"All mileage",f_all_origin:"All origins",result:"Results:",cars:"",noresult:"No cars match.",
-      calc_h:"Landed cost · place your quote",sealed:"🔒 Sealed auction — you can't see other dealers' quotes. Bid your best from the start.",
-      l_dest:"Destination (your country · port)",l_ccy:"Display currency",l_road:"Road haulage (Munich → Hamburg port)",l_bid:"Your bid (EUR)",
-      carrier:"Carrier",driver:"Driven",endcost:"Estimated landed cost",submit:"Submit bid",
-      done:"Your bid is in. After close, the seller picks the highest.",
-      note:"Figures and FX are illustrative · production uses real rate & duty data.",
-      dsub:"2019 · M Sport · Bluestone Metallic · from Munich, Germany 🇩🇪",
-      chk:["✓ No accidents","✓ AI-inspected","✓ History verified"],speck:["Year","Mileage","Fuel","List price"],fuel:"Petrol",
-      ln:{road:"Road haulage",storage:"Port storage",docs:"Paperwork",freight:"Sea freight",duty:"Customs & duty"}}
+var L=(new URLSearchParams(location.search).get('lang')||'ko'); var KO=(L==='ko');
+var T={
+ ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",zoom:"🔍 크게 보기",
+     nav:["경매장","내 입찰","매입시세"],
+     row1:"지금 입찰 가능",row2:"마감 임박",row3:"독일발 매물",bidcnt:"명 견적 중",
+     f_all_brand:"브랜드 전체",f_all_year:"연식 전체",f_all_km:"주행거리 전체",f_all_origin:"출발국 전체",
+     result:"결과",cars:"대",noresult:"조건에 맞는 매물이 없습니다.",
+     auction:"경매 중",views:"조회",people:"명",sealed:"🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다.",
+     l_dest:"도착지 (내 나라 · 항구)",l_ccy:"표시 통화",l_bid:"내 입찰가 (EUR)",
+     carrier:"캐리어",driver:"기사운행",endcost:"예상 도착가 (엔드코스트)",submit:"입찰하기",
+     done:"입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.",
+     note:"숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.",
+     speck:["연식","주행거리","연료","매물가"],chk:["✓ 무사고","✓ AI 검수완료","✓ 이력 확인"],
+     road:"로드탁송",depart:"출발",
+     ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"},winbid:"낙찰가"},
+ en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",zoom:"🔍 View large",
+     nav:["Auctions","My bids","Prices"],
+     row1:"Open for bids now",row2:"Ending soon",row3:"From Germany",bidcnt:" bidding",
+     f_all_brand:"All brands",f_all_year:"All years",f_all_km:"All mileage",f_all_origin:"All origins",
+     result:"Results:",cars:"",noresult:"No cars match.",
+     auction:"Live auction",views:"",people:" viewing",sealed:"🔒 Sealed auction — you can't see other dealers' quotes.",
+     l_dest:"Destination (your country · port)",l_ccy:"Display currency",l_bid:"Your bid (EUR)",
+     carrier:"Carrier",driver:"Driven",endcost:"Estimated landed cost",submit:"Place bid",
+     done:"Your bid is in. After close, the seller picks the highest.",
+     note:"Figures and FX are illustrative · production uses real rate & duty data.",
+     speck:["Year","Mileage","Fuel","List price"],chk:["✓ No accidents","✓ AI-inspected","✓ History verified"],
+     road:"Road haulage",depart:"from",
+     ln:{road:"Road haulage",storage:"Port storage",docs:"Paperwork",freight:"Sea freight",duty:"Customs & duty"},winbid:"Winning bid"}
 };
-var D = T[KO?'ko':'en'];
+var D=T[KO?'ko':'en'];
 
-// ---- 매물 데이터 ----
-var CARS = [
- {id:"bmw_g30",  ko:"BMW 530i (G30)",  en:"BMW 530i (G30)",  y:2019,km:62000, o:"🇩🇪",oko:"독일",oen:"Germany", eur:18400, badge:["무사고·검수","No-accident"],t:"41:12",n:4, br:"BMW", detail:true},
- {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7, br:"Toyota"},
- {id:"gclass",  ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5, br:"Mercedes-Benz"},
- {id:"eclass",  ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3, br:"Mercedes-Benz"},
- {id:"hilux",   ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6, br:"Toyota"},
- {id:"bmw_x5",  ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4, br:"BMW"},
- {id:"prado",   ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5, br:"Toyota"},
- {id:"gle",     ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2, br:"Mercedes-Benz"},
- {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8, br:"Lexus"},
- {id:"rav4",    ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3, br:"Toyota"},
- {id:"patrol",  ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6, br:"Nissan"},
- {id:"camry",   ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4, br:"Toyota"},
- {id:"peugeot", ko:"푸조 3008",en:"Peugeot 3008",y:2018,km:71000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:16900,badge:["검수완료","Inspected"],t:"20:10",n:3, br:"Peugeot"},
- {id:"renault", ko:"르노 메간 R.S.",en:"Renault Megane R.S.",y:2019,km:46000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:21500,badge:["무사고","No-accident"],t:"09:55",n:4, br:"Renault"}
+var CARS=[
+ {id:"bmw_g30",ko:"BMW 530i (G30)",en:"BMW 530i (G30)",y:2019,km:62000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:18400,badge:["무사고·검수","No-accident"],t:"41:12",n:4,br:"BMW",fu:["가솔린","Petrol"],detail:true},
+ {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7,br:"Toyota",fu:["가솔린","Petrol"]},
+ {id:"gclass",ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
+ {id:"eclass",ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
+ {id:"hilux",ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6,br:"Toyota",fu:["디젤","Diesel"]},
+ {id:"bmw_x5",ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4,br:"BMW",fu:["가솔린","Petrol"]},
+ {id:"prado",ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5,br:"Toyota",fu:["디젤","Diesel"]},
+ {id:"gle",ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
+ {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8,br:"Lexus",fu:["가솔린","Petrol"]},
+ {id:"rav4",ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3,br:"Toyota",fu:["하이브리드","Hybrid"]},
+ {id:"patrol",ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6,br:"Nissan",fu:["가솔린","Petrol"]},
+ {id:"camry",ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4,br:"Toyota",fu:["가솔린","Petrol"]},
+ {id:"peugeot",ko:"푸조 3008",en:"Peugeot 3008",y:2018,km:71000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:16900,badge:["검수완료","Inspected"],t:"20:10",n:3,br:"Peugeot",fu:["디젤","Diesel"]},
+ {id:"renault",ko:"르노 메간 R.S.",en:"Renault Megane R.S.",y:2019,km:46000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:21500,badge:["무사고","No-accident"],t:"09:55",n:4,br:"Renault",fu:["가솔린","Petrol"]}
 ];
-
-// ---- 도착지 / 통화 / 요율 (예시) ----
-var DEST = [
+// 출발국 → 출발도시·수출항
+var EXP={"독일":["뮌헨","함부르크","Munich","Hamburg"],"UAE":["두바이","제벨알리","Dubai","Jebel Ali"],
+ "일본":["오사카","요코하마","Osaka","Yokohama"],"한국":["서울","부산","Seoul","Busan"],
+ "프랑스":["리옹","르아브르","Lyon","Le Havre"],"태국":["방콕","램차방","Bangkok","Laem Chabang"]};
+var DEST=[
  {k:"uae",ko:"🇦🇪 UAE · 제벨알리",en:"🇦🇪 UAE · Jebel Ali",ccy:"AED",freight:1150,duty:5,storage:90,docs:140},
  {k:"ksa",ko:"🇸🇦 사우디 · 제다",en:"🇸🇦 Saudi · Jeddah",ccy:"SAR",freight:1250,duty:5,storage:100,docs:150},
  {k:"rus",ko:"🇷🇺 러시아 · 노보로시스크",en:"🇷🇺 Russia · Novorossiysk",ccy:"RUB",freight:1050,duty:15,storage:110,docs:160},
@@ -222,47 +236,41 @@ var DEST = [
  {k:"kor",ko:"🇰🇷 한국 · 인천",en:"🇰🇷 Korea · Incheon",ccy:"KRW",freight:1300,duty:8,storage:90,docs:150},
  {k:"usa",ko:"🇺🇸 미국 · 뉴욕",en:"🇺🇸 USA · New York",ccy:"USD",freight:1200,duty:2.5,storage:90,docs:150}
 ];
-var CCYS = ["EUR","USD","AED","SAR","RUB","KZT","NGN","KRW","TRY","GBP"];
-var FALLBACK = {EUR:1,USD:1.08,AED:3.97,SAR:4.05,RUB:98,KZT:505,NGN:1650,KRW:1490,TRY:35,GBP:0.85};
-var ROAD = {carrier:480, driver:260};
-var RATES = null, FXDATE = "예시", roadMode="carrier";
+var CCYS=["EUR","USD","AED","SAR","RUB","KZT","NGN","KRW","TRY","GBP"];
+var FALLBACK={EUR:1,USD:1.08,AED:3.97,SAR:4.05,RUB:98,KZT:505,NGN:1650,KRW:1490,TRY:35,GBP:0.85};
+var ROAD={carrier:480,driver:260};
+var RATES=null,FXDATE="예시",roadMode="carrier";
+var CUR=null,GAL=[],curIdx=0;
 
-function money(n,ccy){
-  var d = (ccy==="KRW"||ccy==="RUB"||ccy==="NGN"||ccy==="KZT") ? 0 : 0;
-  return new Intl.NumberFormat(KO?'ko-KR':'en-US',{maximumFractionDigits:d}).format(Math.round(n));
-}
-function euro(n){ return "€"+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(Math.round(n)); }
+function money(n){return new Intl.NumberFormat(KO?'ko-KR':'en-US',{maximumFractionDigits:0}).format(Math.round(n));}
+function euro(n){return "€"+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(Math.round(n));}
+function img(id){return "img/"+id+".jpg";}
 
-// ---- 카드 그리드 ----
+/* ---- 카드 그리드 ---- */
 function cardHTML(c){
-  var name = KO?c.ko:c.en, origin = (KO?c.oko:c.oen);
-  var badge = KO?c.badge[0]:c.badge[1];
+  var name=KO?c.ko:c.en, origin=(KO?c.oko:c.oen), badge=KO?c.badge[0]:c.badge[1];
   return '<div class="cardc" onclick="openCar(\''+c.id+'\')">'
-    +'<div class="cardimg"><img src="'+(c.id==="bmw_g30"?"img/bmw_g30.jpg":"img/"+c.id+".jpg")+'" alt="'+name+'"/>'
-    +'<span class="badge">'+badge+'</span><span class="heart">♡</span><span class="timer">⏱ '+c.t+'</span></div>'
-    +'<div class="cardbody"><div class="cardtitle">'+name+'</div>'
-    +'<div class="cardmeta">'+c.y+' · '+c.km.toLocaleString()+' km · '+c.o+' '+origin+'</div>'
-    +'<div class="cardfoot"><span class="bidcnt">'+c.n+D.bidcnt+'</span>'
-    +'<button class="qbtn" onclick="event.stopPropagation();openCar(\''+c.id+'\')">'+D.qbtn+'</button></div></div></div>';
+   +'<div class="cardimg"><img src="'+img(c.id)+'" alt="'+name+'"/>'
+   +'<span class="badge">'+badge+'</span><span class="heart">♡</span><span class="timer">⏱ '+c.t+'</span></div>'
+   +'<div class="cardbody"><div class="cardtitle">'+name+'</div>'
+   +'<div class="cardmeta">'+c.y+' · '+c.km.toLocaleString()+' km · '+c.o+' '+origin+'</div>'
+   +'<div class="bidcnt">'+c.n+D.bidcnt+'</div></div></div>';
 }
-function rowHTML(title,list){
-  return '<div class="rowhead"><h3>'+title+'</h3></div><div class="row">'+list.map(cardHTML).join('')+'</div>';
-}
+function rowHTML(title,list){return '<div class="rowhead"><h3>'+title+'</h3></div><div class="row">'+list.map(cardHTML).join('')+'</div>';}
 function renderBrowse(){
   var byId=function(id){return CARS.find(function(x){return x.id===id})};
   var r1=["bmw_g30","landcruiser","peugeot","gclass","renault","eclass","rav4","patrol"].map(byId);
   var r2=["hilux","lexus_lx","landcruiser","patrol"].map(byId);
   var r3=["bmw_g30","gclass","eclass","bmw_x5","gle"].map(byId);
-  document.getElementById('browse').innerHTML =
-    rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
+  document.getElementById('browse').innerHTML=rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
 }
-function originVal(c){ return c.o+' '+(KO?c.oko:c.oen); }
+function originVal(c){return c.o+' '+(KO?c.oko:c.oen);}
 function initFilters(){
   var g=function(id){return document.getElementById(id)};
   g('f_search').placeholder=D.search;
-  var brands=[]; CARS.forEach(function(c){if(brands.indexOf(c.br)<0)brands.push(c.br)});
+  var brands=[];CARS.forEach(function(c){if(brands.indexOf(c.br)<0)brands.push(c.br)});
   g('f_brand').innerHTML='<option value="">'+D.f_all_brand+'</option>'+brands.map(function(b){return '<option>'+b+'</option>'}).join('');
-  var ors=[]; CARS.forEach(function(c){var v=originVal(c); if(ors.indexOf(v)<0)ors.push(v)});
+  var ors=[];CARS.forEach(function(c){var v=originVal(c);if(ors.indexOf(v)<0)ors.push(v)});
   g('f_origin').innerHTML='<option value="">'+D.f_all_origin+'</option>'+ors.map(function(o){return '<option>'+o+'</option>'}).join('');
   g('f_year').innerHTML='<option value="">'+D.f_all_year+'</option><option>2022+</option><option>2020+</option><option>2018+</option>';
   g('f_km').innerHTML='<option value="">'+D.f_all_km+'</option><option>~50,000km</option><option>~80,000km</option>';
@@ -270,101 +278,97 @@ function initFilters(){
 function applyFilters(){
   var g=function(id){return document.getElementById(id)};
   var q=(g('f_search').value||'').toLowerCase().trim();
-  var br=g('f_brand').value, yr=g('f_year').value, km=g('f_km').value, og=g('f_origin').value;
-  if(!(q||br||yr||km||og)){ renderBrowse(); return; }
+  var br=g('f_brand').value,yr=g('f_year').value,km=g('f_km').value,og=g('f_origin').value;
+  if(!(q||br||yr||km||og)){renderBrowse();return;}
   var list=CARS.filter(function(c){
     var name=(KO?c.ko:c.en).toLowerCase();
-    if(q && name.indexOf(q)<0 && c.br.toLowerCase().indexOf(q)<0) return false;
-    if(br && c.br!==br) return false;
-    if(og && originVal(c)!==og) return false;
-    if(yr && c.y<parseInt(yr,10)) return false;
-    if(km){ var mx=parseInt(km.replace(/[^0-9]/g,''),10); if(c.km>mx) return false; }
+    if(q&&name.indexOf(q)<0&&c.br.toLowerCase().indexOf(q)<0)return false;
+    if(br&&c.br!==br)return false;
+    if(og&&originVal(c)!==og)return false;
+    if(yr&&c.y<parseInt(yr,10))return false;
+    if(km){var mx=parseInt(km.replace(/[^0-9]/g,''),10);if(c.km>mx)return false;}
     return true;
   });
   var html='<div class="rowhead"><h3>'+D.result+' '+list.length+D.cars+'</h3></div>';
-  html+= list.length
-    ? '<div class="row" style="grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));overflow:visible">'+list.map(cardHTML).join('')+'</div>'
-    : '<p style="color:var(--sub);padding:24px 0">'+D.noresult+'</p>';
+  html+=list.length?'<div class="row" style="grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));overflow:visible">'+list.map(cardHTML).join('')+'</div>':'<p style="color:var(--sub);padding:24px 0">'+D.noresult+'</p>';
   document.getElementById('browse').innerHTML=html;
 }
 
-// ---- 상세 ----
-var TH=["bmw_g30.jpg","bmw_g30_1.jpg","bmw_g30_2.jpg","bmw_g30_3.jpg","bmw_g30_4.jpg"];
+/* ---- 상세 ---- */
+var BMW_TH=["bmw_g30","bmw_g30_1","bmw_g30_2","bmw_g30_3","bmw_g30_4"];
 function openCar(id){
-  if(id!=="bmw_g30"){ // 데모: BMW만 상세 제공
-    var el=document.getElementById('browse');
-  }
+  CUR=CARS.find(function(c){return c.id===id});
+  GAL=(id==="bmw_g30")?BMW_TH.slice():[id];
+  curIdx=0;
   document.getElementById('browse').style.display='none';
   document.getElementById('detail').style.display='block';
   window.scrollTo(0,0);
-  var th=document.getElementById('thumbs');
-  th.innerHTML=TH.map(function(f,i){return '<img src="img/'+f+'" class="'+(i===0?'sel':'')+'" onclick="pick('+i+')"/>'}).join('');
-  document.getElementById('heroImg').src='img/'+TH[0];
-  calc();
-}
-function pick(i){
-  document.getElementById('heroImg').src='img/'+TH[i];
-  var ts=document.querySelectorAll('#thumbs img'); ts.forEach(function(t,j){t.className=(i===j?'sel':'')});
-}
-function showBrowse(){
-  document.getElementById('detail').style.display='none';
-  document.getElementById('browse').style.display='block';
-}
-function setRoad(m){ roadMode=m;
-  document.getElementById('carrier').className=(m==='carrier'?'on':'');
-  document.getElementById('driver').className=(m==='driver'?'on':'');
-  calc();
-}
-
-// ---- 계산 ----
-function curDest(){ return DEST.find(function(d){return d.k===document.getElementById('dest').value}); }
-function calc(){
-  var d=curDest(); var ccy=document.getElementById('ccy').value;
-  var bid=parseFloat(document.getElementById('bid').value)||0;
-  var road=ROAD[roadMode];
-  var duty=bid*d.duty/100;
-  var parts=[["road",road],["storage",d.storage],["docs",d.docs],["freight",d.freight],["duty",duty]];
-  var sumFees=road+d.storage+d.docs+d.freight+duty;
-  var totalEUR=bid+sumFees;
-  var rate=(RATES&&RATES[ccy])?RATES[ccy]:FALLBACK[ccy];
-  var lines=document.getElementById('lines'); lines.innerHTML='';
-  parts.forEach(function(p){
-    var lbl=D.ln[p[0]]; if(p[0]==="duty") lbl+=" ("+d.duty+"%)";
-    lines.innerHTML+='<div class="line"><span>'+lbl+'</span><b>'+euro(p[1])+'</b></div>';
-  });
-  lines.innerHTML+='<div class="line" style="color:var(--txt)"><span><b>'+ (KO?"낙찰가":"Winning bid") +'</b></span><b>'+euro(bid)+'</b></div>';
-  var sym = ccy+" ";
-  document.getElementById('totAmt').textContent = sym+money(totalEUR*rate,ccy);
-  document.getElementById('totEur').textContent = "≈ "+euro(totalEUR);
-  document.getElementById('fx').textContent = (KO?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
+  document.getElementById('mainImg').src=img(GAL[0]);
+  document.getElementById('thumbgrid').innerHTML=(GAL.length>1)?GAL.map(function(f,i){return '<img src="'+img(f)+'" class="'+(i===0?'sel':'')+'" onclick="pick('+i+')"/>'}).join(''):'';
+  var name=KO?CUR.ko:CUR.en, origin=KO?CUR.oko:CUR.oen;
+  document.getElementById('badges').innerHTML=D.chk.map(function(v){return '<span class="chk">'+v+'</span>'}).join('');
+  document.getElementById('dTitle').textContent=name;
+  document.getElementById('dSub').textContent=CUR.y+'년형 · '+CUR.km.toLocaleString()+'km · '+CUR.o+' '+origin+' '+D.depart;
+  var sp=[[D.speck[0],CUR.y],[D.speck[1],CUR.km.toLocaleString()+' km'],[D.speck[2],KO?CUR.fu[0]:CUR.fu[1]],[D.speck[3],euro(CUR.eur)]];
+  document.getElementById('specs').innerHTML=sp.map(function(s){return '<div class="spec"><div class="k">'+s[0]+'</div><div class="v">'+s[1]+'</div></div>'}).join('');
+  document.getElementById('views').textContent=KO?(D.views+' '+(CUR.n*7+18)+D.people):((CUR.n*7+18)+D.people);
+  document.getElementById('timer2').textContent=CUR.t+':00';
+  document.getElementById('bid').value=Math.round(CUR.eur*1.03/100)*100;
   document.getElementById('done').style.display='none';
   document.getElementById('t_submit').style.display='block';
+  calc();
 }
-function submitBid(){
-  document.getElementById('t_submit').style.display='none';
-  document.getElementById('done').style.display='block';
-}
+function pick(i){curIdx=i;document.getElementById('mainImg').src=img(GAL[i]);
+  var ts=document.querySelectorAll('#thumbgrid img');ts.forEach(function(t,j){t.className=(i===j?'sel':'')});}
+function showBrowse(){document.getElementById('detail').style.display='none';document.getElementById('browse').style.display='block';}
+function setRoad(m){roadMode=m;document.getElementById('carrier').className=(m==='carrier'?'on':'');document.getElementById('driver').className=(m==='driver'?'on':'');calc();}
+/* 라이트박스 */
+function openLB(i){curIdx=i;document.getElementById('lbImg').src=img(GAL[i]);document.getElementById('lb').classList.add('on');}
+function closeLB(){document.getElementById('lb').classList.remove('on');}
+function lbStep(d){curIdx=(curIdx+d+GAL.length)%GAL.length;document.getElementById('lbImg').src=img(GAL[curIdx]);}
+document.getElementById('lb').addEventListener('click',function(e){if(e.target.id==='lb')closeLB();});
 
-// ---- FX (무키 ECB/공개 API) ----
+/* ---- 계산 ---- */
+function curDest(){return DEST.find(function(d){return d.k===document.getElementById('dest').value});}
+function destChanged(){document.getElementById('ccy').value=curDest().ccy;calc();}
+function roadLabel(){
+  var e=CUR?EXP[CUR.oko]:null; if(!e){return D.road;}
+  return KO?(D.road+' ('+e[0]+' → '+e[1]+'항)'):(D.road+' ('+e[2]+' → '+e[3]+')');
+}
+function calc(){
+  if(!CUR)return;
+  document.getElementById('t_l_road').textContent=roadLabel();
+  var d=curDest(),ccy=document.getElementById('ccy').value;
+  var bid=parseFloat(document.getElementById('bid').value)||0;
+  var road=ROAD[roadMode],duty=bid*d.duty/100;
+  var parts=[["road",road],["storage",d.storage],["docs",d.docs],["freight",d.freight],["duty",duty]];
+  var totalEUR=bid+road+d.storage+d.docs+d.freight+duty;
+  var rate=(RATES&&RATES[ccy])?RATES[ccy]:FALLBACK[ccy];
+  var lines=document.getElementById('lines');lines.innerHTML='';
+  parts.forEach(function(p){var lbl=D.ln[p[0]];if(p[0]==="duty")lbl+=" ("+d.duty+"%)";
+    lines.innerHTML+='<div class="line"><span>'+lbl+'</span><b>'+euro(p[1])+'</b></div>';});
+  lines.innerHTML+='<div class="line" style="color:var(--txt)"><span><b>'+D.winbid+'</b></span><b>'+euro(bid)+'</b></div>';
+  document.getElementById('totAmt').textContent=ccy+" "+money(totalEUR*rate);
+  document.getElementById('totEur').textContent="≈ "+euro(totalEUR);
+  document.getElementById('fx').textContent=(KO?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
+}
+function submitBid(){document.getElementById('t_submit').style.display='none';document.getElementById('done').style.display='block';}
 function loadFX(){
   fetch('https://open.er-api.com/v6/latest/EUR').then(function(r){return r.json()}).then(function(j){
-    if(j&&j.rates){ RATES=j.rates;
-      FXDATE=(j.time_last_update_utc||'').slice(5,16)||'ECB';
-      calc();
-    }
-  }).catch(function(){ FXDATE=(KO?"예시 환율":"sample FX"); });
+    if(j&&j.rates){RATES=j.rates;FXDATE=(j.time_last_update_utc||'').slice(5,16)||'ECB';if(CUR)calc();}
+  }).catch(function(){FXDATE=(KO?"예시 환율":"sample FX");});
 }
 
-// ---- init ----
-function fillSelect(id,arr,fn){var s=document.getElementById(id);s.innerHTML=arr.map(fn).join('');}
+/* ---- init ---- */
+function fillSelect(id,arr,fn){document.getElementById(id).innerHTML=arr.map(fn).join('');}
 function applyText(){
   document.getElementById('t_fordealer').textContent=D.fordealer;
   document.getElementById('t_back').textContent=D.back;
-  document.getElementById('t_calc_h').textContent=D.calc_h;
+  document.getElementById('t_zoom').textContent=D.zoom;
+  document.getElementById('t_auction').textContent=D.auction;
   document.getElementById('t_sealed').textContent=D.sealed;
   document.getElementById('t_l_dest').textContent=D.l_dest;
   document.getElementById('t_l_ccy').textContent=D.l_ccy;
-  document.getElementById('t_l_road').textContent=D.l_road;
   document.getElementById('t_l_bid').textContent=D.l_bid;
   document.getElementById('t_carrier').textContent=D.carrier;
   document.getElementById('t_driver').textContent=D.driver;
@@ -372,17 +376,13 @@ function applyText(){
   document.getElementById('t_submit').textContent=D.submit;
   document.getElementById('t_done').textContent=D.done;
   document.getElementById('t_note').textContent=D.note;
-  document.getElementById('t_dsub').textContent=D.dsub;
-  document.getElementById('t_s3v').textContent=D.fuel;
-  D.chk.forEach(function(v,i){document.getElementById('t_chk'+(i+1)).textContent=v});
-  D.speck.forEach(function(v,i){document.getElementById('t_s'+(i+1)).textContent=v});
+  document.getElementById('t_nav1').textContent=D.nav[0];
+  document.getElementById('t_nav2').textContent=D.nav[1];
+  document.getElementById('t_nav3').textContent=D.nav[2];
 }
 fillSelect('dest',DEST,function(d){return '<option value="'+d.k+'">'+(KO?d.ko:d.en)+'</option>'});
 fillSelect('ccy',CCYS,function(c){return '<option value="'+c+'"'+(c==="AED"?' selected':'')+'>'+c+'</option>'});
-document.getElementById('dest').onchange=function(){ // 도착지 바꾸면 통화 자동
-  var d=curDest(); document.getElementById('ccy').value=d.ccy; calc();
-};
-applyText(); initFilters(); renderBrowse(); calc(); loadFX();
+applyText();initFilters();renderBrowse();loadFX();
 </script>
 </body>
 </html>
