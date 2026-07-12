@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vectiba — For dealers</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+  :root{--bg:#F8F5EE;--card:#FFFDF9;--panel:#EFEADF;--line:#E4DED1;--txt:#183028;--sub:#5F6B62;--green:#135A4B;--green2:#0E4A3E;--gold:#BE8B39;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+  img{display:block;max-width:100%}
+  .top{position:sticky;top:0;z-index:10;background:rgba(248,245,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 20px}
+  .toprow{display:flex;align-items:center;gap:12px;max-width:1180px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--green)}
+  .brand img{height:22px}
+  .fordealer{font-size:11px;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:2px 9px;letter-spacing:.5px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;max-width:1180px;margin:10px auto 0}
+  .filters select,.filters input{font-family:inherit;font-size:13px;color:var(--txt);background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;font-weight:500}
+  .filters .search{flex:1;min-width:150px}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 40px}
+  .rowhead{display:flex;align-items:center;gap:8px;margin:22px 0 12px}
+  .rowhead h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.3px}
+  .rowhead .cnt{font-size:12.5px;color:var(--sub)}
+  .row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}
+  .row::-webkit-scrollbar{height:7px}.row::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .cardc{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;scroll-snap-align:start;transition:transform .12s,box-shadow .12s}
+  .cardc:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(19,90,75,.12)}
+  .cardimg{position:relative;aspect-ratio:16/10;background:var(--panel)}
+  .cardimg img{width:100%;height:100%;object-fit:cover}
+  .badge{position:absolute;top:9px;left:9px;background:rgba(255,255,255,.94);color:var(--green);font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:20px}
+  .heart{position:absolute;top:8px;right:9px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub)}
+  .timer{position:absolute;bottom:9px;left:9px;background:rgba(24,48,40,.82);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px}
+  .cardbody{padding:12px 13px 14px}
+  .cardtitle{font-size:14.5px;font-weight:700;line-height:1.25}
+  .cardmeta{font-size:12.5px;color:var(--sub);margin:3px 0 8px}
+  .cardfoot{display:flex;align-items:center;justify-content:space-between}
+  .bidcnt{font-size:11.5px;color:var(--sub)}
+  .qbtn{background:var(--green);color:#fff;border:none;font-family:inherit;font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:9px;cursor:pointer}
+  .qbtn:hover{background:var(--green2)}
+  /* detail */
+  #detail{display:none}
+  .back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--green);font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;margin-bottom:14px;padding:0}
+  .dgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+  @media(max-width:840px){.dgrid{grid-template-columns:1fr}}
+  .gallery .hero{border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--panel)}
+  .gallery .hero img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}
+  .thumbs img{aspect-ratio:4/3;object-fit:cover;border-radius:9px;border:1.5px solid var(--line);cursor:pointer}
+  .thumbs img.sel{border-color:var(--green)}
+  .dtitle{font-size:23px;font-weight:800;margin:16px 0 2px}
+  .dsub{color:var(--sub);font-size:14px}
+  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+  .spec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .spec .k{font-size:11.5px;color:var(--sub)}
+  .spec .v{font-size:15px;font-weight:700}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .chk{background:#EAF3EF;color:var(--green);font-size:12px;font-weight:700;padding:5px 11px;border-radius:20px}
+  /* calc panel */
+  .calc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;position:sticky;top:150px}
+  .calc h4{margin:0 0 4px;font-size:16px}
+  .sealed{font-size:12px;color:var(--sub);background:var(--panel);border-radius:9px;padding:7px 10px;margin:8px 0 14px}
+  .fld{margin-bottom:12px}
+  .fld label{display:block;font-size:12px;color:var(--sub);font-weight:600;margin-bottom:5px}
+  .fld select,.fld input{width:100%;font-family:inherit;font-size:14px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--txt);font-weight:600}
+  .toggle{display:flex;gap:6px}
+  .toggle button{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--sub);border-radius:9px;padding:9px;cursor:pointer}
+  .toggle button.on{border-color:var(--green);background:#EAF3EF;color:var(--green)}
+  .lines{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
+  .line{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--sub)}
+  .line b{color:var(--txt);font-weight:600}
+  .total{border-top:1px solid var(--line);margin-top:6px;padding-top:12px}
+  .total .big{display:flex;justify-content:space-between;align-items:baseline}
+  .total .big .lbl{font-size:13px;color:var(--sub)}
+  .total .big .amt{font-size:22px;font-weight:800;color:var(--green)}
+  .total .eur{text-align:right;font-size:12px;color:var(--sub);margin-top:2px}
+  .fx{font-size:11px;color:var(--sub);margin-top:8px}
+  .submit{width:100%;background:var(--green);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:11px;cursor:pointer;margin-top:14px}
+  .submit:hover{background:var(--green2)}
+  .done{display:none;text-align:center;background:#EAF3EF;color:var(--green);font-weight:700;font-size:14px;padding:14px;border-radius:11px;margin-top:14px}
+  .note{font-size:11px;color:var(--sub);text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="toprow">
+    <span class="brand"><img src="../img/vectiba-logo.png" alt="Vectiba"/> Vectiba</span>
+    <span class="fordealer" id="t_fordealer">딜러 · FOR DEALERS</span>
+  </div>
+  <div class="filters">
+    <input class="search" id="t_search" placeholder="브랜드·모델 검색"/>
+    <select><option id="t_f_brand">브랜드 전체</option><option>BMW</option><option>Mercedes-Benz</option><option>Toyota</option><option>Lexus</option><option>Nissan</option></select>
+    <select><option id="t_f_year">연식 전체</option><option>2022+</option><option>2020+</option><option>2018+</option></select>
+    <select><option id="t_f_km">주행거리 전체</option><option>~50,000km</option><option>~80,000km</option></select>
+    <select><option id="t_f_origin">출발국 전체</option><option>🇩🇪 독일</option><option>🇦🇪 UAE</option><option>🇯🇵 일본</option><option>🇰🇷 한국</option></select>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="browse"></div>
+
+  <div id="detail">
+    <button class="back" onclick="showBrowse()">← <span id="t_back">목록으로</span></button>
+    <div class="dgrid">
+      <div>
+        <div class="gallery">
+          <div class="hero"><img id="heroImg" src="img/bmw_g30.jpg" alt="BMW 530i"/></div>
+          <div class="thumbs" id="thumbs"></div>
+        </div>
+        <div class="badges" style="margin-top:16px">
+          <span class="chk" id="t_chk1">✓ 무사고</span>
+          <span class="chk" id="t_chk2">✓ AI 검수완료</span>
+          <span class="chk" id="t_chk3">✓ 이력 확인</span>
+        </div>
+        <div class="dtitle">BMW 530i · G30</div>
+        <div class="dsub" id="t_dsub">2019 · M Sport · 블루스톤 메탈릭 · 🇩🇪 독일 뮌헨 출발</div>
+        <div class="specs">
+          <div class="spec"><div class="k" id="t_s1">연식</div><div class="v">2019</div></div>
+          <div class="spec"><div class="k" id="t_s2">주행거리</div><div class="v">62,000 km</div></div>
+          <div class="spec"><div class="k" id="t_s3">연료</div><div class="v" id="t_s3v">가솔린</div></div>
+          <div class="spec"><div class="k" id="t_s4">매물가</div><div class="v">€18,400</div></div>
+        </div>
+      </div>
+
+      <div class="calc">
+        <h4 id="t_calc_h">도착가 계산 · 견적 넣기</h4>
+        <div class="sealed" id="t_sealed">🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다. 처음부터 최고가를 써내세요.</div>
+
+        <div class="fld">
+          <label id="t_l_dest">도착지 (내 나라 · 항구)</label>
+          <select id="dest" onchange="calc()"></select>
+        </div>
+        <div class="fld">
+          <label id="t_l_ccy">표시 통화</label>
+          <select id="ccy" onchange="calc()"></select>
+        </div>
+        <div class="fld">
+          <label id="t_l_road">로드탁송 (뮌헨 → 함부르크항)</label>
+          <div class="toggle">
+            <button id="carrier" class="on" onclick="setRoad('carrier')">🚛 <span id="t_carrier">캐리어</span></button>
+            <button id="driver" onclick="setRoad('driver')">🧑‍✈️ <span id="t_driver">기사운행</span></button>
+          </div>
+        </div>
+        <div class="fld">
+          <label id="t_l_bid">내 입찰가 (EUR)</label>
+          <input id="bid" type="number" value="18900" oninput="calc()"/>
+        </div>
+
+        <div class="lines" id="lines"></div>
+
+        <div class="total">
+          <div class="big"><span class="lbl" id="t_endcost">예상 도착가 (엔드코스트)</span><span class="amt" id="totAmt">—</span></div>
+          <div class="eur" id="totEur"></div>
+        </div>
+        <div class="fx" id="fx">환율 불러오는 중…</div>
+
+        <button class="submit" id="t_submit" onclick="submitBid()">입찰 제출</button>
+        <div class="done" id="done">✓ <span id="t_done">입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.</span></div>
+        <div class="note" id="t_note">숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var L = (new URLSearchParams(location.search).get('lang')||'ko');
+var KO = (L==='ko');
+
+// ---- 다국어 (ko / en) ----
+var T = {
+  ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",
+      row1:"지금 입찰 가능",row2:"마감 임박",row3:"독일발 매물",bidcnt:"명 견적 중",qbtn:"견적 넣기",
+      calc_h:"도착가 계산 · 견적 넣기",sealed:"🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다. 처음부터 최고가를 써내세요.",
+      l_dest:"도착지 (내 나라 · 항구)",l_ccy:"표시 통화",l_road:"로드탁송 (뮌헨 → 함부르크항)",l_bid:"내 입찰가 (EUR)",
+      carrier:"캐리어",driver:"기사운행",endcost:"예상 도착가 (엔드코스트)",submit:"입찰 제출",
+      done:"입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.",
+      note:"숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.",
+      dsub:"2019 · M Sport · 블루스톤 메탈릭 · 🇩🇪 독일 뮌헨 출발",
+      chk:["✓ 무사고","✓ AI 검수완료","✓ 이력 확인"],speck:["연식","주행거리","연료","매물가"],fuel:"가솔린",
+      ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"}},
+  en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",
+      row1:"Open for bids now",row2:"Ending soon",row3:"From Germany",bidcnt:" dealers bidding",qbtn:"Place quote",
+      calc_h:"Landed cost · place your quote",sealed:"🔒 Sealed auction — you can't see other dealers' quotes. Bid your best from the start.",
+      l_dest:"Destination (your country · port)",l_ccy:"Display currency",l_road:"Road haulage (Munich → Hamburg port)",l_bid:"Your bid (EUR)",
+      carrier:"Carrier",driver:"Driven",endcost:"Estimated landed cost",submit:"Submit bid",
+      done:"Your bid is in. After close, the seller picks the highest.",
+      note:"Figures and FX are illustrative · production uses real rate & duty data.",
+      dsub:"2019 · M Sport · Bluestone Metallic · from Munich, Germany 🇩🇪",
+      chk:["✓ No accidents","✓ AI-inspected","✓ History verified"],speck:["Year","Mileage","Fuel","List price"],fuel:"Petrol",
+      ln:{road:"Road haulage",storage:"Port storage",docs:"Paperwork",freight:"Sea freight",duty:"Customs & duty"}}
+};
+var D = T[KO?'ko':'en'];
+
+// ---- 매물 데이터 ----
+var CARS = [
+ {id:"bmw_g30",  ko:"BMW 530i (G30)",  en:"BMW 530i (G30)",  y:2019,km:62000, o:"🇩🇪",oko:"독일",oen:"Germany", eur:18400, badge:["무사고·검수","No-accident"],t:"41:12",n:4, detail:true},
+ {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7},
+ {id:"gclass",  ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5},
+ {id:"eclass",  ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3},
+ {id:"hilux",   ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6},
+ {id:"bmw_x5",  ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4},
+ {id:"prado",   ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5},
+ {id:"gle",     ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2},
+ {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8},
+ {id:"rav4",    ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3},
+ {id:"patrol",  ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6},
+ {id:"camry",   ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4}
+];
+
+// ---- 도착지 / 통화 / 요율 (예시) ----
+var DEST = [
+ {k:"uae",ko:"🇦🇪 UAE · 제벨알리",en:"🇦🇪 UAE · Jebel Ali",ccy:"AED",freight:1150,duty:5,storage:90,docs:140},
+ {k:"ksa",ko:"🇸🇦 사우디 · 제다",en:"🇸🇦 Saudi · Jeddah",ccy:"SAR",freight:1250,duty:5,storage:100,docs:150},
+ {k:"rus",ko:"🇷🇺 러시아 · 노보로시스크",en:"🇷🇺 Russia · Novorossiysk",ccy:"RUB",freight:1050,duty:15,storage:110,docs:160},
+ {k:"kaz",ko:"🇰🇿 카자흐스탄 · 알마티(철도)",en:"🇰🇿 Kazakhstan · Almaty (rail)",ccy:"KZT",freight:1700,duty:10,storage:120,docs:170},
+ {k:"nga",ko:"🇳🇬 나이지리아 · 라고스",en:"🇳🇬 Nigeria · Lagos",ccy:"NGN",freight:1400,duty:20,storage:130,docs:180},
+ {k:"kor",ko:"🇰🇷 한국 · 인천",en:"🇰🇷 Korea · Incheon",ccy:"KRW",freight:1300,duty:8,storage:90,docs:150},
+ {k:"usa",ko:"🇺🇸 미국 · 뉴욕",en:"🇺🇸 USA · New York",ccy:"USD",freight:1200,duty:2.5,storage:90,docs:150}
+];
+var CCYS = ["EUR","USD","AED","SAR","RUB","KZT","NGN","KRW","TRY","GBP"];
+var FALLBACK = {EUR:1,USD:1.08,AED:3.97,SAR:4.05,RUB:98,KZT:505,NGN:1650,KRW:1490,TRY:35,GBP:0.85};
+var ROAD = {carrier:480, driver:260};
+var RATES = null, FXDATE = "예시", roadMode="carrier";
+
+function money(n,ccy){
+  var d = (ccy==="KRW"||ccy==="RUB"||ccy==="NGN"||ccy==="KZT") ? 0 : 0;
+  return new Intl.NumberFormat(KO?'ko-KR':'en-US',{maximumFractionDigits:d}).format(Math.round(n));
+}
+function euro(n){ return "€"+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(Math.round(n)); }
+
+// ---- 카드 그리드 ----
+function cardHTML(c){
+  var name = KO?c.ko:c.en, origin = (KO?c.oko:c.oen);
+  var badge = KO?c.badge[0]:c.badge[1];
+  return '<div class="cardc" onclick="openCar(\''+c.id+'\')">'
+    +'<div class="cardimg"><img src="'+(c.id==="bmw_g30"?"img/bmw_g30.jpg":"img/"+c.id+".jpg")+'" alt="'+name+'"/>'
+    +'<span class="badge">'+badge+'</span><span class="heart">♡</span><span class="timer">⏱ '+c.t+'</span></div>'
+    +'<div class="cardbody"><div class="cardtitle">'+name+'</div>'
+    +'<div class="cardmeta">'+c.y+' · '+c.km.toLocaleString()+' km · '+c.o+' '+origin+'</div>'
+    +'<div class="cardfoot"><span class="bidcnt">'+c.n+D.bidcnt+'</span>'
+    +'<button class="qbtn" onclick="event.stopPropagation();openCar(\''+c.id+'\')">'+D.qbtn+'</button></div></div></div>';
+}
+function rowHTML(title,list){
+  return '<div class="rowhead"><h3>'+title+'</h3></div><div class="row">'+list.map(cardHTML).join('')+'</div>';
+}
+function renderBrowse(){
+  var byId=function(id){return CARS.find(function(x){return x.id===id})};
+  var r1=CARS.slice(0,8);
+  var r2=["hilux","lexus_lx","landcruiser","patrol"].map(byId);
+  var r3=["bmw_g30","gclass","eclass","bmw_x5","gle"].map(byId);
+  document.getElementById('browse').innerHTML =
+    rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
+}
+
+// ---- 상세 ----
+var TH=["bmw_g30.jpg","bmw_g30_1.jpg","bmw_g30_2.jpg","bmw_g30_3.jpg","bmw_g30_4.jpg"];
+function openCar(id){
+  if(id!=="bmw_g30"){ // 데모: BMW만 상세 제공
+    var el=document.getElementById('browse');
+  }
+  document.getElementById('browse').style.display='none';
+  document.getElementById('detail').style.display='block';
+  window.scrollTo(0,0);
+  var th=document.getElementById('thumbs');
+  th.innerHTML=TH.map(function(f,i){return '<img src="img/'+f+'" class="'+(i===0?'sel':'')+'" onclick="pick('+i+')"/>'}).join('');
+  document.getElementById('heroImg').src='img/'+TH[0];
+  calc();
+}
+function pick(i){
+  document.getElementById('heroImg').src='img/'+TH[i];
+  var ts=document.querySelectorAll('#thumbs img'); ts.forEach(function(t,j){t.className=(i===j?'sel':'')});
+}
+function showBrowse(){
+  document.getElementById('detail').style.display='none';
+  document.getElementById('browse').style.display='block';
+}
+function setRoad(m){ roadMode=m;
+  document.getElementById('carrier').className=(m==='carrier'?'on':'');
+  document.getElementById('driver').className=(m==='driver'?'on':'');
+  calc();
+}
+
+// ---- 계산 ----
+function curDest(){ return DEST.find(function(d){return d.k===document.getElementById('dest').value}); }
+function calc(){
+  var d=curDest(); var ccy=document.getElementById('ccy').value;
+  var bid=parseFloat(document.getElementById('bid').value)||0;
+  var road=ROAD[roadMode];
+  var duty=bid*d.duty/100;
+  var parts=[["road",road],["storage",d.storage],["docs",d.docs],["freight",d.freight],["duty",duty]];
+  var sumFees=road+d.storage+d.docs+d.freight+duty;
+  var totalEUR=bid+sumFees;
+  var rate=(RATES&&RATES[ccy])?RATES[ccy]:FALLBACK[ccy];
+  var lines=document.getElementById('lines'); lines.innerHTML='';
+  parts.forEach(function(p){
+    var lbl=D.ln[p[0]]; if(p[0]==="duty") lbl+=" ("+d.duty+"%)";
+    lines.innerHTML+='<div class="line"><span>'+lbl+'</span><b>'+euro(p[1])+'</b></div>';
+  });
+  lines.innerHTML+='<div class="line" style="color:var(--txt)"><span><b>'+ (KO?"낙찰가":"Winning bid") +'</b></span><b>'+euro(bid)+'</b></div>';
+  var sym = ccy+" ";
+  document.getElementById('totAmt').textContent = sym+money(totalEUR*rate,ccy);
+  document.getElementById('totEur').textContent = "≈ "+euro(totalEUR);
+  document.getElementById('fx').textContent = (KO?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
+  document.getElementById('done').style.display='none';
+  document.getElementById('t_submit').style.display='block';
+}
+function submitBid(){
+  document.getElementById('t_submit').style.display='none';
+  document.getElementById('done').style.display='block';
+}
+
+// ---- FX (무키 ECB/공개 API) ----
+function loadFX(){
+  fetch('https://open.er-api.com/v6/latest/EUR').then(function(r){return r.json()}).then(function(j){
+    if(j&&j.rates){ RATES=j.rates;
+      FXDATE=(j.time_last_update_utc||'').slice(5,16)||'ECB';
+      calc();
+    }
+  }).catch(function(){ FXDATE=(KO?"예시 환율":"sample FX"); });
+}
+
+// ---- init ----
+function fillSelect(id,arr,fn){var s=document.getElementById(id);s.innerHTML=arr.map(fn).join('');}
+function applyText(){
+  document.getElementById('t_fordealer').textContent=D.fordealer;
+  document.getElementById('t_search').placeholder=D.search;
+  document.getElementById('t_back').textContent=D.back;
+  document.getElementById('t_calc_h').textContent=D.calc_h;
+  document.getElementById('t_sealed').textContent=D.sealed;
+  document.getElementById('t_l_dest').textContent=D.l_dest;
+  document.getElementById('t_l_ccy').textContent=D.l_ccy;
+  document.getElementById('t_l_road').textContent=D.l_road;
+  document.getElementById('t_l_bid').textContent=D.l_bid;
+  document.getElementById('t_carrier').textContent=D.carrier;
+  document.getElementById('t_driver').textContent=D.driver;
+  document.getElementById('t_endcost').textContent=D.endcost;
+  document.getElementById('t_submit').textContent=D.submit;
+  document.getElementById('t_done').textContent=D.done;
+  document.getElementById('t_note').textContent=D.note;
+  document.getElementById('t_dsub').textContent=D.dsub;
+  document.getElementById('t_s3v').textContent=D.fuel;
+  D.chk.forEach(function(v,i){document.getElementById('t_chk'+(i+1)).textContent=v});
+  D.speck.forEach(function(v,i){document.getElementById('t_s'+(i+1)).textContent=v});
+}
+fillSelect('dest',DEST,function(d){return '<option value="'+d.k+'">'+(KO?d.ko:d.en)+'</option>'});
+fillSelect('ccy',CCYS,function(c){return '<option value="'+c+'"'+(c==="AED"?' selected':'')+'>'+c+'</option>'});
+document.getElementById('dest').onchange=function(){ // 도착지 바꾸면 통화 자동
+  var d=curDest(); document.getElementById('ccy').value=d.ccy; calc();
+};
+applyText(); renderBrowse(); calc(); loadFX();
+</script>
+</body>
+</html>
