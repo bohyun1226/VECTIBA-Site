@@ -1,7 +1,7 @@
 import json, glob, os
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 en = {
-"nav_about":"Vectiba?","nav_why":"Why","nav_seller":"For sellers","nav_buyer":"For buyers","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
+"nav_about":"Vectiba?","nav_why":"Why","nav_seller":"Service (sellers)","nav_buyer":"Service (buyers/partners)","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
 "hero_kicker":"Dubai · Buy and sell cars across borders",
 "hero_h1":"Sell your car to the dealer who pays the most — even if they're in another country.",
 "hero_lead":"List your car once. Dealers in different countries bid on it. You see the real price after shipping and customs, then pick the best offer. We handle the inspection, the paperwork and the shipping.",
