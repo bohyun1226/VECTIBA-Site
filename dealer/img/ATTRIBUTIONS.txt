@@ -18,3 +18,37 @@ bmw_g30_1.jpg | File:BMW 5 SERIES (G30) HONG KONG.jpg | CC BY-SA 4.0
 bmw_g30_2.jpg | File:BMW G30 5-series.jpg | CC BY-SA 4.0
 bmw_g30_3.jpg | File:2018 BMw 540i Rear 1.16.18.jpg | CC BY-SA 4.0
 bmw_g30_4.jpg | File:2018 BMW 5-Series 520d M Sport (Rear).jpg | CC BY-SA 4.0
+
+# refetched front views 2026-07-13
+landcruiser.jpg | Toyota LC300 | CC BY 3.0 | Авто Плюс Новости | File:2021 Toyota Land Cruiser 300 (Russia) front view.jpg
+gclass.jpg | Mercedes G-Class | CC BY-SA 3.0 | BrokenSphere | File:2005 silver Mercedes G-Class front.JPG
+eclass.jpg | Mercedes E-Class | CC BY 2.0 | Vernon Chan | File:Mercedes Benz W213 at NAAS 2016.jpg
+hilux.jpg | Toyota Hilux | CC BY-SA 3.0 | Mr.choppers | File:1975 Toyota Hilux in LA (turquoise), front right.jpg
+bmw_x5.jpg | BMW X5 | CC BY-SA 3.0 | Mr.choppers | File:2020 BMW X5 xDrive 40i, front left.jpg
+prado.jpg | Toyota Prado | CC BY-SA 4.0 | Ethan Llamas | File:2024 Toyota Land Cruiser Prado 2.4 Turbo in Black Mica, front left.jpg
+gle.jpg | Mercedes GLE | CC BY 2.0 | Charles from Port Chester, New York | File:Mercedes-Benz GLE-Klasse (V167) GLE 350 de 4MATIC (2021) (52180834362).jpg
+lexus_lx.jpg | Lexus LX | CC BY-SA 4.0 | Ethan Llamas | File:2008 Lexus LX 570 URJ200, front right, 05-05-2024.jpg
+rav4.jpg | Toyota RAV4 | CC BY-SA 4.0 | MercurySable99 | File:2016 Toyota RAV4 XLE AWD, front left, 11-15-2022.jpg
+patrol.jpg | Nissan Patrol | CC BY-SA 4.0 | Tokumeigakarinoaoshima | File:Nissan PATROL (Y62) front.JPG
+camry.jpg | Toyota Camry | CC BY-SA 4.0 | MercurySable99 | File:1998 Toyota Camry CE, front left, 09-12-2022.jpg
+peugeot.jpg | Peugeot 3008 | CC0 | Cutlass | File:2018 Peugeot 3008 in Nera Black, front right, 06-05-2025.jpg
+renault.jpg | Renault Koleos | CC BY-SA 3.0 | AlexanderFPbusse | File:Renault Koleos Concept Front.JPG
+
+# refetch v2 (recent front) 2026-07-13
+landcruiser.jpg | Toyota LC300 | CC BY 3.0 | File:2021 Toyota Land Cruiser 300 (Russia) front view.jpg
+gclass.jpg | Mercedes G-Class | CC BY 2.0 | File:Brabus 800 Biturbo (2022) (53627731100).jpg
+eclass.jpg | Mercedes E-Class | CC BY 2.0 | File:Mercedes-Benz E-Klasse (W213) E 63 S AMG 4MATIC+ (2018) (52573393999).jpg
+hilux.jpg | Toyota Hilux | CC BY-SA 4.0 | File:2018 Toyota Hilux Invincible X D-4d 4WD 2.4 Front.jpg
+bmw_x5.jpg | BMW X5 | CC BY-SA 3.0 | File:2020 BMW X5 xDrive 40i, front left.jpg
+gle.jpg | Mercedes GLE | CC BY 2.0 | File:Mercedes-Benz GLE-Klasse (V167) GLE 300 d 4MATIC (2021) (53325763767).jpg
+rav4.jpg | Toyota RAV4 | CC BY-SA 4.0 | File:2019 Toyota RAV4 XLE AWD front red 3.20.19.jpg
+patrol.jpg | Nissan Patrol | CC BY 4.0 | File:2018 Nissan Patrol Nismo (front).jpg
+camry.jpg | Toyota Camry | CC BY-SA 3.0 | File:2019 Toyota Camry LE in white, front left.jpg
+peugeot.jpg | Peugeot 3008 | CC BY 2.0 | File:Ford S-Max 2.0 EcoBlue AWD (2019) (53333458955).jpg
+renault.jpg | Renault Megane | CC BY-SA 4.0 | File:2019 Renault Megane R.S. 300 Trophy 1.8 Front.jpg
+
+# refetch v3 brand-locked 2026-07-13
+gclass.jpg | Mercedes G-Class | File:G 500 exterior, silver (Mercedes-Benz) right side, exterior, front.jpg
+peugeot.jpg | Peugeot 3008 | File:2016 Peugeot 3008 in Vapor Grey, front left, 06-08-2025.jpg
+prado.jpg | Toyota Prado | File:1997 Toyota Land Cruiser Prado 90 GX, front right, 06-30-2024.jpg
+lexus_lx.jpg | Lexus LX | File:2008 Lexus LX 570 URJ200, front right, 05-05-2024.jpg

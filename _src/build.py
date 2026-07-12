@@ -44,7 +44,7 @@ en = {
 "team_p3":"I've traveled to more than ten countries in person, meeting partners through cold emails, cold approaches, and introductions from my existing network. To find the partners who share this vision, I'm on the ground on the other side of the world.",
 "team_p4":"I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began. Together with trusted partners and dealers in each country, we build the dream — and along the way, sellers get a higher price for the car they already own.",
 "info_tag":"Contact","info_h2":"Let's talk.","info_sub":"Reach the founder directly.",
-"info_loc":"Mina Jebel Ali, Jebel Ali Freezone, Dubai, UAE · Tech team in Seoul","info_cta":"Request materials",
+"info_loc":"Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea","info_cta":"Request materials",
 "foot_1":"<strong style=\"color:var(--green)\">Vectiba</strong> · Buy and sell cars across borders · Dubai / Seoul",
 "foot_2":"© 2026 Vectiba. Dustin Yoo, Founder & CEO · ceo@vectiba.com"
 }

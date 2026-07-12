@@ -89,11 +89,11 @@
     <span class="fordealer" id="t_fordealer">딜러 · FOR DEALERS</span>
   </div>
   <div class="filters">
-    <input class="search" id="t_search" placeholder="브랜드·모델 검색"/>
-    <select><option id="t_f_brand">브랜드 전체</option><option>BMW</option><option>Mercedes-Benz</option><option>Toyota</option><option>Lexus</option><option>Nissan</option></select>
-    <select><option id="t_f_year">연식 전체</option><option>2022+</option><option>2020+</option><option>2018+</option></select>
-    <select><option id="t_f_km">주행거리 전체</option><option>~50,000km</option><option>~80,000km</option></select>
-    <select><option id="t_f_origin">출발국 전체</option><option>🇩🇪 독일</option><option>🇦🇪 UAE</option><option>🇯🇵 일본</option><option>🇰🇷 한국</option></select>
+    <input class="search" id="f_search" oninput="applyFilters()"/>
+    <select id="f_brand" onchange="applyFilters()"></select>
+    <select id="f_year" onchange="applyFilters()"></select>
+    <select id="f_km" onchange="applyFilters()"></select>
+    <select id="f_origin" onchange="applyFilters()"></select>
   </div>
 </div>
 
@@ -171,6 +171,7 @@ var KO = (L==='ko');
 var T = {
   ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",
       row1:"지금 입찰 가능",row2:"마감 임박",row3:"독일발 매물",bidcnt:"명 견적 중",qbtn:"견적 넣기",
+      f_all_brand:"브랜드 전체",f_all_year:"연식 전체",f_all_km:"주행거리 전체",f_all_origin:"출발국 전체",result:"결과",cars:"대",noresult:"조건에 맞는 매물이 없습니다.",
       calc_h:"도착가 계산 · 견적 넣기",sealed:"🔒 밀봉 경매 — 다른 딜러의 견적은 보이지 않습니다. 처음부터 최고가를 써내세요.",
       l_dest:"도착지 (내 나라 · 항구)",l_ccy:"표시 통화",l_road:"로드탁송 (뮌헨 → 함부르크항)",l_bid:"내 입찰가 (EUR)",
       carrier:"캐리어",driver:"기사운행",endcost:"예상 도착가 (엔드코스트)",submit:"입찰 제출",
@@ -181,6 +182,7 @@ var T = {
       ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"}},
   en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",
       row1:"Open for bids now",row2:"Ending soon",row3:"From Germany",bidcnt:" dealers bidding",qbtn:"Place quote",
+      f_all_brand:"All brands",f_all_year:"All years",f_all_km:"All mileage",f_all_origin:"All origins",result:"Results:",cars:"",noresult:"No cars match.",
       calc_h:"Landed cost · place your quote",sealed:"🔒 Sealed auction — you can't see other dealers' quotes. Bid your best from the start.",
       l_dest:"Destination (your country · port)",l_ccy:"Display currency",l_road:"Road haulage (Munich → Hamburg port)",l_bid:"Your bid (EUR)",
       carrier:"Carrier",driver:"Driven",endcost:"Estimated landed cost",submit:"Submit bid",
@@ -194,18 +196,20 @@ var D = T[KO?'ko':'en'];
 
 // ---- 매물 데이터 ----
 var CARS = [
- {id:"bmw_g30",  ko:"BMW 530i (G30)",  en:"BMW 530i (G30)",  y:2019,km:62000, o:"🇩🇪",oko:"독일",oen:"Germany", eur:18400, badge:["무사고·검수","No-accident"],t:"41:12",n:4, detail:true},
- {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7},
- {id:"gclass",  ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5},
- {id:"eclass",  ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3},
- {id:"hilux",   ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6},
- {id:"bmw_x5",  ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4},
- {id:"prado",   ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5},
- {id:"gle",     ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2},
- {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8},
- {id:"rav4",    ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3},
- {id:"patrol",  ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6},
- {id:"camry",   ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4}
+ {id:"bmw_g30",  ko:"BMW 530i (G30)",  en:"BMW 530i (G30)",  y:2019,km:62000, o:"🇩🇪",oko:"독일",oen:"Germany", eur:18400, badge:["무사고·검수","No-accident"],t:"41:12",n:4, br:"BMW", detail:true},
+ {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7, br:"Toyota"},
+ {id:"gclass",  ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5, br:"Mercedes-Benz"},
+ {id:"eclass",  ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3, br:"Mercedes-Benz"},
+ {id:"hilux",   ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6, br:"Toyota"},
+ {id:"bmw_x5",  ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4, br:"BMW"},
+ {id:"prado",   ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5, br:"Toyota"},
+ {id:"gle",     ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2, br:"Mercedes-Benz"},
+ {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8, br:"Lexus"},
+ {id:"rav4",    ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3, br:"Toyota"},
+ {id:"patrol",  ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6, br:"Nissan"},
+ {id:"camry",   ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4, br:"Toyota"},
+ {id:"peugeot", ko:"푸조 3008",en:"Peugeot 3008",y:2018,km:71000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:16900,badge:["검수완료","Inspected"],t:"20:10",n:3, br:"Peugeot"},
+ {id:"renault", ko:"르노 메간 R.S.",en:"Renault Megane R.S.",y:2019,km:46000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:21500,badge:["무사고","No-accident"],t:"09:55",n:4, br:"Renault"}
 ];
 
 // ---- 도착지 / 통화 / 요율 (예시) ----
@@ -246,11 +250,42 @@ function rowHTML(title,list){
 }
 function renderBrowse(){
   var byId=function(id){return CARS.find(function(x){return x.id===id})};
-  var r1=CARS.slice(0,8);
+  var r1=["bmw_g30","landcruiser","peugeot","gclass","renault","eclass","rav4","patrol"].map(byId);
   var r2=["hilux","lexus_lx","landcruiser","patrol"].map(byId);
   var r3=["bmw_g30","gclass","eclass","bmw_x5","gle"].map(byId);
   document.getElementById('browse').innerHTML =
     rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
+}
+function originVal(c){ return c.o+' '+(KO?c.oko:c.oen); }
+function initFilters(){
+  var g=function(id){return document.getElementById(id)};
+  g('f_search').placeholder=D.search;
+  var brands=[]; CARS.forEach(function(c){if(brands.indexOf(c.br)<0)brands.push(c.br)});
+  g('f_brand').innerHTML='<option value="">'+D.f_all_brand+'</option>'+brands.map(function(b){return '<option>'+b+'</option>'}).join('');
+  var ors=[]; CARS.forEach(function(c){var v=originVal(c); if(ors.indexOf(v)<0)ors.push(v)});
+  g('f_origin').innerHTML='<option value="">'+D.f_all_origin+'</option>'+ors.map(function(o){return '<option>'+o+'</option>'}).join('');
+  g('f_year').innerHTML='<option value="">'+D.f_all_year+'</option><option>2022+</option><option>2020+</option><option>2018+</option>';
+  g('f_km').innerHTML='<option value="">'+D.f_all_km+'</option><option>~50,000km</option><option>~80,000km</option>';
+}
+function applyFilters(){
+  var g=function(id){return document.getElementById(id)};
+  var q=(g('f_search').value||'').toLowerCase().trim();
+  var br=g('f_brand').value, yr=g('f_year').value, km=g('f_km').value, og=g('f_origin').value;
+  if(!(q||br||yr||km||og)){ renderBrowse(); return; }
+  var list=CARS.filter(function(c){
+    var name=(KO?c.ko:c.en).toLowerCase();
+    if(q && name.indexOf(q)<0 && c.br.toLowerCase().indexOf(q)<0) return false;
+    if(br && c.br!==br) return false;
+    if(og && originVal(c)!==og) return false;
+    if(yr && c.y<parseInt(yr,10)) return false;
+    if(km){ var mx=parseInt(km.replace(/[^0-9]/g,''),10); if(c.km>mx) return false; }
+    return true;
+  });
+  var html='<div class="rowhead"><h3>'+D.result+' '+list.length+D.cars+'</h3></div>';
+  html+= list.length
+    ? '<div class="row" style="grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));overflow:visible">'+list.map(cardHTML).join('')+'</div>'
+    : '<p style="color:var(--sub);padding:24px 0">'+D.noresult+'</p>';
+  document.getElementById('browse').innerHTML=html;
 }
 
 // ---- 상세 ----
@@ -324,7 +359,6 @@ function loadFX(){
 function fillSelect(id,arr,fn){var s=document.getElementById(id);s.innerHTML=arr.map(fn).join('');}
 function applyText(){
   document.getElementById('t_fordealer').textContent=D.fordealer;
-  document.getElementById('t_search').placeholder=D.search;
   document.getElementById('t_back').textContent=D.back;
   document.getElementById('t_calc_h').textContent=D.calc_h;
   document.getElementById('t_sealed').textContent=D.sealed;
@@ -348,7 +382,7 @@ fillSelect('ccy',CCYS,function(c){return '<option value="'+c+'"'+(c==="AED"?' se
 document.getElementById('dest').onchange=function(){ // 도착지 바꾸면 통화 자동
   var d=curDest(); document.getElementById('ccy').value=d.ccy; calc();
 };
-applyText(); renderBrowse(); calc(); loadFX();
+applyText(); initFilters(); renderBrowse(); calc(); loadFX();
 </script>
 </body>
 </html>
