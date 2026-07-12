@@ -159,7 +159,7 @@
       <div class="card"><div class="ic">🤝</div><h3 data-i18n="sol_c3h">Dealers bid, you choose</h3><p data-i18n="sol_c3p">Dealers in different countries make offers. You see how much you would actually get from each one, and you pick.</p></div>
     </div>
     <div class="demoWrap">
-      <iframe class="demoFrame" src="demo/" loading="lazy" title="Vectiba seller demo"></iframe>
+      <iframe class="demoFrame" src="demo/?lang=en" loading="lazy" title="Vectiba seller demo"></iframe>
     </div>
     <p class="ssub" style="margin:22px auto 0;text-align:center" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.</p>
   </div>
@@ -215,6 +215,8 @@ function applyLang(lang){
   });
   try{ localStorage.setItem('vlang', lang); }catch(e){}
   var sel = document.getElementById('langsel'); if(sel) sel.value = lang;
+  var df = document.querySelector('.demoFrame');
+  if(df){ var ns = 'demo/?lang=' + lang; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function detectLang(){
   var saved; try{ saved = localStorage.getItem('vlang'); }catch(e){}
