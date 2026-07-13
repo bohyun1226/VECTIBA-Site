@@ -75,6 +75,8 @@
   .toggle{display:flex;gap:6px}
   .toggle button{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;border:1.5px solid var(--line);background:#fff;color:var(--sub);border-radius:9px;padding:9px;cursor:pointer}
   .toggle button.on{border-color:var(--emerald);background:#E7F3EE;color:var(--emerald)}
+  .feesbar{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--sand);border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--txt);cursor:pointer;margin-bottom:12px}
+  .feesbar b{color:var(--emerald);font-size:15px}
   .lines{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
   .line{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--sub)}
   .line b{color:var(--txt);font-weight:600}
@@ -153,12 +155,17 @@
             <button id="driver" onclick="setRoad('driver')">🧑‍✈️ <span id="t_driver">기사운행</span></button>
           </div>
         </div>
+        <button type="button" class="feesbar" onclick="toggleFees()">
+          <span id="t_fees">부가비용 합계</span>
+          <span><b id="feesSum">—</b> <span id="feesArrow" style="margin-left:6px">▾</span></span>
+        </button>
+        <div class="lines" id="lines" style="display:none"></div>
+
         <div class="fld">
           <label id="t_l_bid">내 입찰가 (EUR)</label>
           <input id="bid" type="number" value="0" oninput="calc()"/>
         </div>
 
-        <div class="lines" id="lines"></div>
         <div class="total">
           <div class="big"><span class="lbl" id="t_endcost">예상 도착가 (엔드코스트)</span><span class="amt" id="totAmt">—</span></div>
           <div class="eur" id="totEur"></div>
@@ -189,7 +196,7 @@ var T={
      done:"입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.",
      note:"숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.",
      speck:["연식","주행거리","연료","매물가"],chk:["✓ 무사고","✓ AI 검수완료","✓ 이력 확인"],
-     road:"로드탁송",depart:"출발",
+     road:"로드탁송",depart:"출발",fees:"부가비용 합계",
      ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"},winbid:"낙찰가"},
  en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",zoom:"🔍 View large",
      nav:["Auctions","My bids","Prices"],
@@ -202,7 +209,7 @@ var T={
      done:"Your bid is in. After close, the seller picks the highest.",
      note:"Figures and FX are illustrative · production uses real rate & duty data.",
      speck:["Year","Mileage","Fuel","List price"],chk:["✓ No accidents","✓ AI-inspected","✓ History verified"],
-     road:"Road haulage",depart:"from",
+     road:"Road haulage",depart:"from",fees:"Added costs",
      ln:{road:"Road haulage",storage:"Port storage",docs:"Paperwork",freight:"Sea freight",duty:"Customs & duty"},winbid:"Winning bid"}
 };
 var D=T[KO?'ko':'en'];
@@ -322,6 +329,7 @@ function pick(i){curIdx=i;document.getElementById('mainImg').src=img(GAL[i]);
   var ts=document.querySelectorAll('#thumbgrid img');ts.forEach(function(t,j){t.className=(i===j?'sel':'')});}
 function showBrowse(){document.getElementById('detail').style.display='none';document.getElementById('browse').style.display='block';}
 function setRoad(m){roadMode=m;document.getElementById('carrier').className=(m==='carrier'?'on':'');document.getElementById('driver').className=(m==='driver'?'on':'');calc();}
+function toggleFees(){var l=document.getElementById('lines');var open=l.style.display!=='none';l.style.display=open?'none':'block';document.getElementById('feesArrow').textContent=open?'▾':'▴';}
 /* 라이트박스 */
 function openLB(i){curIdx=i;document.getElementById('lbImg').src=img(GAL[i]);document.getElementById('lb').classList.add('on');}
 function closeLB(){document.getElementById('lb').classList.remove('on');}
@@ -342,12 +350,13 @@ function calc(){
   var bid=parseFloat(document.getElementById('bid').value)||0;
   var road=ROAD[roadMode],duty=bid*d.duty/100;
   var parts=[["road",road],["storage",d.storage],["docs",d.docs],["freight",d.freight],["duty",duty]];
-  var totalEUR=bid+road+d.storage+d.docs+d.freight+duty;
+  var feesEUR=road+d.storage+d.docs+d.freight+duty;
+  var totalEUR=bid+feesEUR;
   var rate=(RATES&&RATES[ccy])?RATES[ccy]:FALLBACK[ccy];
   var lines=document.getElementById('lines');lines.innerHTML='';
   parts.forEach(function(p){var lbl=D.ln[p[0]];if(p[0]==="duty")lbl+=" ("+d.duty+"%)";
     lines.innerHTML+='<div class="line"><span>'+lbl+'</span><b>'+euro(p[1])+'</b></div>';});
-  lines.innerHTML+='<div class="line" style="color:var(--txt)"><span><b>'+D.winbid+'</b></span><b>'+euro(bid)+'</b></div>';
+  document.getElementById('feesSum').textContent=euro(feesEUR);
   document.getElementById('totAmt').textContent=ccy+" "+money(totalEUR*rate);
   document.getElementById('totEur').textContent="≈ "+euro(totalEUR);
   document.getElementById('fx').textContent=(KO?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
@@ -370,6 +379,7 @@ function applyText(){
   document.getElementById('t_l_dest').textContent=D.l_dest;
   document.getElementById('t_l_ccy').textContent=D.l_ccy;
   document.getElementById('t_l_bid').textContent=D.l_bid;
+  document.getElementById('t_fees').textContent=D.fees;
   document.getElementById('t_carrier').textContent=D.carrier;
   document.getElementById('t_driver').textContent=D.driver;
   document.getElementById('t_endcost').textContent=D.endcost;
