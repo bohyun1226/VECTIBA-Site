@@ -60,6 +60,12 @@
   .flowlabel{font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;display:inline-block;margin:6px 0 14px}
   .connector{text-align:center;color:rgba(255,255,255,.9);font-weight:600;font-size:15px;margin:26px 0 18px}
   .dealerFrame{width:100%;height:720px;border:0;border-radius:18px;background:var(--bg);box-shadow:0 14px 44px rgba(0,0,0,.22)}
+  .demorow{display:grid;gap:36px;align-items:center;margin-top:28px}
+  .demorow.seller{grid-template-columns:1fr 430px}
+  .demorow.dealer{grid-template-columns:1.6fr 1fr}
+  .demorow .demoWrap{margin:0}
+  .demotext{font-size:16.5px;color:var(--txt);line-height:1.65;font-weight:500}
+  @media(max-width:860px){.demorow.seller,.demorow.dealer{grid-template-columns:1fr}}
   .founder2{display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start;margin-top:8px}
   .fphoto{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
   .fphoto img{width:100%;display:block}
@@ -178,8 +184,10 @@
       <div class="card"><div class="ic">➗</div><h3 data-i18n="prob_c3h">Middlemen take the difference</h3><p data-i18n="prob_c3p">Referrals and brokers move cars, but the seller and the buyer never connect directly — so the extra money goes to the middle.</p></div>
     </div>
     <p class="ssub" style="margin-top:26px;font-weight:500;color:var(--green);max-width:840px" data-i18n="why_now">Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.</p>
-    <p class="ssub" style="max-width:840px;color:var(--txt);margin-top:22px" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
-    <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
+    <div class="demorow seller">
+      <p class="demotext" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
+      <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
+    </div>
   </div>
 </section>
 
@@ -194,8 +202,10 @@
       <div class="card"><div class="ic">🚢</div><h3 data-i18n="buyer_c3h">Logistics handled</h3><p data-i18n="buyer_c3p">Language, distance, duties, customs and sea freight — all solved. Vectiba was built by a dealer who sold more cars than anyone.</p></div>
     </div>
     <p class="ssub" style="margin-top:26px;font-weight:600;color:var(--green);max-width:860px" data-i18n="buyer_note">Shorten the chain, and sellers earn more while buyers land a more reasonable end cost.</p>
-    <p class="ssub" style="max-width:860px;color:var(--txt);margin-top:8px" data-i18n="svc_dealer_sub">The dealer works out the landed cost in their own currency at today's rate and sends a sealed quote — no one sees anyone else's.</p>
-    <iframe class="dealerFrame" loading="lazy" title="Vectiba dealer demo"></iframe>
+    <div class="demorow dealer">
+      <iframe class="dealerFrame" loading="lazy" title="Vectiba dealer demo"></iframe>
+      <p class="demotext" data-i18n="svc_dealer_sub">The dealer works out the landed cost in their own currency at today's rate and sends a sealed quote — no one sees anyone else's.</p>
+    </div>
   </div>
 </section>
 
