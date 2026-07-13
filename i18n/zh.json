@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "用 AI，连接素未谋面的人们。",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_cta": "索取资料",
+"info_h2": "我们聊聊。",
+"info_sub": "直接联系创始人。",
+"info_tag": "联系我们",
+"nav_team": "团队",
+"team_h2": "打造它的人们。",
+"team_role": "创始人兼首席执行官",
+"team_tag": "团队",
+"why_by": "Dustin Yoo · 创始人兼首席执行官",
+"why_now": "为何是现在：AI 终于能够远程检验车辆、跨语言翻译，并算出完整的到岸成本 — 所以这在今天已经可行。",
+"why_story": "每隔几年，到了该卖车的时候，你总会怀疑这个价格是否合理。同一辆车，在不同国家的估值不同，实际成交价也不同 — 所以总有某个地方，有一位经销商愿意为你的车出更高的价。直到现在，卖家与那位经销商从未直接相遇：距离、语言、海关与文书手续横亘其间。Vectiba 用 AI 让两者直接相连 — 负责检验、翻译与完整的到岸成本计算，让卖家与全球经销商第一次相遇。"
 }

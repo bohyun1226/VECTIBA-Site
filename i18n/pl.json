@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "Łączymy ludzi, którzy nigdy by się nie spotkali — dzięki AI.",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_cta": "Poproś o materiały",
+"info_h2": "Porozmawiajmy.",
+"info_sub": "Skontaktuj się bezpośrednio z założycielem.",
+"info_tag": "Kontakt",
+"nav_team": "Zespół",
+"team_h2": "Ludzie, którzy to stworzyli.",
+"team_role": "Założyciel i CEO",
+"team_tag": "Zespół",
+"why_by": "Dustin Yoo · Założyciel i CEO",
+"why_now": "Dlaczego teraz: AI potrafi już zdalnie zbadać stan samochodu, tłumaczyć między językami i wyliczyć pełny koszt dostarczenia na miejsce — dlatego to działa już dziś.",
+"why_story": "Co kilka lat, gdy przychodzi czas na sprzedaż, zastanawiasz się, czy cena jest właściwa. Ten sam samochód jest wyceniany inaczej w każdym kraju, a rzeczywista cena sprzedaży też się różni — więc gdzieś zawsze znajdzie się dealer, który wyceni Twój samochód wyżej. Do tej pory sprzedający i ten dealer nigdy się bezpośrednio nie spotykali: dzieliły ich odległość, język, cło i formalności. Vectiba łączy obie strony bezpośrednio, dzięki AI — zajmując się inspekcją, tłumaczeniem i pełnym wyliczeniem kosztu dostarczenia, dzięki czemu sprzedający i dealerzy na całym świecie spotykają się po raz pierwszy."
 }

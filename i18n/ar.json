@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "نربط بين من لم يلتقوا من قبل — بالذكاء الاصطناعي.",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_cta": "اطلب المواد",
+"info_h2": "لنتحدث.",
+"info_sub": "تواصل مع المؤسس مباشرة.",
+"info_tag": "تواصل",
+"nav_team": "الفريق",
+"team_h2": "الأشخاص الذين بنوها.",
+"team_role": "المؤسّس والرئيس التنفيذي",
+"team_tag": "الفريق",
+"why_by": "Dustin Yoo · المؤسّس والرئيس التنفيذي",
+"why_now": "لماذا الآن: أصبح بإمكان الذكاء الاصطناعي أخيرًا فحص السيارة عن بُعد، والترجمة بين اللغات، وحساب التكلفة الكاملة حتى الوصول — لذلك هذا ممكن اليوم.",
+"why_story": "كل بضع سنوات، حين يحين وقت البيع، تتساءل إن كان السعر عادلاً. القيمة نفسها للسيارة تختلف من دولة إلى أخرى، والسعر الحقيقي يختلف أيضًا — لذا يوجد دائمًا في مكان ما تاجر يقدّر سيارتك أعلى من غيره. وحتى الآن، لم يلتقِ البائع بذلك التاجر مباشرة: كانت المسافة واللغة والجمارك والأوراق تقف بينهما. تربط Vectiba بينهما مباشرة، بالذكاء الاصطناعي — تتولى الفحص والترجمة وحساب التكلفة الكاملة حتى الوصول، ليلتقي البائع بتجّار من كل أنحاء العالم لأول مرة."
 }

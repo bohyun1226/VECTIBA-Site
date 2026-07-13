@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "Ligamos pessoas que nunca se teriam encontrado — com IA.",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_cta": "Solicitar materiais",
+"info_h2": "Vamos falar.",
+"info_sub": "Fale diretamente com o fundador.",
+"info_tag": "Contacto",
+"nav_team": "Equipa",
+"team_h2": "As pessoas que a construíram.",
+"team_role": "Fundador e CEO",
+"team_tag": "A equipa",
+"why_by": "Dustin Yoo · Fundador e CEO",
+"why_now": "Porque agora: a IA já consegue inspecionar um automóvel à distância, traduzir entre idiomas e calcular o custo total de importação — por isso, isto funciona hoje.",
+"why_story": "De poucos em poucos anos, quando chega a altura de vender, pergunta-se se o preço é justo. O mesmo automóvel é avaliado de forma diferente em cada país, e o preço de venda real também difere — por isso, algures existe sempre um concessionário disposto a valorizar mais o seu automóvel. Até agora, o vendedor e esse concessionário nunca se encontravam diretamente: a distância, o idioma, as alfândegas e a burocracia estavam pelo meio. A Vectiba liga os dois diretamente, com IA — tratando da inspeção, da tradução e do cálculo completo do custo de importação, para que um vendedor e concessionários de todo o mundo se encontrem pela primeira vez."
 }

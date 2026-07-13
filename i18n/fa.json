@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "کسانی را که هرگز به هم نمی‌رسیدند، با هوش مصنوعی به هم می‌رسانیم.",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_cta": "درخواست مطالب",
+"info_h2": "بیایید صحبت کنیم.",
+"info_sub": "به‌طور مستقیم با بنیان‌گذار در ارتباط باشید.",
+"info_tag": "تماس",
+"nav_team": "تیم",
+"team_h2": "افرادی که آن را ساختند.",
+"team_role": "بنیان‌گذار و مدیرعامل",
+"team_tag": "تیم",
+"why_by": "Dustin Yoo · بنیان‌گذار و مدیرعامل",
+"why_now": "چرا حالا: هوش مصنوعی اکنون می‌تواند خودرو را از راه دور بازرسی کند، میان زبان‌ها ترجمه کند و هزینه نهایی تحویل را محاسبه کند — پس این کار امروز شدنی است.",
+"why_story": "هر چند سال یک‌بار، وقتی وقت فروش می‌رسد، از خودتان می‌پرسید که آیا قیمت واقعاً منصفانه است. ارزش یک خودروی یکسان در هر کشور متفاوت است، و قیمت فروش واقعی هم فرق می‌کند — پس همیشه جایی در دنیا دلالی هست که خودروی شما را ارزشمندتر می‌بیند. تا امروز، فروشنده و آن دلال هرگز مستقیم به هم نمی‌رسیدند: فاصله، زبان، تشریفات گمرکی و مدارک، میانشان فاصله می‌انداخت. Vectiba این دو را مستقیم و با هوش مصنوعی به هم پیوند می‌دهد — بازرسی، ترجمه و محاسبه کامل هزینه نهایی تحویل را انجام می‌دهد، تا فروشنده و دلال‌های سراسر جهان برای اولین‌بار به هم برسند."
 }

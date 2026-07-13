@@ -114,7 +114,7 @@
 "svc_dealer_label": "② Dealer's screen · sends a quote",
 "svc_dealer_sub": "The dealer sees the landed cost in their own currency at today's rate, then sends a sealed quote — no one sees anyone else's, so they bid their best from the start.",
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
-"hero_def": "Vectiba is a car marketplace that connects sellers directly with dealers worldwide, using AI.",
+"hero_def": "We verbinden mensen die elkaar nooit hadden kunnen ontmoeten — met AI.",
 "form_h": "Dealer & partner application",
 "form_sub": "Leave a few details and the founder will reach out personally.",
 "form_name": "Name",
@@ -128,5 +128,16 @@
 "form_msg": "Message (optional)",
 "form_submit": "Submit application",
 "form_done": "Thanks — we've received it and will be in touch.",
-"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours."
+"why_lead": "The same car is worth different amounts in different countries — and that difference should be yours.",
+"info_tag": "Contact",
+"info_h2": "Laten we praten.",
+"info_sub": "Bereik de oprichter rechtstreeks.",
+"info_cta": "Vraag materiaal aan",
+"nav_team": "Team",
+"team_tag": "Het team",
+"team_h2": "De mensen die het gebouwd hebben.",
+"team_role": "Oprichter & CEO",
+"why_by": "Dustin Yoo · Oprichter & CEO",
+"why_now": "Waarom nu: AI kan een auto eindelijk op afstand inspecteren, talen vertalen en de volledige landed cost berekenen — daarom werkt dit vandaag.",
+"why_story": "Elke paar jaar, als het tijd is om te verkopen, vraag je je af of de prijs wel klopt. Dezelfde auto wordt in elk land anders gewaardeerd, en ook de werkelijke verkoopprijs verschilt — dus ergens is er altijd een dealer die jouw auto hoger waardeert. Tot nu toe ontmoetten de verkoper en die dealer elkaar nooit rechtstreeks: afstand, taal, douane en papierwerk stonden ertussen. Vectiba verbindt de twee rechtstreeks, met AI — het regelt inspectie, vertaling en de volledige landed-cost-berekening, zodat een verkoper en dealers wereldwijd elkaar voor het eerst ontmoeten."
 }

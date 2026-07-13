@@ -302,8 +302,6 @@ function applyLang(lang){
 function detectLang(){
   var saved; try{ saved = localStorage.getItem('vlang'); }catch(e){}
   if(saved && I18N[saved]) return saved;
-  var navs = navigator.languages || [navigator.language || 'en'];
-  for(var i=0;i<navs.length;i++){ var c = (navs[i]||'').slice(0,2).toLowerCase(); if(I18N[c]) return c; }
   return 'en';
 }
 document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
