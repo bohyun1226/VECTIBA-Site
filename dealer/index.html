@@ -173,7 +173,7 @@
 
         <div class="fld">
           <label id="t_l_bid">내 입찰가 (EUR)</label>
-          <input id="bid" type="number" value="0" oninput="calc()"/>
+          <input id="bid" type="number" min="0" value="0" oninput="calc()"/>
         </div>
 
         <div class="total">
@@ -357,7 +357,7 @@ function calc(){
   if(!CUR)return;
   document.getElementById('t_l_road').textContent=roadLabel();
   var d=curDest(),ccy=document.getElementById('ccy').value;
-  var bid=parseFloat(document.getElementById('bid').value)||0;
+  var bid=Math.max(0,parseFloat(document.getElementById('bid').value)||0);
   var road=ROAD[roadMode],duty=bid*d.duty/100;
   var parts=[["road",road],["storage",d.storage],["docs",d.docs],["freight",d.freight],["duty",duty]];
   var feesEUR=road+d.storage+d.docs+d.freight+duty;
