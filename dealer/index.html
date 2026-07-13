@@ -97,7 +97,16 @@
   .lb .x{position:absolute;top:16px;right:26px;color:#fff;font-size:30px;cursor:pointer;line-height:1}
   .lb .nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:46px;cursor:pointer;padding:0 22px;user-select:none;opacity:.85}
   .lb .prev{left:6px}.lb .next{right:6px}
-</style>
+  /* mobile (kept at end so it overrides base rules) */
+  @media(max-width:600px){
+    .topnav{display:none}
+    .toprow{height:52px;padding:0 14px}
+    .filterbar{padding:10px 14px}
+    .wrap{padding:14px 14px 34px}
+    .row{grid-auto-flow:row!important;grid-template-columns:1fr!important;grid-auto-columns:auto!important;overflow:visible}
+    .rowhead h3{font-size:17px}
+    .dgrid{grid-template-columns:1fr}
+  }
 </head>
 <body>
 
