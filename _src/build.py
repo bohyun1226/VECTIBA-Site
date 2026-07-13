@@ -3,7 +3,7 @@ ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 en = {
 "nav_about":"Vectiba?","nav_why":"Why","nav_seller":"For sellers","nav_buyer":"For dealers","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
 "hero_kicker":"Buy and sell cars across borders — worldwide",
-"hero_def":"Vectiba connects sellers and dealers who couldn't meet — across language, borders and distance — with AI.",
+"hero_def":"We connect people who could never meet — with AI.",
 "hero_h1":"Sellers, dealers and forwarders all come out ahead.",
 "hero_lead":"Sellers get more, dealers buy at a fair price and keep the margin, and forwarders see more deals and more revenue — a virtuous cycle.",
 "hero_cta1":"See how it works","hero_cta2":"Contact us",
