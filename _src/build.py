@@ -1,4 +1,4 @@
-import json, glob, os
+import json, glob, os, time
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 en = {
 "nav_about":"Vectiba?","nav_why":"Why","nav_seller":"For sellers","nav_buyer":"For dealers","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
@@ -63,7 +63,9 @@ for f in sorted(glob.glob(os.path.join(ROOT,"i18n","*.json"))):
         d["foot_1"] = d["foot_1"].replace("<strong>", "<strong style=\"color:var(--green)\">")
     I18N[lang] = d
 tpl = open(os.path.join(ROOT,"_src","tpl.html")).read()
-out = tpl.replace("__I18N_JSON__", json.dumps(I18N, ensure_ascii=False))
+BUILD = str(int(time.time()))
+out = tpl.replace("__I18N_JSON__", json.dumps(I18N, ensure_ascii=False)).replace("__BUILD__", BUILD)
 open(os.path.join(ROOT,"index.html"), "w").write(out)
+open(os.path.join(ROOT,"version.txt"), "w").write(BUILD)
 json.dump(en, open(os.path.join(ROOT,"_src","en.json"), "w"), ensure_ascii=False, indent=0)
 print("built:", len(out), "bytes | keys:", len(en), "| langs:", sorted(I18N))
