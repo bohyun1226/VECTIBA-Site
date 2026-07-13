@@ -78,6 +78,17 @@
   .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
   [dir=rtl] .lead,[dir=rtl] .ssub,[dir=rtl] .story,[dir=rtl] .teamnote,[dir=rtl] .note{margin-left:auto}
   [dir=rtl] .heroArt .bigV{right:auto;left:-30px}
+  .leadbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;max-width:660px;margin:6px 0 28px}
+  .leadbox h3{margin:0 0 4px;font-size:18px}
+  .leadbox .lsub{margin:0 0 16px;color:var(--sub);font-size:14.5px}
+  .leadbox form{display:flex;flex-direction:column;gap:12px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}}
+  .leadbox label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--sub)}
+  .leadbox input,.leadbox select,.leadbox textarea{font-family:inherit;font-size:14px;color:var(--txt);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:500}
+  .leadbox input:focus,.leadbox select:focus,.leadbox textarea:focus{outline:none;border-color:var(--green)}
+  .leadbox button{align-self:flex-start;margin-top:4px}
+  .formdone{background:#EAF3EF;color:var(--green);font-weight:700;font-size:14px;padding:12px 14px;border-radius:10px}
 </style>
 </head>
 <body>
@@ -203,6 +214,32 @@
     <div class="stag" data-i18n="info_tag">Contact</div>
     <h2 data-i18n="info_h2">Let's talk.</h2>
     <p class="ssub" data-i18n="info_sub">Reach the founder directly.</p>
+    <div class="leadbox">
+      <h3 data-i18n="form_h">Dealer &amp; partner application</h3>
+      <p class="lsub" data-i18n="form_sub">Leave a few details and the founder will reach out personally.</p>
+      <form id="leadForm" onsubmit="return submitLead(event)">
+        <div class="frow">
+          <label><span data-i18n="form_name">Name</span><input name="name" required/></label>
+          <label><span data-i18n="form_company">Company</span><input name="company" required/></label>
+        </div>
+        <div class="frow">
+          <label><span data-i18n="form_country">Country</span><input name="country" required/></label>
+          <label><span data-i18n="form_role">I am a…</span>
+            <select name="role" required>
+              <option value="dealer" data-i18n="form_role_dealer">Dealer</option>
+              <option value="partner" data-i18n="form_role_partner">Partner · forwarder</option>
+            </select>
+          </label>
+        </div>
+        <div class="frow">
+          <label><span data-i18n="form_email">Email</span><input type="email" name="email" required/></label>
+          <label><span data-i18n="form_phone">WhatsApp / phone</span><input name="phone" required/></label>
+        </div>
+        <label><span data-i18n="form_msg">Message (optional)</span><textarea name="message" rows="2"></textarea></label>
+        <button class="btn" type="submit" data-i18n="form_submit">Submit application</button>
+        <div class="formdone" id="formDone" data-i18n="form_done" style="display:none">Thanks — we've received it and will be in touch.</div>
+      </form>
+    </div>
     <div class="contacts">
       <a class="cbtn wa" href="https://wa.me/821032778222" target="_blank" rel="noopener"><span class="ci">💬</span> WhatsApp</a>
       <a class="cbtn" href="https://www.linkedin.com/in/ceo-vectiba" target="_blank" rel="noopener"><span class="ci">in</span> LinkedIn</a>
@@ -244,6 +281,29 @@ function detectLang(){
   return 'en';
 }
 document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
+
+// ---- Dealer / partner lead form (stores to Supabase; email fallback until configured) ----
+var LEAD_CFG = { url:'', key:'' }; // ← paste Supabase project URL + anon (public) key here to enable DB storage
+function submitLead(e){
+  e.preventDefault();
+  var f=e.target, el=f.elements;
+  var data={ name:el['name'].value.trim(), company:el['company'].value.trim(), country:el['country'].value.trim(),
+    role:el['role'].value, email:el['email'].value.trim(), phone:el['phone'].value.trim(),
+    message:el['message'].value.trim(), lang:document.documentElement.lang, source:'landing' };
+  function done(){ document.getElementById('formDone').style.display='block'; f.reset(); }
+  if(LEAD_CFG.url && LEAD_CFG.key){
+    fetch(LEAD_CFG.url.replace(/\/+$/,'')+'/rest/v1/leads',{ method:'POST',
+      headers:{'apikey':LEAD_CFG.key,'Authorization':'Bearer '+LEAD_CFG.key,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(data) }).then(function(r){ r.ok?done():leadMailto(data); }).catch(function(){ leadMailto(data); });
+  } else { leadMailto(data); }
+  return false;
+}
+function leadMailto(d){
+  var b=['Name: '+d.name,'Company: '+d.company,'Country: '+d.country,'Role: '+d.role,'Email: '+d.email,'Phone: '+d.phone,'Message: '+d.message].join('\n');
+  window.location.href='mailto:ceo@vectiba.com?subject='+encodeURIComponent('Vectiba dealer/partner application')+'&body='+encodeURIComponent(b);
+  document.getElementById('formDone').style.display='block';
+}
+
 applyLang(detectLang());
 </script>
 </body>

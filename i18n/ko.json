@@ -76,5 +76,18 @@
 "svc_connect": "↓ 이 차가, 딜러에겐 이렇게 보입니다.",
 "svc_dealer_label": "② 딜러 화면 · 견적을 넣는다",
 "svc_dealer_sub": "딜러는 자기 나라 도착가를 당일 환율로 계산해 밀봉으로 견적을 넣습니다. 서로의 견적은 보이지 않아, 처음부터 가장 좋은 가격을 씁니다.",
-"hero_def": "벡티바는 셀러와 전 세계 딜러를 AI로 직접 연결하는 자동차 거래 플랫폼입니다."
+"hero_def": "벡티바는 셀러와 전 세계 딜러를 AI로 직접 연결하는 자동차 거래 플랫폼입니다.",
+"form_h": "딜러 · 파트너 신청",
+"form_sub": "간단히 남겨주시면 대표가 직접 연락드립니다.",
+"form_name": "이름",
+"form_company": "회사명",
+"form_country": "나라",
+"form_role": "구분",
+"form_role_dealer": "딜러",
+"form_role_partner": "파트너 · 포워더",
+"form_email": "이메일",
+"form_phone": "WhatsApp / 전화",
+"form_msg": "한마디 (선택)",
+"form_submit": "신청하기",
+"form_done": "신청이 접수됐습니다. 곧 연락드리겠습니다."
 }
