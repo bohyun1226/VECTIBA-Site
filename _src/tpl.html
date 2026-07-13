@@ -337,7 +337,12 @@ function submitLead(e){
     fetch(LEAD_CFG.url.replace(/\/+$/,'')+'/rest/v1/leads',{ method:'POST',
       headers:{'apikey':LEAD_CFG.key,'Authorization':'Bearer '+LEAD_CFG.key,'Content-Type':'application/json','Prefer':'return=minimal'},
       body:JSON.stringify(data) }).then(function(r){ r.ok?done():leadMailto(data); }).catch(function(){ leadMailto(data); });
-  } else { leadMailto(data); }
+  } else {
+    fetch('https://formsubmit.co/ajax/ceo@vectiba.com',{ method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({Name:data.name,Company:data.company,Country:data.country,Role:data.role,Email:data.email,Phone:data.phone,Message:data.message,Lang:data.lang,_subject:'Vectiba dealer/partner application',_template:'table'}) })
+      .then(function(r){ r.ok?done():leadMailto(data); }).catch(function(){ leadMailto(data); });
+  }
   return false;
 }
 function openSignup(){ document.getElementById('signupModal').classList.add('on'); document.body.style.overflow='hidden'; }
