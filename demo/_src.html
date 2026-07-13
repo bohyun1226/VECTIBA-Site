@@ -192,9 +192,9 @@
       <div class="wonCard">
         <div class="row"><span class="g" data-i18n="w_yourquote">Your local quote</span><span class="strike">$60,000</span></div>
         <div class="row"><span class="g" data-i18n="w_final">Vectiba final price</span><b>$67,500 &nbsp;<span class="up2">+12.5%</span></b></div>
-        <div class="row"><span class="g" data-i18n="w_winning">Winning country</span><span>Morocco 🇲🇦</span></div>
+        <div class="row"><span class="g" data-i18n="w_winning">Winning country</span><span id="wonCountry"></span></div>
         <div class="row"><span class="g" data-i18n="w_payout">Your net payout</span><b>$65,100</b></div>
-        <div class="row"><span class="g" data-i18n="w_route">Route</span><span>Germany → Morocco</span></div>
+        <div class="row"><span class="g" data-i18n="w_route">Route</span><span id="wonRoute"></span></div>
       </div>
       <div class="nextline" data-i18n="w_next">Vectiba handles export, customs, shipping and secure payment. You'll get the money once the car ships — track it in the app.</div>
     </div></div>
@@ -217,6 +217,8 @@ document.documentElement.lang = L;
 if(['ar','fa'].includes(L)) document.documentElement.dir='rtl';
 function applyLabels(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(D[k]!==undefined)el.textContent=D[k];});}
 applyLabels();
+$('wonCountry').textContent = D.n_uae + ' 🇦🇪';
+$('wonRoute').textContent = D.n_germany + ' → ' + D.n_dubai;
 
 const SCRIPT=[
   {who:'ai',t:D.c1},
@@ -234,11 +236,11 @@ const SCRIPT=[
   {who:'ai',t:D.c12},
 ];
 const BIDS=[
-  {fl:'🇦🇪',who:'United Arab Emirates',sub:D.r_gulf,amt:58000},
-  {fl:'🇸🇳',who:'Senegal',sub:D.r_westafrica,amt:61500},
-  {fl:'🇸🇦',who:'Saudi Arabia',sub:D.r_gulf,amt:63200},
-  {fl:'🇨🇮',who:"Côte d'Ivoire",sub:D.r_westafrica,amt:65000},
-  {fl:'🇲🇦',who:'Morocco',sub:D.r_northafrica,amt:67500},
+  {fl:'🇸🇳',who:D.n_senegal,sub:D.r_westafrica,amt:58000},
+  {fl:'🇨🇮',who:D.n_civ,sub:D.r_westafrica,amt:61500},
+  {fl:'🇸🇦',who:D.n_ksa,sub:D.r_gulf,amt:63200},
+  {fl:'🇲🇦',who:D.n_morocco,sub:D.r_northafrica,amt:65000},
+  {fl:'🇦🇪',who:D.n_uae,sub:D.n_dubai,amt:67500},
 ];
 
 const scrollMsgs=()=>{const m=$('msgs');m.scrollTop=m.scrollHeight;};
