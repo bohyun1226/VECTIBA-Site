@@ -23,7 +23,12 @@
   .btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
   .btn.ghost:hover{background:#EAF3EF}
   .lang{font-family:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--card);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer}
-  @media(max-width:940px){.nlinks a{display:none}}
+  .hamburger{display:none;align-items:center;justify-content:center;width:38px;height:38px;flex-shrink:0;background:none;border:1.5px solid var(--line);border-radius:9px;color:var(--green);cursor:pointer;padding:0}
+  .mobileMenu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(0,0,0,.10);padding:4px 24px 10px;z-index:19}
+  .mobileMenu.on{display:flex}
+  .mobileMenu a{padding:15px 2px;font-size:15.5px;font-weight:600;color:var(--txt);border-bottom:1px solid var(--line)}
+  .mobileMenu a:last-child{border-bottom:none}
+  @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .hero{padding:60px 0 44px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
@@ -150,7 +155,18 @@
       <option value="sw">Kiswahili</option>
     </select>
   </div>
-</div></nav>
+  <button class="hamburger" id="hamBtn" aria-label="Menu" onclick="toggleMobileMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</div>
+<div class="mobileMenu" id="mobileMenu">
+  <a href="#top" data-i18n="nav_about" onclick="closeMobileMenu()">Vectiba?</a>
+  <a href="#seller" data-i18n="nav_seller" onclick="closeMobileMenu()">For sellers</a>
+  <a href="#dealer" data-i18n="nav_buyer" onclick="closeMobileMenu()">For dealers</a>
+  <a href="#team" data-i18n="nav_team" onclick="closeMobileMenu()">Team</a>
+  <a href="#contact" data-i18n="nav_contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+</nav>
 
 <a id="top"></a>
 <header class="wrap hero">
@@ -299,6 +315,9 @@ function applyLang(lang){
   var xf = document.querySelector('.dealerFrame');
   if(xf){ var xs = 'dealer/?lang=' + lang; if(xf.getAttribute('src') !== xs) xf.setAttribute('src', xs); }
 }
+function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
+function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
+window.addEventListener('resize', function(){ if(window.innerWidth > 940) closeMobileMenu(); });
 function detectLang(){
   var saved; try{ saved = localStorage.getItem('vlang'); }catch(e){}
   if(saved && I18N[saved]) return saved;
