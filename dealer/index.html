@@ -194,6 +194,12 @@
 
 <script>
 var L=(new URLSearchParams(location.search).get('lang')||'ko'); var KO=(L==='ko');
+/* embedded in the marketing site as an iframe with no fixed height of its own — keep the
+   outer <iframe> exactly as tall as this page's actual content so there's no nested scrollbar.
+   Called explicitly wherever the visible content changes size, rather than relying solely on
+   ResizeObserver timing. Uses body.scrollHeight (not documentElement.scrollHeight, which gets
+   pinned to whatever height we last set on the iframe and can never report a shrink). */
+function syncFrameH(){ if(window.frameElement) window.frameElement.style.height = document.body.scrollHeight + 'px'; }
 var T={
  ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",zoom:"🔍 크게 보기",
      nav:["경매장","내 입찰","매입시세"],
@@ -280,6 +286,7 @@ function renderBrowse(){
   var r2=["hilux","lexus_lx","landcruiser","patrol"].map(byId);
   var r3=["bmw_g30","gclass","eclass","bmw_x5","gle"].map(byId);
   document.getElementById('browse').innerHTML=rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
+  syncFrameH();
 }
 function originVal(c){return c.o+' '+(KO?c.oko:c.oen);}
 function initFilters(){
@@ -309,6 +316,7 @@ function applyFilters(){
   var html='<div class="rowhead"><h3>'+D.result+' '+list.length+D.cars+'</h3></div>';
   html+=list.length?'<div class="row" style="grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));overflow:visible">'+list.map(cardHTML).join('')+'</div>':'<p style="color:var(--sub);padding:24px 0">'+D.noresult+'</p>';
   document.getElementById('browse').innerHTML=html;
+  syncFrameH();
 }
 
 /* ---- 상세 ---- */
@@ -334,12 +342,13 @@ function openCar(id){
   document.getElementById('done').style.display='none';
   document.getElementById('t_submit').style.display='block';
   calc();
+  syncFrameH();
 }
 function pick(i){curIdx=i;document.getElementById('mainImg').src=img(GAL[i]);
   var ts=document.querySelectorAll('#thumbgrid img');ts.forEach(function(t,j){t.className=(i===j?'sel':'')});}
-function showBrowse(){document.getElementById('detail').style.display='none';document.getElementById('browse').style.display='block';}
+function showBrowse(){document.getElementById('detail').style.display='none';document.getElementById('browse').style.display='block';syncFrameH();}
 function setRoad(m){roadMode=m;document.getElementById('carrier').className=(m==='carrier'?'on':'');document.getElementById('driver').className=(m==='driver'?'on':'');calc();}
-function toggleFees(){var l=document.getElementById('lines');var open=l.style.display!=='none';l.style.display=open?'none':'block';document.getElementById('feesArrow').textContent=open?'▾':'▴';}
+function toggleFees(){var l=document.getElementById('lines');var open=l.style.display!=='none';l.style.display=open?'none':'block';document.getElementById('feesArrow').textContent=open?'▾':'▴';syncFrameH();}
 /* 라이트박스 */
 function openLB(i){curIdx=i;document.getElementById('lbImg').src=img(GAL[i]);document.getElementById('lb').classList.add('on');}
 function closeLB(){document.getElementById('lb').classList.remove('on');}
@@ -403,6 +412,16 @@ function applyText(){
 fillSelect('dest',DEST,function(d){return '<option value="'+d.k+'">'+(KO?d.ko:d.en)+'</option>'});
 fillSelect('ccy',CCYS,function(c){return '<option value="'+c+'"'+(c==="AED"?' selected':'')+'>'+c+'</option>'});
 applyText();initFilters();renderBrowse();loadFX();
+
+/* embedded in the marketing site as an iframe with no fixed height of its own —
+   keep the outer <iframe> exactly as tall as this page. Explicit syncFrameH() calls at each
+   interaction cover the known cases; this observer is just a safety net for anything else
+   (e.g. an image finishing loading and nudging layout). */
+if(window.frameElement){
+  new ResizeObserver(syncFrameH).observe(document.body);
+  window.addEventListener('load', syncFrameH);
+  syncFrameH();
+}
 </script>
 </body>
 </html>
