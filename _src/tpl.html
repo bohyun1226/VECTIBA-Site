@@ -84,11 +84,28 @@
   .leadbox form{display:flex;flex-direction:column;gap:12px}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:560px){.frow{grid-template-columns:1fr}}
-  .leadbox label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--sub)}
-  .leadbox input,.leadbox select,.leadbox textarea{font-family:inherit;font-size:14px;color:var(--txt);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:500}
-  .leadbox input:focus,.leadbox select:focus,.leadbox textarea:focus{outline:none;border-color:var(--green)}
+  .leadbox label,.modalcard label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--sub)}
+  .leadbox input,.leadbox select,.leadbox textarea,.modalcard input,.modalcard select,.modalcard textarea{font-family:inherit;font-size:14px;color:var(--txt);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:500}
+  .leadbox input:focus,.leadbox select:focus,.leadbox textarea:focus,.modalcard input:focus,.modalcard select:focus,.modalcard textarea:focus{outline:none;border-color:var(--green)}
   .leadbox button{align-self:flex-start;margin-top:4px}
   .formdone{background:#EAF3EF;color:var(--green);font-weight:700;font-size:14px;padding:12px 14px;border-radius:10px}
+  /* section backgrounds — white sections signal a new screen on scroll */
+  .white{background:#fff}
+  /* service: text left, phone right */
+  .svcsplit{display:grid;grid-template-columns:1fr 420px;gap:44px;align-items:center;margin-bottom:8px}
+  @media(max-width:860px){.svcsplit{grid-template-columns:1fr;gap:20px}}
+  .svcsplit .demoWrap{margin:0}
+  /* signup modal (opens on click) */
+  .modal{display:none;position:fixed;inset:0;background:rgba(24,48,40,.55);z-index:100;align-items:flex-start;justify-content:center;overflow-y:auto;padding:44px 16px}
+  .modal.on{display:flex}
+  .modalcard{background:#fff;border-radius:18px;padding:32px;width:100%;max-width:440px;box-shadow:0 24px 70px rgba(0,0,0,.32);position:relative}
+  .modalcard .mlogo{display:flex;justify-content:center;margin-bottom:14px}
+  .modalcard .mlogo img{height:40px}
+  .modalcard h3{text-align:center;margin:0 0 4px;font-size:21px}
+  .modalcard .lsub{text-align:center;margin:0 0 20px;color:var(--sub);font-size:14px}
+  .modalcard form{display:flex;flex-direction:column;gap:12px}
+  .modalcard .btn{width:100%;text-align:center;margin-top:4px}
+  .modalcard .mx{position:absolute;top:12px;right:15px;font-size:22px;color:var(--sub);cursor:pointer;line-height:1;background:none;border:none}
 </style>
 </head>
 <body>
@@ -150,10 +167,11 @@
   </div>
 </header>
 
-<section id="why">
+<section id="why" class="white">
   <div class="wrap">
     <div class="stag" data-i18n="why_tag">Why Vectiba?</div>
     <h2 data-i18n="why_h2">Am I selling my car for too little?</h2>
+    <p class="ssub" style="max-width:840px;font-size:18px;font-weight:600;color:var(--green);margin-bottom:14px" data-i18n="why_lead">The same car is worth different amounts in different countries — and that difference should be yours.</p>
     <p class="ssub" style="max-width:840px;font-size:17px;color:var(--txt)" data-i18n="why_story">Every few years, when it's time to sell, there's always that nagging doubt. The same car is valued differently in every country, and the real selling price differs too. Somewhere there is always a dealer who would value your car higher. Even if that dealer is abroad, all you need is to reach them — remotely. Until now, language, distance, customs and paperwork simply kept you from ever meeting. Vectiba connects the two of you directly, with AI.</p>
     <div class="grid3" style="margin-top:28px">
       <div class="card"><div class="ic">🏷️</div><h3 data-i18n="prob_c1h">Sellers settle for the local price</h3><p data-i18n="prob_c1p">Most people take the first easy offer nearby, before a buyer in another country ever hears about the car.</p></div>
@@ -166,15 +184,18 @@
 
 <section id="service" class="band">
   <div class="wrap">
-    <div class="stag" data-i18n="svc_tag">Service</div>
-    <h2 data-i18n="svc_h2">A seller lists — dealers around the world send quotes.</h2>
-    <p class="ssub" data-i18n="svc_sub">Watch both sides connect. A seller lists a car from their phone, and that same car opens to dealers in other countries who send quotes.</p>
-
-    <div class="flowlabel" data-i18n="svc_seller_label">① Seller's screen · lists from a phone</div>
-    <div class="demoWrap">
-      <iframe class="demoFrame" src="demo/?lang=en" loading="lazy" title="Vectiba seller demo"></iframe>
+    <div class="svcsplit">
+      <div>
+        <div class="stag" data-i18n="svc_tag">Service</div>
+        <h2 data-i18n="svc_h2">A seller lists — dealers around the world send quotes.</h2>
+        <p class="ssub" data-i18n="svc_sub">Watch both sides connect. A seller lists a car from their phone, and that same car opens to dealers in other countries who send quotes.</p>
+        <div class="flowlabel" data-i18n="svc_seller_label">① Seller's screen · lists from a phone</div>
+        <p class="note" style="max-width:none" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
+      </div>
+      <div class="demoWrap">
+        <iframe class="demoFrame" src="demo/?lang=en" loading="lazy" title="Vectiba seller demo"></iframe>
+      </div>
     </div>
-    <p class="note" style="margin-left:auto;margin-right:auto;text-align:center;max-width:680px" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
 
     <div class="connector" data-i18n="svc_connect">↓ Here is how that same car looks to a dealer.</div>
 
@@ -209,37 +230,12 @@
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="white">
   <div class="wrap">
     <div class="stag" data-i18n="info_tag">Contact</div>
     <h2 data-i18n="info_h2">Let's talk.</h2>
     <p class="ssub" data-i18n="info_sub">Reach the founder directly.</p>
-    <div class="leadbox">
-      <h3 data-i18n="form_h">Dealer &amp; partner application</h3>
-      <p class="lsub" data-i18n="form_sub">Leave a few details and the founder will reach out personally.</p>
-      <form id="leadForm" onsubmit="return submitLead(event)">
-        <div class="frow">
-          <label><span data-i18n="form_name">Name</span><input name="name" required/></label>
-          <label><span data-i18n="form_company">Company</span><input name="company" required/></label>
-        </div>
-        <div class="frow">
-          <label><span data-i18n="form_country">Country</span><input name="country" required/></label>
-          <label><span data-i18n="form_role">I am a…</span>
-            <select name="role" required>
-              <option value="dealer" data-i18n="form_role_dealer">Dealer</option>
-              <option value="partner" data-i18n="form_role_partner">Partner · forwarder</option>
-            </select>
-          </label>
-        </div>
-        <div class="frow">
-          <label><span data-i18n="form_email">Email</span><input type="email" name="email" required/></label>
-          <label><span data-i18n="form_phone">WhatsApp / phone</span><input name="phone" required/></label>
-        </div>
-        <label><span data-i18n="form_msg">Message (optional)</span><textarea name="message" rows="2"></textarea></label>
-        <button class="btn" type="submit" data-i18n="form_submit">Submit application</button>
-        <div class="formdone" id="formDone" data-i18n="form_done" style="display:none">Thanks — we've received it and will be in touch.</div>
-      </form>
-    </div>
+    <div style="margin:8px 0 24px"><button class="btn" type="button" onclick="openSignup()" data-i18n="form_h">Dealer &amp; partner application</button></div>
     <div class="contacts">
       <a class="cbtn wa" href="https://wa.me/821032778222" target="_blank" rel="noopener"><span class="ci">💬</span> WhatsApp</a>
       <a class="cbtn" href="https://www.linkedin.com/in/ceo-vectiba" target="_blank" rel="noopener"><span class="ci">in</span> LinkedIn</a>
@@ -254,6 +250,31 @@
   <div data-i18n="foot_1"><strong style="color:var(--green)">Vectiba</strong> · Buy and sell cars across borders · Dubai / Seoul</div>
   <div data-i18n="foot_2">© 2026 Vectiba. Dustin Yoo, Founder &amp; CEO · ceo@vectiba.com</div>
 </div></footer>
+
+<div class="modal" id="signupModal" onclick="if(event.target===this)closeSignup()">
+  <div class="modalcard">
+    <button class="mx" type="button" onclick="closeSignup()" aria-label="close">✕</button>
+    <div class="mlogo"><img src="img/vectiba-logo.png" alt="Vectiba"/></div>
+    <h3 data-i18n="form_h">Dealer &amp; partner application</h3>
+    <p class="lsub" data-i18n="form_sub">Leave a few details and the founder will reach out personally.</p>
+    <form id="leadForm" onsubmit="return submitLead(event)">
+      <label><span data-i18n="form_name">Name</span><input name="name" required/></label>
+      <label><span data-i18n="form_company">Company</span><input name="company" required/></label>
+      <label><span data-i18n="form_country">Country</span><input name="country" required/></label>
+      <label><span data-i18n="form_role">I am a…</span>
+        <select name="role" required>
+          <option value="dealer" data-i18n="form_role_dealer">Dealer</option>
+          <option value="partner" data-i18n="form_role_partner">Partner · forwarder</option>
+        </select>
+      </label>
+      <label><span data-i18n="form_email">Email</span><input type="email" name="email" required/></label>
+      <label><span data-i18n="form_phone">WhatsApp / phone</span><input name="phone" required/></label>
+      <label><span data-i18n="form_msg">Message (optional)</span><textarea name="message" rows="2"></textarea></label>
+      <button class="btn" type="submit" data-i18n="form_submit">Submit application</button>
+      <div class="formdone" id="formDone" data-i18n="form_done" style="display:none">Thanks — we've received it and will be in touch.</div>
+    </form>
+  </div>
+</div>
 
 <script>
 const I18N = __I18N_JSON__;
@@ -298,6 +319,8 @@ function submitLead(e){
   } else { leadMailto(data); }
   return false;
 }
+function openSignup(){ document.getElementById('signupModal').classList.add('on'); document.body.style.overflow='hidden'; }
+function closeSignup(){ document.getElementById('signupModal').classList.remove('on'); document.body.style.overflow=''; }
 function leadMailto(d){
   var b=['Name: '+d.name,'Company: '+d.company,'Country: '+d.country,'Role: '+d.role,'Email: '+d.email,'Phone: '+d.phone,'Message: '+d.message].join('\n');
   window.location.href='mailto:ceo@vectiba.com?subject='+encodeURIComponent('Vectiba dealer/partner application')+'&body='+encodeURIComponent(b);

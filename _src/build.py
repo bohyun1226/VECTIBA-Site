@@ -10,6 +10,7 @@ en = {
 "art_h3":"One car, dealers everywhere","art_p":"List it once — buyers in many countries can bid.",
 "art_s1":"You list your car on your phone","art_s2":"We check it and add the cost to each country","art_s3":"Dealers abroad bid on it","art_s4":"We ship it and handle customs",
 "why_tag":"Why Vectiba?","why_h2":"Am I selling my car for too little?",
+"why_lead":"The same car is worth different amounts in different countries — and that difference should be yours.",
 "why_story":"Every few years, when it's time to sell, you wonder whether the price is right. The same car is valued differently in every country, and the real selling price differs too — so somewhere there is always a dealer who would value your car higher. Until now, the seller and that dealer never met directly: distance, language, customs and paperwork stood in between. Vectiba connects the two directly, with AI — handling inspection, translation and the full landed-cost calculation, so a seller and dealers worldwide meet for the first time.",
 "seller_tag":"Service · For sellers","seller_h2":"We show your car to dealers in many countries at once.",
 "seller_sub":"The same car is valued differently in each country, and the real price differs too. Vectiba lets you sell to the dealer who values your car the most — even if that dealer is in another country, entirely remotely.",
