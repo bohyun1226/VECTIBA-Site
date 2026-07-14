@@ -70,6 +70,8 @@
   .demorow.dealer{grid-template-columns:1.6fr 1fr}
   .demorow .demoWrap{margin:0}
   .demotext{font-size:16.5px;color:var(--txt);line-height:1.65;font-weight:500}
+  .dealerfull{max-width:1280px;margin:26px auto 0;padding:0 20px}
+  @media(max-width:560px){.dealerfull{padding:0 12px}}
   @media(max-width:860px){.demorow.seller,.demorow.dealer{grid-template-columns:1fr}}
   .founder2{display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start;margin-top:8px}
   .fphoto{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
@@ -122,7 +124,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784017620";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B&&location.search.indexOf('b=')<0){location.replace(location.pathname+'?b='+v);}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784017789";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B&&location.search.indexOf('b=')<0){location.replace(location.pathname+'?b='+v);}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -214,22 +216,18 @@
 
 <section id="dealer">
   <div class="wrap">
-    <div class="demorow dealer">
-      <iframe class="dealerFrame" loading="lazy" title="Vectiba dealer demo"></iframe>
-      <div>
-        <div class="stag" data-i18n="buyer_tag">For dealers</div>
-        <h2 data-i18n="buyer_h2">Reach every used car in the world.</h2>
-        <p style="font-size:16px;color:var(--txt);margin:0 0 14px;line-height:1.6" data-i18n="buyer_sub">Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?</p>
-        <p class="demotext" data-i18n="svc_dealer_sub">The dealer works out the landed cost in their own currency at today's rate and sends a sealed quote — no one sees anyone else's.</p>
-      </div>
-    </div>
-    <div class="grid3" style="margin-top:34px">
+    <div class="stag" data-i18n="buyer_tag">For dealers</div>
+    <h2 data-i18n="buyer_h2">Reach every used car in the world.</h2>
+    <p class="ssub" style="max-width:860px" data-i18n="buyer_sub">Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?</p>
+    <div class="grid3" style="margin-top:22px">
       <div class="card"><div class="ic">🌐</div><h3 data-i18n="buyer_c1h">Reach cars worldwide</h3><p data-i18n="buyer_c1p">Access used cars anywhere in the world and deal directly with the owner, remotely — no agencies, no introductions in between.</p></div>
       <div class="card"><div class="ic">🔍</div><h3 data-i18n="buyer_c2h">AI inspection checklist</h3><p data-i18n="buyer_c2p">Ask Vectiba AI to check exactly what matters before you buy to resell. You're the pro — the AI backs your judgment.</p></div>
       <div class="card"><div class="ic">🚢</div><h3 data-i18n="buyer_c3h">Logistics handled</h3><p data-i18n="buyer_c3p">Language, distance, duties, customs and sea freight — all solved. Vectiba was built by a dealer who sold more cars than anyone.</p></div>
     </div>
     <p class="ssub" style="margin-top:26px;font-weight:600;color:var(--green);max-width:860px" data-i18n="buyer_note">Shorten the chain, and sellers earn more while buyers land a more reasonable end cost.</p>
+    <p class="demotext" style="max-width:860px;margin-top:14px" data-i18n="svc_dealer_sub">The dealer works out the landed cost in their own currency at today's rate and sends a sealed quote — no one sees anyone else's.</p>
   </div>
+  <div class="dealerfull"><iframe class="dealerFrame" loading="lazy" title="Vectiba dealer demo"></iframe></div>
 </section>
 
 <section id="team" class="band">
