@@ -1,7 +1,7 @@
 import json, glob, os, time
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 en = {
-"nav_about":"Vectiba?","nav_why":"Why","nav_seller":"For sellers","nav_buyer":"For dealers","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
+"nav_about":"Vectiba?","nav_why":"Why","nav_seller":"For sellers","nav_buyer":"For buyers","nav_team":"Team","nav_contact":"Contact","nav_service":"Service",
 "hero_kicker":"Buy and sell cars across borders — worldwide",
 "hero_def":"We're building a trusted way to trade cars.",
 "hero_h1":"We connect people who could never meet — with AI.",
@@ -15,7 +15,7 @@ en = {
 "seller_tag":"Service · For sellers","seller_h2":"We show your car to dealers in many countries at once.",
 "seller_sub":"The same car is valued differently in each country, and the real price differs too. Vectiba lets you sell to the dealer who values your car the most — even if that dealer is in another country, entirely remotely.",
 "seller_how":"Vectiba's AI talks with the seller, organizes the car's details and analyzes the photos so dealers can trust it, then opens it as an auction. The seller just picks the highest price — within 48 to 72 hours.",
-"buyer_tag":"For dealers","buyer_h2":"Reach every used car in the world.",
+"buyer_tag":"For buyers","buyer_h2":"Reach every used car in the world.",
 "buyer_sub":"Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?",
 "buyer_c1h":"Reach cars worldwide","buyer_c1p":"Access used cars anywhere in the world and deal directly with the owner, remotely — no agencies, no introductions in between.",
 "buyer_c2h":"AI inspection checklist","buyer_c2p":"Ask Vectiba AI to check exactly what matters before you buy to resell. You're the pro — the AI backs your judgment.",
