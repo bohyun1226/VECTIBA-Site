@@ -17,6 +17,7 @@ en = {
 "seller_how":"Vectiba's AI talks with the seller, organizes the car's details and analyzes the photos so dealers can trust it, then opens it as an auction. The seller just picks the highest price — within 48 to 72 hours.",
 "buyer_tag":"For buyers","buyer_h2":"Reach every used car in the world.",
 "buyer_sub":"Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?",
+"buyer_login_cta":"Dealer login","partner_login_cta":"Partner / forwarder login",
 "buyer_c1h":"Reach cars worldwide","buyer_c1p":"Access used cars anywhere in the world and deal directly with the owner, remotely — no agencies, no introductions in between.",
 "buyer_c2h":"AI inspection checklist","buyer_c2p":"Ask Vectiba AI to check exactly what matters before you buy to resell. You're the pro — the AI backs your judgment.",
 "buyer_c3h":"Logistics handled","buyer_c3p":"Language, distance, duties, customs and sea freight — all solved. Vectiba was built by a dealer who sold more cars than anyone.",
