@@ -122,7 +122,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1783952963";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B&&location.search.indexOf('b=')<0){location.replace(location.pathname+'?b='+v);}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784017620";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B&&location.search.indexOf('b=')<0){location.replace(location.pathname+'?b='+v);}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -325,7 +325,7 @@ function detectLang(){
 document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
 
 // ---- Dealer / partner lead form (stores to Supabase; email fallback until configured) ----
-var LEAD_CFG = { url:'', key:'' }; // ← paste Supabase project URL + anon (public) key here to enable DB storage
+var LEAD_CFG = { url:'https://kxjruqbqjryfjodkkace.supabase.co', key:'sb_publishable_TthyPjv8uZU7ZWvXBHCLXA_UiPsSkl7' }; // Supabase project URL + publishable (browser-safe) key
 function submitLead(e){
   e.preventDefault();
   var f=e.target, el=f.elements;

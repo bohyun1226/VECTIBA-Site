@@ -325,7 +325,7 @@ function detectLang(){
 document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
 
 // ---- Dealer / partner lead form (stores to Supabase; email fallback until configured) ----
-var LEAD_CFG = { url:'', key:'' }; // ← paste Supabase project URL + anon (public) key here to enable DB storage
+var LEAD_CFG = { url:'https://kxjruqbqjryfjodkkace.supabase.co', key:'sb_publishable_TthyPjv8uZU7ZWvXBHCLXA_UiPsSkl7' }; // Supabase project URL + publishable (browser-safe) key
 function submitLead(e){
   e.preventDefault();
   var f=e.target, el=f.elements;
