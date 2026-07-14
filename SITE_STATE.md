@@ -1,14 +1,25 @@
-# vectiba.com → 도메인 이전 진행중 (2026-07-14 최신, 아래 1-1 먼저 읽을 것)
+# vectiba.com → 도메인 이전 중, 🔴 지금 루트 도메인 깨짐 (2026-07-14 최신, 1-1·1-2 먼저 읽을 것)
 
 다음 세션은 **이 문서 하나만 읽고** 이어서 작업. 소스는 이 폴더(`~/vectiba-dev/VECTIBA-Site`, 영구). 클론: `gh repo clone bohyun1226/VECTIBA-Site`.
 ⚠️ 작업 전 항상 `git fetch && git log --oneline -5` — **다른 세션이 이 레포에 동시 커밋**함(맨 아래 참고).
 
+## 0. 🔴 지금 당장 확인할 것 — vectiba.com / www.vectiba.com 404 (라이브 장애)
+`CNAME` 파일을 `inc.vectiba.com`으로 바꾸면서 GitHub Pages가 이제 `inc.vectiba.com`만 정식 도메인으로 인식함. 그런데 `vectiba.com`/`www.vectiba.com`의 DNS(A레코드 4개, www CNAME)는 여전히 GitHub Pages를 가리키고 있어서 **지금 그 두 주소로 들어가면 404가 뜬다.** `curl`/`dig`로 직접 확인함(2026-07-14 저녁).
+**이 세션이 저지른 실수**: CNAME 파일을 바꾼 직후 실제 접속 확인을 안 하고 "안전하다"고 보고함 — 몇 시간 방치됨. 다음 세션은 반드시 새로 시작할 때 `curl -s -o /dev/null -w "%{http_code}" https://vectiba.com`로 먼저 확인할 것.
+**고치는 법(대표님 Namecheap Advanced DNS 액션)**:
+1. `@` A Record 4개(185.199.x.x, GitHub 것들) 삭제
+2. 새 A Record 추가: Host `@`, Value `76.76.21.21`
+3. `www` CNAME(→bohyun1226.github.io) 삭제하고, 새 A Record 추가: Host `www`, Value `76.76.21.21`
+4. 새 A Record 추가: Host `buyer`, Value `76.76.21.21` (아직 DNS 자체가 없음)
+완료 여부는 대표님이 확인 안 해주셨을 수 있음 — 다음 세션이 직접 `dig`로 재확인할 것.
+
 ## 1. 배포
 - GitHub Pages, PUBLIC repo `bohyun1226/VECTIBA-Site`, branch `main` root, HTTPS.
 - **도메인 이전 진행중(2026-07-14)**: `CNAME` 파일을 `vectiba.com` → **`inc.vectiba.com`**으로 변경함(회사소개 페이지라 inc=Incorporated). 이유·전체 그림은 아래 1-1 참고. 코드/빌드는 전혀 안 바뀜, 도메인만 이동.
-  - ✅ 완료: 이 레포 `CNAME` 파일 변경(커밋됨).
-  - ⏳ 대표님 액션 대기: 등록기관에서 `inc` 서브도메인 CNAME 레코드를 GitHub Pages 쪽으로 추가 → `inc.vectiba.com` 접속되는지 확인.
-  - ⏳ 그 다음(vectiba-app 세션 작업): `inc.vectiba.com` 정상 확인되면 그때 `vectiba.com` 루트 DNS를 Vercel(vectiba-app)로 전환 — 순서 지켜야 다운타임 없음.
+  - ✅ 완료: 이 레포 `CNAME` 파일 변경(커밋됨), `inc` DNS 등록(CNAME→bohyun1226.github.io, `dig`로 확인됨).
+  - 🟡 진행중: `inc.vectiba.com` SSL 인증서 GitHub Pages가 자동 발급 대기중(DNS는 맞음, HTTPS 응답이 아직 없었음 — 보통 몇 시간~24시간, 재확인 필요).
+  - 🔴 위 0번 참고 — 루트/www 깨짐, 시급.
+  - ⏳ 그 다음(vectiba-app 세션 작업): 루트 복구 확인되면 `vectiba.com` 완전히 앱으로 전환.
 - 빌드: `python3 _src/build.py` → `_src/tpl.html`(HTML) + build.py 안 EN 사전 + `i18n/<lang>.json` 합쳐 `index.html` + `version.txt` 생성 → `git commit` → `git push` (약 1분 반영).
 - **자동갱신**: 빌드마다 `version.txt`에 타임스탬프. 페이지가 로드되면 `version.txt`를 no-store로 받아 내 BUILD와 다르면 `?b=<버전>`으로 새로고침 → **대표님 기기도 배포하면 자동으로 최신**(한 번만 수동 새로고침해서 이 스크립트를 받으면 그 뒤로 자동). 캐시 얘기 대표님께 금지.
 - 브랜드: 크림 #F8F5EE · 딥그린 #135A4B · 골드 #BE8B39 · 에메랄드 #0B7A5A(딜러 데모) · Poppins · 실제 V로고.
