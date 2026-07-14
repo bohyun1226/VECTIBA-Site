@@ -19,7 +19,7 @@
 헤이딜러(메인 도메인=일반 유저용, `dealer.`만 분리) 구조를 참고해 확정:
 - **`vectiba.com`(루트)** → 최종적으로 **유저(셀러) 앱**이 여기로 옴. 지금은 과도기 — 이 레포(마케팅 페이지)가 아직 여기 있고, `vectiba-app`(Vercel)이 `app.vectiba.com`에 있음. DNS 전환되면 루트가 앱으로 넘어감.
 - **`inc.vectiba.com`** → 지금 이 레포(회사소개 페이지) 이전 위치. 위 1번 참고.
-- **`dealer.vectiba.com`** → **딜러 전용 페이지·대시보드** — 서브도메인/내부 용어는 "dealer"로 확정(2026-07-14 재확정, 헤이딜러의 `dealer.heydealer.com` 패턴 그대로). ⚠️ vectiba.com 사이트에 이미 라이브된 "바이어/For buyers" 유저 노출 라벨(16개 언어, `nav_buyer`/`buyer_tag`)은 이것과 별개 — 안 건드림. 신설 예정 — `vectiba-app` 쪽 `proxy.ts` 호스트 라우팅에 추가하면 됨, 이미 `partner.`에 같은 패턴 있음.
+- **`buyer.vectiba.com`** → **바이어(딜러) 전용 페이지·대시보드** — 서브도메인/내부 용어 "buyer"로 최종 확정(2026-07-14, 여러 번 왔다갔다 하다 이걸로 마무리 — dealer로 갔다가 다시 buyer로 돌아옴). vectiba.com 사이트에 이미 라이브된 "바이어/For buyers" 유저 노출 라벨(16개 언어, `nav_buyer`/`buyer_tag`)과 같은 용어라 이제 일관됨. 신설 예정 — `vectiba-app` 쪽 `proxy.ts` 호스트 라우팅에 추가하면 됨, 이미 `partner.`에 같은 패턴 있음. DNS도 아직 안 만듦(호스트명 확정 전이라 대기).
 - **`partner.vectiba.com`** → 운송·통관 등 파트너사(포워더) 전용, `vectiba-app` 레포, 이미 구현됨.
 - 실제 제품(셀러 AI 인테이크·매물 게시·경매·딜러 대시보드·포워더 대시보드) 코드/DB는 전부 **별도 레포 `vectiba-app`**, Supabase 프로젝트 "Vectiba-app"의 `vectiba-app`쪽 `supabase/migrations/`가 진짜 스키마(`listings`/`listing_media`/`bids`/`auctions` 등).
 - **여기(이 레포)에는 매물/경매/딜러승인 같은 실제 제품 데이터·기능을 만들지 말 것.** 문의 폼(`leads` 테이블, 아래 4번)처럼 "관심 등록" 수준 라이트 캡처만.
