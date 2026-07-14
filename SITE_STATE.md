@@ -8,6 +8,7 @@
 - 빌드: `python3 _src/build.py` → `_src/tpl.html`(HTML) + build.py 안 EN 사전 + `i18n/<lang>.json` 합쳐 `index.html` + `version.txt` 생성 → `git commit` → `git push` (약 1분 반영).
 - **자동갱신**: 빌드마다 `version.txt`에 타임스탬프. 페이지가 로드되면 `version.txt`를 no-store로 받아 내 BUILD와 다르면 `?b=<버전>`으로 새로고침 → **대표님 기기도 배포하면 자동으로 최신**(한 번만 수동 새로고침해서 이 스크립트를 받으면 그 뒤로 자동). 캐시 얘기 대표님께 금지.
 - 브랜드: 크림 #F8F5EE · 딥그린 #135A4B · 골드 #BE8B39 · 에메랄드 #0B7A5A(딜러 데모) · Poppins · 실제 V로고.
+- **로고 확정(2026-07-14)**: `brand/logo/`에 정식 에셋 세트 저장(심볼/가로/세로 lockup × 컬러/화이트 × PNG/SVG, 총 12개). 대표님이 이걸로 고정하기로 결정 — 교체 금지. 브랜드시트 컬러 팔레트(에메랄드 `#12564B` 등)는 `brand/README.md` 참고 — 현재 사이트 색상과 약간 다름, **사이트 전체 컬러 교체는 아직 미확정**(별도 지시 필요).
 - **기본 언어 = 영어**. 처음 방문자는 무조건 영어(navigator 자동감지 제거). 언어 바꾸면 localStorage에 저장돼 다음에 그 언어. (`detectLang()` = saved 있으면 그것, 없으면 'en'.)
 
 ## 2. 페이지 구조 (확정)
