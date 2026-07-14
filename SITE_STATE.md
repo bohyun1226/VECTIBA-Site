@@ -6,7 +6,7 @@
 ## 0. 🔴 지금 당장 확인할 것 — vectiba.com / www.vectiba.com 404 (라이브 장애)
 `CNAME` 파일을 `inc.vectiba.com`으로 바꾸면서 GitHub Pages가 이제 `inc.vectiba.com`만 정식 도메인으로 인식함. 그런데 `vectiba.com`/`www.vectiba.com`의 DNS(A레코드 4개, www CNAME)는 여전히 GitHub Pages를 가리키고 있어서 **지금 그 두 주소로 들어가면 404가 뜬다.** `curl`/`dig`로 직접 확인함(2026-07-14 저녁).
 **이 세션이 저지른 실수**: CNAME 파일을 바꾼 직후 실제 접속 확인을 안 하고 "안전하다"고 보고함 — 몇 시간 방치됨. 다음 세션은 반드시 새로 시작할 때 `curl -s -o /dev/null -w "%{http_code}" https://vectiba.com`로 먼저 확인할 것.
-**고치는 법(대표님 Namecheap Advanced DNS 액션)** — ⚠️ 아래 1-3번은 "루트=앱"으로 확정됐을 때 기준. 2026-07-15 현재 루트 역할이 다시 미정이라(1-1 참고), 대표님 확답 오기 전엔 진행하지 말 것:
+**고치는 법(대표님 Namecheap Advanced DNS 액션)** — 루트=셀러 앱으로 최종 확정됨(2026-07-15, 1-1 참고), 아래 그대로 진행 가능:
 1. `@` A Record 4개(185.199.x.x, GitHub 것들) 삭제
 2. 새 A Record 추가: Host `@`, Value `76.76.21.21`
 3. `www` CNAME(→bohyun1226.github.io) 삭제하고, 새 A Record 추가: Host `www`, Value `76.76.21.21`
@@ -26,10 +26,10 @@
 - **로고 확정(2026-07-14)**: `brand/logo/`에 정식 에셋 세트 저장(심볼/가로/세로 lockup × 컬러/화이트 × PNG/SVG, 총 12개). 대표님이 이걸로 고정하기로 결정 — 교체 금지. 브랜드시트 컬러 팔레트(에메랄드 `#12564B` 등)는 `brand/README.md` 참고 — 현재 사이트 색상과 약간 다름, **사이트 전체 컬러 교체는 아직 미확정**(별도 지시 필요).
 - **기본 언어 = 영어**. 처음 방문자는 무조건 영어(navigator 자동감지 제거). 언어 바꾸면 localStorage에 저장돼 다음에 그 언어. (`detectLang()` = saved 있으면 그것, 없으면 'en'.)
 
-## 1-1. ⚠️ 전체 도메인 지도 (2026-07-15 최종 확정 — buy/sell/inc/partner 체계, CLAUDE.md에 전체지도 있음)
-- **`vectiba.com`(루트)** → **미정**. 이전엔 "셀러 앱 최종 주소"였으나, `sell.vectiba.com`이 따로 신설되면서 루트 역할이 다시 열림 — 대표님이 아직 안 정함. 지시 오기 전엔 그대로 마케팅 페이지 유지, DNS 임의로 안 바꿈. (지금 라이브 404는 이 미정 상태와 별개 — 0번 참고)
+## 1-1. ⚠️ 전체 도메인 지도 (2026-07-15 최종 확정 — buy/inc/partner 체계, CLAUDE.md에 전체지도 있음)
+**이유**: 셀러는 일반 고객이라 검색해서 그냥 들어와야 하니 주소 앞에 아무것도 안 붙임(루트 그대로 씀). 바이어·파트너는 정해진 링크로만 들어오는 사업 파트너라 서브도메인으로 구분. → 별도 `sell.vectiba.com`은 안 씀, 루트가 그 역할.
+- **`vectiba.com`(루트)** → **셀러 앱 최종 주소**(서브도메인 안 붙음). 지금은 과도기 — 이 레포(마케팅 페이지)가 아직 여기 있음. DNS 전환되면 루트가 앱으로 넘어감. (지금 라이브 404는 0번 참고)
 - **`inc.vectiba.com`** → 지금 이 레포(회사소개 페이지) 이전 위치. 위 1번 참고.
-- **`sell.vectiba.com`** → **셀러 전용 페이지·대시보드** (2026-07-15 신설), `vectiba-app` 레포, 미착수.
 - **`buy.vectiba.com`** → **바이어 전용 페이지·대시보드** (2026-07-15, `buyer`에서 `buy`로 이름 확정), `vectiba-app` 레포, 미착수 — `proxy.ts` 호스트 라우팅에 `partner.`와 같은 패턴 추가하면 됨. DNS도 아직 안 만듦.
 - **`partner.vectiba.com`** → 운송·통관 등 파트너사(포워더) 전용, `vectiba-app` 레포, 이미 구현됨.
 - 실제 제품(셀러 AI 인테이크·매물 게시·경매·딜러 대시보드·포워더 대시보드) 코드/DB는 전부 **별도 레포 `vectiba-app`**, Supabase 프로젝트 "Vectiba-app"의 `vectiba-app`쪽 `supabase/migrations/`가 진짜 스키마(`listings`/`listing_media`/`bids`/`auctions` 등).
