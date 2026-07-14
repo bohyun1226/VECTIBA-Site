@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -193,13 +193,49 @@
 <div class="lb" id="lb"><span class="x" onclick="closeLB()">✕</span><span class="nav prev" onclick="lbStep(-1)">‹</span><img id="lbImg" src="" alt=""/><span class="nav next" onclick="lbStep(1)">›</span></div>
 
 <script>
-var L=(new URLSearchParams(location.search).get('lang')||'ko'); var KO=(L==='ko');
-/* embedded in the marketing site as an iframe with no fixed height of its own — keep the
-   outer <iframe> exactly as tall as this page's actual content so there's no nested scrollbar.
-   Called explicitly wherever the visible content changes size, rather than relying solely on
-   ResizeObserver timing. Uses body.scrollHeight (not documentElement.scrollHeight, which gets
-   pinned to whatever height we last set on the iframe and can never report a shrink). */
-function syncFrameH(){ if(window.frameElement) window.frameElement.style.height = document.body.scrollHeight + 'px'; }
+/* ---- country / port name lookups, shared across all 16 languages ---- */
+var COUNTRY={
+ de:{flag:"🇩🇪",name:{ar:"ألمانيا",de:"Deutschland",en:"Germany",es:"Alemania",fa:"آلمان",fr:"Allemagne",it:"Germania",ja:"ドイツ",ko:"독일",nl:"Duitsland",pl:"Niemcy",pt:"Alemanha",ru:"Германия",sw:"Ujerumani",tr:"Almanya",zh:"德国"},
+     cities:{ar:["ميونخ","هامبورغ"],de:["München","Hamburg"],en:["Munich","Hamburg"],es:["Múnich","Hamburgo"],fa:["مونیخ","هامبورگ"],fr:["Munich","Hambourg"],it:["Monaco di Baviera","Amburgo"],ja:["ミュンヘン","ハンブルク"],ko:["뮌헨","함부르크"],nl:["München","Hamburg"],pl:["Monachium","Hamburg"],pt:["Munique","Hamburgo"],ru:["Мюнхен","Гамбург"],sw:["Munich","Hamburg"],tr:["Münih","Hamburg"],zh:["慕尼黑","汉堡"]}},
+ ae:{flag:"🇦🇪",name:{ar:"الإمارات",de:"VAE",en:"UAE",es:"EAU",fa:"امارات",fr:"É.A.U.",it:"EAU",ja:"UAE",ko:"UAE",nl:"VAE",pl:"ZEA",pt:"EAU",ru:"ОАЭ",sw:"UAE",tr:"BAE",zh:"阿联酋"},
+     cities:{ar:["دبي","جبل علي"],de:["Dubai","Jebel Ali"],en:["Dubai","Jebel Ali"],es:["Dubái","Jebel Ali"],fa:["دبی","جبل علی"],fr:["Dubaï","Jebel Ali"],it:["Dubai","Jebel Ali"],ja:["ドバイ","ジェベルアリ"],ko:["두바이","제벨알리"],nl:["Dubai","Jebel Ali"],pl:["Dubaj","Jebel Ali"],pt:["Dubai","Jebel Ali"],ru:["Дубай","Джебель-Али"],sw:["Dubai","Jebel Ali"],tr:["Dubai","Jebel Ali"],zh:["迪拜","杰贝阿里"]}},
+ jp:{flag:"🇯🇵",name:{ar:"اليابان",de:"Japan",en:"Japan",es:"Japón",fa:"ژاپن",fr:"Japon",it:"Giappone",ja:"日本",ko:"일본",nl:"Japan",pl:"Japonia",pt:"Japão",ru:"Япония",sw:"Japani",tr:"Japonya",zh:"日本"},
+     cities:{ar:["أوساكا","يوكوهاما"],de:["Osaka","Yokohama"],en:["Osaka","Yokohama"],es:["Osaka","Yokohama"],fa:["اوزاکا","یوکوهاما"],fr:["Osaka","Yokohama"],it:["Osaka","Yokohama"],ja:["大阪","横浜"],ko:["오사카","요코하마"],nl:["Osaka","Yokohama"],pl:["Osaka","Jokohama"],pt:["Osaka","Yokohama"],ru:["Осака","Йокогама"],sw:["Osaka","Yokohama"],tr:["Osaka","Yokohama"],zh:["大阪","横滨"]}},
+ kr:{flag:"🇰🇷",name:{ar:"كوريا",de:"Südkorea",en:"Korea",es:"Corea",fa:"کره جنوبی",fr:"Corée",it:"Corea",ja:"韓国",ko:"한국",nl:"Zuid-Korea",pl:"Korea Południowa",pt:"Coreia do Sul",ru:"Южная Корея",sw:"Korea Kusini",tr:"Güney Kore",zh:"韩国"},
+     cities:{ar:["سول","بوسان"],de:["Seoul","Busan"],en:["Seoul","Busan"],es:["Seúl","Busan"],fa:["سئول","پوسان"],fr:["Séoul","Busan"],it:["Seul","Busan"],ja:["ソウル","釜山"],ko:["서울","부산"],nl:["Seoel","Busan"],pl:["Seul","Pusan"],pt:["Seul","Busan"],ru:["Сеул","Пусан"],sw:["Seoul","Busan"],tr:["Seul","Busan"],zh:["首尔","釜山"]}},
+ fr:{flag:"🇫🇷",name:{ar:"فرنسا",de:"Frankreich",en:"France",es:"Francia",fa:"فرانسه",fr:"France",it:"Francia",ja:"フランス",ko:"프랑스",nl:"Frankrijk",pl:"Francja",pt:"França",ru:"Франция",sw:"Ufaransa",tr:"Fransa",zh:"法国"},
+     cities:{ar:["ليون","لوهافر"],de:["Lyon","Le Havre"],en:["Lyon","Le Havre"],es:["Lyon","Le Havre"],fa:["لیون","لوهاور"],fr:["Lyon","Le Havre"],it:["Lione","Le Havre"],ja:["リヨン","ル・アーヴル"],ko:["리옹","르아브르"],nl:["Lyon","Le Havre"],pl:["Lyon","Le Havre"],pt:["Lyon","Le Havre"],ru:["Лион","Гавр"],sw:["Lyon","Le Havre"],tr:["Lyon","Le Havre"],zh:["里昂","勒阿弗尔"]}},
+ th:{flag:"🇹🇭",name:{ar:"تايلاند",de:"Thailand",en:"Thailand",es:"Tailandia",fa:"تایلند",fr:"Thaïlande",it:"Thailandia",ja:"タイ",ko:"태국",nl:"Thailand",pl:"Tajlandia",pt:"Tailândia",ru:"Таиланд",sw:"Thailand",tr:"Tayland",zh:"泰国"},
+     cities:{ar:["بانكوك","ليمชابانغ"],de:["Bangkok","Laem Chabang"],en:["Bangkok","Laem Chabang"],es:["Bangkok","Laem Chabang"],fa:["بانکوک","لائم چابانگ"],fr:["Bangkok","Laem Chabang"],it:["Bangkok","Laem Chabang"],ja:["バンコク","レムチャバン"],ko:["방콕","램차방"],nl:["Bangkok","Laem Chabang"],pl:["Bangkok","Laem Chabang"],pt:["Banguecoque","Laem Chabang"],ru:["Бангкок","Лаэм-Чабанг"],sw:["Bangkok","Laem Chabang"],tr:["Bangkok","Laem Chabang"],zh:["曼谷","林查班"]}}
+};
+/* destination countries (some overlap with COUNTRY above; kept separate since dest ports differ) */
+var DCTRY={
+ ae:{flag:"🇦🇪",name:COUNTRY.ae.name,port:{ar:"جبل علي",de:"Jebel Ali",en:"Jebel Ali",es:"Jebel Ali",fa:"جبل علی",fr:"Jebel Ali",it:"Jebel Ali",ja:"ジェベルアリ",ko:"제벨알리",nl:"Jebel Ali",pl:"Jebel Ali",pt:"Jebel Ali",ru:"Джебель-Али",sw:"Jebel Ali",tr:"Jebel Ali",zh:"杰贝阿里"}},
+ sa:{flag:"🇸🇦",name:{ar:"السعودية",de:"Saudi-Arabien",en:"Saudi Arabia",es:"Arabia Saudita",fa:"عربستان سعودی",fr:"Arabie saoudite",it:"Arabia Saudita",ja:"サウジアラビア",ko:"사우디",nl:"Saoedi-Arabië",pl:"Arabia Saudyjska",pt:"Arábia Saudita",ru:"Саудовская Аравия",sw:"Saudi Arabia",tr:"Suudi Arabistan",zh:"沙特阿拉伯"},
+     port:{ar:"جدة",de:"Dschidda",en:"Jeddah",es:"Yeda",fa:"جده",fr:"Djeddah",it:"Gedda",ja:"ジッダ",ko:"제다",nl:"Jeddah",pl:"Dżudda",pt:"Jidá",ru:"Джидда",sw:"Jeddah",tr:"Cidde",zh:"吉达"}},
+ rus:{flag:"🇷🇺",name:{ar:"روسيا",de:"Russland",en:"Russia",es:"Rusia",fa:"روسیه",fr:"Russie",it:"Russia",ja:"ロシア",ko:"러시아",nl:"Rusland",pl:"Rosja",pt:"Rússia",ru:"Россия",sw:"Urusi",tr:"Rusya",zh:"俄罗斯"},
+      port:{ar:"نوفوروسيسك",de:"Noworossijsk",en:"Novorossiysk",es:"Novorossisk",fa:"نووروسیسک",fr:"Novorossiisk",it:"Novorossijsk",ja:"ノヴォロシースク",ko:"노보로시스크",nl:"Novorossiejsk",pl:"Noworosyjsk",pt:"Novorossiysk",ru:"Новороссийск",sw:"Novorossiysk",tr:"Novorossiysk",zh:"新罗西斯克"}},
+ kaz:{flag:"🇰🇿",name:{ar:"كازاخستان",de:"Kasachstan",en:"Kazakhstan",es:"Kazajistán",fa:"قزاقستان",fr:"Kazakhstan",it:"Kazakistan",ja:"カザフスタン",ko:"카자흐스탄",nl:"Kazachstan",pl:"Kazachstan",pt:"Cazaquistão",ru:"Казахстан",sw:"Kazakhstan",tr:"Kazakistan",zh:"哈萨克斯坦"},
+      port:{ar:"ألماتي",de:"Almaty",en:"Almaty",es:"Almaty",fa:"آلماتی",fr:"Almaty",it:"Almaty",ja:"アルマトイ",ko:"알마티",nl:"Almaty",pl:"Ałmaty",pt:"Almaty",ru:"Алматы",sw:"Almaty",tr:"Almatı",zh:"阿拉木图"},
+      railSuffix:{ar:"(بالسكك الحديدية)",de:"(Schiene)",en:"(rail)",es:"(ferrocarril)",fa:"(ریلی)",fr:"(rail)",it:"(ferrovia)",ja:"（鉄道）",ko:"(철도)",nl:"(spoor)",pl:"(kolej)",pt:"(ferroviário)",ru:"(ж/д)",sw:"(reli)",tr:"(demiryolu)",zh:"（铁路）"}},
+ nga:{flag:"🇳🇬",name:{ar:"نيجيريا",de:"Nigeria",en:"Nigeria",es:"Nigeria",fa:"نیجریه",fr:"Nigeria",it:"Nigeria",ja:"ナイジェリア",ko:"나이지리아",nl:"Nigeria",pl:"Nigeria",pt:"Nigéria",ru:"Нигерия",sw:"Nigeria",tr:"Nijerya",zh:"尼日利亚"},
+      port:{ar:"لاغوس",de:"Lagos",en:"Lagos",es:"Lagos",fa:"لاگوس",fr:"Lagos",it:"Lagos",ja:"ラゴス",ko:"라고스",nl:"Lagos",pl:"Lagos",pt:"Lagos",ru:"Лагос",sw:"Lagos",tr:"Lagos",zh:"拉各斯"}},
+ kor:{flag:"🇰🇷",name:COUNTRY.kr.name,port:{ar:"إنتشون",de:"Incheon",en:"Incheon",es:"Incheon",fa:"اینچئون",fr:"Incheon",it:"Incheon",ja:"仁川",ko:"인천",nl:"Incheon",pl:"Incheon",pt:"Incheon",ru:"Инчхон",sw:"Incheon",tr:"Incheon",zh:"仁川"}},
+ usa:{flag:"🇺🇸",name:{ar:"الولايات المتحدة",de:"USA",en:"USA",es:"EE. UU.",fa:"ایالات متحده",fr:"États-Unis",it:"USA",ja:"アメリカ",ko:"미국",nl:"VS",pl:"USA",pt:"EUA",ru:"США",sw:"Marekani",tr:"ABD",zh:"美国"},
+      port:{ar:"نيويورك",de:"New York",en:"New York",es:"Nueva York",fa:"نیویورک",fr:"New York",it:"New York",ja:"ニューヨーク",ko:"뉴욕",nl:"New York",pl:"Nowy Jork",pt:"Nova Iorque",ru:"Нью-Йорк",sw:"New York",tr:"New York",zh:"纽约"}}
+};
+var BADGE={
+ noAccident:{ar:"بدون حوادث",de:"Unfallfrei",en:"No accidents",es:"Sin accidentes",fa:"بدون تصادف",fr:"Sans accident",it:"Nessun incidente",ja:"事故なし",ko:"무사고",nl:"Geen schade",pl:"Bezwypadkowy",pt:"Sem acidentes",ru:"Без аварий",sw:"Hakuna ajali",tr:"Kazasız",zh:"无事故"},
+ inspected:{ar:"تم الفحص",de:"Geprüft",en:"Inspected",es:"Inspeccionado",fa:"بازرسی‌شده",fr:"Inspecté",it:"Ispezionato",ja:"検査済み",ko:"검수완료",nl:"Geïnspecteerd",pl:"Sprawdzony",pt:"Inspecionado",ru:"Проверено",sw:"Imekaguliwa",tr:"İncelendi",zh:"已检测"}
+};
+var FUEL={
+ petrol:{ar:"بنزين",de:"Benzin",en:"Petrol",es:"Gasolina",fa:"بنزین",fr:"Essence",it:"Benzina",ja:"ガソリン",ko:"가솔린",nl:"Benzine",pl:"Benzyna",pt:"Gasolina",ru:"Бензин",sw:"Petroli",tr:"Benzin",zh:"汽油"},
+ diesel:{ar:"ديزل",de:"Diesel",en:"Diesel",es:"Diésel",fa:"دیزل",fr:"Diesel",it:"Diesel",ja:"ディーゼル",ko:"디젤",nl:"Diesel",pl:"Diesel",pt:"Diesel",ru:"Дизель",sw:"Dizeli",tr:"Dizel",zh:"柴油"},
+ hybrid:{ar:"هجين",de:"Hybrid",en:"Hybrid",es:"Híbrido",fa:"هیبریدی",fr:"Hybride",it:"Ibrido",ja:"ハイブリッド",ko:"하이브리드",nl:"Hybride",pl:"Hybryda",pt:"Híbrido",ru:"Гибрид",sw:"Hybridi",tr:"Hibrit",zh:"混合动力"}
+};
+var LOCALE={ar:'ar',de:'de-DE',en:'en-US',es:'es-ES',fa:'fa-IR',fr:'fr-FR',it:'it-IT',ja:'ja-JP',ko:'ko-KR',nl:'nl-NL',pl:'pl-PL',pt:'pt-PT',ru:'ru-RU',sw:'sw-KE',tr:'tr-TR',zh:'zh-CN'};
+
+/* ---- UI copy, per language. en/ko are the source of truth; the rest mirror the same keys. ---- */
 var T={
  ko:{fordealer:"딜러 · FOR DEALERS",search:"브랜드·모델 검색",back:"목록으로",zoom:"🔍 크게 보기",
      nav:["경매장","내 입찰","매입시세"],
@@ -211,8 +247,8 @@ var T={
      carrier:"캐리어",driver:"기사운행",endcost:"예상 도착가 (엔드코스트)",submit:"입찰하기",
      done:"입찰이 제출되었습니다. 마감 후 셀러가 최고가를 선택합니다.",
      note:"숫자·환율은 예시입니다 · 실서비스는 실제 요율·관세 데이터로 계산됩니다.",
-     speck:["연식","주행거리","연료","매물가"],chk:["✓ 무사고","✓ AI 검수완료","✓ 이력 확인"],
-     road:"로드탁송",depart:"출발",fees:"부가비용 합계",
+     speck:["연식","주행거리","연료","매물가"],
+     road:"로드탁송",depart:"출발",fees:"부가비용 합계",yearfmt:"{y}년형",
      ln:{road:"로드탁송",storage:"보관료",docs:"서류작업비",freight:"해상운송비",duty:"통관·관세"},winbid:"낙찰가"},
  en:{fordealer:"FOR DEALERS",search:"Search brand or model",back:"Back to list",zoom:"🔍 View large",
      nav:["Auctions","My bids","Prices"],
@@ -224,59 +260,71 @@ var T={
      carrier:"Carrier",driver:"Driven",endcost:"Estimated landed cost",submit:"Place bid",
      done:"Your bid is in. After close, the seller picks the highest.",
      note:"Figures and FX are illustrative · production uses real rate & duty data.",
-     speck:["Year","Mileage","Fuel","List price"],chk:["✓ No accidents","✓ AI-inspected","✓ History verified"],
-     road:"Road haulage",depart:"from",fees:"Added costs",
+     speck:["Year","Mileage","Fuel","List price"],
+     road:"Road haulage",depart:"from",fees:"Added costs",yearfmt:"{y}",
      ln:{road:"Road haulage",storage:"Port storage",docs:"Paperwork",freight:"Sea freight",duty:"Customs & duty"},winbid:"Winning bid"}
 };
-var D=T[KO?'ko':'en'];
+/* seed the remaining 14 languages with the English copy so the page is fully functional in every
+   language immediately; each block below is then translated in place. */
+["ar","de","es","fa","fr","it","ja","nl","pl","pt","ru","sw","tr","zh"].forEach(function(l){ T[l]=JSON.parse(JSON.stringify(T.en)); });
+
+var CHK={
+ noAccident:BADGE.noAccident, inspected:BADGE.inspected,
+ historyVerified:{ar:"السجل موثّق",de:"Historie geprüft",en:"History verified",es:"Historial verificado",fa:"سابقه تأییدشده",fr:"Historique vérifié",it:"Storico verificato",ja:"履歴確認済み",ko:"이력 확인",nl:"Historie geverifieerd",pl:"Historia zweryfikowana",pt:"Histórico verificado",ru:"История проверена",sw:"Historia imethibitishwa",tr:"Geçmiş doğrulandı",zh:"历史已核实"}
+};
 
 var CARS=[
- {id:"bmw_g30",ko:"BMW 530i (G30)",en:"BMW 530i (G30)",y:2019,km:62000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:18400,badge:["무사고·검수","No-accident"],t:"41:12",n:4,br:"BMW",fu:["가솔린","Petrol"],detail:true},
- {id:"landcruiser",ko:"토요타 랜드크루저 300",en:"Toyota Land Cruiser 300",y:2022,km:48000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:72500,badge:["검수완료","Inspected"],t:"12:30",n:7,br:"Toyota",fu:["가솔린","Petrol"]},
- {id:"gclass",ko:"메르세데스 G350",en:"Mercedes G350",y:2020,km:55000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:89000,badge:["무사고","No-accident"],t:"30:05",n:5,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
- {id:"eclass",ko:"메르세데스 E220d",en:"Mercedes E220d",y:2021,km:40000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:31200,badge:["검수완료","Inspected"],t:"22:40",n:3,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
- {id:"hilux",ko:"토요타 하이럭스",en:"Toyota Hilux",y:2019,km:88000,o:"🇹🇭",oko:"태국",oen:"Thailand",eur:19800,badge:["무사고","No-accident"],t:"08:15",n:6,br:"Toyota",fu:["디젤","Diesel"]},
- {id:"bmw_x5",ko:"BMW X5 xDrive40i",en:"BMW X5 xDrive40i",y:2020,km:51000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:42000,badge:["검수완료","Inspected"],t:"35:20",n:4,br:"BMW",fu:["가솔린","Petrol"]},
- {id:"prado",ko:"토요타 랜드크루저 프라도",en:"Toyota LC Prado",y:2021,km:44000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:38500,badge:["무사고·검수","No-accident"],t:"18:00",n:5,br:"Toyota",fu:["디젤","Diesel"]},
- {id:"gle",ko:"메르세데스 GLE350d",en:"Mercedes GLE350d",y:2020,km:60000,o:"🇩🇪",oko:"독일",oen:"Germany",eur:44900,badge:["검수완료","Inspected"],t:"27:10",n:2,br:"Mercedes-Benz",fu:["디젤","Diesel"]},
- {id:"lexus_lx",ko:"렉서스 LX570",en:"Lexus LX570",y:2019,km:70000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:58000,badge:["무사고","No-accident"],t:"06:45",n:8,br:"Lexus",fu:["가솔린","Petrol"]},
- {id:"rav4",ko:"토요타 RAV4",en:"Toyota RAV4",y:2022,km:33000,o:"🇯🇵",oko:"일본",oen:"Japan",eur:27300,badge:["검수완료","Inspected"],t:"44:00",n:3,br:"Toyota",fu:["하이브리드","Hybrid"]},
- {id:"patrol",ko:"닛산 파트롤 Ti-L",en:"Nissan Patrol Ti-L",y:2020,km:59000,o:"🇦🇪",oko:"UAE",oen:"UAE",eur:46700,badge:["무사고","No-accident"],t:"15:30",n:6,br:"Nissan",fu:["가솔린","Petrol"]},
- {id:"camry",ko:"토요타 캠리",en:"Toyota Camry",y:2021,km:42000,o:"🇰🇷",oko:"한국",oen:"Korea",eur:22100,badge:["검수완료","Inspected"],t:"33:50",n:4,br:"Toyota",fu:["가솔린","Petrol"]},
- {id:"peugeot",ko:"푸조 3008",en:"Peugeot 3008",y:2018,km:71000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:16900,badge:["검수완료","Inspected"],t:"20:10",n:3,br:"Peugeot",fu:["디젤","Diesel"]},
- {id:"renault",ko:"르노 메간 R.S.",en:"Renault Megane R.S.",y:2019,km:46000,o:"🇫🇷",oko:"프랑스",oen:"France",eur:21500,badge:["무사고","No-accident"],t:"09:55",n:4,br:"Renault",fu:["가솔린","Petrol"]}
+ {id:"bmw_g30",name:"BMW 530i (G30)",nameKo:"BMW 530i (G30)",y:2019,km:62000,country:"de",eur:18400,badge:"noAccident",t:"41:12",n:4,br:"BMW",fuel:"petrol",detail:true},
+ {id:"landcruiser",name:"Toyota Land Cruiser 300",nameKo:"토요타 랜드크루저 300",y:2022,km:48000,country:"ae",eur:72500,badge:"inspected",t:"12:30",n:7,br:"Toyota",fuel:"petrol"},
+ {id:"gclass",name:"Mercedes G350",nameKo:"메르세데스 G350",y:2020,km:55000,country:"de",eur:89000,badge:"noAccident",t:"30:05",n:5,br:"Mercedes-Benz",fuel:"diesel"},
+ {id:"eclass",name:"Mercedes E220d",nameKo:"메르세데스 E220d",y:2021,km:40000,country:"de",eur:31200,badge:"inspected",t:"22:40",n:3,br:"Mercedes-Benz",fuel:"diesel"},
+ {id:"hilux",name:"Toyota Hilux",nameKo:"토요타 하이럭스",y:2019,km:88000,country:"th",eur:19800,badge:"noAccident",t:"08:15",n:6,br:"Toyota",fuel:"diesel"},
+ {id:"bmw_x5",name:"BMW X5 xDrive40i",nameKo:"BMW X5 xDrive40i",y:2020,km:51000,country:"de",eur:42000,badge:"inspected",t:"35:20",n:4,br:"BMW",fuel:"petrol"},
+ {id:"prado",name:"Toyota LC Prado",nameKo:"토요타 랜드크루저 프라도",y:2021,km:44000,country:"jp",eur:38500,badge:"noAccident",t:"18:00",n:5,br:"Toyota",fuel:"diesel"},
+ {id:"gle",name:"Mercedes GLE350d",nameKo:"메르세데스 GLE350d",y:2020,km:60000,country:"de",eur:44900,badge:"inspected",t:"27:10",n:2,br:"Mercedes-Benz",fuel:"diesel"},
+ {id:"lexus_lx",name:"Lexus LX570",nameKo:"렉서스 LX570",y:2019,km:70000,country:"ae",eur:58000,badge:"noAccident",t:"06:45",n:8,br:"Lexus",fuel:"petrol"},
+ {id:"rav4",name:"Toyota RAV4",nameKo:"토요타 RAV4",y:2022,km:33000,country:"jp",eur:27300,badge:"inspected",t:"44:00",n:3,br:"Toyota",fuel:"hybrid"},
+ {id:"patrol",name:"Nissan Patrol Ti-L",nameKo:"닛산 파트롤 Ti-L",y:2020,km:59000,country:"ae",eur:46700,badge:"noAccident",t:"15:30",n:6,br:"Nissan",fuel:"petrol"},
+ {id:"camry",name:"Toyota Camry",nameKo:"토요타 캠리",y:2021,km:42000,country:"kr",eur:22100,badge:"inspected",t:"33:50",n:4,br:"Toyota",fuel:"petrol"},
+ {id:"peugeot",name:"Peugeot 3008",nameKo:"푸조 3008",y:2018,km:71000,country:"fr",eur:16900,badge:"inspected",t:"20:10",n:3,br:"Peugeot",fuel:"diesel"},
+ {id:"renault",name:"Renault Megane R.S.",nameKo:"르노 메간 R.S.",y:2019,km:46000,country:"fr",eur:21500,badge:"noAccident",t:"09:55",n:4,br:"Renault",fuel:"petrol"}
 ];
-// 출발국 → 출발도시·수출항
-var EXP={"독일":["뮌헨","함부르크","Munich","Hamburg"],"UAE":["두바이","제벨알리","Dubai","Jebel Ali"],
- "일본":["오사카","요코하마","Osaka","Yokohama"],"한국":["서울","부산","Seoul","Busan"],
- "프랑스":["리옹","르아브르","Lyon","Le Havre"],"태국":["방콕","램차방","Bangkok","Laem Chabang"]};
 var DEST=[
- {k:"uae",ko:"🇦🇪 UAE · 제벨알리",en:"🇦🇪 UAE · Jebel Ali",ccy:"AED",freight:1150,duty:5,storage:90,docs:140},
- {k:"ksa",ko:"🇸🇦 사우디 · 제다",en:"🇸🇦 Saudi · Jeddah",ccy:"SAR",freight:1250,duty:5,storage:100,docs:150},
- {k:"rus",ko:"🇷🇺 러시아 · 노보로시스크",en:"🇷🇺 Russia · Novorossiysk",ccy:"RUB",freight:1050,duty:15,storage:110,docs:160},
- {k:"kaz",ko:"🇰🇿 카자흐스탄 · 알마티(철도)",en:"🇰🇿 Kazakhstan · Almaty (rail)",ccy:"KZT",freight:1700,duty:10,storage:120,docs:170},
- {k:"nga",ko:"🇳🇬 나이지리아 · 라고스",en:"🇳🇬 Nigeria · Lagos",ccy:"NGN",freight:1400,duty:20,storage:130,docs:180},
- {k:"kor",ko:"🇰🇷 한국 · 인천",en:"🇰🇷 Korea · Incheon",ccy:"KRW",freight:1300,duty:8,storage:90,docs:150},
- {k:"usa",ko:"🇺🇸 미국 · 뉴욕",en:"🇺🇸 USA · New York",ccy:"USD",freight:1200,duty:2.5,storage:90,docs:150}
+ {k:"uae",country:"ae",ccy:"AED",freight:1150,duty:5,storage:90,docs:140},
+ {k:"ksa",country:"sa",ccy:"SAR",freight:1250,duty:5,storage:100,docs:150},
+ {k:"rus",country:"rus",ccy:"RUB",freight:1050,duty:15,storage:110,docs:160},
+ {k:"kaz",country:"kaz",ccy:"KZT",freight:1700,duty:10,storage:120,docs:170,rail:true},
+ {k:"nga",country:"nga",ccy:"NGN",freight:1400,duty:20,storage:130,docs:180},
+ {k:"kor",country:"kor",ccy:"KRW",freight:1300,duty:8,storage:90,docs:150},
+ {k:"usa",country:"usa",ccy:"USD",freight:1200,duty:2.5,storage:90,docs:150}
 ];
 var CCYS=["EUR","USD","AED","SAR","RUB","KZT","NGN","KRW","TRY","GBP"];
 var FALLBACK={EUR:1,USD:1.08,AED:3.97,SAR:4.05,RUB:98,KZT:505,NGN:1650,KRW:1490,TRY:35,GBP:0.85};
 var ROAD={carrier:480,driver:260};
-var RATES=null,FXDATE="예시",roadMode="carrier";
+var RATES=null,FXDATE="sample",roadMode="carrier";
 var CUR=null,GAL=[],curIdx=0;
 
-function money(n){return new Intl.NumberFormat(KO?'ko-KR':'en-US',{maximumFractionDigits:0}).format(Math.round(n));}
+var L=(new URLSearchParams(location.search).get('lang')||'en').toLowerCase();
+if(!T[L]) L='en';
+var D=T[L];
+document.documentElement.lang=L;
+if(['ar','fa'].includes(L)) document.documentElement.dir='rtl';
+
+function ctryName(code){ var c=COUNTRY[code]||DCTRY[code]; return c ? (c.name[L]||c.name.en) : code; }
+function destName(code){ var c=DCTRY[code]; return c ? (c.name[L]||c.name.en) : code; }
+function destPort(code){ var c=DCTRY[code]; return c ? (c.port[L]||c.port.en) : ''; }
+function money(n){return new Intl.NumberFormat(LOCALE[L]||'en-US',{maximumFractionDigits:0}).format(Math.round(n));}
 function euro(n){return "€"+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(Math.round(n));}
 function img(id){return "img/"+id+".jpg";}
 
 /* ---- 카드 그리드 ---- */
 function cardHTML(c){
-  var name=KO?c.ko:c.en, origin=(KO?c.oko:c.oen), badge=KO?c.badge[0]:c.badge[1];
+  var name=(L==='ko'?c.nameKo:c.name), origin=ctryName(c.country), flag=COUNTRY[c.country].flag, badge=BADGE[c.badge][L]||BADGE[c.badge].en;
   return '<div class="cardc" onclick="openCar(\''+c.id+'\')">'
    +'<div class="cardimg"><img src="'+img(c.id)+'" alt="'+name+'"/>'
    +'<span class="badge">'+badge+'</span><span class="heart">♡</span><span class="timer">⏱ '+c.t+'</span></div>'
    +'<div class="cardbody"><div class="cardtitle">'+name+'</div>'
-   +'<div class="cardmeta">'+c.y+' · '+c.km.toLocaleString()+' km · '+c.o+' '+origin+'</div>'
+   +'<div class="cardmeta">'+c.y+' · '+c.km.toLocaleString()+' km · '+flag+' '+origin+'</div>'
    +'<div class="bidcnt">'+c.n+D.bidcnt+'</div></div></div>';
 }
 function rowHTML(title,list){return '<div class="rowhead"><h3>'+title+'</h3></div><div class="row">'+list.map(cardHTML).join('')+'</div>';}
@@ -288,7 +336,7 @@ function renderBrowse(){
   document.getElementById('browse').innerHTML=rowHTML(D.row1,r1)+rowHTML(D.row2,r2)+rowHTML(D.row3,r3);
   syncFrameH();
 }
-function originVal(c){return c.o+' '+(KO?c.oko:c.oen);}
+function originVal(c){return COUNTRY[c.country].flag+' '+ctryName(c.country);}
 function initFilters(){
   var g=function(id){return document.getElementById(id)};
   g('f_search').placeholder=D.search;
@@ -305,7 +353,7 @@ function applyFilters(){
   var br=g('f_brand').value,yr=g('f_year').value,km=g('f_km').value,og=g('f_origin').value;
   if(!(q||br||yr||km||og)){renderBrowse();return;}
   var list=CARS.filter(function(c){
-    var name=(KO?c.ko:c.en).toLowerCase();
+    var name=(L==='ko'?c.nameKo:c.name).toLowerCase();
     if(q&&name.indexOf(q)<0&&c.br.toLowerCase().indexOf(q)<0)return false;
     if(br&&c.br!==br)return false;
     if(og&&originVal(c)!==og)return false;
@@ -330,13 +378,13 @@ function openCar(id){
   window.scrollTo(0,0);
   document.getElementById('mainImg').src=img(GAL[0]);
   document.getElementById('thumbgrid').innerHTML=(GAL.length>1)?GAL.map(function(f,i){return '<img src="'+img(f)+'" class="'+(i===0?'sel':'')+'" onclick="pick('+i+')"/>'}).join(''):'';
-  var name=KO?CUR.ko:CUR.en, origin=KO?CUR.oko:CUR.oen;
-  document.getElementById('badges').innerHTML=D.chk.map(function(v){return '<span class="chk">'+v+'</span>'}).join('');
+  var name=(L==='ko'?CUR.nameKo:CUR.name), origin=ctryName(CUR.country), flag=COUNTRY[CUR.country].flag;
+  document.getElementById('badges').innerHTML=[CHK[CUR.badge],CHK.inspected===CHK[CUR.badge]?CHK.noAccident:CHK.inspected,CHK.historyVerified].map(function(v){return '<span class="chk">✓ '+(v[L]||v.en)+'</span>'}).join('');
   document.getElementById('dTitle').textContent=name;
-  document.getElementById('dSub').textContent=CUR.y+'년형 · '+CUR.km.toLocaleString()+'km · '+CUR.o+' '+origin+' '+D.depart;
-  var sp=[[D.speck[0],CUR.y],[D.speck[1],CUR.km.toLocaleString()+' km'],[D.speck[2],KO?CUR.fu[0]:CUR.fu[1]],[D.speck[3],euro(CUR.eur)]];
+  document.getElementById('dSub').textContent=D.yearfmt.replace('{y}',CUR.y)+' · '+CUR.km.toLocaleString()+'km · '+flag+' '+origin+' '+D.depart;
+  var sp=[[D.speck[0],CUR.y],[D.speck[1],CUR.km.toLocaleString()+' km'],[D.speck[2],FUEL[CUR.fuel][L]||FUEL[CUR.fuel].en],[D.speck[3],euro(CUR.eur)]];
   document.getElementById('specs').innerHTML=sp.map(function(s){return '<div class="spec"><div class="k">'+s[0]+'</div><div class="v">'+s[1]+'</div></div>'}).join('');
-  document.getElementById('views').textContent=KO?(D.views+' '+(CUR.n*7+18)+D.people):((CUR.n*7+18)+D.people);
+  document.getElementById('views').textContent=L==='ko'?(D.views+' '+(CUR.n*7+18)+D.people):((CUR.n*7+18)+D.people);
   document.getElementById('timer2').textContent=CUR.t+':00';
   document.getElementById('bid').value=Math.round(CUR.eur*1.03/100)*100;
   document.getElementById('done').style.display='none';
@@ -359,8 +407,8 @@ document.getElementById('lb').addEventListener('click',function(e){if(e.target.i
 function curDest(){return DEST.find(function(d){return d.k===document.getElementById('dest').value});}
 function destChanged(){document.getElementById('ccy').value=curDest().ccy;calc();}
 function roadLabel(){
-  var e=CUR?EXP[CUR.oko]:null; if(!e){return D.road;}
-  return KO?(D.road+' ('+e[0]+' → '+e[1]+'항)'):(D.road+' ('+e[2]+' → '+e[3]+')');
+  var e=CUR?COUNTRY[CUR.country].cities[L]||COUNTRY[CUR.country].cities.en:null; if(!e){return D.road;}
+  return D.road+' ('+e[0]+' → '+e[1]+')';
 }
 function calc(){
   if(!CUR)return;
@@ -378,13 +426,13 @@ function calc(){
   document.getElementById('feesSum').textContent=euro(feesEUR);
   document.getElementById('totAmt').textContent=ccy+" "+money(totalEUR*rate);
   document.getElementById('totEur').textContent="≈ "+euro(totalEUR);
-  document.getElementById('fx').textContent=(KO?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
+  document.getElementById('fx').textContent=(L==='ko'?"환율: ":"FX: ")+"1 EUR = "+rate.toFixed(rate>50?0:2)+" "+ccy+" · "+FXDATE;
 }
 function submitBid(){document.getElementById('t_submit').style.display='none';document.getElementById('done').style.display='block';}
 function loadFX(){
   fetch('https://open.er-api.com/v6/latest/EUR').then(function(r){return r.json()}).then(function(j){
     if(j&&j.rates){RATES=j.rates;FXDATE=(j.time_last_update_utc||'').slice(5,16)||'ECB';if(CUR)calc();}
-  }).catch(function(){FXDATE=(KO?"예시 환율":"sample FX");});
+  }).catch(function(){FXDATE=(L==='ko'?"예시 환율":"sample FX");});
 }
 
 /* ---- init ---- */
@@ -409,14 +457,21 @@ function applyText(){
   document.getElementById('t_nav2').textContent=D.nav[1];
   document.getElementById('t_nav3').textContent=D.nav[2];
 }
-fillSelect('dest',DEST,function(d){return '<option value="'+d.k+'">'+(KO?d.ko:d.en)+'</option>'});
+function destLabel(d){
+  var name=destName(d.country), port=destPort(d.country), flag=DCTRY[d.country].flag;
+  var suffix=(d.rail&&DCTRY[d.country].railSuffix)?(' '+(DCTRY[d.country].railSuffix[L]||DCTRY[d.country].railSuffix.en)):'';
+  return flag+' '+name+' · '+port+suffix;
+}
+fillSelect('dest',DEST,function(d){return '<option value="'+d.k+'">'+destLabel(d)+'</option>'});
 fillSelect('ccy',CCYS,function(c){return '<option value="'+c+'"'+(c==="AED"?' selected':'')+'>'+c+'</option>'});
 applyText();initFilters();renderBrowse();loadFX();
 
-/* embedded in the marketing site as an iframe with no fixed height of its own —
-   keep the outer <iframe> exactly as tall as this page. Explicit syncFrameH() calls at each
-   interaction cover the known cases; this observer is just a safety net for anything else
-   (e.g. an image finishing loading and nudging layout). */
+/* embedded in the marketing site as an iframe with no fixed height of its own — keep the
+   outer <iframe> exactly as tall as this page's actual content so there's no nested scrollbar.
+   Called explicitly wherever the visible content changes size, rather than relying solely on
+   ResizeObserver timing. Uses body.scrollHeight (not documentElement.scrollHeight, which gets
+   pinned to whatever height we last set on the iframe and can never report a shrink). */
+function syncFrameH(){ if(window.frameElement) window.frameElement.style.height = document.body.scrollHeight + 'px'; }
 if(window.frameElement){
   new ResizeObserver(syncFrameH).observe(document.body);
   window.addEventListener('load', syncFrameH);
