@@ -1,25 +1,25 @@
-# vectiba.com → 도메인 이전 중, 🔴 지금 루트 도메인 깨짐 (2026-07-14 최신, 1-1·1-2 먼저 읽을 것)
+# vectiba.com → 도메인 이전 완료, 🟡 지금 남은 건 inc.vectiba.com SSL 발급 대기 (2026-07-15 밤 재확인, 0번 먼저 읽을 것)
 
 다음 세션은 **이 문서 하나만 읽고** 이어서 작업. 소스는 이 폴더(`~/vectiba-dev/VECTIBA-Site`, 영구). 클론: `gh repo clone bohyun1226/VECTIBA-Site`.
 ⚠️ 작업 전 항상 `git fetch && git log --oneline -5` — **다른 세션이 이 레포에 동시 커밋**함(맨 아래 참고).
 
-## 0. 🔴 지금 당장 확인할 것 — vectiba.com / www.vectiba.com 404 (라이브 장애)
-`CNAME` 파일을 `inc.vectiba.com`으로 바꾸면서 GitHub Pages가 이제 `inc.vectiba.com`만 정식 도메인으로 인식함. 그런데 `vectiba.com`/`www.vectiba.com`의 DNS(A레코드 4개, www CNAME)는 여전히 GitHub Pages를 가리키고 있어서 **지금 그 두 주소로 들어가면 404가 뜬다.** `curl`/`dig`로 직접 확인함(2026-07-14 저녁).
-**이 세션이 저지른 실수**: CNAME 파일을 바꾼 직후 실제 접속 확인을 안 하고 "안전하다"고 보고함 — 몇 시간 방치됨. 다음 세션은 반드시 새로 시작할 때 `curl -s -o /dev/null -w "%{http_code}" https://vectiba.com`로 먼저 확인할 것.
-**고치는 법(대표님 Namecheap Advanced DNS 액션)** — 루트=셀러 앱으로 최종 확정됨(2026-07-15, 1-1 참고), 아래 그대로 진행 가능:
-1. `@` A Record 4개(185.199.x.x, GitHub 것들) 삭제
-2. 새 A Record 추가: Host `@`, Value `76.76.21.21`
-3. `www` CNAME(→bohyun1226.github.io) 삭제하고, 새 A Record 추가: Host `www`, Value `76.76.21.21`
-4. 새 A Record 추가: Host `buy`, Value `76.76.21.21` (아직 DNS 자체가 없음, `buyer`→`buy`로 이름 확정됨)
-완료 여부는 대표님이 확인 안 해주셨을 수 있음 — 다음 세션이 직접 `dig`로 재확인할 것.
+## 0. 상태 재확인 (2026-07-15 밤, `dig`/`curl`로 직접 확인) — 예전 404 장애는 해소됨
+대표님이 Namecheap에서 A레코드를 이미 바꿔주셔서, 아래 4개 항목은 전부 해결됨:
+- `vectiba.com`/`www.vectiba.com`/`buy.vectiba.com` DNS → 전부 `76.76.21.21`(Vercel)로 확인됨. 더 이상 404 아님.
+- `vectiba.com`/`www.vectiba.com` 루트 접속 시 200 아니고 **307로 `/sell`(vectiba-app 셀러 앱)로 리다이렉트** — 이게 최종 확정된 정상 동작(1-1 참고).
+- `buy.vectiba.com/dealer`, `partner.vectiba.com/partner` 둘 다 실제로 열어서 200/307 + 정상 화면(로고까지) 확인됨. Vercel 프로젝트에도 두 도메인 다 `verified:true`로 등록돼 있음. **더 이상 "DNS 대기" 아님 — 완료된 상태.**
+
+**🟡 지금 유일하게 남은 문제**: `inc.vectiba.com`의 DNS(CNAME→`bohyun1226.github.io`, 4개 A레코드)는 맞게 설정돼 있는데, GitHub Pages가 이 커스텀 도메인용 HTTPS 인증서를 아직 발급 안 끝냄 — `curl -v`로 확인하면 `inc.vectiba.com`인데 인증서 주체가 `CN=*.github.io`(범용 인증서)로 나옴, 즉 아직 자기 도메인 인증서가 아님. 그래서 지금 `https://inc.vectiba.com`은 브라우저에서 안 열림.
+- 결과적으로 지금 이 순간, **회사소개(마케팅) 페이지가 뜨는 커스텀 도메인이 하나도 없음** — `vectiba.com` 루트는 이미 셀러 앱으로 넘어갔고, `inc.vectiba.com`은 인증서 대기 중이라서.
+- 조치: `gh api -X PUT repos/bohyun1226/VECTIBA-Site/pages -f cname="inc.vectiba.com"`로 도메인 재검증을 한 번 걸어둠(2026-07-15 밤) — 깃허브가 자동으로 처리하는 부분이라 보통 몇 분~몇 시간 걸림, 강제로 즉시 끝낼 방법은 없음. 다음 세션은 `curl -v https://inc.vectiba.com/ 2>&1 | grep subject:`로 재확인 — `CN=inc.vectiba.com` 또는 Let's Encrypt로 바뀌어 있으면 완료.
+- 그래도 계속 `*.github.io`로 나오면: GitHub 저장소 Settings → Pages에서 커스텀 도메인 필드를 한 번 비웠다가 다시 `inc.vectiba.com` 입력(수동 재트리거), 그래도 안 되면 대표님께 DNS가 실제로 맞는지 재확인 요청.
 
 ## 1. 배포
 - GitHub Pages, PUBLIC repo `bohyun1226/VECTIBA-Site`, branch `main` root, HTTPS.
 - **도메인 이전 진행중(2026-07-14)**: `CNAME` 파일을 `vectiba.com` → **`inc.vectiba.com`**으로 변경함(회사소개 페이지라 inc=Incorporated). 이유·전체 그림은 아래 1-1 참고. 코드/빌드는 전혀 안 바뀜, 도메인만 이동.
   - ✅ 완료: 이 레포 `CNAME` 파일 변경(커밋됨), `inc` DNS 등록(CNAME→bohyun1226.github.io, `dig`로 확인됨).
-  - 🟡 진행중: `inc.vectiba.com` SSL 인증서 GitHub Pages가 자동 발급 대기중(DNS는 맞음, HTTPS 응답이 아직 없었음 — 보통 몇 시간~24시간, 재확인 필요).
-  - 🔴 위 0번 참고 — 루트/www 깨짐, 시급.
-  - ⏳ 그 다음(vectiba-app 세션 작업): 루트 복구 확인되면 `vectiba.com` 완전히 앱으로 전환.
+  - 🟡 진행중: `inc.vectiba.com` SSL 인증서 GitHub Pages가 자동 발급 대기중 — 위 0번 참고(재검증 다시 걸어둠, 재확인 필요).
+  - ✅ 완료(2026-07-15 밤): 루트/www DNS는 대표님이 이미 Vercel로 전환함 — 더 이상 404 아님, `vectiba.com`이 이미 셀러 앱으로 넘어가 있음(순서상 inc가 아직 준비 안 된 채로 먼저 넘어간 상태지만, 지금은 그냥 이대로 최종 상태로 봐도 됨 — 위 0번 참고).
 - 빌드: `python3 _src/build.py` → `_src/tpl.html`(HTML) + build.py 안 EN 사전 + `i18n/<lang>.json` 합쳐 `index.html` + `version.txt` 생성 → `git commit` → `git push` (약 1분 반영).
 - **자동갱신**: 빌드마다 `version.txt`에 타임스탬프. 페이지가 로드되면 `version.txt`를 no-store로 받아 내 BUILD와 다르면 `?b=<버전>`으로 새로고침 → **대표님 기기도 배포하면 자동으로 최신**(한 번만 수동 새로고침해서 이 스크립트를 받으면 그 뒤로 자동). 캐시 얘기 대표님께 금지.
 - 브랜드: 크림 #F8F5EE · 딥그린 #135A4B · 골드 #BE8B39 · 에메랄드 #0B7A5A(딜러 데모) · Poppins · 실제 V로고.
@@ -28,10 +28,10 @@
 
 ## 1-1. ⚠️ 전체 도메인 지도 (2026-07-15 최종 확정 — buy/inc/partner 체계, CLAUDE.md에 전체지도 있음)
 **이유**: 셀러는 일반 고객이라 검색해서 그냥 들어와야 하니 주소 앞에 아무것도 안 붙임(루트 그대로 씀). 바이어·파트너는 정해진 링크로만 들어오는 사업 파트너라 서브도메인으로 구분. → 별도 `sell.vectiba.com`은 안 씀, 루트가 그 역할.
-- **`vectiba.com`(루트)** → **셀러 앱 최종 주소**(서브도메인 안 붙음). 지금은 과도기 — 이 레포(마케팅 페이지)가 아직 여기 있음. DNS 전환되면 루트가 앱으로 넘어감. (지금 라이브 404는 0번 참고)
-- **`inc.vectiba.com`** → 지금 이 레포(회사소개 페이지) 이전 위치. 위 1번 참고.
-- **`buy.vectiba.com`** → **바이어 전용 페이지·대시보드** (2026-07-15, `buyer`에서 `buy`로 이름 확정), `vectiba-app` 레포, 미착수 — `proxy.ts` 호스트 라우팅에 `partner.`와 같은 패턴 추가하면 됨. DNS도 아직 안 만듦.
-- **`partner.vectiba.com`** → 운송·통관 등 파트너사(포워더) 전용, `vectiba-app` 레포, 이미 구현됨.
+- **`vectiba.com`(루트)** → **셀러 앱 최종 주소**(서브도메인 안 붙음). DNS 이미 전환 완료(2026-07-15 밤) — 이 레포(마케팅 페이지)는 더 이상 루트에 없음, `inc.vectiba.com`으로 완전히 이전됨. (상태는 0번 참고)
+- **`inc.vectiba.com`** → 지금 이 레포(회사소개 페이지)의 정식 위치. DNS는 맞게 설정됨, SSL 인증서만 대기 중(0번 참고).
+- **`buy.vectiba.com`** → **바이어 전용 페이지·대시보드**, `vectiba-app` 레포. ✅ 완료(2026-07-15 밤) — DNS·Vercel 도메인 등록·`proxy.ts` 라우팅 전부 확인됨, 실제로 열림.
+- **`partner.vectiba.com`** → 운송·통관 등 파트너사(포워더) 전용, `vectiba-app` 레포. ✅ 완료 — DNS·Vercel 등록·실제 접속까지 확인됨(2026-07-15 밤).
 - 실제 제품(셀러 AI 인테이크·매물 게시·경매·딜러 대시보드·포워더 대시보드) 코드/DB는 전부 **별도 레포 `vectiba-app`**, Supabase 프로젝트 "Vectiba-app"의 `vectiba-app`쪽 `supabase/migrations/`가 진짜 스키마(`listings`/`listing_media`/`bids`/`auctions` 등).
 - **여기(이 레포)에는 매물/경매/딜러승인 같은 실제 제품 데이터·기능을 만들지 말 것.** 문의 폼(`leads` 테이블, 아래 4번)처럼 "관심 등록" 수준 라이트 캡처만.
 - 실수 기록: 2026-07-14, 독일 딜러가 매물 올리고 싶어해서 이 레포에 `supabase/car_listings.sql`(매물 상세 테이블)을 만들었다가, `vectiba-app`에 이미 훨씬 완성된 매물 스키마+셀러 AI 인테이크 플로우가 코드 완료 상태인 걸 뒤늦게 확인 → 삭제하고 되돌림. **다음에 "딜러가 차 올리고 싶어함" 같은 요청 오면 → vectiba-app 세션으로 보낼 것, 여기서 새 테이블 만들지 말 것.**
@@ -67,6 +67,7 @@
 2. ~~딜러 데모 16개 언어 확장~~ ✅ 완료(2026-07-14). ko/en 이분법 → `T[lang]` 16개 언어 구조로 리팩터, 14개 언어 병렬 서브에이전트로 번역. "Germany from" 어순 버그도 같이 고침(`departfmt` 템플릿 도입).
 3. 추가 레이아웃/문구 요청 반영.
 4. (참고) 위 두 작업 다 여러 서브에이전트가 **같은 파일을 동시에 수정**하는 방식으로 진행됨 — 매 커밋 전 구조 검증(JSON parse, 키 개수, JS syntax) 통과 확인 후 커밋함. 이후 세션에서 같은 파일 다시 손댈 때도 동일하게 검증 권장.
+5. **다음 세션 할 일**: `inc.vectiba.com` SSL 인증서 발급 완료됐는지 `curl -v`로 재확인(0번 참고). 완료됐으면 이 파일 0번 항목도 "완료"로 정리.
 
 ## 6. 모바일 (수정 완료)
 - 딜러 데모 `<style>` 미닫힘으로 첫 접속 깨지던 치명 버그 수정.
@@ -81,3 +82,7 @@
 ## 8. 대표님 작업 규칙 (반드시)
 - **대표님 원문 그대로**(가볍게만 다듬기), 내가 다시 쓰지 않음. 재검 안 받고 바로 배포.
 - **짧게, 한 번에 한 가지**. 캐시 얘기 금지. 시킨 것만(추가 X). 부정문 금지. "형/반말" 금지 → "대표님"·존댓말.
+
+## 9. 2026-07-15 밤 로그 (vectiba-app 세션이 로고 작업 하다가 겸사겸사 상태 재확인)
+- 로고를 크림 원+그린 V 배지 하나로 통일하는 작업(주 담당은 `vectiba-app`) 하면서, 이 레포의 `img/vectiba-logo.png`도 같은 배지로 교체(커밋 `bbb5208`) — `dealer/index.html`의 `.logochip` 이중 원 문제도 같이 수정. `brand/logo/vectiba-badge.svg`/`.png` 정본 추가.
+- 겸사겸사 도메인 상태를 `dig`/`curl`로 전부 재확인함 — 위 0/1/1-1번 최신화함. 요약: 예전에 걱정하던 루트 404는 이미 해결돼 있었음(대표님이 Namecheap A레코드 직접 반영), `buy.`/`partner.` 서브도메인도 이미 다 살아있었음. 지금 유일하게 남은 건 `inc.vectiba.com` SSL 인증서 발급 대기뿐 — 재검증 요청은 걸어둠, 시간이 걸리는 부분이라 강제로 끝낼 수는 없음.
