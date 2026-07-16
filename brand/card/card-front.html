@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Vectiba Business Card — Front (90×50mm @300dpi)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Cormorant+Garamond:wght@700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+  /* 90mm × 50mm at 300dpi = 1063 × 591 px */
+  html,body{margin:0;padding:0}
+  body{width:1063px;height:591px;background:#FBF6EC;overflow:hidden;
+       font-family:'Hanken Grotesk',sans-serif;color:#1d2b27;
+       display:flex;align-items:center}
+  .card{display:flex;align-items:center;width:100%;padding:0 56px;box-sizing:border-box;gap:48px}
+
+  /* Left: logo lockup — the single VLogo badge used across the app (locked 2026-07-15) */
+  .logo{flex:0 0 260px;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .logo svg{width:170px;height:170px;border-radius:50%;
+            box-shadow:0 0 0 1.5px rgba(18,86,75,.10), 0 6px 18px rgba(18,86,75,.08)}
+  .wordmark{font-family:'Poppins',sans-serif;font-weight:600;font-size:56px;
+            color:#12564B;letter-spacing:-1px;line-height:1}
+
+  .divider{width:2px;align-self:stretch;margin:70px 0;background:rgba(29,43,39,.18)}
+
+  .info{flex:1;min-width:0}
+  .name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:84px;
+        color:#12564B;line-height:1.05;margin:0 0 10px}
+  .role{font-size:32px;font-weight:700;color:#C68A3E;letter-spacing:.5px;margin:0 0 4px}
+  .company{font-size:28px;font-weight:500;color:#1d2b27;margin:0 0 42px}
+  .contacts{font-size:21px;font-weight:500;color:#1d2b27;white-space:nowrap;margin:0 0 14px}
+  .contacts .sep{color:#C68A3E;margin:0 11px;font-weight:400}
+  .rule{position:relative;height:2px;background:#C68A3E;width:540px;margin:0 0 34px}
+  .rule::after{content:'';position:absolute;right:-5px;top:-4px;width:10px;height:10px;
+               border-radius:50%;background:#C68A3E}
+  .addr{font-size:22px;line-height:1.7;margin:0}
+  .addr b{color:#C68A3E;font-weight:700;margin-right:10px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VECTIBA">
+        <circle cx="100" cy="100" r="100" fill="#f8f5ee"/>
+        <g transform="translate(-24.5,-29.375) scale(0.75)">
+          <path d="M94 120 L124 120 L152 181 L139 209 Z" fill="#12564B"/>
+          <path d="M207 96 L238 93 L172 216 L152 252 L142 216 Z" fill="#12564B"/>
+        </g>
+      </svg>
+      <div class="wordmark">Vectiba</div>
+    </div>
+    <div class="divider"></div>
+    <div class="info">
+      <h1 class="name">Dustin Yoo</h1>
+      <p class="role">CEO / Founder</p>
+      <p class="company">Vectiba</p>
+      <p class="contacts">ceo@vectiba.com<span class="sep">|</span>www.vectiba.com<span class="sep">|</span>+82 10 3277 8222</p>
+      <div class="rule"></div>
+      <p class="addr"><b>Headquarters</b> Jebel Ali Free Zone, Dubai, UAE<br/>
+                      <b>R&amp;D Center</b> Gangnam, Seoul, South Korea</p>
+    </div>
+  </div>
+</body>
+</html>
