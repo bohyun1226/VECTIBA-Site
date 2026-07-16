@@ -59,6 +59,12 @@
   .demosplit{display:grid;grid-template-columns:1fr 430px;gap:40px;align-items:center;margin-top:40px}
   .demosplit .demoWrap{margin:0}
   .demotext{font-size:16px;color:var(--txt);line-height:1.7;margin:0}
+  /* 셀러 데모 옆: 빼곡한 문단 대신 헤드카피 + 번호 3스텝 (2026-07-16 대표 지시 "모바일에서 글로벌 옥션을 직접 오픈하세요") */
+  .demoh3{margin:0 0 10px;font-size:27px;font-weight:800;line-height:1.3;color:var(--green)}
+  .demolead{margin:0 0 26px;font-size:15.5px;color:var(--gold);font-weight:600}
+  .demostep{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .demostep .dnum{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .demostep p{margin:0;font-size:16.5px;line-height:1.6;color:var(--txt);font-weight:500}
   @media(max-width:860px){.demosplit{grid-template-columns:1fr}}
   .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
   .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
@@ -280,9 +286,12 @@
     </div>
     <div class="demosplit">
       <div>
-        <p class="demotext" data-i18n="why_story">Every few years, when it's time to sell, there's always that nagging doubt. The same car is valued differently in every country, and the real selling price differs too. Somewhere there is always a dealer who would value your car higher. Even if that dealer is abroad, all you need is to reach them — remotely.</p>
-        <p class="demotext" style="margin-top:14px" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
-        <p class="ssub" style="margin-top:16px;font-size:13.5px" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically — sample data.</p>
+        <h3 class="demoh3" data-i18n="demo_h3">Open a global auction — right from your phone.</h3>
+        <p class="demolead" data-i18n="why_lead">The same car is worth different amounts in different countries — and that difference should be yours.</p>
+        <div class="demostep"><span class="dnum">1</span><p data-i18n="demo_s1">Talk to the app, add a few photos — AI packages your car so dealers can trust it.</p></div>
+        <div class="demostep"><span class="dnum">2</span><p data-i18n="demo_s2">Dealers in many countries bid on it — sealed quotes, real landed cost.</p></div>
+        <div class="demostep"><span class="dnum">3</span><p data-i18n="demo_s3">You just pick the highest price — within 48 to 72 hours.</p></div>
+        <p class="ssub" style="margin-top:20px;font-size:13.5px" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically — sample data.</p>
       </div>
       <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
     </div>
