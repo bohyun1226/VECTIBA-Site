@@ -63,10 +63,30 @@ for f in sorted(glob.glob(os.path.join(ROOT,"i18n","*.json"))):
     if "foot_1" in d and "<strong>" in d["foot_1"]:
         d["foot_1"] = d["foot_1"].replace("<strong>", "<strong style=\"color:var(--green)\">")
     I18N[lang] = d
+# 언어 목록·순서·RTL·저장키는 공용 정본에서 가져온다(손으로 박지 않음).
+# 원본: ~/vectiba-dev/vectiba-i18n/languages.json — 여기 _src/languages.json 은 그 사본.
+# 언어를 바꾸려면 정본을 고치고 이 사본으로 다시 복사(조율자가 점검, ~/VECTIBA/작업일지.md).
+LANGS_RAW = json.load(open(os.path.join(ROOT,"_src","languages.json")))
+LANGS = {k: v for k, v in LANGS_RAW.items() if not k.startswith("_")}  # 주석(_comment) 제외
+# 정본이 정한 순서 그대로 <select> 옵션 생성
+LANG_OPTIONS = "\n".join(
+    '      <option value="%s">%s</option>' % (l["code"], l["label"]) for l in LANGS["languages"]
+)
+# 정본 언어 ↔ 실제 번역 파일 어긋남 경고(핸드오프용)
+cfg_codes = {l["code"] for l in LANGS["languages"]}
+missing_tr = sorted(cfg_codes - set(I18N))      # 목록엔 있는데 번역 없음
+missing_cfg = sorted(set(I18N) - cfg_codes)     # 번역은 있는데 목록에 없음
+if missing_tr:  print("⚠️ 정본에 있으나 번역파일 없음:", missing_tr)
+if missing_cfg: print("⚠️ 번역파일 있으나 정본 목록에 없음:", missing_cfg)
+
 tpl = open(os.path.join(ROOT,"_src","tpl.html")).read()
 BUILD = str(int(time.time()))
-out = tpl.replace("__I18N_JSON__", json.dumps(I18N, ensure_ascii=False)).replace("__BUILD__", BUILD)
+out = (tpl
+    .replace("__I18N_JSON__", json.dumps(I18N, ensure_ascii=False))
+    .replace("__LANGS_JSON__", json.dumps(LANGS, ensure_ascii=False))
+    .replace("__LANG_OPTIONS__", LANG_OPTIONS)
+    .replace("__BUILD__", BUILD))
 open(os.path.join(ROOT,"index.html"), "w").write(out)
 open(os.path.join(ROOT,"version.txt"), "w").write(BUILD)
 json.dump(en, open(os.path.join(ROOT,"_src","en.json"), "w"), ensure_ascii=False, indent=0)
-print("built:", len(out), "bytes | keys:", len(en), "| langs:", sorted(I18N))
+print("built:", len(out), "bytes | keys:", len(en), "| langs(정본순):", [l["code"] for l in LANGS["languages"]])

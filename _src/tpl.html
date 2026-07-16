@@ -29,7 +29,9 @@
   .mobileMenu a{padding:15px 2px;font-size:15.5px;font-weight:600;color:var(--txt);border-bottom:1px solid var(--line)}
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
-  .hero{padding:60px 0 44px;display:flex;flex-direction:column}
+  .heroSection{position:relative;overflow:hidden}
+  .heroMap{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero{position:relative;z-index:1;padding:60px 0 44px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
   .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
@@ -133,22 +135,7 @@
     <a href="#team" data-i18n="nav_team">Team</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
     <select class="lang" id="langsel" aria-label="Language">
-      <option value="en">English</option>
-      <option value="ko">한국어</option>
-      <option value="ar">العربية</option>
-      <option value="fa">فارسی</option>
-      <option value="fr">Français</option>
-      <option value="de">Deutsch</option>
-      <option value="es">Español</option>
-      <option value="pt">Português</option>
-      <option value="it">Italiano</option>
-      <option value="nl">Nederlands</option>
-      <option value="pl">Polski</option>
-      <option value="tr">Türkçe</option>
-      <option value="ru">Русский</option>
-      <option value="zh">中文</option>
-      <option value="ja">日本語</option>
-      <option value="sw">Kiswahili</option>
+__LANG_OPTIONS__
     </select>
   </div>
   <button class="hamburger" id="hamBtn" aria-label="Menu" onclick="toggleMobileMenu()">
@@ -165,22 +152,25 @@
 </nav>
 
 <a id="top"></a>
-<header class="wrap hero">
-  <div>
-    <span class="kicker" data-i18n="hero_kicker">Buy and sell cars across borders — worldwide</span>
-    <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
-    <p class="lead" data-i18n="hero_def">We're building a trusted way to trade cars.</p>
-  </div>
-  <div class="heroWin">
-    <h3 data-i18n="art_h3">Everyone comes out ahead</h3>
-    <p data-i18n="art_p">One deal, three winners.</p>
-    <div class="grid3">
-      <div class="card"><div class="ic">🚗</div><h3 data-i18n="art_s1">Seller — a higher price</h3></div>
-      <div class="card"><div class="ic">🤝</div><h3 data-i18n="art_s2">Dealer — fair purchase, real margin</h3></div>
-      <div class="card"><div class="ic">🚢</div><h3 data-i18n="art_s3">Forwarder — more deals, more revenue</h3></div>
+<div class="heroSection">
+  <div class="heroMap" id="heroMap"></div>
+  <header class="wrap hero">
+    <div>
+      <span class="kicker" data-i18n="hero_kicker">Buy and sell cars across borders — worldwide</span>
+      <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
+      <p class="lead" data-i18n="hero_def">We're building a trusted way to trade cars.</p>
     </div>
-  </div>
-</header>
+    <div class="heroWin">
+      <h3 data-i18n="art_h3">Everyone comes out ahead</h3>
+      <p data-i18n="art_p">One deal, three winners.</p>
+      <div class="grid3">
+        <div class="card"><div class="ic">🚗</div><h3 data-i18n="art_s1">Seller — a higher price</h3></div>
+        <div class="card"><div class="ic">🤝</div><h3 data-i18n="art_s2">Dealer — fair purchase, real margin</h3></div>
+        <div class="card"><div class="ic">🚢</div><h3 data-i18n="art_s3">Forwarder — more deals, more revenue</h3></div>
+      </div>
+    </div>
+  </header>
+</div>
 
 <section id="seller" class="white">
   <div class="wrap">
@@ -289,7 +279,9 @@
 
 <script>
 const I18N = __I18N_JSON__;
-const RTL = ['ar','fa'];
+const LANGS = __LANGS_JSON__;                       // 공용 언어 정본(languages.json)
+const LANG_KEY = LANGS.storageKey || 'vtb_lang';    // 앱과 공유하는 저장키
+const RTL = LANGS.languages.filter(function(l){ return l.rtl; }).map(function(l){ return l.code; });
 function applyLang(lang){
   const dict = I18N[lang] || I18N.en;
   document.documentElement.lang = lang;
@@ -298,7 +290,7 @@ function applyLang(lang){
     var k = el.getAttribute('data-i18n');
     if(dict[k] !== undefined) el.innerHTML = dict[k];
   });
-  try{ localStorage.setItem('vlang', lang); }catch(e){}
+  try{ localStorage.setItem(LANG_KEY, lang); }catch(e){}
   var sel = document.getElementById('langsel'); if(sel) sel.value = lang;
   var df = document.querySelector('.demoFrame');
   if(df){ var ns = 'demo/?lang=' + lang; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
@@ -309,9 +301,9 @@ function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.tog
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
 window.addEventListener('resize', function(){ if(window.innerWidth > 940) closeMobileMenu(); });
 function detectLang(){
-  var saved; try{ saved = localStorage.getItem('vlang'); }catch(e){}
+  var saved; try{ saved = localStorage.getItem(LANG_KEY) || localStorage.getItem('vlang'); }catch(e){}
   if(saved && I18N[saved]) return saved;
-  return 'en';
+  return LANGS.default || 'en';
 }
 document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
 
@@ -345,6 +337,11 @@ function leadMailto(d){
 }
 
 applyLang(detectLang());
+</script>
+<script src="world-map.js"></script>
+<script>
+  var heroMapEl = document.getElementById('heroMap');
+  if (heroMapEl && window.renderWorldNetworkBackground) renderWorldNetworkBackground(heroMapEl);
 </script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+{
+  "_comment": "VECTIBA 전 사이트 공용 언어 목록 — 유일한 정본(SINGLE SOURCE OF TRUTH). 언어를 추가·삭제·순서변경하려면 여기만 고친다. 순서 = 화면 표시 순서 (2026-07-16 대표 지정: 타깃 시장 우선, 영어·한국어 마지막). 앱(React)의 app/components/siteLanguages.ts 와 마케팅 사이트(build.py)가 둘 다 이 파일을 따라간다.",
+  "storageKey": "vtb_lang",
+  "default": "en",
+  "languages": [
+    { "code": "ar", "label": "العربية",    "flag": "🇦🇪", "rtl": true },
+    { "code": "es", "label": "Español",     "flag": "🇪🇸" },
+    { "code": "de", "label": "Deutsch",     "flag": "🇩🇪" },
+    { "code": "ru", "label": "Русский",     "flag": "🇷🇺" },
+    { "code": "fr", "label": "Français",    "flag": "🇫🇷" },
+    { "code": "pl", "label": "Polski",      "flag": "🇵🇱" },
+    { "code": "zh", "label": "中文",         "flag": "🇨🇳" },
+    { "code": "fa", "label": "فارسی",       "flag": "🇮🇷", "rtl": true },
+    { "code": "tr", "label": "Türkçe",      "flag": "🇹🇷" },
+    { "code": "it", "label": "Italiano",    "flag": "🇮🇹" },
+    { "code": "ja", "label": "日本語",       "flag": "🇯🇵" },
+    { "code": "nl", "label": "Nederlands",  "flag": "🇳🇱" },
+    { "code": "pt", "label": "Português",   "flag": "🇵🇹" },
+    { "code": "sw", "label": "Kiswahili",   "flag": "🇰🇪" },
+    { "code": "en", "label": "English",     "flag": "🇺🇸" },
+    { "code": "ko", "label": "한국어",       "flag": "🇰🇷" }
+  ]
+}
