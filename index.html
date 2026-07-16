@@ -56,6 +56,10 @@
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
   .demoWrap{display:flex;justify-content:center;margin-top:34px}
+  .demosplit{display:grid;grid-template-columns:1fr 430px;gap:40px;align-items:center;margin-top:40px}
+  .demosplit .demoWrap{margin:0}
+  .demotext{font-size:16px;color:var(--txt);line-height:1.7;margin:0}
+  @media(max-width:860px){.demosplit{grid-template-columns:1fr}}
   .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
   .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
@@ -162,7 +166,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784202810";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784205175";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -274,8 +278,14 @@
         </div>
       </div>
     </div>
-    <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
-    <p class="ssub" style="text-align:center;max-width:760px;margin:14px auto 0" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.</p>
+    <div class="demosplit">
+      <div>
+        <p class="demotext" data-i18n="why_story">Every few years, when it's time to sell, there's always that nagging doubt. The same car is valued differently in every country, and the real selling price differs too. Somewhere there is always a dealer who would value your car higher. Even if that dealer is abroad, all you need is to reach them — remotely.</p>
+        <p class="demotext" style="margin-top:14px" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
+        <p class="ssub" style="margin-top:16px;font-size:13.5px" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically — sample data.</p>
+      </div>
+      <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
+    </div>
   </div>
 </section>
 
@@ -363,7 +373,7 @@ function applyLang(lang){
 }
 function syncDemoFrame(lang){
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784202810'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784205175'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
