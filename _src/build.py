@@ -66,7 +66,7 @@ en = {
 "demo_sub":"The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.",
 "team_tag":"The team","team_h2":"The people who built it.","team_role":"Founder & CEO",
 "team_p1":"Eight years in the car business — new-car salesman, used-car dealer, then CEO of a dealership and export company, trading more than 1,000 cars a year to around 15 countries.",
-"team_p2":"Vectiba is one founder's hands-on work from end to end — the product built and coded himself, the business plan, field research across more than ten countries, user and dealer interviews, and partner companies contacted directly.",
+"team_p2":"As a dealer he was already deep into automating the work with AI — building his own ERP for managing purchased cars and staff, an AI customer-response system, and tools that streamline the sales process. Vectiba is where that path led: he developed and launched this service himself, end to end — the code, the business plan, field research across more than ten countries, user and dealer interviews, and partner companies contacted directly.",
 "team_p4":"I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began.",
 "info_tag":"Contact","info_h2":"Let's talk.","info_sub":"Partnership and investment inquiries both reach the founder directly.",
 "info_loc":"Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea","info_cta":"Request materials",
