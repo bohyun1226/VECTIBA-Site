@@ -22,7 +22,17 @@
   .btn:hover{background:var(--green2)}
   .btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
   .btn.ghost:hover{background:#EAF3EF}
-  .lang{font-family:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--card);border:1.5px solid var(--line);border-radius:9px;padding:8px 10px;cursor:pointer}
+  .langpick{position:relative}
+  .langbtn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 13px;cursor:pointer}
+  .langbtn:hover{background:#EAF3EF}
+  .langbtn .lchev{color:var(--sub)}
+  .langpanel{display:none;position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:min(90vw,460px);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.14);padding:14px;grid-template-columns:repeat(3,1fr);gap:2px}
+  .langpanel.on{display:grid}
+  .langopt{display:flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;text-align:left;background:none;border:0;border-radius:10px;padding:9px 10px;cursor:pointer;color:var(--txt)}
+  .langopt:hover{background:rgba(19,90,75,.06)}
+  .langopt.sel{font-weight:800;color:var(--green)}
+  [dir=rtl] .langpanel{right:auto;left:0}
+  @media(max-width:560px){.langpanel{grid-template-columns:repeat(2,1fr)}}
   .hamburger{display:none;align-items:center;justify-content:center;width:38px;height:38px;flex-shrink:0;background:none;border:1.5px solid var(--line);border-radius:9px;color:var(--green);cursor:pointer;padding:0}
   .mobileMenu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(0,0,0,.10);padding:4px 24px 10px;z-index:19}
   .mobileMenu.on{display:flex}
@@ -126,7 +136,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784188577";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784188726";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -140,24 +150,14 @@
     <a href="#dealer" data-i18n="nav_buyer">For buyers</a>
     <a href="#team" data-i18n="nav_team">Team</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
-    <select class="lang" id="langsel" aria-label="Language">
-      <option value="ar">العربية</option>
-      <option value="es">Español</option>
-      <option value="de">Deutsch</option>
-      <option value="ru">Русский</option>
-      <option value="fr">Français</option>
-      <option value="pl">Polski</option>
-      <option value="zh">中文</option>
-      <option value="fa">فارسی</option>
-      <option value="tr">Türkçe</option>
-      <option value="it">Italiano</option>
-      <option value="ja">日本語</option>
-      <option value="nl">Nederlands</option>
-      <option value="pt">Português</option>
-      <option value="sw">Kiswahili</option>
-      <option value="en">English</option>
-      <option value="ko">한국어</option>
-    </select>
+    <div class="langpick" id="langpick">
+      <button type="button" class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+        <span class="lflag" id="langBtnFlag" aria-hidden="true"></span>
+        <span id="langBtnLabel"></span>
+        <svg class="lchev" width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="langpanel" id="langPanel" role="menu"></div>
+    </div>
   </div>
   <button class="hamburger" id="hamBtn" aria-label="Menu" onclick="toggleMobileMenu()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -312,7 +312,9 @@ function applyLang(lang){
     if(dict[k] !== undefined) el.innerHTML = dict[k];
   });
   try{ localStorage.setItem(LANG_KEY, lang); }catch(e){}
-  var sel = document.getElementById('langsel'); if(sel) sel.value = lang;
+  var lb = LANGS.languages.filter(function(l){ return l.code===lang; })[0];
+  if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
+  var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
   var df = document.querySelector('.demoFrame');
   if(df){ var ns = 'demo/?lang=' + lang; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
   var xf = document.querySelector('.dealerFrame');
@@ -326,7 +328,19 @@ function detectLang(){
   if(saved && I18N[saved]) return saved;
   return LANGS.default || 'en';
 }
-document.getElementById('langsel').addEventListener('change', function(e){ applyLang(e.target.value); });
+(function initLangPicker(){
+  var panel=document.getElementById('langPanel'), btn=document.getElementById('langBtn'), wrap=document.getElementById('langpick');
+  if(!panel||!btn) return;
+  LANGS.languages.forEach(function(l){
+    var b=document.createElement('button');
+    b.type='button'; b.className='langopt'; b.setAttribute('data-lang',l.code); b.setAttribute('role','menuitem');
+    b.innerHTML='<span aria-hidden="true">'+(l.flag||'')+'</span><span>'+l.label+'</span>';
+    b.addEventListener('click',function(){ applyLang(l.code); panel.classList.remove('on'); btn.setAttribute('aria-expanded','false'); });
+    panel.appendChild(b);
+  });
+  btn.addEventListener('click',function(e){ e.stopPropagation(); var on=panel.classList.toggle('on'); btn.setAttribute('aria-expanded',on?'true':'false'); });
+  document.addEventListener('click',function(e){ if(wrap && !wrap.contains(e.target)){ panel.classList.remove('on'); btn.setAttribute('aria-expanded','false'); } });
+})();
 
 // ---- Dealer / partner lead form (stores to Supabase; email fallback until configured) ----
 var LEAD_CFG = { url:'https://kxjruqbqjryfjodkkace.supabase.co', key:'sb_publishable_TthyPjv8uZU7ZWvXBHCLXA_UiPsSkl7' }; // Supabase project URL + publishable (browser-safe) key
