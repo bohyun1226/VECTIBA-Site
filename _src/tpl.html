@@ -320,7 +320,7 @@ function applyLang(lang){
   if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
   var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=__BUILD__'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
