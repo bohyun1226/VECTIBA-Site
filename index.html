@@ -15,7 +15,7 @@
   h1,h2{font-family:'Cormorant Garamond',Georgia,serif}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  nav{position:sticky;top:0;z-index:20;background:rgba(251,246,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
   .brand{display:flex;align-items:center;gap:9px;font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;color:var(--green);letter-spacing:-.3px}
   .vmark{height:24px;width:auto;display:block}
@@ -48,6 +48,11 @@
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
+  /* 헤더(흰색) 바로 아래 에메랄드 타이틀 밴드 — 그 아래 샌드 지도와 확실히 구분 */
+  .heroBand{background:var(--green)}
+  .heroBand .kicker{color:var(--goldlight)}
+  .heroBand h1{color:#fff}
+  .heroBand .lead{color:rgba(255,255,255,.82)}
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:2/1;pointer-events:none}
@@ -67,7 +72,7 @@
   .cmpimg img{width:100%;display:block;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.2)}
   .cmpnote{margin:16px 22px 22px;background:#10231F;color:#fff;font-size:13.5px;padding:12px 16px;border-radius:6px}
   @media(max-width:860px){.cmpgrid{grid-template-columns:1fr}.cmpx{justify-self:center}}
-  .hero{position:relative;z-index:1;padding:60px 0 0;display:flex;flex-direction:column}
+  .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:48px;line-height:1.12;font-weight:700;margin:0 0 18px;letter-spacing:0}
   .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
@@ -172,7 +177,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784194756";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784194970";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -216,13 +221,15 @@
 
 <a id="top"></a>
 <div class="heroSection">
-  <header class="wrap hero">
-    <div>
-      <span class="kicker" data-i18n="hero_kicker">Buy and sell cars across borders — worldwide</span>
-      <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
-      <p class="lead" data-i18n="hero_def">We're building a trusted way to trade cars.</p>
-    </div>
-  </header>
+  <div class="heroBand">
+    <header class="wrap hero">
+      <div>
+        <span class="kicker" data-i18n="hero_kicker">Buy and sell cars across borders — worldwide</span>
+        <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
+        <p class="lead" data-i18n="hero_def">We're building a trusted way to trade cars.</p>
+      </div>
+    </header>
+  </div>
   <div class="heroMap" id="heroMap"></div>
   <div class="wrap heroWin">
     <h3 data-i18n="art_h3">Everyone comes out ahead</h3>
@@ -383,7 +390,7 @@ function applyLang(lang){
   if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
   var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784194756'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784194970'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
