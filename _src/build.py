@@ -23,7 +23,7 @@ en = {
 "biz_note":"So far: pre-interviews with about 50 dealers across 6 countries, working in partnership with people from Hyundai Motor, SK, KGM and Kia.",
 "hero_lead":"Sellers get more, dealers buy at a fair price and keep the margin, and forwarders see more deals and more revenue — a virtuous cycle.",
 "hero_cta1":"See how it works","hero_cta2":"Contact us",
-"art_h3":"Everyone comes out ahead","art_p":"One deal, three winners.",
+"art_h3":"A system that benefits everyone","art_p":"They need each other, but they could never connect.",
 "art_s1":"Seller — a higher price","art_s2":"Dealer — fair purchase, real margin","art_s3":"Forwarder — more deals, more revenue","art_s4":"",
 "why_tag":"For sellers","why_h2":"Am I selling my car for too little?",
 "why_lead":"The same car is worth different amounts in different countries — and that difference should be yours.",
