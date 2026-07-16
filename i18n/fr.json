@@ -6,7 +6,7 @@
 "nav_contact": "Contact",
 "nav_team": "Équipe",
 "hero_kicker": "Achetez et vendez des voitures au-delà des frontières — dans le monde entier",
-"hero_h1": "Nous connectons des personnes qui n'auraient jamais pu se rencontrer — grâce à l'IA.",
+"hero_h1": "Nous connectons ceux qui ne pouvaient pas se rencontrer.",
 "hero_lead": "Vectiba transforme un seul véhicule en enchère multi-pays. Les vendeurs mesurent la demande d'autres marchés avant d'accepter un prix local ; les concessionnaires enchérissent sur des preuves vérifiées, avec le coût rendu complet sous les yeux. Les partenaires locaux gèrent l'inspection, la logistique et le dédouanement.",
 "hero_cta1": "Demander le dossier",
 "hero_cta2": "Voir comment ça fonctionne",
@@ -138,5 +138,6 @@
 "form_msg": "Message (facultatif)",
 "form_submit": "Envoyer la candidature",
 "form_done": "Merci — nous avons bien reçu votre demande et reviendrons vers vous.",
-"why_lead": "Une même voiture vaut différemment selon les pays — et cette différence doit vous revenir."
+"why_lead": "Une même voiture vaut différemment selon les pays — et cette différence doit vous revenir.",
+"hero_accent": "TECHNOLOGIE IA"
 }

@@ -5,7 +5,7 @@
 "nav_about": "Nosotros",
 "nav_contact": "Contacto",
 "hero_kicker": "Compra y vende coches a través de fronteras — en todo el mundo",
-"hero_h1": "Conectamos a personas que nunca podrían haberse conocido — con IA.",
+"hero_h1": "Conectamos a quienes nunca podían encontrarse.",
 "hero_lead": "Vectiba convierte un vehículo en una subasta entre varios países. Los vendedores ven la demanda de otros mercados antes de aceptar un precio local; los concesionarios pujan sobre evidencia verificada con el coste total en destino a la vista. Los socios locales se encargan de la inspección, la logística y la aduana.",
 "hero_cta1": "Solicitar el dossier",
 "hero_cta2": "Ver cómo funciona",
@@ -138,5 +138,6 @@
 "team_role": "Fundador y CEO",
 "why_by": "Dustin Yoo · Fundador y CEO",
 "why_now": "Por qué ahora: la IA ya puede inspeccionar un coche a distancia, traducir entre idiomas y calcular el coste total en destino — así que esto funciona hoy.",
-"why_story": "Cada pocos años, cuando llega el momento de vender, te preguntas si el precio es el correcto. El mismo coche se valora de forma distinta en cada país, y el precio de venta real también difiere — así que en algún lugar siempre hay un concesionario dispuesto a pagar más por tu coche. Hasta ahora, el vendedor y ese concesionario nunca se conocían directamente: la distancia, el idioma, la aduana y el papeleo se interponían. Vectiba conecta a ambos directamente, con IA — se encarga de la inspección, la traducción y el cálculo del coste total en destino, para que un vendedor y concesionarios de todo el mundo se encuentren por primera vez."
+"why_story": "Cada pocos años, cuando llega el momento de vender, te preguntas si el precio es el correcto. El mismo coche se valora de forma distinta en cada país, y el precio de venta real también difiere — así que en algún lugar siempre hay un concesionario dispuesto a pagar más por tu coche. Hasta ahora, el vendedor y ese concesionario nunca se conocían directamente: la distancia, el idioma, la aduana y el papeleo se interponían. Vectiba conecta a ambos directamente, con IA — se encarga de la inspección, la traducción y el cálculo del coste total en destino, para que un vendedor y concesionarios de todo el mundo se encuentren por primera vez.",
+"hero_accent": "TECNOLOGÍA IA"
 }

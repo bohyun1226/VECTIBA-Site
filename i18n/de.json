@@ -6,7 +6,7 @@
 "nav_contact": "Kontakt",
 "nav_team": "Team",
 "hero_kicker": "Fahrzeuge weltweit über Grenzen hinweg kaufen und verkaufen",
-"hero_h1": "Wir verbinden Menschen, die sich nie begegnet wären — mit KI.",
+"hero_h1": "Wir verbinden Menschen, die sich nie begegnen konnten.",
 "hero_lead": "Vectiba macht aus einem einzigen Fahrzeug ein länderübergreifendes Bietverfahren. Verkäufer sehen die Nachfrage aus anderen Märkten, bevor sie einen lokalen Preis akzeptieren; Händler bieten auf Basis geprüfter Nachweise mit den vollständigen Landekosten im Blick. Lokale Partner übernehmen Prüfung, Logistik und Zoll.",
 "hero_cta1": "Deck anfordern",
 "hero_cta2": "So funktioniert's",
@@ -138,5 +138,6 @@
 "form_msg": "Nachricht (optional)",
 "form_submit": "Bewerbung absenden",
 "form_done": "Danke — wir haben Ihre Anfrage erhalten und melden uns bei Ihnen.",
-"why_lead": "Dasselbe Fahrzeug ist in verschiedenen Ländern unterschiedlich viel wert — und dieser Unterschied sollte Ihnen gehören."
+"why_lead": "Dasselbe Fahrzeug ist in verschiedenen Ländern unterschiedlich viel wert — und dieser Unterschied sollte Ihnen gehören.",
+"hero_accent": "KI-TECHNOLOGIE"
 }

@@ -51,6 +51,8 @@
   /* 타이틀 밴드(공지 스트립): 흰 헤더 아래 에메랄드 얇은 띠, 한 문장만 */
   .heroBand{background:var(--green);padding:20px 24px;text-align:center}
   .heroBand h1{color:#fff;margin:0;font-size:27px;line-height:1.35}
+  .heroBand .stripAcc{color:var(--goldlight);font-weight:800;margin-right:10px}
+  [dir=rtl] .heroBand .stripAcc{margin-right:0;margin-left:10px}
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
@@ -220,7 +222,7 @@
 <a id="top"></a>
 <div class="heroSection">
   <div class="heroBand">
-    <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
+    <h1><span class="stripAcc" data-i18n="hero_accent">AI TECHNOLOGY</span> <span data-i18n="hero_h1">We connect people who could never meet.</span></h1>
   </div>
   <div class="heroMap" id="heroMap"></div>
   <div class="wrap heroWin">
