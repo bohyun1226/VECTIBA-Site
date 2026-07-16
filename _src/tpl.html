@@ -55,6 +55,8 @@
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
+  .demoWrap{display:flex;justify-content:center;margin-top:34px}
+  .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
   .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:48px;line-height:1.12;font-weight:700;margin:0 0 18px;letter-spacing:0}
@@ -72,6 +74,7 @@
   h2{font-size:34px;font-weight:700;margin:0 0 12px;letter-spacing:0}
   .ssub{color:var(--sub);font-size:16px;max-width:680px;margin:0 0 28px}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
   .card .ic{font-size:22px;margin-bottom:10px}
   .card h3{margin:0 0 6px;font-size:17px}
@@ -82,7 +85,7 @@
   .band .stag{color:var(--goldlight)}.band h2{color:#FBF6EC}.band .ssub{color:rgba(255,255,255,.78)}
   .band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
   .band .card h3{color:#fff}.band .card p{color:rgba(255,255,255,.82)}
-  @media(max-width:820px){.grid3{grid-template-columns:1fr}h2{font-size:23px}}
+  @media(max-width:820px){.grid3,.grid2{grid-template-columns:1fr}h2{font-size:23px}}
   .story{max-width:780px}
   .story p{font-size:18px;line-height:1.65;margin:0}
   .story .by{margin-top:16px;color:var(--gold);font-weight:700;font-size:14px}
@@ -205,24 +208,20 @@
   </div>
 </div>
 
-<section id="team" class="band">
+<section id="business" class="white">
   <div class="wrap">
-    <div class="stag" data-i18n="team_tag">The team</div>
-    <h2 data-i18n="team_h2">The people who built it.</h2>
-    <div class="founder2">
-      <div>
-        <div class="fname">Dustin Yoo</div>
-        <div class="ftitle" data-i18n="team_role">Founder &amp; CEO</div>
-        <p style="margin:16px 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p1">Eight years in the car business — new-car salesman, used-car dealer, then CEO of a dealership and export company, trading more than 1,000 cars a year to around 15 countries.</p>
-        <p style="margin:0 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p2">Six months of market research, more than ten countries visited in person — meeting the partners who share this vision on the ground, on the other side of the world.</p>
-        <p class="teamquote" data-i18n="team_p4">I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began.</p>
-      </div>
-      <div class="fphoto"><img src="img/dustin.jpg" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/></div>
+    <div class="stag" data-i18n="biz_tag">Business</div>
+    <h2 data-i18n="biz_h2">How Vectiba makes money.</h2>
+    <div class="grid2" style="margin-top:26px">
+      <div class="card"><div class="ic">🌍</div><h3 data-i18n="biz_c2h">Local operators per country</h3><p data-i18n="biz_c2p">As we expand, local operating companies take the reins and share the operating profit as incentives.</p></div>
+      <div class="card"><div class="ic">📈</div><h3 data-i18n="biz_c3h">Expansion markets</h3><p data-i18n="biz_c3p">Starting from used-car deals, the same rails extend to new cars, financing, insurance, lease and rental.</p></div>
     </div>
+    <p class="ssub" style="margin-top:26px;font-weight:600;color:var(--green);max-width:860px" data-i18n="biz_note">So far: pre-interviews with about 50 dealers across 6 countries, working in partnership with people from Hyundai Motor, SK, KGM and Kia.</p>
+    <p class="ssub" style="margin-top:8px;max-width:860px" data-i18n="why_now">Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.</p>
   </div>
 </section>
 
-<section id="services" class="white">
+<section id="services">
   <div class="wrap">
     <div class="stag" data-i18n="out_tag">What we built</div>
     <h2 data-i18n="out_h2">Vectiba runs as three services.</h2>
@@ -246,6 +245,25 @@
         <p data-i18n="out_partner_p">Shipping and customs partners handle their assigned deals on their own dashboard.</p>
         <a class="btn" href="https://partner.vectiba.com" data-i18n="out_visit">Visit →</a>
       </div>
+    </div>
+    <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
+    <p class="ssub" style="text-align:center;max-width:760px;margin:14px auto 0" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically above — sample data.</p>
+  </div>
+</section>
+
+<section id="team" class="band">
+  <div class="wrap">
+    <div class="stag" data-i18n="team_tag">The team</div>
+    <h2 data-i18n="team_h2">The people who built it.</h2>
+    <div class="founder2">
+      <div>
+        <div class="fname">Dustin Yoo</div>
+        <div class="ftitle" data-i18n="team_role">Founder &amp; CEO</div>
+        <p style="margin:16px 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p1">Eight years in the car business — new-car salesman, used-car dealer, then CEO of a dealership and export company, trading more than 1,000 cars a year to around 15 countries.</p>
+        <p style="margin:0 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p2">Six months of market research, more than ten countries visited in person — meeting the partners who share this vision on the ground, on the other side of the world.</p>
+        <p class="teamquote" data-i18n="team_p4">I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began.</p>
+      </div>
+      <div class="fphoto"><img src="img/dustin.jpg" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/></div>
     </div>
   </div>
 </section>
@@ -313,6 +331,11 @@ function applyLang(lang){
   var lb = LANGS.languages.filter(function(l){ return l.code===lang; })[0];
   if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
   var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
+  syncDemoFrame(lang);
+}
+function syncDemoFrame(lang){
+  var df = document.querySelector('.demoFrame');
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=__BUILD__'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }

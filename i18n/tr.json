@@ -145,5 +145,14 @@
 "out_sell_p": "Araç sahibi telefondan ilan verir, birçok ülkeden bayiler açık artırmada teklif verir.",
 "out_buy_p": "Bayiler PC panosunda dünya çapındaki araçlara bakar ve gerçek varış maliyetiyle kapalı teklif verir.",
 "out_partner_p": "Nakliye ve gümrük ortakları kendilerine atanan işlemleri kendi panolarında yürütür.",
-"out_visit": "Aç →"
+"out_visit": "Aç →",
+"biz_tag": "İş modeli",
+"biz_h2": "Vectiba böyle büyür.",
+"biz_c1h": "Dört gelir kaynağı",
+"biz_c1p": "Aracılık ücretleri, reklam, iş ortağı listeleme ücretleri ve abonelikler — her işlemle gelir büyür.",
+"biz_c2h": "Her ülkede yerel operatör",
+"biz_c2p": "Genişledikçe yerel işletmeciler yönetimi devralır ve işletme kârını teşvik olarak paylaşır.",
+"biz_c3h": "Genişleme pazarları",
+"biz_c3p": "İkinci el araçtan başlayıp aynı raylar sıfır araç, finansman, sigorta, kiralama ve rent-a-car'a uzanır.",
+"biz_note": "Bugüne dek: 6 ülkede yaklaşık 50 bayiyle ön görüşme; Hyundai Motor, SK, KGM ve Kia kökenli ortaklarla çalışıyoruz."
 }
