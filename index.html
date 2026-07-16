@@ -6,15 +6,18 @@
 <title>Vectiba — Buy and sell used cars across borders</title>
 <meta name="description" content="Vectiba connects your car with the dealer who pays the most, even in another country. We handle inspection, shipping and customs. Dubai HQ, Seoul tech team."/>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-  :root{--bg:#FFFFFF;--card:#F7F8F9;--panel:#F0F1F3;--line:#E3E5E8;--txt:#183028;--sub:#5F6B62;--green:#135A4B;--green2:#0E4A3E;--gold:#BE8B39;--wa:#25D366;}
+  /* 브랜드 시트(2026-07-16 확정, ~/VECTIBA/DESIGN_GUIDE.md): Poppins 600=워드마크 전용,
+     Cormorant Garamond 700=헤드라인, Hanken Grotesk=본문 / Emerald·Light Sand·Gold·Gold Light */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Cormorant+Garamond:wght@700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+  :root{--bg:#FBF6EC;--card:#FFFFFF;--panel:#F4EEE1;--line:#E7E0D2;--txt:#183028;--sub:#5F6B62;--green:#12564B;--green2:#0E4A3E;--gold:#C68A3E;--goldlight:#E3B25F;--wa:#25D366;}
   *{box-sizing:border-box}
-  body{margin:0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+  body{margin:0;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+  h1,h2{font-family:'Cormorant Garamond',Georgia,serif}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav{position:sticky;top:0;z-index:20;background:rgba(251,246,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
-  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:var(--green);letter-spacing:-.3px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;color:var(--green);letter-spacing:-.3px}
   .vmark{height:24px;width:auto;display:block}
   .nlinks{display:flex;align-items:center;gap:20px;font-size:14px;font-weight:500;color:var(--sub)}
   .nlinks a:hover{color:var(--green)}
@@ -26,13 +29,18 @@
   .langbtn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;font-weight:600;color:var(--green);background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 13px;cursor:pointer}
   .langbtn:hover{background:#EAF3EF}
   .langbtn .lchev{color:var(--sub)}
-  .langpanel{display:none;position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:min(90vw,460px);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.14);padding:14px;grid-template-columns:repeat(3,1fr);gap:2px}
-  .langpanel.on{display:grid}
-  .langopt{display:flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;text-align:left;background:none;border:0;border-radius:10px;padding:9px 10px;cursor:pointer;color:var(--txt)}
-  .langopt:hover{background:rgba(19,90,75,.06)}
-  .langopt.sel{font-weight:800;color:var(--green)}
+  .langpanel{display:none;position:absolute;right:0;top:calc(100% + 10px);z-index:30;width:min(92vw,440px);background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 48px rgba(24,48,40,.16);padding:8px}
+  .langpanel.on{display:block}
+  .langhead{display:flex;align-items:center;gap:7px;padding:9px 11px;color:var(--sub);font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;border-bottom:1px solid var(--line);margin-bottom:5px}
+  .langgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;padding:2px}
+  .langopt{display:flex;align-items:center;gap:9px;font-family:inherit;font-size:14px;text-align:left;background:none;border:0;border-radius:10px;padding:10px 11px;cursor:pointer;color:var(--txt);transition:background .12s}
+  .langopt>span:first-child{font-size:16px;line-height:1}
+  .langopt:hover{background:rgba(18,86,75,.07)}
+  .langopt.sel{font-weight:700;color:var(--green);background:rgba(18,86,75,.06)}
+  .langopt.sel::after{content:"✓";margin-left:auto;color:var(--green);font-size:12px;font-weight:800}
   [dir=rtl] .langpanel{right:auto;left:0}
-  @media(max-width:560px){.langpanel{grid-template-columns:repeat(2,1fr)}}
+  [dir=rtl] .langopt.sel::after{margin-left:0;margin-right:auto}
+  @media(max-width:560px){.langgrid{grid-template-columns:repeat(2,1fr)}}
   .hamburger{display:none;align-items:center;justify-content:center;width:38px;height:38px;flex-shrink:0;background:none;border:1.5px solid var(--line);border-radius:9px;color:var(--green);cursor:pointer;padding:0}
   .mobileMenu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 16px 32px rgba(0,0,0,.10);padding:4px 24px 10px;z-index:19}
   .mobileMenu.on{display:flex}
@@ -61,7 +69,7 @@
   @media(max-width:860px){.cmpgrid{grid-template-columns:1fr}.cmpx{justify-self:center}}
   .hero{position:relative;z-index:1;padding:60px 0 0;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-  h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
+  h1{font-size:48px;line-height:1.12;font-weight:700;margin:0 0 18px;letter-spacing:0}
   .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
   .heroWin{margin-top:8px;padding-bottom:48px}
   .heroWin>h3{margin:0 0 4px;font-size:20px;font-weight:800}
@@ -70,10 +78,10 @@
   .heroWin .card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(24,48,40,.13)}
   .heroWin .card .ic{width:46px;height:46px;border-radius:13px;background:#EAF3EF;display:flex;align-items:center;justify-content:center;font-size:23px;margin-bottom:14px}
   .heroWin .card h3{font-size:16px;line-height:1.45}
-  @media(max-width:820px){h1{font-size:32px}}
+  @media(max-width:820px){h1{font-size:36px}}
   section{padding:54px 0}
   .stag{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-  h2{font-size:28px;font-weight:800;margin:0 0 12px;letter-spacing:-.4px}
+  h2{font-size:34px;font-weight:700;margin:0 0 12px;letter-spacing:0}
   .ssub{color:var(--sub);font-size:16px;max-width:680px;margin:0 0 28px}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
@@ -82,16 +90,16 @@
   .card p{margin:0;color:var(--sub);font-size:14.5px}
   /* 문제 섹션: 딥그린 다크 밴드 + 큰 골드 제목 + 흰색 번호 카드 (메가스터디 레이아웃, 벡티바 색) */
   .probband{background:#10231F;color:#fff;padding:64px 0}
-  .probband h2{font-size:34px;line-height:1.3;color:#E4C583;text-align:center;margin:0 0 14px;letter-spacing:-.5px}
+  .probband h2{font-size:38px;line-height:1.3;color:var(--goldlight);text-align:center;margin:0 0 14px;letter-spacing:0}
   .probband .probsub{color:rgba(255,255,255,.75);font-size:16px;text-align:center;max-width:720px;margin:0 auto 36px}
   .probband .pcard{position:relative;background:#fff;border-radius:4px;padding:34px 24px 26px;text-align:center}
   .probband .pcard .pnum{position:absolute;top:-14px;left:14px;background:var(--green);color:#fff;font-weight:800;font-size:15px;padding:6px 14px;border-radius:3px}
   .probband .pcard h3{margin:0 0 8px;font-size:17px;color:var(--txt)}
   .probband .pcard p{margin:0;color:var(--sub);font-size:14.5px}
-  .probband .probnow{margin:34px auto 0;color:#E4C583;font-weight:600;font-size:15.5px;text-align:center;max-width:840px}
+  .probband .probnow{margin:34px auto 0;color:var(--goldlight);font-weight:600;font-size:15.5px;text-align:center;max-width:840px}
   @media(max-width:820px){.probband h2{font-size:26px}}
   .band{background:var(--green);color:#fff}
-  .band .stag{color:#CDBB86}.band h2{color:#fff}.band .ssub{color:rgba(255,255,255,.78)}
+  .band .stag{color:var(--goldlight)}.band h2{color:#FBF6EC}.band .ssub{color:rgba(255,255,255,.78)}
   .band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
   .band .card h3{color:#fff}.band .card p{color:rgba(255,255,255,.82)}
   @media(max-width:820px){.grid3{grid-template-columns:1fr}h2{font-size:23px}}
@@ -159,7 +167,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784194068";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784194424";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -179,7 +187,13 @@
         <span id="langBtnLabel"></span>
         <svg class="lchev" width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="langpanel" id="langPanel" role="menu"></div>
+      <div class="langpanel" id="langPanel" role="menu">
+        <div class="langhead">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span>Select language · 언어 선택</span>
+        </div>
+        <div class="langgrid" id="langGrid"></div>
+      </div>
     </div>
   </div>
   <button class="hamburger" id="hamBtn" aria-label="Menu" onclick="toggleMobileMenu()">
@@ -365,7 +379,7 @@ function applyLang(lang){
   if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
   var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784194068'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784194424'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
@@ -376,14 +390,14 @@ function detectLang(){
   return LANGS.default || 'en';
 }
 (function initLangPicker(){
-  var panel=document.getElementById('langPanel'), btn=document.getElementById('langBtn'), wrap=document.getElementById('langpick');
-  if(!panel||!btn) return;
+  var panel=document.getElementById('langPanel'), grid=document.getElementById('langGrid'), btn=document.getElementById('langBtn'), wrap=document.getElementById('langpick');
+  if(!panel||!grid||!btn) return;
   LANGS.languages.forEach(function(l){
     var b=document.createElement('button');
     b.type='button'; b.className='langopt'; b.setAttribute('data-lang',l.code); b.setAttribute('role','menuitem');
     b.innerHTML='<span aria-hidden="true">'+(l.flag||'')+'</span><span>'+l.label+'</span>';
     b.addEventListener('click',function(){ applyLang(l.code); panel.classList.remove('on'); btn.setAttribute('aria-expanded','false'); });
-    panel.appendChild(b);
+    grid.appendChild(b);
   });
   btn.addEventListener('click',function(e){ e.stopPropagation(); var on=panel.classList.toggle('on'); btn.setAttribute('aria-expanded',on?'true':'false'); });
   document.addEventListener('click',function(e){ if(wrap && !wrap.contains(e.target)){ panel.classList.remove('on'); btn.setAttribute('aria-expanded','false'); } });
