@@ -151,7 +151,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784202169";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784202263";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -216,7 +216,6 @@
       <div class="card"><div class="ic">🌍</div><h3 data-i18n="biz_c2h">Local operators per country</h3><p data-i18n="biz_c2p">As we expand, local operating companies take the reins and share the operating profit as incentives.</p></div>
       <div class="card"><div class="ic">📈</div><h3 data-i18n="biz_c3h">Expansion markets</h3><p data-i18n="biz_c3p">Starting from used-car deals, the same rails extend to new cars, financing, insurance, lease and rental.</p></div>
     </div>
-    <p class="ssub" style="margin-top:26px;font-weight:600;color:var(--green);max-width:860px" data-i18n="biz_note">So far: pre-interviews with about 50 dealers across 6 countries, working in partnership with people from Hyundai Motor, SK, KGM and Kia.</p>
     <p class="ssub" style="margin-top:8px;max-width:860px" data-i18n="why_now">Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.</p>
   </div>
 </section>
@@ -335,7 +334,7 @@ function applyLang(lang){
 }
 function syncDemoFrame(lang){
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784202169'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784202263'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
