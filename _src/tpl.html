@@ -56,16 +56,19 @@
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
   .demoWrap{display:flex;justify-content:center;margin-top:34px}
-  .demosplit{display:grid;grid-template-columns:1fr 430px;gap:40px;align-items:center;margin-top:40px}
+  /* 셀러 데모: 메가스터디식 다크 패널 — 딥그린 풀블리드 카드 + 골드 헤드카피 + 01/02/03 흰색 번호 카드 + 폰 데모 (2026-07-16) */
+  .demosplit{display:grid;grid-template-columns:1fr 430px;gap:44px;align-items:center;margin-top:44px;
+             background:#10231F;border-radius:22px;padding:52px 48px}
   .demosplit .demoWrap{margin:0}
   .demotext{font-size:16px;color:var(--txt);line-height:1.7;margin:0}
-  /* 셀러 데모 옆: 빼곡한 문단 대신 헤드카피 + 번호 3스텝 (2026-07-16 대표 지시 "모바일에서 글로벌 옥션을 직접 오픈하세요") */
-  .demoh3{margin:0 0 10px;font-size:27px;font-weight:800;line-height:1.3;color:var(--green)}
-  .demolead{margin:0 0 26px;font-size:15.5px;color:var(--gold);font-weight:600}
-  .demostep{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
-  .demostep .dnum{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;margin-top:1px}
-  .demostep p{margin:0;font-size:16.5px;line-height:1.6;color:var(--txt);font-weight:500}
-  @media(max-width:860px){.demosplit{grid-template-columns:1fr}}
+  .demokick{display:inline-block;background:var(--gold);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:4px;margin-bottom:16px}
+  .demoh3{margin:0 0 12px;font-size:33px;font-weight:800;line-height:1.25;color:var(--goldlight)}
+  .demolead{margin:0 0 28px;font-size:16px;color:rgba(255,255,255,.82);font-weight:500}
+  .demostep{position:relative;display:flex;align-items:center;gap:16px;background:#fff;border-radius:6px;padding:16px 18px;margin-bottom:12px}
+  .demostep .dnum{flex:0 0 auto;background:var(--green);color:#fff;font-weight:800;font-size:13.5px;padding:5px 12px;border-radius:3px;letter-spacing:.5px}
+  .demostep p{margin:0;font-size:15.5px;line-height:1.55;color:var(--txt);font-weight:600}
+  .demosplit .ssub{color:rgba(255,255,255,.55)}
+  @media(max-width:860px){.demosplit{grid-template-columns:1fr;padding:34px 24px}}
   .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
   .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
@@ -286,11 +289,12 @@
     </div>
     <div class="demosplit">
       <div>
+        <span class="demokick" data-i18n="why_tag">For sellers</span>
         <h3 class="demoh3" data-i18n="demo_h3">Open a global auction — right from your phone.</h3>
         <p class="demolead" data-i18n="why_lead">The same car is worth different amounts in different countries — and that difference should be yours.</p>
-        <div class="demostep"><span class="dnum">1</span><p data-i18n="demo_s1">Talk to the app, add a few photos — AI packages your car so dealers can trust it.</p></div>
-        <div class="demostep"><span class="dnum">2</span><p data-i18n="demo_s2">Dealers in many countries bid on it — sealed quotes, real landed cost.</p></div>
-        <div class="demostep"><span class="dnum">3</span><p data-i18n="demo_s3">You just pick the highest price — within 48 to 72 hours.</p></div>
+        <div class="demostep"><span class="dnum">01</span><p data-i18n="demo_s1">Talk to the app, add a few photos — AI packages your car so dealers can trust it.</p></div>
+        <div class="demostep"><span class="dnum">02</span><p data-i18n="demo_s2">Dealers in many countries bid on it — sealed quotes, real landed cost.</p></div>
+        <div class="demostep"><span class="dnum">03</span><p data-i18n="demo_s3">You just pick the highest price — within 48 to 72 hours.</p></div>
         <p class="ssub" style="margin-top:20px;font-size:13.5px" data-i18n="demo_sub">The seller just talks to the app, adds a few photos, and the car opens to dealers abroad. It plays automatically — sample data.</p>
       </div>
       <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
