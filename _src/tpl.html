@@ -30,7 +30,8 @@
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
-  .heroMap{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .heroMap{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.42}
+  .heroSection::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.32) 40%,rgba(255,255,255,.6) 100%)}
   .hero{position:relative;z-index:1;padding:60px 0 44px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
