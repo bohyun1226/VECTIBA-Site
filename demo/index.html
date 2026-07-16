@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Vectiba — Seller demo</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Cormorant+Garamond:wght@600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
   :root{
-    --bg:#FFFFFF; --card:#FFFFFF; --line:#E3E5E8; --txt:#183028; --sub:#6E7A70;
-    --green:#135A4B; --green2:#0E4A3E; --gold:#BE8B39;
+    --bg:#FBF6EC; --card:#FFFFFF; --line:#E7DFCC; --txt:#17352D; --sub:#75806F;
+    --green:#12564B; --green2:#0C433A; --gold:#C68A3E; --goldLight:#E3B25F;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Poppins',-apple-system,sans-serif;background:transparent;min-height:100vh;
+  body{font-family:'Hanken Grotesk',-apple-system,sans-serif;background:transparent;min-height:100vh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
   .phone{width:390px;height:800px;background:var(--bg);border-radius:44px;border:10px solid #12140f;
     overflow:hidden;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.35)}
@@ -20,103 +20,145 @@
   .scr{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transition:opacity .5s;pointer-events:none}
   .scr.on{opacity:1}
   .top{padding:40px 20px 10px;display:flex;align-items:center;justify-content:space-between}
-  .logo{font-weight:800;font-size:19px;color:var(--green);letter-spacing:-.3px}
-  .pill{font-size:9px;font-weight:700;color:#2A2008;background:var(--gold);padding:3px 9px;border-radius:20px}
+  .logo{font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:var(--green);letter-spacing:-.2px}
+  .pill{font-family:'Hanken Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:.4px;color:#3A2708;background:var(--gold);padding:4px 10px;border-radius:20px}
   .body{flex:1;padding:0 20px;display:flex;flex-direction:column;overflow:hidden}
 
   /* Home */
-  .hHead{text-align:center;margin-top:24px}
-  .hHead h1{font-size:25px;font-weight:800;line-height:1.25;color:var(--txt)}
-  .hHead p{color:var(--sub);font-size:14px;margin-top:8px}
-  .micWrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
-  .mic{width:118px;height:118px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 0 0 rgba(19,90,75,.4);animation:pulse 1.8s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(19,90,75,.35)}70%{box-shadow:0 0 0 26px rgba(19,90,75,0)}100%{box-shadow:0 0 0 0 rgba(19,90,75,0)}}
+  .hHead{text-align:center;margin-top:20px;position:relative;z-index:2}
+  .hHead h1{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;line-height:1.15;color:var(--green);letter-spacing:-.2px}
+  .hHead p{color:var(--sub);font-size:14px;margin-top:10px;line-height:1.5}
+  .micWrap{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative}
+  .micGlow{position:absolute;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(198,138,62,.24),rgba(198,138,62,0) 68%);pointer-events:none}
+  .mic{width:118px;height:118px;border-radius:50%;background:linear-gradient(160deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 0 rgba(18,86,75,.4),0 14px 30px rgba(18,86,75,.35);animation:pulse 1.8s infinite;position:relative;z-index:2}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(18,86,75,.35),0 14px 30px rgba(18,86,75,.35)}70%{box-shadow:0 0 0 26px rgba(18,86,75,0),0 14px 30px rgba(18,86,75,.35)}100%{box-shadow:0 0 0 0 rgba(18,86,75,0),0 14px 30px rgba(18,86,75,.35)}}
   .mic svg{width:46px;height:46px;fill:#fff}
-  .wave{display:flex;align-items:center;gap:4px;height:30px}
-  .wave i{width:4px;background:var(--green);border-radius:3px;animation:w 1s infinite ease-in-out}
+  .wave{display:flex;align-items:center;gap:4px;height:30px;position:relative;z-index:2}
+  .wave i{width:4px;background:var(--gold);border-radius:3px;animation:w 1s infinite ease-in-out}
   .wave i:nth-child(1){height:10px;animation-delay:0s}.wave i:nth-child(2){height:22px;animation-delay:.1s}
   .wave i:nth-child(3){height:30px;animation-delay:.2s}.wave i:nth-child(4){height:16px;animation-delay:.3s}
   .wave i:nth-child(5){height:26px;animation-delay:.15s}.wave i:nth-child(6){height:12px;animation-delay:.25s}
   .wave i:nth-child(7){height:20px;animation-delay:.05s}
   @keyframes w{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
-  .listening{color:var(--sub);font-size:13px;font-weight:500}
+  .listening{color:var(--sub);font-size:13px;font-weight:500;position:relative;z-index:2}
+  .trustRow{display:flex;justify-content:space-between;gap:8px;padding:0 2px 26px;position:relative;z-index:2}
+  .trustRow .tc{flex:1;text-align:center}
+  .trustRow .ti{width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+  .trustRow .ti svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:1.7}
+  .trustRow .tt{font-size:10.5px;font-weight:600;color:var(--txt);line-height:1.3}
 
   /* Chat */
   .chatHead{padding:2px 0 12px;border-bottom:1px solid var(--line);margin-bottom:14px;display:flex;align-items:center;gap:9px}
-  .avatar{width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(160deg,var(--green),var(--green2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-family:'Poppins',sans-serif}
   .chatHead .n{font-weight:700;font-size:14px}.chatHead .s{color:var(--sub);font-size:11px}
   .msgs{flex:1;display:flex;flex-direction:column;gap:9px;overflow-y:auto;padding-bottom:6px;scrollbar-width:none}
   .msgs::-webkit-scrollbar{display:none}
   .msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.4;opacity:0;transform:translateY(8px);transition:.4s}
   .msg.show{opacity:1;transform:none}
-  .ai{background:var(--card);border:1px solid var(--line);border-top-left-radius:5px;align-self:flex-start;color:var(--txt)}
-  .me{background:var(--green);color:#fff;border-top-right-radius:5px;align-self:flex-end}
+  .ai{background:var(--card);border:1px solid var(--line);box-shadow:0 2px 8px rgba(23,53,45,.05);border-top-left-radius:5px;align-self:flex-start;color:var(--txt)}
+  .me{background:linear-gradient(160deg,var(--green),var(--green2));color:#fff;border-top-right-radius:5px;align-self:flex-end}
   .utag{display:flex;align-items:center;gap:6px;font-size:10px;opacity:.9;margin-bottom:4px;font-weight:500}
   .utag .vw{display:flex;gap:2px;height:11px}.utag .vw i{width:2px;background:#fff;border-radius:2px;animation:w .8s infinite}
   .utag .vw i:nth-child(2){height:11px;animation-delay:.1s}.utag .vw i:nth-child(1){height:6px}.utag .vw i:nth-child(3){height:8px;animation-delay:.2s}
-  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:3px}
-  .pt{height:66px;border-radius:10px;position:relative;overflow:hidden;display:flex;align-items:flex-end;
-    background:#232f2a center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
-  .pt::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 60%)}
-  .pt span{position:relative;font-size:10px;font-weight:600;color:#fff;padding:5px 7px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
-  .pt::after{content:'✓';position:absolute;top:4px;right:5px;font-size:9px;font-weight:800;color:var(--green);
-    background:#fff;border-radius:50%;width:15px;height:15px;display:flex;align-items:center;justify-content:center}
   .typing{padding:13px 15px !important;display:inline-flex;gap:5px;align-items:center}
   .typing i{width:6px;height:6px;border-radius:50%;background:var(--sub);animation:blink 1.2s infinite}
   .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
   @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
 
+  /* Photos */
+  .pHead{text-align:center;margin:4px 0 14px}
+  .pHead .t{font-weight:700;font-size:18px;color:var(--green)}
+  .pHead .s{color:var(--sub);font-size:12px;margin-top:2px}
+  .pgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;overflow:hidden;align-content:start}
+  .ptile{height:78px;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;
+    background:#232f2a center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);opacity:0;transform:scale(.92);transition:.35s}
+  .ptile.show{opacity:1;transform:scale(1)}
+  .ptile.icon{background:linear-gradient(155deg,var(--green),var(--green2));align-items:center;justify-content:center;flex-direction:column;gap:4px}
+  .ptile.icon svg{width:22px;height:22px;stroke:rgba(255,255,255,.75);fill:none;stroke-width:1.6}
+  .ptile.icon span{position:static;padding:0;font-size:10px;font-weight:600;color:rgba(255,255,255,.9);text-shadow:none}
+  .ptile::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 62%)}
+  .ptile.icon::before{content:none}
+  .ptile span{position:relative;font-size:10px;font-weight:600;color:#fff;padding:6px 8px;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+  .ptile .ck{position:absolute;top:5px;right:5px;width:16px;height:16px;border-radius:50%;background:var(--gold);color:#3A2708;
+    display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;opacity:0;transform:scale(.4);transition:.3s .1s}
+  .ptile.checked .ck{opacity:1;transform:scale(1)}
+  .pFoot{text-align:center;margin-top:12px;color:var(--gold);font-weight:600;font-size:13px}
+
+  /* Condition */
+  .cHead{text-align:center;margin:4px 0 16px}
+  .cHead .t{font-weight:700;font-size:18px;color:var(--green)}
+  .cHead .s{color:var(--sub);font-size:12px;margin-top:2px}
+  .cRow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);box-shadow:0 6px 16px rgba(23,53,45,.05);
+    border-radius:14px;padding:13px 14px;margin-bottom:10px;opacity:0;transform:translateY(10px);transition:.4s}
+  .cRow.show{opacity:1;transform:none}
+  .cIcon{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cIcon svg{width:17px;height:17px;stroke:var(--green);fill:none;stroke-width:1.8}
+  .cRow .cn{font-weight:600;font-size:14px;color:var(--txt)}
+  .cRow .cd{font-size:11.5px;color:var(--sub);margin-top:1px}
+  .cRow .cbadge{margin-left:auto;font-size:10px;font-weight:700;padding:4px 9px;border-radius:20px;white-space:nowrap}
+  .cbadge.ok{background:rgba(18,86,75,.1);color:var(--green)}
+  .cbadge.warn{background:rgba(198,138,62,.14);color:var(--gold)}
+  .cNote{display:flex;align-items:flex-start;gap:8px;background:rgba(18,86,75,.06);border-radius:12px;padding:11px 13px;margin-top:6px;
+    font-size:11.5px;color:var(--green);line-height:1.5;opacity:0;transition:.4s}
+  .cNote.show{opacity:1}
+
   /* Value */
   .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
-  .valBox{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;width:100%}
+  .valBox{background:var(--card);border:1px solid var(--line);box-shadow:0 12px 28px rgba(23,53,45,.07);border-radius:20px;padding:20px;width:100%}
   .valHero{height:130px;border-radius:14px;background:#232f2a center/cover no-repeat;margin-bottom:16px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
-  .valBox .lab{color:var(--sub);font-size:13px}
-  .valBox .car{font-weight:700;font-size:16px;margin:2px 0 14px}
-  .valBox .amt{font-size:34px;font-weight:800;color:var(--green)}
-  .valBox .sub{color:var(--sub);font-size:12px;margin-top:4px}
+  .valBox .lab{color:var(--sub);font-size:12px;letter-spacing:.2px}
+  .valBox .car{font-weight:600;font-size:16px;margin:3px 0 14px}
+  .valBox .amt{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:var(--green);line-height:1.1}
+  .valBox .sub{color:var(--sub);font-size:12px;margin-top:6px}
   .startAuc{margin-top:20px;color:var(--gold);font-weight:600;font-size:14px}
   .spin{width:20px;height:20px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:sp 1s linear infinite;margin:0 auto}
   @keyframes sp{to{transform:rotate(360deg)}}
 
   /* Auction */
   .aHead{text-align:center;margin:6px 0 12px}
-  .aHead .t{font-weight:800;font-size:18px}
-  .aHead .car{color:var(--sub);font-size:13px}
-  .aStat{display:flex;justify-content:space-around;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 0;margin-bottom:14px}
-  .aStat .k{font-size:10px;color:var(--sub)}.aStat .v{font-size:16px;font-weight:800;color:var(--green)}
+  .aHead .t{font-weight:700;font-size:18px;color:var(--green)}
+  .aHead .car{color:var(--sub);font-size:13px;margin-top:2px}
+  .aStat{display:flex;justify-content:space-around;background:var(--card);border:1px solid var(--line);box-shadow:0 8px 20px rgba(23,53,45,.05);border-radius:14px;padding:12px 0;margin-bottom:14px}
+  .aStat .k{font-size:10px;color:var(--sub)}.aStat .v{font-size:16px;font-weight:700;color:var(--green);margin-top:2px}
   .topbid{text-align:center;margin-bottom:14px}
   .topbid .k{font-size:11px;color:var(--sub)}
-  .topbid .v{font-size:40px;font-weight:900;color:var(--txt);line-height:1.1}
-  .topbid .up{color:var(--green);font-size:13px;font-weight:700}
+  .topbid .v{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;color:var(--txt);line-height:1.1}
+  .topbid .up{color:var(--gold);font-size:13px;font-weight:600}
   .bids{flex:1;display:flex;flex-direction:column;gap:8px;overflow:hidden}
-  .bid{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;opacity:0;transform:translateX(20px);transition:.4s}
+  .bid{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);box-shadow:0 6px 16px rgba(23,53,45,.05);border-radius:12px;padding:10px 12px;opacity:0;transform:translateX(20px);transition:.4s}
   .bid.show{opacity:1;transform:none}
   .bid .fl{font-size:18px}
   .bid .who{flex:1;font-size:13px;font-weight:600}
   .bid .who small{display:block;color:var(--sub);font-weight:400;font-size:10px}
-  .bid .amt{font-weight:800;font-size:15px}
+  .bid .amt{font-weight:700;font-size:15px;color:var(--green)}
+  .bid.selected{border-color:var(--gold);box-shadow:0 0 0 2px rgba(198,138,62,.3),0 10px 22px rgba(198,138,62,.18);transform:scale(1.02)}
+  .bid .pick{display:none;font-size:9px;font-weight:800;color:#3A2708;background:var(--gold);padding:3px 8px;border-radius:20px;letter-spacing:.2px}
+  .bid.selected .pick{display:inline-block}
+  .aucNote{text-align:center;color:var(--gold);font-weight:600;font-size:13px;margin-top:10px;min-height:18px}
 
   /* Won */
   .wonWrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
-  .check{width:74px;height:74px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:8px;
-    animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+  .check{width:74px;height:74px;border-radius:50%;background:linear-gradient(160deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;margin-bottom:8px;
+    box-shadow:0 14px 26px rgba(18,86,75,.3);animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
   @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
   .check svg{width:38px;height:38px;stroke:#fff;stroke-width:3.5;fill:none}
-  .wonWrap h2{font-size:26px;font-weight:800}
-  .wonCard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;width:100%;margin-top:14px;text-align:left}
+  .wonWrap h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--green)}
+  .wonCard{background:var(--card);border:1px solid var(--line);box-shadow:0 12px 28px rgba(23,53,45,.07);border-radius:18px;padding:18px;width:100%;margin-top:14px;text-align:left}
   .wonCard .row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-top:1px solid var(--line)}
   .wonCard .row:first-child{border-top:0}
   .wonCard .row .g{color:var(--sub)}
   .wonCard .row b{color:var(--green)}
   .wonCard .strike{color:var(--sub);text-decoration:line-through}
-  .up2{color:var(--green);font-size:11px;font-weight:700}
+  .up2{color:var(--gold);font-size:11px;font-weight:700}
   .nextline{font-size:12px;color:var(--sub);margin-top:14px;line-height:1.5}
 
   .replay{display:flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;padding:12px 22px;border-radius:30px;
-    font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}
+    box-shadow:0 10px 22px rgba(18,86,75,.28);font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:background .2s}
   .replay:hover{background:var(--green2)}
-  .note{color:#8a8474;font-size:12px}
+  .note{color:#8a8474;font-size:12px;font-family:'Hanken Grotesk',sans-serif}
 </style>
 </head>
 <body>
@@ -132,9 +174,15 @@
         <p>No forms. Tell me about your car and I'll get you the best global price.</p>
       </div>
       <div class="micWrap">
+        <div class="micGlow"></div>
         <div class="mic"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12h-2z"/></svg></div>
         <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="listening" id="listenTxt">Listening…</div>
+      </div>
+      <div class="trustRow">
+        <div class="tc"><div class="ti"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3.6 9h16.8M3.6 15h16.8M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg></div><div class="tt">180+ countries</div></div>
+        <div class="tc"><div class="ti"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><div class="tt">3-minute listing</div></div>
+        <div class="tc"><div class="ti"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5S7 4.6 7 6.5 9.2 10 12 10s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/></svg></div><div class="tt">Beats local quotes</div></div>
       </div>
     </div>
   </div>
@@ -145,6 +193,26 @@
     <div class="body">
       <div class="chatHead"><div class="avatar">V</div><div><div class="n" data-i18n="assistant">Vectiba Assistant</div><div class="s" data-i18n="voiceai">Voice · AI</div></div></div>
       <div class="msgs" id="msgs"></div>
+    </div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="scr" id="s-photos">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SELLER</span></div>
+    <div class="body">
+      <div class="pHead"><div class="t" data-i18n="p_title">Photo check</div><div class="s" data-i18n="p_sub">10 shots, AI-verified as you go</div></div>
+      <div class="pgrid2" id="pgrid2"></div>
+      <div class="pFoot" id="pFoot" data-i18n="p_checking">Checking your photos…</div>
+    </div>
+  </div>
+
+  <!-- CONDITION -->
+  <div class="scr" id="s-condition">
+    <div class="top"><span class="logo">Vectiba</span><span class="pill">SELLER</span></div>
+    <div class="body">
+      <div class="cHead"><div class="t" data-i18n="cond_title">Condition disclosed</div><div class="s" data-i18n="cond_sub">So dealers bid with confidence, not guesswork</div></div>
+      <div id="cRows"></div>
+      <div class="cNote" id="cNote" data-i18n="cond_note">✓ Tire wear, warning lights and engine bay read automatically from your photos — no extra questions.</div>
     </div>
   </div>
 
@@ -160,7 +228,7 @@
         <div class="amt" id="valAmt">$60,000</div>
         <div class="sub" data-i18n="v_sub">No accident · 1 owner · AI-verified</div>
       </div>
-      <div class="startAuc" id="startAuc"><div class="spin"></div><div style="margin-top:8px" data-i18n="v_taking">Taking it to dealers worldwide…</div></div>
+      <div class="startAuc" id="startAuc"><div class="spin"></div><div style="margin-top:8px" id="aucStatus"></div></div>
     </div></div>
   </div>
 
@@ -180,6 +248,7 @@
         <div class="up" id="topUp">start</div>
       </div>
       <div class="bids" id="bids"></div>
+      <div class="aucNote" id="aucNote"></div>
     </div>
   </div>
 
@@ -207,19 +276,40 @@
 
 <script>
 const $=id=>document.getElementById(id);
-const scr=n=>['home','chat','value','auc','won'].forEach(x=>$('s-'+x).classList.toggle('on',x===n));
+const SCREENS=['home','chat','photos','condition','value','auc','won'];
+const scr=n=>SCREENS.forEach(x=>$('s-'+x).classList.toggle('on',x===n));
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const fmt=n=>'$'+n.toLocaleString();
+const CAM_ICON='<svg viewBox="0 0 24 24"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13.5" r="3.2"/></svg>';
 
-const T = {"ar": {"assistant": "مساعد Vectiba", "voiceai": "صوت · ذكاء اصطناعي", "tag_voice": "صوت", "tag_typed": "كتابة", "tag_photos": "صور", "ph_front": "أمامية", "ph_side": "جانبية", "ph_interior": "داخلية", "ph_exterior": "خارجية", "c1": "مرحباً! أنا Vectiba 👋 ما السيارة التي ترغب في بيعها؟", "c2": "سيارة Toyota Land Cruiser 300 موديل 2022.", "c3": "رائع. هل حصلت بالفعل على عرض سعر؟", "c4": "نعم — عرض عليّ تاجر محلي مبلغ $60,000.", "c5": "جيد أن نعرف ذلك. لنرَ إن كان العالم مستعداً لدفع المزيد. كم عدد الكيلومترات؟", "c6": "حوالي 31,000 km. بدون حوادث، ومالك واحد.", "c7": "ممتاز. الآن لنلتقط بعض الصور حتى يثق بها التجار — أمامية وجانبية وداخلية وخارجية.", "c8": "شكراً! جارٍ تحليل صورك…", "c9": "✓ تم التحقق. الهيكل يبدو نظيفاً، والمقصورة الداخلية بحالة ممتازة، ولوحة العدادات تؤكد 31,000 km.", "c10": "كل شيء جاهز. مستعد للتفوق على عرض الـ $60,000؟", "c11": "نعم، لنبدأ 🚀", "c12": "جارٍ فتح مزادك العالمي الآن 🌍", "v_yourcar": "سيارتك", "v_pricetobeat": "السعر المطلوب تجاوزه — عرضك المحلي", "v_sub": "بدون حوادث · مالك واحد · مُتحقَّق منها بالذكاء الاصطناعي", "v_taking": "جارٍ عرضها على التجار حول العالم…", "a_live": "مزاد مباشر", "a_bidders": "مزايدون", "a_countries": "دول", "a_timeleft": "الوقت المتبقي", "a_highest": "أعلى مزايدة", "a_start": "البداية", "a_vsquote": "مقابل عرضك", "r_gulf": "الخليج", "r_westafrica": "غرب أفريقيا", "r_northafrica": "شمال أفريقيا", "w_sold": "تم البيع!", "w_over": "+$7,500 فوق العرض الذي كان لديك بالفعل", "w_yourquote": "عرضك المحلي", "w_final": "سعر Vectiba النهائي", "w_winning": "الدولة الفائزة", "w_payout": "صافي مبلغك", "w_route": "المسار", "w_next": "تتولى Vectiba التصدير والجمارك والشحن والدفع الآمن. ستحصل على المال بمجرد شحن السيارة — تابعه من التطبيق.", "replay": "↻ إعادة العرض التوضيحي", "hint": "معاينة · بيانات تجريبية · تعمل تلقائياً", "n_uae": "الإمارات العربية المتحدة", "n_dubai": "دبي", "n_senegal": "السنغال", "n_civ": "ساحل العاج", "n_ksa": "المملكة العربية السعودية", "n_morocco": "المغرب", "n_germany": "ألمانيا"}, "de": {"assistant": "Vectiba Assistent", "voiceai": "Sprache · KI", "tag_voice": "Sprache", "tag_typed": "Getippt", "tag_photos": "Fotos", "ph_front": "Vorne", "ph_side": "Seite", "ph_interior": "Innenraum", "ph_exterior": "Außen", "c1": "Hallo! Ich bin Vectiba 👋 Welches Auto möchten Sie verkaufen?", "c2": "Einen Toyota Land Cruiser 300, Baujahr 2022.", "c3": "Schön. Haben Sie schon ein Preisangebot bekommen?", "c4": "Ja — ein lokaler Händler hat mir $60,000 geboten.", "c5": "Gut zu wissen. Mal sehen, ob die Welt mehr zahlt. Wie viele Kilometer?", "c6": "Etwa 31,000 km. Kein Unfall, ein Vorbesitzer.", "c7": "Perfekt. Machen wir jetzt ein paar Fotos, damit die Händler Vertrauen haben — vorne, Seite, Innenraum und außen.", "c8": "Danke! Ich analysiere Ihre Fotos…", "c9": "✓ Verifiziert. Die Karosserie sieht sauber aus, der Innenraum ist gepflegt, und das Armaturenbrett bestätigt 31,000 km.", "c10": "Alles bereit. Bereit, dieses Angebot von $60,000 zu schlagen?", "c11": "Ja, los geht's 🚀", "c12": "Ich eröffne jetzt Ihre weltweite Auktion 🌍", "v_yourcar": "Ihr Auto", "v_pricetobeat": "Zu schlagender Preis — Ihr lokales Angebot", "v_sub": "Unfallfrei · 1 Vorbesitzer · KI-verifiziert", "v_taking": "Wir bringen es zu Händlern weltweit…", "a_live": "Live-Auktion", "a_bidders": "Bieter", "a_countries": "Länder", "a_timeleft": "Restzeit", "a_highest": "Höchstgebot", "a_start": "Start", "a_vsquote": "vs. Ihr Angebot", "r_gulf": "Golfregion", "r_westafrica": "Westafrika", "r_northafrica": "Nordafrika", "w_sold": "Verkauft!", "w_over": "+$7,500 über dem Angebot, das Sie bereits hatten", "w_yourquote": "Ihr lokales Angebot", "w_final": "Vectiba Endpreis", "w_winning": "Gewinnerland", "w_payout": "Ihre Nettoauszahlung", "w_route": "Route", "w_next": "Vectiba kümmert sich um Export, Zoll, Versand und sichere Zahlung. Sie erhalten das Geld, sobald das Auto verschifft wird — verfolgen Sie es in der App.", "replay": "↻ Demo wiederholen", "hint": "Vorschau · Beispieldaten · läuft automatisch", "n_uae": "Vereinigte Arabische Emirate", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Elfenbeinküste", "n_ksa": "Saudi-Arabien", "n_morocco": "Marokko", "n_germany": "Deutschland"}, "en": {"assistant": "Vectiba Assistant", "voiceai": "Voice · AI", "tag_voice": "Voice", "tag_typed": "Typed", "tag_photos": "Photos", "ph_front": "Front", "ph_side": "Side", "ph_interior": "Interior", "ph_exterior": "Exterior", "c1": "Hi! I'm Vectiba 👋 Which car are you looking to sell?", "c2": "A 2022 Toyota Land Cruiser 300.", "c3": "Nice. Do you already have a price you've been quoted?", "c4": "Yes — a local dealer offered $60,000.", "c5": "Good to know. Let's see if the world will pay more. How many kilometers?", "c6": "Around 31,000 km. No accidents, one owner.", "c7": "Perfect. Now let's take a few photos so dealers can trust it — front, side, interior and exterior.", "c8": "Thanks! Analyzing your photos…", "c9": "✓ Verified. Bodywork looks clean, interior is well-kept, and the dashboard confirms 31,000 km.", "c10": "You're all set. Ready to beat that $60,000 quote?", "c11": "Yes, let's go 🚀", "c12": "Opening your worldwide auction now 🌍", "v_yourcar": "Your car", "v_pricetobeat": "Price to beat — your local quote", "v_sub": "No accident · 1 owner · AI-verified", "v_taking": "Taking it to dealers worldwide…", "a_live": "Live auction", "a_bidders": "Bidders", "a_countries": "Countries", "a_timeleft": "Time left", "a_highest": "Highest bid", "a_start": "start", "a_vsquote": "vs your quote", "r_gulf": "Gulf", "r_westafrica": "West Africa", "r_northafrica": "North Africa", "w_sold": "Sold!", "w_over": "+$7,500 over the quote you already had", "w_yourquote": "Your local quote", "w_final": "Vectiba final price", "w_winning": "Winning country", "w_payout": "Your net payout", "w_route": "Route", "w_next": "Vectiba handles export, customs, shipping and secure payment. You'll get the money once the car ships — track it in the app.", "replay": "↻ Replay demo", "hint": "Preview · sample data · plays automatically", "n_uae": "United Arab Emirates", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Côte d'Ivoire", "n_ksa": "Saudi Arabia", "n_morocco": "Morocco", "n_germany": "Germany"}, "es": {"assistant": "Asistente Vectiba", "voiceai": "Voz · IA", "tag_voice": "Voz", "tag_typed": "Escrito", "tag_photos": "Fotos", "ph_front": "Frente", "ph_side": "Lateral", "ph_interior": "Interior", "ph_exterior": "Exterior", "c1": "¡Hola! Soy Vectiba 👋 ¿Qué auto quieres vender?", "c2": "Un Toyota Land Cruiser 300 del 2022.", "c3": "Genial. ¿Ya te dieron algún precio?", "c4": "Sí — un concesionario local me ofreció $60,000.", "c5": "Bien saberlo. Veamos si el mundo paga más. ¿Cuántos kilómetros tiene?", "c6": "Unos 31,000 km. Sin accidentes, un solo dueño.", "c7": "Perfecto. Ahora tomemos unas fotos para que los concesionarios confíen — frente, lateral, interior y exterior.", "c8": "¡Gracias! Analizando tus fotos…", "c9": "✓ Verificado. La carrocería se ve impecable, el interior está bien cuidado y el tablero confirma los 31,000 km.", "c10": "Todo listo. ¿Listo para superar esa oferta de $60,000?", "c11": "Sí, ¡vamos! 🚀", "c12": "Abriendo tu subasta mundial ahora 🌍", "v_yourcar": "Tu auto", "v_pricetobeat": "Precio a superar — tu oferta local", "v_sub": "Sin accidentes · 1 dueño · Verificado por IA", "v_taking": "Llevándolo a concesionarios de todo el mundo…", "a_live": "Subasta en vivo", "a_bidders": "Postores", "a_countries": "Países", "a_timeleft": "Tiempo restante", "a_highest": "Puja más alta", "a_start": "inicio", "a_vsquote": "vs tu oferta", "r_gulf": "Golfo", "r_westafrica": "África Occidental", "r_northafrica": "África del Norte", "w_sold": "¡Vendido!", "w_over": "+$7,500 por encima de la oferta que ya tenías", "w_yourquote": "Tu oferta local", "w_final": "Precio final Vectiba", "w_winning": "País ganador", "w_payout": "Tu pago neto", "w_route": "Ruta", "w_next": "Vectiba se encarga de la exportación, la aduana, el envío y el pago seguro. Recibirás el dinero en cuanto el auto sea despachado — síguelo en la app.", "replay": "↻ Repetir demo", "hint": "Vista previa · datos de ejemplo · se reproduce automáticamente", "n_uae": "Emiratos Árabes Unidos", "n_dubai": "Dubái", "n_senegal": "Senegal", "n_civ": "Costa de Marfil", "n_ksa": "Arabia Saudita", "n_morocco": "Marruecos", "n_germany": "Alemania"}, "fa": {"assistant": "دستیار Vectiba", "voiceai": "صدا · هوش مصنوعی", "tag_voice": "صدا", "tag_typed": "تایپ‌شده", "tag_photos": "عکس‌ها", "ph_front": "جلو", "ph_side": "کنار", "ph_interior": "داخل", "ph_exterior": "بیرون", "c1": "سلام! من Vectiba هستم 👋 قصد فروش چه خودرویی را دارید؟", "c2": "یک Toyota Land Cruiser 300 مدل ۲۰۲۲.", "c3": "عالی. آیا از قبل قیمتی به شما پیشنهاد شده است؟", "c4": "بله — یک نمایندگی محلی $60,000 پیشنهاد داد.", "c5": "خوب است که بدانم. بیایید ببینیم آیا دنیا حاضر است بیشتر بپردازد. چند کیلومتر کار کرده است؟", "c6": "حدود 31,000 km. بدون تصادف، تک‌مالک.", "c7": "عالی. حالا بیایید چند عکس بگیریم تا نمایندگی‌ها بتوانند به آن اعتماد کنند — جلو، کنار، داخل و بیرون.", "c8": "ممنون! در حال تحلیل عکس‌های شما…", "c9": "✓ تأیید شد. بدنه تمیز به نظر می‌رسد، داخل خودرو خوب نگهداری شده، و داشبورد کارکرد 31,000 km را تأیید می‌کند.", "c10": "همه چیز آماده است. آماده‌اید که آن پیشنهاد $60,000 را بشکنید؟", "c11": "بله، شروع کنیم 🚀", "c12": "در حال باز کردن مزایده جهانی شما 🌍", "v_yourcar": "خودروی شما", "v_pricetobeat": "قیمتی که باید شکسته شود — پیشنهاد محلی شما", "v_sub": "بدون تصادف · تک‌مالک · تأییدشده با هوش مصنوعی", "v_taking": "در حال ارائه به نمایندگی‌ها در سراسر جهان…", "a_live": "مزایده زنده", "a_bidders": "پیشنهاددهندگان", "a_countries": "کشورها", "a_timeleft": "زمان باقی‌مانده", "a_highest": "بالاترین پیشنهاد", "a_start": "شروع", "a_vsquote": "در مقایسه با پیشنهاد شما", "r_gulf": "خلیج فارس", "r_westafrica": "غرب آفریقا", "r_northafrica": "شمال آفریقا", "w_sold": "فروخته شد!", "w_over": "$7,500+ بیشتر از پیشنهادی که از قبل داشتید", "w_yourquote": "پیشنهاد محلی شما", "w_final": "قیمت نهایی Vectiba", "w_winning": "کشور برنده", "w_payout": "مبلغ خالص دریافتی شما", "w_route": "مسیر", "w_next": "Vectiba صادرات، گمرک، حمل‌ونقل و پرداخت امن را انجام می‌دهد. به‌محض ارسال خودرو، پول را دریافت می‌کنید — آن را در اپلیکیشن پیگیری کنید.", "replay": "↻ پخش دوباره دمو", "hint": "پیش‌نمایش · داده‌های نمونه · به‌صورت خودکار پخش می‌شود", "n_uae": "امارات متحده عربی", "n_dubai": "دبی", "n_senegal": "سنگال", "n_civ": "ساحل عاج", "n_ksa": "عربستان سعودی", "n_morocco": "مراکش", "n_germany": "آلمان"}, "fr": {"assistant": "Assistant Vectiba", "voiceai": "Voix · IA", "tag_voice": "Voix", "tag_typed": "Texte", "tag_photos": "Photos", "ph_front": "Avant", "ph_side": "Côté", "ph_interior": "Intérieur", "ph_exterior": "Extérieur", "c1": "Bonjour ! Je suis Vectiba 👋 Quelle voiture souhaitez-vous vendre ?", "c2": "Une Toyota Land Cruiser 300 de 2022.", "c3": "Très bien. Avez-vous déjà reçu une offre de prix ?", "c4": "Oui — un concessionnaire local m'a proposé 60 000 $.", "c5": "Bon à savoir. Voyons si le reste du monde est prêt à payer plus. Combien de kilomètres ?", "c6": "Environ 31,000 km. Aucun accident, un seul propriétaire.", "c7": "Parfait. Prenons maintenant quelques photos pour que les concessionnaires aient confiance — avant, côté, intérieur et extérieur.", "c8": "Merci ! J'analyse vos photos…", "c9": "✓ Vérifié. La carrosserie est impeccable, l'intérieur est bien entretenu, et le tableau de bord confirme les 31,000 km.", "c10": "Tout est prêt. On tente de battre cette offre de 60 000 $ ?", "c11": "Oui, c'est parti 🚀", "c12": "J'ouvre votre enchère mondiale maintenant 🌍", "v_yourcar": "Votre voiture", "v_pricetobeat": "Prix à battre — votre offre locale", "v_sub": "Aucun accident · 1 propriétaire · Vérifié par IA", "v_taking": "On la présente aux concessionnaires du monde entier…", "a_live": "Enchère en direct", "a_bidders": "Enchérisseurs", "a_countries": "Pays", "a_timeleft": "Temps restant", "a_highest": "Meilleure enchère", "a_start": "départ", "a_vsquote": "vs votre offre", "r_gulf": "Golfe", "r_westafrica": "Afrique de l'Ouest", "r_northafrica": "Afrique du Nord", "w_sold": "Vendue !", "w_over": "+7 500 $ de plus que l'offre que vous aviez déjà", "w_yourquote": "Votre offre locale", "w_final": "Prix final Vectiba", "w_winning": "Pays gagnant", "w_payout": "Votre paiement net", "w_route": "Trajet", "w_next": "Vectiba gère l'export, la douane, l'expédition et le paiement sécurisé. Vous recevez l'argent dès que la voiture est expédiée — suivez le tout dans l'application.", "replay": "↻ Rejouer la démo", "hint": "Aperçu · données d'exemple · lecture automatique", "n_uae": "Émirats arabes unis", "n_dubai": "Dubaï", "n_senegal": "Sénégal", "n_civ": "Côte d'Ivoire", "n_ksa": "Arabie saoudite", "n_morocco": "Maroc", "n_germany": "Allemagne"}, "it": {"assistant": "Assistente Vectiba", "voiceai": "Voce · AI", "tag_voice": "Voce", "tag_typed": "Testo", "tag_photos": "Foto", "ph_front": "Anteriore", "ph_side": "Laterale", "ph_interior": "Interni", "ph_exterior": "Esterni", "c1": "Ciao! Sono Vectiba 👋 Quale auto vuoi vendere?", "c2": "Una Toyota Land Cruiser 300 del 2022.", "c3": "Ottima scelta. Hai già ricevuto una valutazione con un prezzo?", "c4": "Sì — un concessionario locale mi ha offerto $60,000.", "c5": "Buono a sapersi. Vediamo se il mondo è disposto a pagare di più. Quanti chilometri ha?", "c6": "Circa 31,000 km. Nessun incidente, un solo proprietario.", "c7": "Perfetto. Ora scattiamo qualche foto così i concessionari possono fidarsi — anteriore, laterale, interni ed esterni.", "c8": "Grazie! Sto analizzando le tue foto…", "c9": "✓ Verificata. La carrozzeria è impeccabile, gli interni sono ben tenuti e il cruscotto conferma 31,000 km.", "c10": "È tutto pronto. Vuoi battere quell'offerta di $60,000?", "c11": "Sì, andiamo 🚀", "c12": "Sto aprendo la tua asta mondiale 🌍", "v_yourcar": "La tua auto", "v_pricetobeat": "Prezzo da battere — la tua valutazione locale", "v_sub": "Nessun incidente · 1 proprietario · Verificata dall'AI", "v_taking": "La porto dai concessionari di tutto il mondo…", "a_live": "Asta in diretta", "a_bidders": "Offerenti", "a_countries": "Paesi", "a_timeleft": "Tempo rimasto", "a_highest": "Offerta più alta", "a_start": "partenza", "a_vsquote": "rispetto alla tua valutazione", "r_gulf": "Golfo", "r_westafrica": "Africa occidentale", "r_northafrica": "Africa del Nord", "w_sold": "Venduta!", "w_over": "+$7,500 oltre la valutazione che avevi già", "w_yourquote": "La tua valutazione locale", "w_final": "Prezzo finale Vectiba", "w_winning": "Paese vincitore", "w_payout": "Il tuo incasso netto", "w_route": "Percorso", "w_next": "Vectiba si occupa di esportazione, dogana, spedizione e pagamento sicuro. Riceverai i soldi una volta che l'auto sarà spedita — segui tutto nell'app.", "replay": "↻ Rivedi la demo", "hint": "Anteprima · dati di esempio · si avvia automaticamente", "n_uae": "Emirati Arabi Uniti", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Costa d'Avorio", "n_ksa": "Arabia Saudita", "n_morocco": "Marocco", "n_germany": "Germania"}, "ja": {"assistant": "Vectiba アシスタント", "voiceai": "音声 · AI", "tag_voice": "音声", "tag_typed": "入力", "tag_photos": "写真", "ph_front": "フロント", "ph_side": "サイド", "ph_interior": "内装", "ph_exterior": "外装", "c1": "こんにちは！Vectiba です 👋 どのお車を売りたいですか？", "c2": "2022年式の Toyota Land Cruiser 300 です。", "c3": "いいですね。すでに提示された価格はありますか？", "c4": "はい、地元のディーラーから $60,000 を提示されました。", "c5": "承知しました。世界がもっと高く買ってくれるか見てみましょう。走行距離はどれくらいですか？", "c6": "31,000 km ほどです。事故歴なし、ワンオーナーです。", "c7": "完璧です。では、ディーラーが安心できるように写真を何枚か撮りましょう。フロント、サイド、内装、外装です。", "c8": "ありがとうございます！写真を分析しています…", "c9": "✓ 確認できました。ボディはきれいで、内装もよく手入れされていて、メーターも 31,000 km で間違いありません。", "c10": "準備完了です。あの $60,000 の提示額を超えてみましょうか？", "c11": "はい、やりましょう 🚀", "c12": "世界中でのオークションを今すぐ開始します 🌍", "v_yourcar": "あなたのお車", "v_pricetobeat": "超えるべき価格 — 地元での提示額", "v_sub": "事故歴なし · ワンオーナー · AI 認証済み", "v_taking": "世界中のディーラーにお届けしています…", "a_live": "ライブオークション", "a_bidders": "入札者", "a_countries": "参加国", "a_timeleft": "残り時間", "a_highest": "最高入札額", "a_start": "開始", "a_vsquote": "提示額との差", "r_gulf": "湾岸", "r_westafrica": "西アフリカ", "r_northafrica": "北アフリカ", "w_sold": "落札！", "w_over": "すでにお持ちだった提示額より +$7,500", "w_yourquote": "地元での提示額", "w_final": "Vectiba 最終価格", "w_winning": "落札国", "w_payout": "あなたの手取り額", "w_route": "ルート", "w_next": "Vectiba が輸出、通関、輸送、安全な決済まで対応します。お車の発送後に代金を受け取れます。アプリで進捗を追跡できます。", "replay": "↻ デモをもう一度", "hint": "プレビュー · サンプルデータ · 自動再生", "n_uae": "アラブ首長国連邦", "n_dubai": "ドバイ", "n_senegal": "セネガル", "n_civ": "コートジボワール", "n_ksa": "サウジアラビア", "n_morocco": "モロッコ", "n_germany": "ドイツ"}, "ko": {"assistant": "Vectiba 어시스턴트", "voiceai": "음성 · AI", "tag_voice": "음성", "tag_typed": "입력", "tag_photos": "사진", "ph_front": "정면", "ph_side": "측면", "ph_interior": "실내", "ph_exterior": "외관", "c1": "안녕하세요! 저는 Vectiba예요 👋 어떤 차를 파시려고요?", "c2": "2022년식 Toyota Land Cruiser 300이요.", "c3": "좋네요. 혹시 이미 받아보신 견적이 있으세요?", "c4": "네 — 동네 딜러가 $60,000 불렀어요.", "c5": "알겠습니다. 세계 시장에서 더 쳐주는지 한번 볼까요. 주행거리는 얼마나 되나요?", "c6": "31,000 km 정도요. 무사고에 첫 오너입니다.", "c7": "완벽해요. 이제 딜러들이 믿을 수 있게 사진 몇 장만 찍어볼게요 — 정면, 측면, 실내, 외관이요.", "c8": "감사합니다! 사진을 분석하고 있어요…", "c9": "✓ 확인 완료. 차체도 깨끗하고, 실내도 잘 관리됐고, 계기판도 31,000 km로 딱 맞네요.", "c10": "다 준비됐어요. 그 $60,000 견적, 이겨볼 준비 되셨죠?", "c11": "네, 가시죠 🚀", "c12": "지금 전 세계 경매를 열게요 🌍", "v_yourcar": "내 차", "v_pricetobeat": "넘어야 할 가격 — 동네 견적", "v_sub": "무사고 · 1인 오너 · AI 검증 완료", "v_taking": "전 세계 딜러들에게 보내는 중…", "a_live": "실시간 경매", "a_bidders": "입찰자", "a_countries": "참여국", "a_timeleft": "남은 시간", "a_highest": "최고 입찰가", "a_start": "시작", "a_vsquote": "내 견적 대비", "r_gulf": "걸프", "r_westafrica": "서아프리카", "r_northafrica": "북아프리카", "w_sold": "낙찰!", "w_over": "이미 받았던 견적보다 +$7,500 더", "w_yourquote": "내 동네 견적", "w_final": "Vectiba 최종가", "w_winning": "낙찰 국가", "w_payout": "내 실수령액", "w_route": "경로", "w_next": "수출, 통관, 배송, 안전 결제는 Vectiba가 다 처리해요. 차가 선적되면 대금을 받으실 수 있고, 앱에서 실시간으로 추적할 수 있어요.", "replay": "↻ 데모 다시 보기", "hint": "미리보기 · 예시 데이터 · 자동 재생", "n_uae": "아랍에미리트", "n_dubai": "두바이", "n_senegal": "세네갈", "n_civ": "코트디부아르", "n_ksa": "사우디아라비아", "n_morocco": "모로코", "n_germany": "독일"}, "nl": {"assistant": "Vectiba Assistent", "voiceai": "Spraak · AI", "tag_voice": "Spraak", "tag_typed": "Getypt", "tag_photos": "Foto's", "ph_front": "Voorkant", "ph_side": "Zijkant", "ph_interior": "Interieur", "ph_exterior": "Exterieur", "c1": "Hoi! Ik ben Vectiba 👋 Welke auto wil je verkopen?", "c2": "Een Toyota Land Cruiser 300 uit 2022.", "c3": "Mooi. Heb je al een prijs gekregen?", "c4": "Ja — een lokale dealer bood $60,000.", "c5": "Goed om te weten. Eens kijken of de wereld meer wil betalen. Hoeveel kilometer heeft hij gereden?", "c6": "Zo'n 31,000 km. Geen schade, één eigenaar.", "c7": "Perfect. Laten we nu een paar foto's maken zodat dealers hem kunnen vertrouwen — voorkant, zijkant, interieur en exterieur.", "c8": "Bedankt! Ik analyseer je foto's…", "c9": "✓ Geverifieerd. De carrosserie ziet er netjes uit, het interieur is goed onderhouden en het dashboard bevestigt 31,000 km.", "c10": "Alles is klaar. Klaar om die $60,000 te overtreffen?", "c11": "Ja, we gaan ervoor 🚀", "c12": "Ik open nu je wereldwijde veiling 🌍", "v_yourcar": "Jouw auto", "v_pricetobeat": "Te verslaan prijs — je lokale bod", "v_sub": "Geen schade · 1 eigenaar · AI-geverifieerd", "v_taking": "We brengen hem naar dealers wereldwijd…", "a_live": "Live veiling", "a_bidders": "Bieders", "a_countries": "Landen", "a_timeleft": "Resterende tijd", "a_highest": "Hoogste bod", "a_start": "start", "a_vsquote": "t.o.v. jouw bod", "r_gulf": "Golfregio", "r_westafrica": "West-Afrika", "r_northafrica": "Noord-Afrika", "w_sold": "Verkocht!", "w_over": "+$7,500 boven het bod dat je al had", "w_yourquote": "Je lokale bod", "w_final": "Vectiba eindprijs", "w_winning": "Winnend land", "w_payout": "Je netto-uitbetaling", "w_route": "Route", "w_next": "Vectiba regelt export, douane, verzending en veilige betaling. Je krijgt het geld zodra de auto wordt verscheept — volg het in de app.", "replay": "↻ Demo opnieuw afspelen", "hint": "Voorbeeld · voorbeeldgegevens · speelt automatisch af", "n_uae": "Verenigde Arabische Emiraten", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Ivoorkust", "n_ksa": "Saoedi-Arabië", "n_morocco": "Marokko", "n_germany": "Duitsland"}, "pl": {"assistant": "Asystent Vectiba", "voiceai": "Głos · AI", "tag_voice": "Głos", "tag_typed": "Tekst", "tag_photos": "Zdjęcia", "ph_front": "Przód", "ph_side": "Bok", "ph_interior": "Wnętrze", "ph_exterior": "Nadwozie", "c1": "Cześć! Jestem Vectiba 👋 Jakie auto chcesz sprzedać?", "c2": "Toyota Land Cruiser 300 z 2022 roku.", "c3": "Świetnie. Masz już jakąś wycenę?", "c4": "Tak — lokalny dealer zaproponował 60 000 $.", "c5": "Dobrze wiedzieć. Zobaczmy, czy świat zapłaci więcej. Ile ma przebiegu?", "c6": "Około 31,000 km. Bez wypadków, jeden właściciel.", "c7": "Idealnie. Teraz zróbmy kilka zdjęć, żeby dealerzy mogli mu zaufać — przód, bok, wnętrze i nadwozie.", "c8": "Dzięki! Analizuję Twoje zdjęcia…", "c9": "✓ Zweryfikowano. Nadwozie wygląda czysto, wnętrze zadbane, a licznik potwierdza 31,000 km.", "c10": "Wszystko gotowe. Gotów pobić tę ofertę 60 000 $?", "c11": "Tak, działamy 🚀", "c12": "Otwieram Twoją światową aukcję 🌍", "v_yourcar": "Twoje auto", "v_pricetobeat": "Cena do pobicia — Twoja lokalna wycena", "v_sub": "Bezwypadkowy · 1 właściciel · zweryfikowane przez AI", "v_taking": "Prezentujemy je dealerom na całym świecie…", "a_live": "Aukcja na żywo", "a_bidders": "Licytujący", "a_countries": "Kraje", "a_timeleft": "Pozostały czas", "a_highest": "Najwyższa oferta", "a_start": "start", "a_vsquote": "vs Twoja wycena", "r_gulf": "Zatoka Perska", "r_westafrica": "Afryka Zachodnia", "r_northafrica": "Afryka Północna", "w_sold": "Sprzedane!", "w_over": "+7 500 $ ponad wycenę, którą już miałeś", "w_yourquote": "Twoja lokalna wycena", "w_final": "Cena końcowa Vectiba", "w_winning": "Zwycięski kraj", "w_payout": "Twoja wypłata netto", "w_route": "Trasa", "w_next": "Vectiba zajmuje się eksportem, cłem, transportem i bezpieczną płatnością. Pieniądze otrzymasz, gdy auto zostanie wysłane — śledź to w aplikacji.", "replay": "↻ Powtórz demo", "hint": "Podgląd · dane przykładowe · odtwarza się automatycznie", "n_uae": "Zjednoczone Emiraty Arabskie", "n_dubai": "Dubaj", "n_senegal": "Senegal", "n_civ": "Wybrzeże Kości Słoniowej", "n_ksa": "Arabia Saudyjska", "n_morocco": "Maroko", "n_germany": "Niemcy"}, "pt": {"assistant": "Assistente Vectiba", "voiceai": "Voz · IA", "tag_voice": "Voz", "tag_typed": "Escrito", "tag_photos": "Fotos", "ph_front": "Frente", "ph_side": "Lateral", "ph_interior": "Interior", "ph_exterior": "Exterior", "c1": "Olá! Sou o Vectiba 👋 Que carro está a pensar vender?", "c2": "Um Toyota Land Cruiser 300 de 2022.", "c3": "Boa escolha. Já tem algum preço que lhe tenham proposto?", "c4": "Sim — um stand local ofereceu $60,000.", "c5": "Bom saber. Vamos ver se o mundo paga mais. Quantos quilómetros tem?", "c6": "Cerca de 31,000 km. Sem acidentes, um único dono.", "c7": "Perfeito. Agora vamos tirar algumas fotos para que os stands possam confiar — frente, lateral, interior e exterior.", "c8": "Obrigado! A analisar as suas fotos…", "c9": "✓ Verificado. A carroçaria parece impecável, o interior está bem cuidado e o painel confirma os 31,000 km.", "c10": "Está tudo pronto. Preparado para superar essa proposta de $60,000?", "c11": "Sim, vamos a isso 🚀", "c12": "A abrir o seu leilão mundial agora 🌍", "v_yourcar": "O seu carro", "v_pricetobeat": "Preço a bater — a sua proposta local", "v_sub": "Sem acidentes · 1 dono · Verificado por IA", "v_taking": "A levá-lo aos stands em todo o mundo…", "a_live": "Leilão em direto", "a_bidders": "Licitadores", "a_countries": "Países", "a_timeleft": "Tempo restante", "a_highest": "Licitação mais alta", "a_start": "início", "a_vsquote": "vs a sua proposta", "r_gulf": "Golfo", "r_westafrica": "África Ocidental", "r_northafrica": "Norte de África", "w_sold": "Vendido!", "w_over": "+$7,500 acima da proposta que já tinha", "w_yourquote": "A sua proposta local", "w_final": "Preço final Vectiba", "w_winning": "País vencedor", "w_payout": "O seu valor líquido", "w_route": "Rota", "w_next": "A Vectiba trata da exportação, alfândega, transporte e pagamento seguro. Recebe o dinheiro assim que o carro for expedido — acompanhe tudo na app.", "replay": "↻ Repetir demo", "hint": "Pré-visualização · dados de exemplo · reproduz automaticamente", "n_uae": "Emirados Árabes Unidos", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Costa do Marfim", "n_ksa": "Arábia Saudita", "n_morocco": "Marrocos", "n_germany": "Alemanha"}, "ru": {"assistant": "Ассистент Vectiba", "voiceai": "Голос · ИИ", "tag_voice": "Голос", "tag_typed": "Текст", "tag_photos": "Фото", "ph_front": "Спереди", "ph_side": "Сбоку", "ph_interior": "Салон", "ph_exterior": "Кузов", "c1": "Привет! Я Vectiba 👋 Какую машину вы хотите продать?", "c2": "Toyota Land Cruiser 300 2022 года.", "c3": "Отлично. У вас уже есть цена, которую вам предложили?", "c4": "Да — местный дилер предложил $60,000.", "c5": "Хорошо. Давайте посмотрим, заплатит ли мир больше. Сколько километров пробега?", "c6": "Около 31,000 km. Без аварий, один владелец.", "c7": "Отлично. Теперь давайте сделаем несколько фото, чтобы дилеры вам доверяли — спереди, сбоку, салон и кузов.", "c8": "Спасибо! Анализирую ваши фото…", "c9": "✓ Проверено. Кузов выглядит чистым, салон в хорошем состоянии, а панель приборов подтверждает 31,000 km.", "c10": "Всё готово. Готовы побить это предложение в $60,000?", "c11": "Да, поехали 🚀", "c12": "Открываю ваш всемирный аукцион 🌍", "v_yourcar": "Ваша машина", "v_pricetobeat": "Цена, которую нужно побить — ваше местное предложение", "v_sub": "Без аварий · 1 владелец · проверено ИИ", "v_taking": "Показываем дилерам по всему миру…", "a_live": "Аукцион в реальном времени", "a_bidders": "Участники", "a_countries": "Страны", "a_timeleft": "Осталось времени", "a_highest": "Высшая ставка", "a_start": "старт", "a_vsquote": "против вашего предложения", "r_gulf": "Персидский залив", "r_westafrica": "Западная Африка", "r_northafrica": "Северная Африка", "w_sold": "Продано!", "w_over": "+$7,500 сверх предложения, которое у вас уже было", "w_yourquote": "Ваше местное предложение", "w_final": "Итоговая цена Vectiba", "w_winning": "Страна-победитель", "w_payout": "Ваша чистая выплата", "w_route": "Маршрут", "w_next": "Vectiba берёт на себя экспорт, таможню, доставку и безопасную оплату. Вы получите деньги, как только машина отправится — отслеживайте это в приложении.", "replay": "↻ Повторить демо", "hint": "Превью · демо-данные · воспроизводится автоматически", "n_uae": "ОАЭ", "n_dubai": "Дубай", "n_senegal": "Сенегал", "n_civ": "Кот-д’Ивуар", "n_ksa": "Саудовская Аравия", "n_morocco": "Марокко", "n_germany": "Германия"}, "sw": {"assistant": "Msaidizi wa Vectiba", "voiceai": "Sauti · AI", "tag_voice": "Sauti", "tag_typed": "Iliyoandikwa", "tag_photos": "Picha", "ph_front": "Mbele", "ph_side": "Ubavu", "ph_interior": "Ndani", "ph_exterior": "Nje", "c1": "Habari! Mimi ni Vectiba 👋 Unataka kuuza gari gani?", "c2": "Toyota Land Cruiser 300 ya mwaka 2022.", "c3": "Vizuri. Je, tayari una bei ambayo umeshapewa?", "c4": "Ndiyo — muuzaji wa hapa amenipa $60,000.", "c5": "Nzuri kujua. Hebu tuone kama dunia italipa zaidi. Ina kilomita ngapi?", "c6": "Karibu 31,000 km. Hakuna ajali, mmiliki mmoja.", "c7": "Poa. Sasa hebu tupige picha chache ili wauzaji waweze kuiamini — mbele, ubavu, ndani na nje.", "c8": "Asante! Ninachambua picha zako…", "c9": "✓ Imethibitishwa. Mwili unaonekana safi, ndani imetunzwa vizuri, na dashibodi inathibitisha 31,000 km.", "c10": "Uko tayari kabisa. Uko tayari kushinda bei ile ya $60,000?", "c11": "Ndiyo, twende 🚀", "c12": "Ninafungua mnada wako wa kimataifa sasa 🌍", "v_yourcar": "Gari lako", "v_pricetobeat": "Bei ya kushinda — nukuu yako ya hapa", "v_sub": "Hakuna ajali · Mmiliki 1 · Imethibitishwa na AI", "v_taking": "Ninaipeleka kwa wauzaji duniani kote…", "a_live": "Mnada wa moja kwa moja", "a_bidders": "Wanaozabuni", "a_countries": "Nchi", "a_timeleft": "Muda uliobaki", "a_highest": "Zabuni ya juu zaidi", "a_start": "kuanzia", "a_vsquote": "dhidi ya nukuu yako", "r_gulf": "Ghuba", "r_westafrica": "Afrika Magharibi", "r_northafrica": "Afrika Kaskazini", "w_sold": "Imeuzwa!", "w_over": "+$7,500 zaidi ya nukuu uliyokuwa nayo tayari", "w_yourquote": "Nukuu yako ya hapa", "w_final": "Bei ya mwisho ya Vectiba", "w_winning": "Nchi iliyoshinda", "w_payout": "Malipo yako halisi", "w_route": "Njia", "w_next": "Vectiba inashughulikia usafirishaji nje, forodha, meli na malipo salama. Utapata pesa mara gari litakaposafirishwa — lifuatilie kwenye programu.", "replay": "↻ Cheza tena onyesho", "hint": "Hakikisho · data ya sampuli · inacheza yenyewe", "n_uae": "Falme za Kiarabu", "n_dubai": "Dubai", "n_senegal": "Senegali", "n_civ": "Côte d'Ivoire", "n_ksa": "Saudi Arabia", "n_morocco": "Moroko", "n_germany": "Ujerumani"}, "tr": {"assistant": "Vectiba Asistan", "voiceai": "Sesli · Yapay Zekâ", "tag_voice": "Sesli", "tag_typed": "Yazılı", "tag_photos": "Fotoğraflar", "ph_front": "Ön", "ph_side": "Yan", "ph_interior": "İç", "ph_exterior": "Dış", "c1": "Merhaba! Ben Vectiba 👋 Hangi aracı satmak istiyorsunuz?", "c2": "2022 model bir Toyota Land Cruiser 300.", "c3": "Harika. Size verilmiş bir fiyat teklifi var mı?", "c4": "Evet — yerel bir bayi $60,000 teklif etti.", "c5": "Bilmek güzel. Bakalım dünya daha fazlasını ödeyecek mi. Kaç kilometrede?", "c6": "Yaklaşık 31,000 km. Kazasız, tek sahibinden.", "c7": "Mükemmel. Şimdi bayilerin güvenmesi için birkaç fotoğraf çekelim — ön, yan, iç ve dış.", "c8": "Teşekkürler! Fotoğraflarınız analiz ediliyor…", "c9": "✓ Doğrulandı. Kaporta temiz görünüyor, iç mekân bakımlı ve gösterge paneli 31,000 km'yi teyit ediyor.", "c10": "Her şey hazır. O $60,000 teklifi geçmeye hazır mısınız?", "c11": "Evet, başlayalım 🚀", "c12": "Dünya çapındaki açık artırmanız şimdi açılıyor 🌍", "v_yourcar": "Aracınız", "v_pricetobeat": "Geçilecek fiyat — yerel teklifiniz", "v_sub": "Kazasız · Tek sahibinden · Yapay zekâ ile doğrulandı", "v_taking": "Dünyanın dört bir yanındaki bayilere ulaştırılıyor…", "a_live": "Canlı açık artırma", "a_bidders": "Teklif verenler", "a_countries": "Ülkeler", "a_timeleft": "Kalan süre", "a_highest": "En yüksek teklif", "a_start": "başlangıç", "a_vsquote": "teklifinize göre", "r_gulf": "Körfez", "r_westafrica": "Batı Afrika", "r_northafrica": "Kuzey Afrika", "w_sold": "Satıldı!", "w_over": "Elinizdeki teklifin $7,500 üzerinde", "w_yourquote": "Yerel teklifiniz", "w_final": "Vectiba nihai fiyatı", "w_winning": "Kazanan ülke", "w_payout": "Net ödemeniz", "w_route": "Güzergâh", "w_next": "Vectiba ihracat, gümrük, nakliye ve güvenli ödemeyi üstlenir. Araç sevk edildiğinde paranızı alırsınız — uygulamadan takip edin.", "replay": "↻ Demoyu tekrar oynat", "hint": "Önizleme · örnek veri · otomatik oynatılır", "n_uae": "Birleşik Arap Emirlikleri", "n_dubai": "Dubai", "n_senegal": "Senegal", "n_civ": "Fildişi Sahili", "n_ksa": "Suudi Arabistan", "n_morocco": "Fas", "n_germany": "Almanya"}, "zh": {"assistant": "Vectiba 助手", "voiceai": "语音 · AI", "tag_voice": "语音", "tag_typed": "文字", "tag_photos": "照片", "ph_front": "车头", "ph_side": "侧面", "ph_interior": "内饰", "ph_exterior": "外观", "c1": "你好！我是 Vectiba 👋 你想卖哪辆车？", "c2": "一辆 2022 款 Toyota Land Cruiser 300。", "c3": "不错。你手上已经有别人给的报价了吗？", "c4": "有——当地一家经销商出价 $60,000。", "c5": "知道了。我们来看看全世界愿不愿意出更高的价。行驶了多少公里？", "c6": "大概 31,000 km。无事故，一手车。", "c7": "太好了。现在我们拍几张照片，让经销商放心——车头、侧面、内饰和外观。", "c8": "谢谢！正在分析你的照片…", "c9": "✓ 已核实。车身看着很干净，内饰保养得不错，仪表盘也确认了 31,000 km。", "c10": "一切就绪。准备好超过那个 $60,000 的报价了吗？", "c11": "好，开始吧 🚀", "c12": "正在为你开启全球拍卖 🌍", "v_yourcar": "你的车", "v_pricetobeat": "待超越的价格——你的本地报价", "v_sub": "无事故 · 一手车 · AI 已核实", "v_taking": "正在把它推向全球经销商…", "a_live": "实时拍卖", "a_bidders": "竞拍人", "a_countries": "国家", "a_timeleft": "剩余时间", "a_highest": "最高出价", "a_start": "起拍", "a_vsquote": "相比你的报价", "r_gulf": "海湾地区", "r_westafrica": "西非", "r_northafrica": "北非", "w_sold": "成交！", "w_over": "比你手上已有的报价高出 +$7,500", "w_yourquote": "你的本地报价", "w_final": "Vectiba 最终成交价", "w_winning": "胜出国家", "w_payout": "你的净到手金额", "w_route": "路线", "w_next": "Vectiba 全程负责出口、清关、运输和安全付款。车辆发出后你就能拿到钱——在 App 里全程追踪。", "replay": "↻ 重播演示", "hint": "预览 · 示例数据 · 自动播放", "n_uae": "阿联酋", "n_dubai": "迪拜", "n_senegal": "塞内加尔", "n_civ": "科特迪瓦", "n_ksa": "沙特阿拉伯", "n_morocco": "摩洛哥", "n_germany": "德国"}};
+const T = {"ar":{"assistant":"مساعد Vectiba","voiceai":"صوت · ذكاء اصطناعي","tag_voice":"صوت","tag_typed":"كتابة","tag_photos":"صور","ph_front":"أمامية","ph_side":"جانبية","ph_interior":"داخلية","ph_exterior":"خارجية","c1":"مرحباً! أنا Vectiba 👋 ما السيارة التي ترغب في بيعها؟","c2":"سيارة Toyota Land Cruiser 300 موديل 2022.","c3":"رائع. هل حصلت بالفعل على عرض سعر؟","c4":"نعم — عرض عليّ تاجر محلي مبلغ $60,000.","c5":"جيد أن نعرف ذلك. لنرَ إن كان العالم مستعداً لدفع المزيد. كم عدد الكيلومترات؟","c6":"حوالي 31,000 km. بدون حوادث، ومالك واحد.","c7":"ممتاز. الآن لنلتقط بعض الصور حتى يثق بها التجار — أمامية وجانبية وداخلية وخارجية.","c8":"شكراً! جارٍ تحليل صورك…","c9":"✓ تم التحقق. الهيكل يبدو نظيفاً، والمقصورة الداخلية بحالة ممتازة، ولوحة العدادات تؤكد 31,000 km.","c10":"كل شيء جاهز. مستعد للتفوق على عرض الـ $60,000؟","c11":"نعم، لنبدأ 🚀","c12":"جارٍ فتح مزادك العالمي الآن 🌍","v_yourcar":"سيارتك","v_pricetobeat":"السعر المطلوب تجاوزه — عرضك المحلي","v_sub":"بدون حوادث · مالك واحد · مُتحقَّق منها بالذكاء الاصطناعي","v_taking":"جارٍ عرضها على التجار حول العالم…","a_live":"مزاد مباشر","a_bidders":"مزايدون","a_countries":"دول","a_timeleft":"الوقت المتبقي","a_highest":"أعلى مزايدة","a_start":"البداية","a_vsquote":"مقابل عرضك","r_gulf":"الخليج","r_westafrica":"غرب أفريقيا","r_northafrica":"شمال أفريقيا","w_sold":"تم البيع!","w_over":"+$7,500 فوق العرض الذي كان لديك بالفعل","w_yourquote":"عرضك المحلي","w_final":"سعر Vectiba النهائي","w_winning":"الدولة الفائزة","w_payout":"صافي مبلغك","w_route":"المسار","w_next":"تتولى Vectiba التصدير والجمارك والشحن والدفع الآمن. ستحصل على المال بمجرد شحن السيارة — تابعه من التطبيق.","replay":"↻ إعادة العرض التوضيحي","hint":"معاينة · بيانات تجريبية · تعمل تلقائياً","n_uae":"الإمارات العربية المتحدة","n_dubai":"دبي","n_senegal":"السنغال","n_civ":"ساحل العاج","n_ksa":"المملكة العربية السعودية","n_morocco":"المغرب","n_germany":"ألمانيا"},"de":{"assistant":"Vectiba Assistent","voiceai":"Sprache · KI","tag_voice":"Sprache","tag_typed":"Getippt","tag_photos":"Fotos","ph_front":"Vorne","ph_side":"Seite","ph_interior":"Innenraum","ph_exterior":"Außen","c1":"Hallo! Ich bin Vectiba 👋 Welches Auto möchten Sie verkaufen?","c2":"Einen Toyota Land Cruiser 300, Baujahr 2022.","c3":"Schön. Haben Sie schon ein Preisangebot bekommen?","c4":"Ja — ein lokaler Händler hat mir $60,000 geboten.","c5":"Gut zu wissen. Mal sehen, ob die Welt mehr zahlt. Wie viele Kilometer?","c6":"Etwa 31,000 km. Kein Unfall, ein Vorbesitzer.","c7":"Perfekt. Machen wir jetzt ein paar Fotos, damit die Händler Vertrauen haben — vorne, Seite, Innenraum und außen.","c8":"Danke! Ich analysiere Ihre Fotos…","c9":"✓ Verifiziert. Die Karosserie sieht sauber aus, der Innenraum ist gepflegt, und das Armaturenbrett bestätigt 31,000 km.","c10":"Alles bereit. Bereit, dieses Angebot von $60,000 zu schlagen?","c11":"Ja, los geht's 🚀","c12":"Ich eröffne jetzt Ihre weltweite Auktion 🌍","v_yourcar":"Ihr Auto","v_pricetobeat":"Zu schlagender Preis — Ihr lokales Angebot","v_sub":"Unfallfrei · 1 Vorbesitzer · KI-verifiziert","v_taking":"Wir bringen es zu Händlern weltweit…","a_live":"Live-Auktion","a_bidders":"Bieter","a_countries":"Länder","a_timeleft":"Restzeit","a_highest":"Höchstgebot","a_start":"Start","a_vsquote":"vs. Ihr Angebot","r_gulf":"Golfregion","r_westafrica":"Westafrika","r_northafrica":"Nordafrika","w_sold":"Verkauft!","w_over":"+$7,500 über dem Angebot, das Sie bereits hatten","w_yourquote":"Ihr lokales Angebot","w_final":"Vectiba Endpreis","w_winning":"Gewinnerland","w_payout":"Ihre Nettoauszahlung","w_route":"Route","w_next":"Vectiba kümmert sich um Export, Zoll, Versand und sichere Zahlung. Sie erhalten das Geld, sobald das Auto verschifft wird — verfolgen Sie es in der App.","replay":"↻ Demo wiederholen","hint":"Vorschau · Beispieldaten · läuft automatisch","n_uae":"Vereinigte Arabische Emirate","n_dubai":"Dubai","n_senegal":"Senegal","n_civ":"Elfenbeinküste","n_ksa":"Saudi-Arabien","n_morocco":"Marokko","n_germany":"Deutschland"},"en":{"assistant":"Vectiba Assistant","voiceai":"Voice · AI","tag_voice":"Voice","tag_typed":"Typed","c1":"Hi, I'm Vectiba. What are you looking to sell?","c2":"A 2022 Toyota Land Cruiser 300.","c3":"Got it. Do you already have a price you've been offered?","c4":"Yes — a local dealer offered $60,000.","c5":"To beat that, you'd need a lot of dealers competing for it — one offer is never the best offer.","c6":"I'll open a global auction for you. Don't worry, I've got this — I just need a few details about the car.","c7":"How many kilometers on it?","c8":"Around 31,000 km. No accidents, one owner.","c9":"Great — a few photos next, so dealers can bid with confidence.","p_title":"Photo check","p_sub":"10 shots, AI-verified as you go","p_checking":"Checking your photos…","p_done":"All 10 photos verified ✓","ph_vin":"VIN","ph_odometer":"Odometer","ph_front":"Front","ph_back":"Back","ph_left":"Left","ph_right":"Right","ph_tire":"Tire","ph_trunk":"Trunk","ph_engine":"Engine bay","ph_interior":"Interior","cond_title":"Condition disclosed","cond_sub":"So dealers bid with confidence, not guesswork","cond_accident_n":"Accident","cond_accident_d":"None reported","cond_accident_badge":"Clean","cond_exchange_n":"Simple exchange","cond_exchange_d":"Front bumper replaced (2023)","cond_exchange_badge":"1 part","cond_scratch_n":"Scratches","cond_scratch_d":"Rear bumper, driver door","cond_scratch_badge":"2 spots","cond_note":"✓ Tire wear, warning lights and engine bay read automatically from your photos — no extra questions.","v_yourcar":"Your car","v_pricetobeat":"Price to beat — your local quote","v_sub":"No accident · 1 owner · AI-verified","auc_s1":"Alright, that's everything I need. Opening your auction now.","auc_s2":"Notifying dealers worldwide…","auc_s3":"3 days later…","auc_s4":"Bids are coming in…","auc_selecting":"Selecting the winning bid…","auc_selected":"✓ Morocco selected — best offer on the table","pick_badge":"Selected","a_live":"Live auction","a_bidders":"Bidders","a_countries":"Countries","a_timeleft":"Time left","a_highest":"Highest bid","a_start":"start","a_vsquote":"vs your quote","r_gulf":"Gulf","r_westafrica":"West Africa","r_northafrica":"North Africa","r_caucasus":"Caucasus","r_eastafrica":"East Africa","r_levant":"Levant","r_southasia":"South Asia","r_centralafrica":"Central Africa","w_sold":"Sold!","w_over":"+$7,500 over the quote you already had","w_yourquote":"Your local quote","w_final":"Vectiba final price","w_winning":"Winning country","w_payout":"Your net payout","w_route":"Route","w_next":"Vectiba handles export, customs, shipping and secure payment. You'll get the money once the car ships — track it in the app.","replay":"↻ Replay demo","hint":"Preview · sample data · plays automatically","n_uae":"United Arab Emirates","n_nigeria":"Nigeria","n_georgia":"Georgia","n_kenya":"Kenya","n_ksa":"Saudi Arabia","n_ghana":"Ghana","n_jordan":"Jordan","n_iraq":"Iraq","n_pakistan":"Pakistan","n_senegal":"Senegal","n_benin":"Benin","n_uganda":"Uganda","n_tanzania":"Tanzania","n_egypt":"Egypt","n_lebanon":"Lebanon","n_drc":"DR Congo","n_cameroon":"Cameroon","n_mali":"Mali","n_guinea":"Guinea","n_togo":"Togo","n_civ":"Côte d'Ivoire","n_morocco":"Morocco","n_germany":"Germany"},"es":{"assistant":"Asistente Vectiba","voiceai":"Voz · IA","tag_voice":"Voz","tag_typed":"Escrito","tag_photos":"Fotos","ph_front":"Frente","ph_side":"Lateral","ph_interior":"Interior","ph_exterior":"Exterior","c1":"¡Hola! Soy Vectiba 👋 ¿Qué auto quieres vender?","c2":"Un Toyota Land Cruiser 300 del 2022.","c3":"Genial. ¿Ya te dieron algún precio?","c4":"Sí — un concesionario local me ofreció $60,000.","c5":"Bien saberlo. Veamos si el mundo paga más. ¿Cuántos kilómetros tiene?","c6":"Unos 31,000 km. Sin accidentes, un solo dueño.","c7":"Perfecto. Ahora tomemos unas fotos para que los concesionarios confíen — frente, lateral, interior y exterior.","c8":"¡Gracias! Analizando tus fotos…","c9":"✓ Verificado. La carrocería se ve impecable, el interior está bien cuidado y el tablero confirma los 31,000 km.","c10":"Todo listo. ¿Listo para superar esa oferta de $60,000?","c11":"Sí, ¡vamos! 🚀","c12":"Abriendo tu subasta mundial ahora 🌍","v_yourcar":"Tu auto","v_pricetobeat":"Precio a superar — tu oferta local","v_sub":"Sin accidentes · 1 dueño · Verificado por IA","v_taking":"Llevándolo a concesionarios de todo el mundo…","a_live":"Subasta en vivo","a_bidders":"Postores","a_countries":"Países","a_timeleft":"Tiempo restante","a_highest":"Puja más alta","a_start":"inicio","a_vsquote":"vs tu oferta","r_gulf":"Golfo","r_westafrica":"África Occidental","r_northafrica":"África del Norte","w_sold":"¡Vendido!","w_over":"+$7,500 por encima de la oferta que ya tenías","w_yourquote":"Tu oferta local","w_final":"Precio final Vectiba","w_winning":"País ganador","w_payout":"Tu pago neto","w_route":"Ruta","w_next":"Vectiba se encarga de la exportación, la aduana, el envío y el pago seguro. Recibirás el dinero en cuanto el auto sea despachado — síguelo en la app.","replay":"↻ Repetir demo","hint":"Vista previa · datos de ejemplo · se reproduce automáticamente","n_uae":"Emiratos Árabes Unidos","n_dubai":"Dubái","n_senegal":"Senegal","n_civ":"Costa de Marfil","n_ksa":"Arabia Saudita","n_morocco":"Marruecos","n_germany":"Alemania"},"fa":{"assistant":"دستیار Vectiba","voiceai":"صدا · هوش مصنوعی","tag_voice":"صدا","tag_typed":"تایپ‌شده","tag_photos":"عکس‌ها","ph_front":"جلو","ph_side":"کنار","ph_interior":"داخل","ph_exterior":"بیرون","c1":"سلام! من Vectiba هستم 👋 قصد فروش چه خودرویی را دارید؟","c2":"یک Toyota Land Cruiser 300 مدل ۲۰۲۲.","c3":"عالی. آیا از قبل قیمتی به شما پیشنهاد شده است؟","c4":"بله — یک نمایندگی محلی $60,000 پیشنهاد داد.","c5":"خوب است که بدانم. بیایید ببینیم آیا دنیا حاضر است بیشتر بپردازد. چند کیلومتر کار کرده است؟","c6":"حدود 31,000 km. بدون تصادف، تک‌مالک.","c7":"عالی. حالا بیایید چند عکس بگیریم تا نمایندگی‌ها بتوانند به آن اعتماد کنند — جلو، کنار، داخل و بیرون.","c8":"ممنون! در حال تحلیل عکس‌های شما…","c9":"✓ تأیید شد. بدنه تمیز به نظر می‌رسد، داخل خودرو خوب نگهداری شده، و داشبورد کارکرد 31,000 km را تأیید می‌کند.","c10":"همه چیز آماده است. آماده‌اید که آن پیشنهاد $60,000 را بشکنید؟","c11":"بله، شروع کنیم 🚀","c12":"در حال باز کردن مزایده جهانی شما 🌍","v_yourcar":"خودروی شما","v_pricetobeat":"قیمتی که باید شکسته شود — پیشنهاد محلی شما","v_sub":"بدون تصادف · تک‌مالک · تأییدشده با هوش مصنوعی","v_taking":"در حال ارائه به نمایندگی‌ها در سراسر جهان…","a_live":"مزایده زنده","a_bidders":"پیشنهاددهندگان","a_countries":"کشورها","a_timeleft":"زمان باقی‌مانده","a_highest":"بالاترین پیشنهاد","a_start":"شروع","a_vsquote":"در مقایسه با پیشنهاد شما","r_gulf":"خلیج فارس","r_westafrica":"غرب آفریقا","r_northafrica":"شمال آفریقا","w_sold":"فروخته شد!","w_over":"$7,500+ بیشتر از پیشنهادی که از قبل داشتید","w_yourquote":"پیشنهاد محلی شما","w_final":"قیمت نهایی Vectiba","w_winning":"کشور برنده","w_payout":"مبلغ خالص دریافتی شما","w_route":"مسیر","w_next":"Vectiba صادرات، گمرک، حمل‌ونقل و پرداخت امن را انجام می‌دهد. به‌محض ارسال خودرو، پول را دریافت می‌کنید — آن را در اپلیکیشن پیگیری کنید.","replay":"↻ پخش دوباره دمو","hint":"پیش‌نمایش · داده‌های نمونه · به‌صورت خودکار پخش می‌شود","n_uae":"امارات متحده عربی","n_dubai":"دبی","n_senegal":"سنگال","n_civ":"ساحل عاج","n_ksa":"عربستان سعودی","n_morocco":"مراکش","n_germany":"آلمان"},"fr":{"assistant":"Assistant Vectiba","voiceai":"Voix · IA","tag_voice":"Voix","tag_typed":"Texte","tag_photos":"Photos","ph_front":"Avant","ph_side":"Côté","ph_interior":"Intérieur","ph_exterior":"Extérieur","c1":"Bonjour ! Je suis Vectiba 👋 Quelle voiture souhaitez-vous vendre ?","c2":"Une Toyota Land Cruiser 300 de 2022.","c3":"Très bien. Avez-vous déjà reçu une offre de prix ?","c4":"Oui — un concessionnaire local m'a proposé 60 000 $.","c5":"Bon à savoir. Voyons si le reste du monde est prêt à payer plus. Combien de kilomètres ?","c6":"Environ 31,000 km. Aucun accident, un seul propriétaire.","c7":"Parfait. Prenons maintenant quelques photos pour que les concessionnaires aient confiance — avant, côté, intérieur et extérieur.","c8":"Merci ! J'analyse vos photos…","c9":"✓ Vérifié. La carrosserie est impeccable, l'intérieur est bien entretenu, et le tableau de bord confirme les 31,000 km.","c10":"Tout est prêt. On tente de battre cette offre de 60 000 $ ?","c11":"Oui, c'est parti 🚀","c12":"J'ouvre votre enchère mondiale maintenant 🌍","v_yourcar":"Votre voiture","v_pricetobeat":"Prix à battre — votre offre locale","v_sub":"Aucun accident · 1 propriétaire · Vérifié par IA","v_taking":"On la présente aux concessionnaires du monde entier…","a_live":"Enchère en direct","a_bidders":"Enchérisseurs","a_countries":"Pays","a_timeleft":"Temps restant","a_highest":"Meilleure enchère","a_start":"départ","a_vsquote":"vs votre offre","r_gulf":"Golfe","r_westafrica":"Afrique de l'Ouest","r_northafrica":"Afrique du Nord","w_sold":"Vendue !","w_over":"+7 500 $ de plus que l'offre que vous aviez déjà","w_yourquote":"Votre offre locale","w_final":"Prix final Vectiba","w_winning":"Pays gagnant","w_payout":"Votre paiement net","w_route":"Trajet","w_next":"Vectiba gère l'export, la douane, l'expédition et le paiement sécurisé. Vous recevez l'argent dès que la voiture est expédiée — suivez le tout dans l'application.","replay":"↻ Rejouer la démo","hint":"Aperçu · données d'exemple · lecture automatique","n_uae":"Émirats arabes unis","n_dubai":"Dubaï","n_senegal":"Sénégal","n_civ":"Côte d'Ivoire","n_ksa":"Arabie saoudite","n_morocco":"Maroc","n_germany":"Allemagne"},"it":{"assistant":"Assistente Vectiba","voiceai":"Voce · AI","tag_voice":"Voce","tag_typed":"Testo","tag_photos":"Foto","ph_front":"Anteriore","ph_side":"Laterale","ph_interior":"Interni","ph_exterior":"Esterni","c1":"Ciao! Sono Vectiba 👋 Quale auto vuoi vendere?","c2":"Una Toyota Land Cruiser 300 del 2022.","c3":"Ottima scelta. Hai già ricevuto una valutazione con un prezzo?","c4":"Sì — un concessionario locale mi ha offerto $60,000.","c5":"Buono a sapersi. Vediamo se il mondo è disposto a pagare di più. Quanti chilometri ha?","c6":"Circa 31,000 km. Nessun incidente, un solo proprietario.","c7":"Perfetto. Ora scattiamo qualche foto così i concessionari possono fidarsi — anteriore, laterale, interni ed esterni.","c8":"Grazie! Sto analizzando le tue foto…","c9":"✓ Verificata. La carrozzeria è impeccabile, gli interni sono ben tenuti e il cruscotto conferma 31,000 km.","c10":"È tutto pronto. Vuoi battere quell'offerta di $60,000?","c11":"Sì, andiamo 🚀","c12":"Sto aprendo la tua asta mondiale 🌍","v_yourcar":"La tua auto","v_pricetobeat":"Prezzo da battere — la tua valutazione locale","v_sub":"Nessun incidente · 1 proprietario · Verificata dall'AI","v_taking":"La porto dai concessionari di tutto il mondo…","a_live":"Asta in diretta","a_bidders":"Offerenti","a_countries":"Paesi","a_timeleft":"Tempo rimasto","a_highest":"Offerta più alta","a_start":"partenza","a_vsquote":"rispetto alla tua valutazione","r_gulf":"Golfo","r_westafrica":"Africa occidentale","r_northafrica":"Africa del Nord","w_sold":"Venduta!","w_over":"+$7,500 oltre la valutazione che avevi già","w_yourquote":"La tua valutazione locale","w_final":"Prezzo finale Vectiba","w_winning":"Paese vincitore","w_payout":"Il tuo incasso netto","w_route":"Percorso","w_next":"Vectiba si occupa di esportazione, dogana, spedizione e pagamento sicuro. Riceverai i soldi una volta che l'auto sarà spedita — segui tutto nell'app.","replay":"↻ Rivedi la demo","hint":"Anteprima · dati di esempio · si avvia automaticamente","n_uae":"Emirati Arabi Uniti","n_dubai":"Dubai","n_senegal":"Senegal","n_civ":"Costa d'Avorio","n_ksa":"Arabia Saudita","n_morocco":"Marocco","n_germany":"Germania"},"ja":{"assistant":"Vectiba アシスタント","voiceai":"音声 · AI","tag_voice":"音声","tag_typed":"入力","tag_photos":"写真","ph_front":"フロント","ph_side":"サイド","ph_interior":"内装","ph_exterior":"外装","c1":"こんにちは！Vectiba です 👋 どのお車を売りたいですか？","c2":"2022年式の Toyota Land Cruiser 300 です。","c3":"いいですね。すでに提示された価格はありますか？","c4":"はい、地元のディーラーから $60,000 を提示されました。","c5":"承知しました。世界がもっと高く買ってくれるか見てみましょう。走行距離はどれくらいですか？","c6":"31,000 km ほどです。事故歴なし、ワンオーナーです。","c7":"完璧です。では、ディーラーが安心できるように写真を何枚か撮りましょう。フロント、サイド、内装、外装です。","c8":"ありがとうございます！写真を分析しています…","c9":"✓ 確認できました。ボディはきれいで、内装もよく手入れされていて、メーターも 31,000 km で間違いありません。","c10":"準備完了です。あの $60,000 の提示額を超えてみましょうか？","c11":"はい、やりましょう 🚀","c12":"世界中でのオークションを今すぐ開始します 🌍","v_yourcar":"あなたのお車","v_pricetobeat":"超えるべき価格 — 地元での提示額","v_sub":"事故歴なし · ワンオーナー · AI 認証済み","v_taking":"世界中のディーラーにお届けしています…","a_live":"ライブオークション","a_bidders":"入札者","a_countries":"参加国","a_timeleft":"残り時間","a_highest":"最高入札額","a_start":"開始","a_vsquote":"提示額との差","r_gulf":"湾岸","r_westafrica":"西アフリカ","r_northafrica":"北アフリカ","w_sold":"落札！","w_over":"すでにお持ちだった提示額より +$7,500","w_yourquote":"地元での提示額","w_final":"Vectiba 最終価格","w_winning":"落札国","w_payout":"あなたの手取り額","w_route":"ルート","w_next":"Vectiba が輸出、通関、輸送、安全な決済まで対応します。お車の発送後に代金を受け取れます。アプリで進捗を追跡できます。","replay":"↻ デモをもう一度","hint":"プレビュー · サンプルデータ · 自動再生","n_uae":"アラブ首長国連邦","n_dubai":"ドバイ","n_senegal":"セネガル","n_civ":"コートジボワール","n_ksa":"サウジアラビア","n_morocco":"モロッコ","n_germany":"ドイツ"},"ko":{"assistant":"Vectiba 어시스턴트","voiceai":"음성 · AI","tag_voice":"음성","tag_typed":"입력","c1":"안녕하세요, 저는 Vectiba예요. 어떤 차를 파시려고요?","c2":"2022년식 Toyota Land Cruiser 300이요.","c3":"알겠습니다. 혹시 이미 받아보신 견적이 있으세요?","c4":"네 — 동네 딜러가 $60,000 불렀어요.","c5":"그걸 넘으려면 딜러 여러 명이 붙어서 경쟁해야 해요 — 견적 하나는 절대 최선이 아니거든요.","c6":"제가 글로벌 옥션을 열어드릴게요. 걱정 마세요, 제가 다 도와드릴 테니 차량 관련 몇 가지만 알려주세요.","c7":"주행거리는 얼마나 되나요?","c8":"31,000 km 정도요. 무사고에 첫 오너입니다.","c9":"좋아요 — 이제 사진 몇 장만 찍을게요, 딜러들이 믿고 입찰할 수 있게요.","p_title":"사진 체크","p_sub":"10장, 찍는 대로 AI가 바로 확인해요","p_checking":"사진 확인하는 중…","p_done":"10장 전부 확인 완료 ✓","ph_vin":"차대번호","ph_odometer":"계기판","ph_front":"정면","ph_back":"후면","ph_left":"좌측면","ph_right":"우측면","ph_tire":"타이어","ph_trunk":"트렁크","ph_engine":"엔진룸","ph_interior":"실내","cond_title":"컨디션 공개","cond_sub":"딜러들이 눈치 안 보고 확신 있게 입찰하도록","cond_accident_n":"사고","cond_accident_d":"없음","cond_accident_badge":"무사고","cond_exchange_n":"단순교환","cond_exchange_d":"앞범퍼 교환(2023년)","cond_exchange_badge":"1건","cond_scratch_n":"흠집","cond_scratch_d":"뒷범퍼, 운전석 문","cond_scratch_badge":"2군데","cond_note":"✓ 타이어 마모, 경고등, 엔진룸 상태는 사진에서 AI가 자동으로 읽어요 — 따로 안 물어봐요.","v_yourcar":"내 차","v_pricetobeat":"넘어야 할 가격 — 동네 견적","v_sub":"무사고 · 1인 오너 · AI 검증 완료","auc_s1":"네, 이제 다 됐어요. 옥션 열게요.","auc_s2":"전 세계 딜러들에게 알리는 중…","auc_s3":"3일 후…","auc_s4":"입찰이 들어오는 중…","auc_selecting":"낙찰 딜러 고르는 중…","auc_selected":"✓ 모로코 선택 — 최고 조건","pick_badge":"선택됨","a_live":"실시간 경매","a_bidders":"입찰자","a_countries":"참여국","a_timeleft":"남은 시간","a_highest":"최고 입찰가","a_start":"시작","a_vsquote":"내 견적 대비","r_gulf":"걸프","r_westafrica":"서아프리카","r_northafrica":"북아프리카","r_caucasus":"코카서스","r_eastafrica":"동아프리카","r_levant":"레반트","r_southasia":"남아시아","r_centralafrica":"중앙아프리카","w_sold":"낙찰!","w_over":"이미 받았던 견적보다 +$7,500 더","w_yourquote":"내 동네 견적","w_final":"Vectiba 최종가","w_winning":"낙찰 국가","w_payout":"내 실수령액","w_route":"경로","w_next":"수출, 통관, 배송, 안전 결제는 Vectiba가 다 처리해요. 차가 선적되면 대금을 받으실 수 있고, 앱에서 실시간으로 추적할 수 있어요.","replay":"↻ 데모 다시 보기","hint":"미리보기 · 예시 데이터 · 자동 재생","n_uae":"아랍에미리트","n_nigeria":"나이지리아","n_georgia":"조지아","n_kenya":"케냐","n_ksa":"사우디아라비아","n_ghana":"가나","n_jordan":"요르단","n_iraq":"이라크","n_pakistan":"파키스탄","n_senegal":"세네갈","n_benin":"베냉","n_uganda":"우간다","n_tanzania":"탄자니아","n_egypt":"이집트","n_lebanon":"레바논","n_drc":"콩고민주공화국","n_cameroon":"카메룬","n_mali":"말리","n_guinea":"기니","n_togo":"토고","n_civ":"코트디부아르","n_morocco":"모로코","n_germany":"독일"},"nl":{"assistant":"Vectiba Assistent","voiceai":"Spraak · AI","tag_voice":"Spraak","tag_typed":"Getypt","tag_photos":"Foto's","ph_front":"Voorkant","ph_side":"Zijkant","ph_interior":"Interieur","ph_exterior":"Exterieur","c1":"Hoi! Ik ben Vectiba 👋 Welke auto wil je verkopen?","c2":"Een Toyota Land Cruiser 300 uit 2022.","c3":"Mooi. Heb je al een prijs gekregen?","c4":"Ja — een lokale dealer bood $60,000.","c5":"Goed om te weten. Eens kijken of de wereld meer wil betalen. Hoeveel kilometer heeft hij gereden?","c6":"Zo'n 31,000 km. Geen schade, één eigenaar.","c7":"Perfect. Laten we nu een paar foto's maken zodat dealers hem kunnen vertrouwen — voorkant, zijkant, interieur en exterieur.","c8":"Bedankt! Ik analyseer je foto's…","c9":"✓ Geverifieerd. De carrosserie ziet er netjes uit, het interieur is goed onderhouden en het dashboard bevestigt 31,000 km.","c10":"Alles is klaar. Klaar om die $60,000 te overtreffen?","c11":"Ja, we gaan ervoor 🚀","c12":"Ik open nu je wereldwijde veiling 🌍","v_yourcar":"Jouw auto","v_pricetobeat":"Te verslaan prijs — je lokale bod","v_sub":"Geen schade · 1 eigenaar · AI-geverifieerd","v_taking":"We brengen hem naar dealers wereldwijd…","a_live":"Live veiling","a_bidders":"Bieders","a_countries":"Landen","a_timeleft":"Resterende tijd","a_highest":"Hoogste bod","a_start":"start","a_vsquote":"t.o.v. jouw bod","r_gulf":"Golfregio","r_westafrica":"West-Afrika","r_northafrica":"Noord-Afrika","w_sold":"Verkocht!","w_over":"+$7,500 boven het bod dat je al had","w_yourquote":"Je lokale bod","w_final":"Vectiba eindprijs","w_winning":"Winnend land","w_payout":"Je netto-uitbetaling","w_route":"Route","w_next":"Vectiba regelt export, douane, verzending en veilige betaling. Je krijgt het geld zodra de auto wordt verscheept — volg het in de app.","replay":"↻ Demo opnieuw afspelen","hint":"Voorbeeld · voorbeeldgegevens · speelt automatisch af","n_uae":"Verenigde Arabische Emiraten","n_dubai":"Dubai","n_senegal":"Senegal","n_civ":"Ivoorkust","n_ksa":"Saoedi-Arabië","n_morocco":"Marokko","n_germany":"Duitsland"},"pl":{"assistant":"Asystent Vectiba","voiceai":"Głos · AI","tag_voice":"Głos","tag_typed":"Tekst","tag_photos":"Zdjęcia","ph_front":"Przód","ph_side":"Bok","ph_interior":"Wnętrze","ph_exterior":"Nadwozie","c1":"Cześć! Jestem Vectiba 👋 Jakie auto chcesz sprzedać?","c2":"Toyota Land Cruiser 300 z 2022 roku.","c3":"Świetnie. Masz już jakąś wycenę?","c4":"Tak — lokalny dealer zaproponował 60 000 $.","c5":"Dobrze wiedzieć. Zobaczmy, czy świat zapłaci więcej. Ile ma przebiegu?","c6":"Około 31,000 km. Bez wypadków, jeden właściciel.","c7":"Idealnie. Teraz zróbmy kilka zdjęć, żeby dealerzy mogli mu zaufać — przód, bok, wnętrze i nadwozie.","c8":"Dzięki! Analizuję Twoje zdjęcia…","c9":"✓ Zweryfikowano. Nadwozie wygląda czysto, wnętrze zadbane, a licznik potwierdza 31,000 km.","c10":"Wszystko gotowe. Gotów pobić tę ofertę 60 000 $?","c11":"Tak, działamy 🚀","c12":"Otwieram Twoją światową aukcję 🌍","v_yourcar":"Twoje auto","v_pricetobeat":"Cena do pobicia — Twoja lokalna wycena","v_sub":"Bezwypadkowy · 1 właściciel · zweryfikowane przez AI","v_taking":"Prezentujemy je dealerom na całym świecie…","a_live":"Aukcja na żywo","a_bidders":"Licytujący","a_countries":"Kraje","a_timeleft":"Pozostały czas","a_highest":"Najwyższa oferta","a_start":"start","a_vsquote":"vs Twoja wycena","r_gulf":"Zatoka Perska","r_westafrica":"Afryka Zachodnia","r_northafrica":"Afryka Północna","w_sold":"Sprzedane!","w_over":"+7 500 $ ponad wycenę, którą już miałeś","w_yourquote":"Twoja lokalna wycena","w_final":"Cena końcowa Vectiba","w_winning":"Zwycięski kraj","w_payout":"Twoja wypłata netto","w_route":"Trasa","w_next":"Vectiba zajmuje się eksportem, cłem, transportem i bezpieczną płatnością. Pieniądze otrzymasz, gdy auto zostanie wysłane — śledź to w aplikacji.","replay":"↻ Powtórz demo","hint":"Podgląd · dane przykładowe · odtwarza się automatycznie","n_uae":"Zjednoczone Emiraty Arabskie","n_dubai":"Dubaj","n_senegal":"Senegal","n_civ":"Wybrzeże Kości Słoniowej","n_ksa":"Arabia Saudyjska","n_morocco":"Maroko","n_germany":"Niemcy"},"pt":{"assistant":"Assistente Vectiba","voiceai":"Voz · IA","tag_voice":"Voz","tag_typed":"Escrito","tag_photos":"Fotos","ph_front":"Frente","ph_side":"Lateral","ph_interior":"Interior","ph_exterior":"Exterior","c1":"Olá! Sou o Vectiba 👋 Que carro está a pensar vender?","c2":"Um Toyota Land Cruiser 300 de 2022.","c3":"Boa escolha. Já tem algum preço que lhe tenham proposto?","c4":"Sim — um stand local ofereceu $60,000.","c5":"Bom saber. Vamos ver se o mundo paga mais. Quantos quilómetros tem?","c6":"Cerca de 31,000 km. Sem acidentes, um único dono.","c7":"Perfeito. Agora vamos tirar algumas fotos para que os stands possam confiar — frente, lateral, interior e exterior.","c8":"Obrigado! A analisar as suas fotos…","c9":"✓ Verificado. A carroçaria parece impecável, o interior está bem cuidado e o painel confirma os 31,000 km.","c10":"Está tudo pronto. Preparado para superar essa proposta de $60,000?","c11":"Sim, vamos a isso 🚀","c12":"A abrir o seu leilão mundial agora 🌍","v_yourcar":"O seu carro","v_pricetobeat":"Preço a bater — a sua proposta local","v_sub":"Sem acidentes · 1 dono · Verificado por IA","v_taking":"A levá-lo aos stands em todo o mundo…","a_live":"Leilão em direto","a_bidders":"Licitadores","a_countries":"Países","a_timeleft":"Tempo restante","a_highest":"Licitação mais alta","a_start":"início","a_vsquote":"vs a sua proposta","r_gulf":"Golfo","r_westafrica":"África Ocidental","r_northafrica":"Norte de África","w_sold":"Vendido!","w_over":"+$7,500 acima da proposta que já tinha","w_yourquote":"A sua proposta local","w_final":"Preço final Vectiba","w_winning":"País vencedor","w_payout":"O seu valor líquido","w_route":"Rota","w_next":"A Vectiba trata da exportação, alfândega, transporte e pagamento seguro. Recebe o dinheiro assim que o carro for expedido — acompanhe tudo na app.","replay":"↻ Repetir demo","hint":"Pré-visualização · dados de exemplo · reproduz automaticamente","n_uae":"Emirados Árabes Unidos","n_dubai":"Dubai","n_senegal":"Senegal","n_civ":"Costa do Marfim","n_ksa":"Arábia Saudita","n_morocco":"Marrocos","n_germany":"Alemanha"},"ru":{"assistant":"Ассистент Vectiba","voiceai":"Голос · ИИ","tag_voice":"Голос","tag_typed":"Текст","tag_photos":"Фото","ph_front":"Спереди","ph_side":"Сбоку","ph_interior":"Салон","ph_exterior":"Кузов","c1":"Привет! Я Vectiba 👋 Какую машину вы хотите продать?","c2":"Toyota Land Cruiser 300 2022 года.","c3":"Отлично. У вас уже есть цена, которую вам предложили?","c4":"Да — местный дилер предложил $60,000.","c5":"Хорошо. Давайте посмотрим, заплатит ли мир больше. Сколько километров пробега?","c6":"Около 31,000 km. Без аварий, один владелец.","c7":"Отлично. Теперь давайте сделаем несколько фото, чтобы дилеры вам доверяли — спереди, сбоку, салон и кузов.","c8":"Спасибо! Анализирую ваши фото…","c9":"✓ Проверено. Кузов выглядит чистым, салон в хорошем состоянии, а панель приборов подтверждает 31,000 km.","c10":"Всё готово. Готовы побить это предложение в $60,000?","c11":"Да, поехали 🚀","c12":"Открываю ваш всемирный аукцион 🌍","v_yourcar":"Ваша машина","v_pricetobeat":"Цена, которую нужно побить — ваше местное предложение","v_sub":"Без аварий · 1 владелец · проверено ИИ","v_taking":"Показываем дилерам по всему миру…","a_live":"Аукцион в реальном времени","a_bidders":"Участники","a_countries":"Страны","a_timeleft":"Осталось времени","a_highest":"Высшая ставка","a_start":"старт","a_vsquote":"против вашего предложения","r_gulf":"Персидский залив","r_westafrica":"Западная Африка","r_northafrica":"Северная Африка","w_sold":"Продано!","w_over":"+$7,500 сверх предложения, которое у вас уже было","w_yourquote":"Ваше местное предложение","w_final":"Итоговая цена Vectiba","w_winning":"Страна-победитель","w_payout":"Ваша чистая выплата","w_route":"Маршрут","w_next":"Vectiba берёт на себя экспорт, таможню, доставку и безопасную оплату. Вы получите деньги, как только машина отправится — отслеживайте это в приложении.","replay":"↻ Повторить демо","hint":"Превью · демо-данные · воспроизводится автоматически","n_uae":"ОАЭ","n_dubai":"Дубай","n_senegal":"Сенегал","n_civ":"Кот-д’Ивуар","n_ksa":"Саудовская Аравия","n_morocco":"Марокко","n_germany":"Германия"},"sw":{"assistant":"Msaidizi wa Vectiba","voiceai":"Sauti · AI","tag_voice":"Sauti","tag_typed":"Iliyoandikwa","tag_photos":"Picha","ph_front":"Mbele","ph_side":"Ubavu","ph_interior":"Ndani","ph_exterior":"Nje","c1":"Habari! Mimi ni Vectiba 👋 Unataka kuuza gari gani?","c2":"Toyota Land Cruiser 300 ya mwaka 2022.","c3":"Vizuri. Je, tayari una bei ambayo umeshapewa?","c4":"Ndiyo — muuzaji wa hapa amenipa $60,000.","c5":"Nzuri kujua. Hebu tuone kama dunia italipa zaidi. Ina kilomita ngapi?","c6":"Karibu 31,000 km. Hakuna ajali, mmiliki mmoja.","c7":"Poa. Sasa hebu tupige picha chache ili wauzaji waweze kuiamini — mbele, ubavu, ndani na nje.","c8":"Asante! Ninachambua picha zako…","c9":"✓ Imethibitishwa. Mwili unaonekana safi, ndani imetunzwa vizuri, na dashibodi inathibitisha 31,000 km.","c10":"Uko tayari kabisa. Uko tayari kushinda bei ile ya $60,000?","c11":"Ndiyo, twende 🚀","c12":"Ninafungua mnada wako wa kimataifa sasa 🌍","v_yourcar":"Gari lako","v_pricetobeat":"Bei ya kushinda — nukuu yako ya hapa","v_sub":"Hakuna ajali · Mmiliki 1 · Imethibitishwa na AI","v_taking":"Ninaipeleka kwa wauzaji duniani kote…","a_live":"Mnada wa moja kwa moja","a_bidders":"Wanaozabuni","a_countries":"Nchi","a_timeleft":"Muda uliobaki","a_highest":"Zabuni ya juu zaidi","a_start":"kuanzia","a_vsquote":"dhidi ya nukuu yako","r_gulf":"Ghuba","r_westafrica":"Afrika Magharibi","r_northafrica":"Afrika Kaskazini","w_sold":"Imeuzwa!","w_over":"+$7,500 zaidi ya nukuu uliyokuwa nayo tayari","w_yourquote":"Nukuu yako ya hapa","w_final":"Bei ya mwisho ya Vectiba","w_winning":"Nchi iliyoshinda","w_payout":"Malipo yako halisi","w_route":"Njia","w_next":"Vectiba inashughulikia usafirishaji nje, forodha, meli na malipo salama. Utapata pesa mara gari litakaposafirishwa — lifuatilie kwenye programu.","replay":"↻ Cheza tena onyesho","hint":"Hakikisho · data ya sampuli · inacheza yenyewe","n_uae":"Falme za Kiarabu","n_dubai":"Dubai","n_senegal":"Senegali","n_civ":"Côte d'Ivoire","n_ksa":"Saudi Arabia","n_morocco":"Moroko","n_germany":"Ujerumani"},"tr":{"assistant":"Vectiba Asistan","voiceai":"Sesli · Yapay Zekâ","tag_voice":"Sesli","tag_typed":"Yazılı","tag_photos":"Fotoğraflar","ph_front":"Ön","ph_side":"Yan","ph_interior":"İç","ph_exterior":"Dış","c1":"Merhaba! Ben Vectiba 👋 Hangi aracı satmak istiyorsunuz?","c2":"2022 model bir Toyota Land Cruiser 300.","c3":"Harika. Size verilmiş bir fiyat teklifi var mı?","c4":"Evet — yerel bir bayi $60,000 teklif etti.","c5":"Bilmek güzel. Bakalım dünya daha fazlasını ödeyecek mi. Kaç kilometrede?","c6":"Yaklaşık 31,000 km. Kazasız, tek sahibinden.","c7":"Mükemmel. Şimdi bayilerin güvenmesi için birkaç fotoğraf çekelim — ön, yan, iç ve dış.","c8":"Teşekkürler! Fotoğraflarınız analiz ediliyor…","c9":"✓ Doğrulandı. Kaporta temiz görünüyor, iç mekân bakımlı ve gösterge paneli 31,000 km'yi teyit ediyor.","c10":"Her şey hazır. O $60,000 teklifi geçmeye hazır mısınız?","c11":"Evet, başlayalım 🚀","c12":"Dünya çapındaki açık artırmanız şimdi açılıyor 🌍","v_yourcar":"Aracınız","v_pricetobeat":"Geçilecek fiyat — yerel teklifiniz","v_sub":"Kazasız · Tek sahibinden · Yapay zekâ ile doğrulandı","v_taking":"Dünyanın dört bir yanındaki bayilere ulaştırılıyor…","a_live":"Canlı açık artırma","a_bidders":"Teklif verenler","a_countries":"Ülkeler","a_timeleft":"Kalan süre","a_highest":"En yüksek teklif","a_start":"başlangıç","a_vsquote":"teklifinize göre","r_gulf":"Körfez","r_westafrica":"Batı Afrika","r_northafrica":"Kuzey Afrika","w_sold":"Satıldı!","w_over":"Elinizdeki teklifin $7,500 üzerinde","w_yourquote":"Yerel teklifiniz","w_final":"Vectiba nihai fiyatı","w_winning":"Kazanan ülke","w_payout":"Net ödemeniz","w_route":"Güzergâh","w_next":"Vectiba ihracat, gümrük, nakliye ve güvenli ödemeyi üstlenir. Araç sevk edildiğinde paranızı alırsınız — uygulamadan takip edin.","replay":"↻ Demoyu tekrar oynat","hint":"Önizleme · örnek veri · otomatik oynatılır","n_uae":"Birleşik Arap Emirlikleri","n_dubai":"Dubai","n_senegal":"Senegal","n_civ":"Fildişi Sahili","n_ksa":"Suudi Arabistan","n_morocco":"Fas","n_germany":"Almanya"},"zh":{"assistant":"Vectiba 助手","voiceai":"语音 · AI","tag_voice":"语音","tag_typed":"文字","tag_photos":"照片","ph_front":"车头","ph_side":"侧面","ph_interior":"内饰","ph_exterior":"外观","c1":"你好！我是 Vectiba 👋 你想卖哪辆车？","c2":"一辆 2022 款 Toyota Land Cruiser 300。","c3":"不错。你手上已经有别人给的报价了吗？","c4":"有——当地一家经销商出价 $60,000。","c5":"知道了。我们来看看全世界愿不愿意出更高的价。行驶了多少公里？","c6":"大概 31,000 km。无事故，一手车。","c7":"太好了。现在我们拍几张照片，让经销商放心——车头、侧面、内饰和外观。","c8":"谢谢！正在分析你的照片…","c9":"✓ 已核实。车身看着很干净，内饰保养得不错，仪表盘也确认了 31,000 km。","c10":"一切就绪。准备好超过那个 $60,000 的报价了吗？","c11":"好，开始吧 🚀","c12":"正在为你开启全球拍卖 🌍","v_yourcar":"你的车","v_pricetobeat":"待超越的价格——你的本地报价","v_sub":"无事故 · 一手车 · AI 已核实","v_taking":"正在把它推向全球经销商…","a_live":"实时拍卖","a_bidders":"竞拍人","a_countries":"国家","a_timeleft":"剩余时间","a_highest":"最高出价","a_start":"起拍","a_vsquote":"相比你的报价","r_gulf":"海湾地区","r_westafrica":"西非","r_northafrica":"北非","w_sold":"成交！","w_over":"比你手上已有的报价高出 +$7,500","w_yourquote":"你的本地报价","w_final":"Vectiba 最终成交价","w_winning":"胜出国家","w_payout":"你的净到手金额","w_route":"路线","w_next":"Vectiba 全程负责出口、清关、运输和安全付款。车辆发出后你就能拿到钱——在 App 里全程追踪。","replay":"↻ 重播演示","hint":"预览 · 示例数据 · 自动播放","n_uae":"阿联酋","n_dubai":"迪拜","n_senegal":"塞内加尔","n_civ":"科特迪瓦","n_ksa":"沙特阿拉伯","n_morocco":"摩洛哥","n_germany":"德国"}};
 const L = (new URLSearchParams(location.search).get('lang')||'en').toLowerCase();
-const D = T[L] || T.en;
+// 새로 추가된 키가 아직 번역 안 된 언어는 영어로 자연스럽게 대체(빈 값/undefined 노출 방지).
+const D = Object.assign({}, T.en, T[L]||{});
 document.documentElement.lang = L;
 if(['ar','fa'].includes(L)) document.documentElement.dir='rtl';
 function applyLabels(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(D[k]!==undefined)el.textContent=D[k];});}
 applyLabels();
-$('wonCountry').textContent = D.n_uae + ' 🇦🇪';
-$('wonRoute').textContent = D.n_germany + ' → ' + D.n_dubai;
+$('wonCountry').textContent = D.n_morocco + ' 🇲🇦';
+$('wonRoute').textContent = D.n_germany + ' → ' + D.n_morocco;
+
+const PHOTOS=[
+  {label:D.ph_vin},
+  {label:D.ph_odometer},
+  {label:D.ph_front,img:'img/front.jpg'},
+  {label:D.ph_back,img:'img/ext.jpg'},
+  {label:D.ph_left,img:'img/side.jpg'},
+  {label:D.ph_right},
+  {label:D.ph_tire},
+  {label:D.ph_trunk},
+  {label:D.ph_engine},
+  {label:D.ph_interior,img:'img/interior.jpg'},
+];
+const CONDITION=[
+  {n:D.cond_accident_n,d:D.cond_accident_d,badge:D.cond_accident_badge,ok:true},
+  {n:D.cond_exchange_n,d:D.cond_exchange_d,badge:D.cond_exchange_badge,ok:false},
+  {n:D.cond_scratch_n,d:D.cond_scratch_d,badge:D.cond_scratch_badge,ok:false},
+];
 
 const SCRIPT=[
   {who:'ai',t:D.c1},
@@ -227,21 +317,35 @@ const SCRIPT=[
   {who:'ai',t:D.c3},
   {who:'typed',t:D.c4},
   {who:'ai',t:D.c5},
-  {who:'voice',t:D.c6},
+  {who:'ai',t:D.c6},
   {who:'ai',t:D.c7},
-  {who:'photos',imgs:[[D.ph_front,'img/front.jpg'],[D.ph_side,'img/side.jpg'],[D.ph_interior,'img/interior.jpg'],[D.ph_exterior,'img/ext.jpg']]},
-  {who:'ai',t:D.c8},
+  {who:'voice',t:D.c8},
   {who:'ai',t:D.c9},
-  {who:'ai',t:D.c10},
-  {who:'typed',t:D.c11},
-  {who:'ai',t:D.c12},
 ];
+const AUC_STATUS=[D.auc_s1, D.auc_s2, D.auc_s3, D.auc_s4];
 const BIDS=[
-  {fl:'🇸🇳',who:D.n_senegal,sub:D.r_westafrica,amt:58000},
-  {fl:'🇨🇮',who:D.n_civ,sub:D.r_westafrica,amt:61500},
-  {fl:'🇸🇦',who:D.n_ksa,sub:D.r_gulf,amt:63200},
-  {fl:'🇲🇦',who:D.n_morocco,sub:D.r_northafrica,amt:65000},
-  {fl:'🇦🇪',who:D.n_uae,sub:D.n_dubai,amt:67500},
+  {fl:'🇦🇪',who:D.n_uae,sub:D.r_gulf,amt:52000},
+  {fl:'🇳🇬',who:D.n_nigeria,sub:D.r_westafrica,amt:53500},
+  {fl:'🇬🇪',who:D.n_georgia,sub:D.r_caucasus,amt:54800},
+  {fl:'🇰🇪',who:D.n_kenya,sub:D.r_eastafrica,amt:55200},
+  {fl:'🇸🇦',who:D.n_ksa,sub:D.r_gulf,amt:56900},
+  {fl:'🇬🇭',who:D.n_ghana,sub:D.r_westafrica,amt:57800},
+  {fl:'🇯🇴',who:D.n_jordan,sub:D.r_levant,amt:58500},
+  {fl:'🇮🇶',who:D.n_iraq,sub:D.r_levant,amt:59200},
+  {fl:'🇵🇰',who:D.n_pakistan,sub:D.r_southasia,amt:60100},
+  {fl:'🇸🇳',who:D.n_senegal,sub:D.r_westafrica,amt:61000},
+  {fl:'🇧🇯',who:D.n_benin,sub:D.r_westafrica,amt:61500},
+  {fl:'🇺🇬',who:D.n_uganda,sub:D.r_eastafrica,amt:62300},
+  {fl:'🇹🇿',who:D.n_tanzania,sub:D.r_eastafrica,amt:62800},
+  {fl:'🇪🇬',who:D.n_egypt,sub:D.r_northafrica,amt:63200},
+  {fl:'🇱🇧',who:D.n_lebanon,sub:D.r_levant,amt:63900},
+  {fl:'🇨🇩',who:D.n_drc,sub:D.r_centralafrica,amt:64400},
+  {fl:'🇨🇲',who:D.n_cameroon,sub:D.r_centralafrica,amt:65000},
+  {fl:'🇲🇱',who:D.n_mali,sub:D.r_westafrica,amt:65300},
+  {fl:'🇬🇳',who:D.n_guinea,sub:D.r_westafrica,amt:65800},
+  {fl:'🇹🇬',who:D.n_togo,sub:D.r_westafrica,amt:66400},
+  {fl:'🇨🇮',who:D.n_civ,sub:D.r_westafrica,amt:67000},
+  {fl:'🇲🇦',who:D.n_morocco,sub:D.r_northafrica,amt:67500},
 ];
 
 const scrollMsgs=()=>{const m=$('msgs');m.scrollTop=m.scrollHeight;};
@@ -251,8 +355,6 @@ async function addMsg(m){
   let html;
   if(m.who==='voice') html='<div class="utag"><div class="vw"><i></i><i></i><i></i></div>'+D.tag_voice+'</div>'+m.t;
   else if(m.who==='typed') html='<div class="utag">⌨️ '+D.tag_typed+'</div>'+m.t;
-  else if(m.who==='photos'){ el.style.maxWidth='90%';
-    html='<div class="utag">📷 '+D.tag_photos+' · '+m.imgs.length+'</div><div class="pgrid">'+m.imgs.map(x=>`<div class="pt" style="background-image:url('${x[1]}')"><span>${x[0]}</span></div>`).join('')+'</div>'; }
   else html=m.t;
   el.innerHTML=html;
   $('msgs').appendChild(el); scrollMsgs();
@@ -264,45 +366,106 @@ function countTo(el,to,dur){
   (function step(t){const p=Math.min(1,(t-t0)/dur);el.textContent=fmt(Math.round(from+(to-from)*p));if(p<1)requestAnimationFrame(step);})(t0);
 }
 
+function buildPhotoGrid(){
+  const grid=$('pgrid2'); grid.innerHTML='';
+  PHOTOS.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='ptile'+(p.img?'':' icon');
+    if(p.img) el.style.backgroundImage=`url('${p.img}')`;
+    el.innerHTML=(p.img?'':CAM_ICON)+`<span>${p.label}</span><div class="ck">✓</div>`;
+    grid.appendChild(el);
+  });
+}
+async function animatePhotos(){
+  const tiles=[...$('pgrid2').children];
+  for(const t of tiles){ t.classList.add('show'); await wait(80); }
+  await wait(350);
+  for(const t of tiles){ t.classList.add('checked'); await wait(110); }
+}
+
+function buildConditionRows(){
+  const wrap=$('cRows'); wrap.innerHTML='';
+  CONDITION.forEach(c=>{
+    const el=document.createElement('div'); el.className='cRow';
+    el.innerHTML=`<div class="cIcon"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div><div class="cn">${c.n}</div><div class="cd">${c.d}</div></div>
+      <span class="cbadge ${c.ok?'ok':'warn'}">${c.badge}</span>`;
+    wrap.appendChild(el);
+  });
+}
+async function animateCondition(){
+  const rows=[...$('cRows').children];
+  for(const r of rows){ r.classList.add('show'); await wait(220); }
+  await wait(150);
+  $('cNote').classList.add('show');
+}
+
 async function play(){
   $('replay').style.display='none';
   // reset
   $('msgs').innerHTML=''; $('bids').innerHTML='';
+  $('pgrid2').innerHTML=''; $('cRows').innerHTML=''; $('cNote').classList.remove('show');
+  $('pFoot').textContent=D.p_checking;
   $('aBidders').textContent='0'; $('aCountries').textContent='0';
   $('topAmt').textContent='$60,000'; $('topUp').textContent=D.a_start;
-  $('valAmt').textContent='$60,000';
+  $('valAmt').textContent='$60,000'; $('aucNote').textContent='';
 
   scr('home'); await wait(1800);
   scr('chat');
   for(const m of SCRIPT){
     if(m.who==='ai'){ const d=typingOn(); await wait(900); d.remove(); await addMsg(m); await wait(1150); }
-    else { await wait(650); await addMsg(m); await wait(m.who==='photos'?1500:1000); }
+    else { await wait(650); await addMsg(m); await wait(1000); }
   }
   await wait(700);
-  scr('value'); await wait(2400);
-  scr('auc'); await wait(600);
-  let n=0, cset=new Set();
+
+  scr('photos');
+  buildPhotoGrid();
+  await animatePhotos();
+  $('pFoot').textContent=D.p_done;
+  await wait(1500);
+
+  scr('condition');
+  buildConditionRows();
+  await animateCondition();
+  await wait(2000);
+
+  scr('value');
+  for(const t of AUC_STATUS){ $('aucStatus').textContent=t; await wait(750); }
+  await wait(300);
+
+  scr('auc'); await wait(500);
+  let n=0, cset=new Set(), topSoFar=0, rows=[];
   for(const b of BIDS){
-    n++; cset.add(b.fl);
+    n++; cset.add(b.fl); topSoFar=Math.max(topSoFar,b.amt);
     const el=document.createElement('div'); el.className='bid';
-    el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span>`;
-    $('bids').prepend(el); requestAnimationFrame(()=>el.classList.add('show'));
+    el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span><span class="pick">${D.pick_badge}</span>`;
+    $('bids').prepend(el); rows.push(el); requestAnimationFrame(()=>el.classList.add('show'));
     $('aBidders').textContent=n+2; $('aCountries').textContent=cset.size;
-    countTo($('topAmt'),b.amt,600);
-    $('topUp').textContent='+'+Math.round((b.amt-60000)/60000*100)+'% '+D.a_vsquote;
-    await wait(1250);
+    countTo($('topAmt'),topSoFar,450);
+    $('topUp').textContent='+'+Math.round((topSoFar-60000)/60000*100)+'% '+D.a_vsquote;
+    await wait(n>BIDS.length-3?900:280);
   }
-  await wait(1400);
+  await wait(900);
+  $('aucNote').textContent=D.auc_selecting;
+  await wait(1300);
+  rows[rows.length-1].classList.add('selected');
+  $('aucNote').textContent=D.auc_selected;
+  await wait(1800);
+
   scr('won');
   await wait(1200);
   $('replay').style.display='flex';
 }
-window.go=n=>['home','chat','value','auc','won'].forEach(x=>$('s-'+x).classList.toggle('on',x===n));
+window.go=n=>SCREENS.forEach(x=>$('s-'+x).classList.toggle('on',x===n));
 if(location.hash==='#static'){
-  let cs=new Set();
-  BIDS.forEach(b=>{cs.add(b.fl);const el=document.createElement('div');el.className='bid show';el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span>`;$('bids').prepend(el);});
-  $('aBidders').textContent='7';$('aCountries').textContent=cs.size;$('topAmt').textContent='$67,500';$('topUp').textContent='+12.5% '+D.a_vsquote;
+  let cs=new Set(); const bidRows=[];
+  BIDS.forEach(b=>{cs.add(b.fl);const el=document.createElement('div');el.className='bid show';el.innerHTML=`<span class="fl">${b.fl}</span><span class="who">${b.who}<small>${b.sub}</small></span><span class="amt">${fmt(b.amt)}</span><span class="pick">${D.pick_badge}</span>`;$('bids').prepend(el);bidRows.push(el);});
+  bidRows[bidRows.length-1].classList.add('selected');
+  $('aucNote').textContent=D.auc_selected;
+  $('aBidders').textContent=BIDS.length+2;$('aCountries').textContent=cs.size;$('topAmt').textContent='$67,500';$('topUp').textContent='+12.5% '+D.a_vsquote;
   SCRIPT.forEach(addMsg); setTimeout(()=>document.querySelectorAll('.msg').forEach(m=>m.classList.add('show')),50);
+  buildPhotoGrid(); [...$('pgrid2').children].forEach(t=>{t.classList.add('show','checked')}); $('pFoot').textContent=D.p_done;
+  buildConditionRows(); [...$('cRows').children].forEach(r=>r.classList.add('show')); $('cNote').classList.add('show');
   $('replay').style.display='flex';
 }else{ play(); }
 </script>
