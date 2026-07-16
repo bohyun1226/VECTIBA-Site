@@ -30,22 +30,20 @@
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
-  /* 지도는 히어로 하단 절반에만 깔림 — 헤드라인·리드 문장과 절대 안 겹침 */
-  .heroMap{position:absolute;left:0;right:0;top:30%;bottom:0;z-index:0;pointer-events:none;opacity:.5}
-  .heroMap svg{-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%);mask-image:linear-gradient(180deg,transparent 0%,#000 22%)}
-  .hero{position:relative;z-index:1;padding:60px 0 44px;display:flex;flex-direction:column}
+  /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
+  .heroMap{position:relative;height:400px;pointer-events:none}
+  @media(max-width:820px){.heroMap{height:260px}}
+  .hero{position:relative;z-index:1;padding:60px 0 0;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:40px;line-height:1.16;font-weight:800;margin:0 0 18px;letter-spacing:-.5px}
   .lead{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:540px}
-  /* 카드 블록은 히어로 맨 아래로 — 사이 여백으로 지도가 보인다 */
-  .heroWin{margin-top:210px}
+  .heroWin{margin-top:8px;padding-bottom:48px}
   .heroWin>h3{margin:0 0 4px;font-size:20px;font-weight:800}
   .heroWin>p{margin:0 0 20px;color:var(--sub);font-size:15px}
   .heroWin .card{background:rgba(255,255,255,.88);backdrop-filter:blur(5px);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 14px 34px rgba(24,48,40,.09);transition:transform .2s,box-shadow .2s}
   .heroWin .card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(24,48,40,.13)}
   .heroWin .card .ic{width:46px;height:46px;border-radius:13px;background:#EAF3EF;display:flex;align-items:center;justify-content:center;font-size:23px;margin-bottom:14px}
   .heroWin .card h3{font-size:16px;line-height:1.45}
-  @media(max-width:820px){.heroWin{margin-top:120px}}
   @media(max-width:820px){h1{font-size:32px}}
   section{padding:54px 0}
   .stag{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -161,23 +159,23 @@ __LANG_OPTIONS__
 
 <a id="top"></a>
 <div class="heroSection">
-  <div class="heroMap" id="heroMap"></div>
   <header class="wrap hero">
     <div>
       <span class="kicker" data-i18n="hero_kicker">Buy and sell cars across borders — worldwide</span>
       <h1 data-i18n="hero_h1">We connect people who could never meet — with AI.</h1>
       <p class="lead" data-i18n="hero_def">We're building a trusted way to trade cars.</p>
     </div>
-    <div class="heroWin">
-      <h3 data-i18n="art_h3">Everyone comes out ahead</h3>
-      <p data-i18n="art_p">One deal, three winners.</p>
-      <div class="grid3">
-        <div class="card"><div class="ic">🚗</div><h3 data-i18n="art_s1">Seller — a higher price</h3></div>
-        <div class="card"><div class="ic">🤝</div><h3 data-i18n="art_s2">Dealer — fair purchase, real margin</h3></div>
-        <div class="card"><div class="ic">🚢</div><h3 data-i18n="art_s3">Forwarder — more deals, more revenue</h3></div>
-      </div>
-    </div>
   </header>
+  <div class="heroMap" id="heroMap"></div>
+  <div class="wrap heroWin">
+    <h3 data-i18n="art_h3">Everyone comes out ahead</h3>
+    <p data-i18n="art_p">One deal, three winners.</p>
+    <div class="grid3">
+      <div class="card"><div class="ic">🚗</div><h3 data-i18n="art_s1">Seller — a higher price</h3></div>
+      <div class="card"><div class="ic">🤝</div><h3 data-i18n="art_s2">Dealer — fair purchase, real margin</h3></div>
+      <div class="card"><div class="ic">🚢</div><h3 data-i18n="art_s3">Forwarder — more deals, more revenue</h3></div>
+    </div>
+  </div>
 </div>
 
 <section id="seller" class="white">
