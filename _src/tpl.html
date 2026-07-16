@@ -134,16 +134,21 @@
   .flowlabel{font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;display:inline-block;margin:6px 0 14px}
   .connector{text-align:center;color:rgba(255,255,255,.9);font-weight:600;font-size:15px;margin:26px 0 18px}
   /* 팀 섹션: 글 왼쪽·사진 오른쪽 + 사진 뒤 골드 블록 (2026-07-16 시안 승인, RTL은 그리드가 자동 반전) */
-  .founder2{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;margin-top:8px}
-  .fphoto{position:relative}
-  .fphoto::before{content:'';position:absolute;right:-20px;top:-20px;width:170px;height:170px;border-radius:24px;background:var(--gold);opacity:.9}
-  [dir=rtl] .fphoto::before{right:auto;left:-20px}
-  .fphoto img{position:relative;width:100%;display:block;border-radius:16px;box-shadow:0 22px 54px rgba(0,0,0,.32)}
-  .fname{font-size:36px;font-weight:700;line-height:1.1;color:#FBF6EC}
-  .ftitle{color:var(--goldlight);font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;margin:5px 0 12px}
-  .teamnote{margin-top:26px;color:var(--sub);font-size:15px;max-width:760px}
-  .teamquote{margin:22px 0 4px;padding-left:16px;border-left:3px solid var(--gold);font-size:17px;font-weight:600;line-height:1.6;color:#fff;max-width:640px}
-  @media(max-width:820px){.founder2{grid-template-columns:1fr}.fphoto{max-width:300px;margin-top:10px}}
+  /* 팀 섹션: 현우진 포스터식 (2026-07-16) — 밝은 배경 + 초대형 이름 + 에메랄드 띠 직함 +
+     배경 오려낸 대표 사진(img/dustin-cutout.png)이 골드 라운드 블록 위에 서서 섹션 바닥에 붙음 */
+  .teamhero{background:var(--bg);padding-bottom:0;overflow:hidden}
+  .teamgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+  .tleft{padding:10px 0 56px}
+  .tkick{font-size:19px;font-weight:600;color:var(--sub);margin:2px 0 22px}
+  .tname{font-size:clamp(52px,6.5vw,86px);font-weight:800;line-height:1.02;color:#183028;letter-spacing:-1px}
+  .trolebar{display:inline-block;background:var(--green);color:#fff;font-weight:700;font-size:16px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 24px;margin:20px 0 26px}
+  .tp{margin:0 0 12px;font-size:15.5px;color:var(--sub);line-height:1.75;max-width:540px}
+  .tquote{margin:20px 0 0;padding-left:16px;border-left:3px solid var(--gold);font-size:16.5px;font-weight:600;line-height:1.6;color:#183028;max-width:560px}
+  .tphoto{position:relative;align-self:end}
+  .tphoto::before{content:'';position:absolute;left:50%;top:26px;transform:translateX(-38%);width:min(84%,360px);aspect-ratio:1;border-radius:40px;background:var(--gold);opacity:.92}
+  .tphoto img{position:relative;display:block;width:min(100%,440px);margin:0 auto;filter:drop-shadow(0 18px 30px rgba(24,48,40,.25))}
+  .teamhero .founderbar{margin:34px 0 0;max-width:520px;box-shadow:0 10px 26px rgba(24,48,40,.12)}
+  @media(max-width:820px){.teamgrid{grid-template-columns:1fr}.tleft{padding-bottom:8px}.tphoto img{width:min(80%,340px)}}
   .contacts{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 18px}
   .cbtn{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 18px;font-weight:600;font-size:15px}
   .cbtn:hover{border-color:var(--green);color:var(--green)}
@@ -337,25 +342,27 @@
   </div>
 </section>
 
-<section id="team" class="band">
+<section id="team" class="teamhero">
   <div class="wrap">
-    <div class="stag" data-i18n="team_tag">The team</div>
-    <h2 data-i18n="team_h2">The people who built it.</h2>
-    <div class="founder2">
-      <div>
-        <div class="fname">Dustin Yoo</div>
-        <div class="ftitle" data-i18n="team_role">Founder &amp; CEO</div>
-        <p style="margin:16px 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p1">Eight years in the car business — new-car salesman, used-car dealer, then CEO of a dealership and export company, trading more than 1,000 cars a year to around 15 countries.</p>
-        <p style="margin:0 0 12px;font-size:16px;color:rgba(255,255,255,.92);line-height:1.75" data-i18n="team_p2">Six months of market research, more than ten countries visited in person — meeting the partners who share this vision on the ground, on the other side of the world.</p>
-        <p class="teamquote" data-i18n="team_p4">I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began.</p>
+    <div class="teamgrid">
+      <div class="tleft">
+        <div class="stag" data-i18n="team_tag">The team</div>
+        <div class="tkick" data-i18n="team_h2">The people who built it.</div>
+        <div class="tname">Dustin Yoo</div>
+        <div class="trolebar" data-i18n="team_role">Founder &amp; CEO</div>
+        <p class="tp" data-i18n="team_p1">Eight years in the car business — new-car salesman, used-car dealer, then CEO of a dealership and export company, trading more than 1,000 cars a year to around 15 countries.</p>
+        <p class="tp" data-i18n="team_p2">Six months of market research, more than ten countries visited in person — meeting the partners who share this vision on the ground, on the other side of the world.</p>
+        <p class="tquote" data-i18n="team_p4">I was once a dealer who couldn't sell even two cars a month. Using a platform like this, I became a dealer selling over 1,000 cars a year. That experience is where Vectiba began.</p>
+        <a class="founderbar" href="#contact">
+          <img src="img/dustin.jpg" alt=""/>
+          <span data-i18n="info_sub">Reach the founder directly.</span>
+          <span class="fbarrow">▶</span>
+        </a>
       </div>
-      <div class="fphoto"><img src="img/dustin.jpg" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/></div>
+      <div class="tphoto">
+        <img src="img/dustin-cutout.png" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/>
+      </div>
     </div>
-    <a class="founderbar" href="#contact">
-      <img src="img/dustin.jpg" alt=""/>
-      <span data-i18n="info_sub">Reach the founder directly.</span>
-      <span class="fbarrow">▶</span>
-    </a>
   </div>
 </section>
 
