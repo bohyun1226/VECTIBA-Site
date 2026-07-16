@@ -130,7 +130,7 @@
 "why_lead": "O mesmo automóvel vale quantias diferentes em países diferentes — e essa diferença devia ser sua.",
 "info_cta": "Solicitar materiais",
 "info_h2": "Vamos falar.",
-"info_sub": "Fale diretamente com o fundador.",
+"info_sub": "Os contactos de parceria e investimento chegam diretamente ao fundador.",
 "info_tag": "Contacto",
 "nav_team": "Equipa",
 "team_h2": "As pessoas que a construíram.",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Fundador e CEO",
 "why_now": "Porque agora: a IA já consegue inspecionar um automóvel à distância, traduzir entre idiomas e calcular o custo total de importação — por isso, isto funciona hoje.",
 "why_story": "De poucos em poucos anos, quando chega a altura de vender, pergunta-se se o preço é justo. O mesmo automóvel é avaliado de forma diferente em cada país, e o preço de venda real também difere — por isso, algures existe sempre um concessionário disposto a valorizar mais o seu automóvel. Até agora, o vendedor e esse concessionário nunca se encontravam diretamente: a distância, o idioma, as alfândegas e a burocracia estavam pelo meio. A Vectiba liga os dois diretamente, com IA — tratando da inspeção, da tradução e do cálculo completo do custo de importação, para que um vendedor e concessionários de todo o mundo se encontrem pela primeira vez.",
-"hero_accent": "TECNOLOGIA DE IA"
+"hero_accent": "TECNOLOGIA DE IA",
+"out_tag": "O que construímos",
+"out_h2": "A Vectiba funciona em três serviços.",
+"out_sell_p": "O proprietário publica pelo telemóvel e concessionários de vários países licitam em leilão.",
+"out_buy_p": "Os concessionários veem carros de todo o mundo num painel de PC e licitam em envelope fechado ao custo real de chegada.",
+"out_partner_p": "Os parceiros de transporte e alfândega tratam dos negócios atribuídos no seu próprio painel.",
+"out_visit": "Abrir →"
 }

@@ -122,7 +122,7 @@
 "info_loc": "Dubai — Jebel Ali Freezone, Dubai, UAE<br>Seoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
 "info_tag": "Kontakt",
 "info_h2": "Lassen Sie uns sprechen.",
-"info_sub": "Erreichen Sie den Gründer direkt.",
+"info_sub": "Partnerschafts- und Investitionsanfragen erreichen den Gründer direkt.",
 "info_cta": "Unterlagen anfordern",
 "hero_def": "Dasselbe Auto hat in jedem Land einen anderen Preis. Wir verbinden Menschen, die Sprache, Grenzen und Entfernung bisher getrennt haben.",
 "form_h": "Bewerbung für Händler & Partner",
@@ -139,5 +139,11 @@
 "form_submit": "Bewerbung absenden",
 "form_done": "Danke — wir haben Ihre Anfrage erhalten und melden uns bei Ihnen.",
 "why_lead": "Dasselbe Fahrzeug ist in verschiedenen Ländern unterschiedlich viel wert — und dieser Unterschied sollte Ihnen gehören.",
-"hero_accent": "KI-TECHNOLOGIE"
+"hero_accent": "KI-TECHNOLOGIE",
+"out_tag": "Was wir gebaut haben",
+"out_h2": "Vectiba besteht aus drei Services.",
+"out_sell_p": "Der Fahrzeughalter inseriert per Handy, Händler aus vielen Ländern bieten in einer Auktion.",
+"out_buy_p": "Händler durchsuchen Fahrzeuge weltweit am PC-Dashboard und geben verdeckte Gebote zum realen Landepreis ab.",
+"out_partner_p": "Transport- und Zollpartner wickeln ihre zugewiesenen Aufträge über ihr eigenes Dashboard ab.",
+"out_visit": "Öffnen →"
 }

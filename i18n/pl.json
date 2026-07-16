@@ -130,7 +130,7 @@
 "why_lead": "Ten sam samochód jest wart inaczej w różnych krajach — a ta różnica powinna należeć do Ciebie.",
 "info_cta": "Poproś o materiały",
 "info_h2": "Porozmawiajmy.",
-"info_sub": "Skontaktuj się bezpośrednio z założycielem.",
+"info_sub": "Zapytania o partnerstwo i inwestycje trafiają bezpośrednio do założyciela.",
 "info_tag": "Kontakt",
 "nav_team": "Zespół",
 "team_h2": "Ludzie, którzy to stworzyli.",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Założyciel i CEO",
 "why_now": "Dlaczego teraz: AI potrafi już zdalnie zbadać stan samochodu, tłumaczyć między językami i wyliczyć pełny koszt dostarczenia na miejsce — dlatego to działa już dziś.",
 "why_story": "Co kilka lat, gdy przychodzi czas na sprzedaż, zastanawiasz się, czy cena jest właściwa. Ten sam samochód jest wyceniany inaczej w każdym kraju, a rzeczywista cena sprzedaży też się różni — więc gdzieś zawsze znajdzie się dealer, który wyceni Twój samochód wyżej. Do tej pory sprzedający i ten dealer nigdy się bezpośrednio nie spotykali: dzieliły ich odległość, język, cło i formalności. Vectiba łączy obie strony bezpośrednio, dzięki AI — zajmując się inspekcją, tłumaczeniem i pełnym wyliczeniem kosztu dostarczenia, dzięki czemu sprzedający i dealerzy na całym świecie spotykają się po raz pierwszy.",
-"hero_accent": "TECHNOLOGIA AI"
+"hero_accent": "TECHNOLOGIA AI",
+"out_tag": "Co zbudowaliśmy",
+"out_h2": "Vectiba działa jako trzy usługi.",
+"out_sell_p": "Właściciel wystawia auto z telefonu, a dealerzy z wielu krajów licytują w aukcji.",
+"out_buy_p": "Dealerzy przeglądają auta z całego świata na pulpicie PC i składają zapieczętowane oferty po realnym koszcie dostawy.",
+"out_partner_p": "Partnerzy transportowi i celni obsługują przydzielone transakcje na własnym pulpicie.",
+"out_visit": "Otwórz →"
 }

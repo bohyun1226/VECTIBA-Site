@@ -130,7 +130,7 @@
 "why_lead": "Aynı araç farklı ülkelerde farklı değer taşır — ve bu fark size ait olmalı.",
 "info_cta": "Materyalleri talep edin",
 "info_h2": "Konuşalım.",
-"info_sub": "Kurucuya doğrudan ulaşın.",
+"info_sub": "Ortaklık ve yatırım talepleri doğrudan kurucuya ulaşır.",
 "info_tag": "İletişim",
 "nav_team": "Ekip",
 "team_h2": "Bunu yapan insanlar.",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Kurucu ve CEO",
 "why_now": "Neden şimdi: Yapay zeka artık bir aracı uzaktan inceleyebiliyor, dilleri çevirebiliyor ve toplam varış maliyetini hesaplayabiliyor — bu yüzden bu iş bugün mümkün.",
 "why_story": "Birkaç yılda bir, satma zamanı geldiğinde, fiyatın doğru olup olmadığını merak edersiniz. Aynı araç her ülkede farklı değerlendirilir, gerçek satış fiyatı da değişir — yani bir yerlerde her zaman aracınıza daha yüksek değer biçecek bir bayi vardır. Şimdiye kadar satıcı ile o bayi hiç doğrudan karşılaşmadı: aradaki mesafe, dil, gümrük ve evrak işleri engel oldu. Vectiba, ikisini yapay zekayla doğrudan buluşturuyor — muayeneyi, çeviriyi ve toplam varış maliyeti hesabını üstlenerek, satıcı ile dünyanın dört bir yanındaki bayiler ilk kez karşılaşıyor.",
-"hero_accent": "YAPAY ZEKÂ TEKNOLOJİSİ"
+"hero_accent": "YAPAY ZEKÂ TEKNOLOJİSİ",
+"out_tag": "Ne inşa ettik",
+"out_h2": "Vectiba üç servis olarak çalışır.",
+"out_sell_p": "Araç sahibi telefondan ilan verir, birçok ülkeden bayiler açık artırmada teklif verir.",
+"out_buy_p": "Bayiler PC panosunda dünya çapındaki araçlara bakar ve gerçek varış maliyetiyle kapalı teklif verir.",
+"out_partner_p": "Nakliye ve gümrük ortakları kendilerine atanan işlemleri kendi panolarında yürütür.",
+"out_visit": "Aç →"
 }

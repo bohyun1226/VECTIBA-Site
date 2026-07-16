@@ -130,7 +130,7 @@
 "why_lead": "La stessa auto vale cifre diverse in paesi diversi — e quella differenza dovrebbe essere Sua.",
 "info_cta": "Richiedi i materiali",
 "info_h2": "Parliamone.",
-"info_sub": "Contatta direttamente il fondatore.",
+"info_sub": "Le richieste di partnership e investimento arrivano direttamente al fondatore.",
 "info_tag": "Contatti",
 "nav_team": "Team",
 "team_h2": "Le persone che l'hanno costruita.",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Fondatore e CEO",
 "why_now": "Perché ora: l'AI può finalmente ispezionare un'auto da remoto, tradurre tra le lingue e calcolare il costo di consegna completo — quindi oggi funziona.",
 "why_story": "Ogni pochi anni, quando arriva il momento di vendere, ti chiedi se il prezzo sia quello giusto. La stessa auto viene valutata in modo diverso in ogni paese, e anche il prezzo di vendita reale cambia — quindi da qualche parte esiste sempre un concessionario disposto a valutare la tua auto di più. Fino ad oggi, il venditore e quel concessionario non si sono mai incontrati direttamente: distanza, lingua, dogana e burocrazia si frapponevano. Vectiba collega i due direttamente, con l'AI — gestendo ispezione, traduzione e il calcolo completo del costo di consegna, così un venditore e i concessionari di tutto il mondo si incontrano per la prima volta.",
-"hero_accent": "TECNOLOGIA IA"
+"hero_accent": "TECNOLOGIA IA",
+"out_tag": "Cosa abbiamo costruito",
+"out_h2": "Vectiba opera con tre servizi.",
+"out_sell_p": "Il proprietario pubblica dal telefono e i concessionari di molti paesi fanno offerte all'asta.",
+"out_buy_p": "I concessionari sfogliano le auto di tutto il mondo su una dashboard PC e fanno offerte sigillate al costo reale di consegna.",
+"out_partner_p": "I partner di trasporto e dogana gestiscono le pratiche assegnate sulla propria dashboard.",
+"out_visit": "Apri →"
 }

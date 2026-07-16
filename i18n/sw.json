@@ -130,7 +130,7 @@
 "why_lead": "Gari lile lile lina thamani tofauti katika kila nchi — na tofauti hiyo inapaswa kuwa yako.",
 "info_tag": "Mawasiliano",
 "info_h2": "Tuongee.",
-"info_sub": "Wasiliana moja kwa moja na mwanzilishi.",
+"info_sub": "Maswali ya ushirikiano na uwekezaji humfikia mwanzilishi moja kwa moja.",
 "info_cta": "Omba nyaraka",
 "nav_team": "Timu",
 "team_tag": "Timu",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Mwanzilishi na Mkurugenzi Mtendaji",
 "why_now": "Kwa nini sasa: AI sasa inaweza kukagua gari kwa mbali, kutafsiri lugha, na kuhesabu gharama kamili ya kufikisha — hivyo hii inawezekana leo.",
 "why_story": "Kila baada ya miaka michache, unapoamua kuuza, unajiuliza kama bei ni sahihi. Gari lile lile linathaminiwa tofauti katika kila nchi, na bei halisi ya mauzo pia hutofautiana — hivyo mahali fulani daima kuna mfanyabiashara ambaye angelithamini gari lako zaidi. Hadi sasa, muuzaji na mfanyabiashara huyo hawakuwahi kukutana moja kwa moja: umbali, lugha, forodha na hati zilisimama katikati. Vectiba huunganisha wawili hao moja kwa moja, kwa AI — ikishughulikia ukaguzi, tafsiri na uhesabuji kamili wa gharama ya kufikisha, ili muuzaji na wafanyabiashara duniani kote wakutane kwa mara ya kwanza.",
-"hero_accent": "TEKNOLOJIA YA AI"
+"hero_accent": "TEKNOLOJIA YA AI",
+"out_tag": "Tulichojenga",
+"out_h2": "Vectiba inaendesha huduma tatu.",
+"out_sell_p": "Mmiliki huweka gari kupitia simu, na wafanyabiashara kutoka nchi nyingi huweka zabuni mnadani.",
+"out_buy_p": "Wafanyabiashara huvinjari magari duniani kote kwenye dashibodi ya PC na kuweka zabuni zilizofungwa kwa gharama halisi ya kufika.",
+"out_partner_p": "Washirika wa usafirishaji na forodha hushughulikia miamala waliyopangiwa kwenye dashibodi yao.",
+"out_visit": "Fungua →"
 }

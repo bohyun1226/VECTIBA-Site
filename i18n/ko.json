@@ -42,7 +42,7 @@
 "team_role": "창업자 & CEO",
 "info_tag": "문의",
 "info_h2": "편하게 연락 주세요.",
-"info_sub": "대표에게 바로 연락하실 수 있습니다.",
+"info_sub": "파트너십 문의도, 투자 문의도 대표에게 바로 닿습니다.",
 "info_loc": "두바이 — Jebel Ali Freezone, Dubai, UAE<br>서울 — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
 "info_cta": "자료 요청",
 "foot_1": "<strong style=\"color:var(--green)\">Vectiba</strong> · 나라를 넘어 차를 사고팝니다 · 두바이 / 서울",
@@ -90,5 +90,11 @@
 "form_submit": "신청하기",
 "form_done": "신청이 접수됐습니다. 곧 연락드리겠습니다.",
 "why_lead": "몇 년에 한 번 팔 때마다 찜찜합니다.",
-"hero_accent": "AI 테크놀로지"
+"hero_accent": "AI 테크놀로지",
+"out_tag": "만들어진 결과물",
+"out_h2": "벡티바는 세 개의 서비스로 이어집니다.",
+"out_sell_p": "차주가 폰으로 차를 올리면, 여러 나라의 딜러들이 경매로 입찰합니다.",
+"out_buy_p": "딜러가 PC 대시보드에서 전 세계 매물을 보고, 실제 도착가로 밀봉 입찰합니다.",
+"out_partner_p": "운송·통관 파트너가 배정된 거래를 자기 대시보드에서 처리합니다.",
+"out_visit": "바로가기 →"
 }

@@ -122,7 +122,7 @@
 "info_loc": "Dubaï — Jebel Ali Freezone, Dubai, UAE<br>Séoul — 248 Seocho-daero, Seocho-gu, Seoul, Republic of Korea",
 "info_tag": "Contact",
 "info_h2": "Parlons-en.",
-"info_sub": "Contactez directement le fondateur.",
+"info_sub": "Les demandes de partenariat et d'investissement parviennent directement au fondateur.",
 "info_cta": "Demander la documentation",
 "hero_def": "La même voiture se vend à un prix différent dans chaque pays. Nous connectons ceux que la langue, les frontières et la distance séparaient.",
 "form_h": "Candidature concessionnaire et partenaire",
@@ -139,5 +139,11 @@
 "form_submit": "Envoyer la candidature",
 "form_done": "Merci — nous avons bien reçu votre demande et reviendrons vers vous.",
 "why_lead": "Une même voiture vaut différemment selon les pays — et cette différence doit vous revenir.",
-"hero_accent": "TECHNOLOGIE IA"
+"hero_accent": "TECHNOLOGIE IA",
+"out_tag": "Ce que nous avons construit",
+"out_h2": "Vectiba fonctionne en trois services.",
+"out_sell_p": "Le propriétaire publie depuis son téléphone, et des concessionnaires de nombreux pays enchérissent.",
+"out_buy_p": "Les concessionnaires parcourent les véhicules du monde entier sur un tableau de bord PC et déposent des offres scellées au coût rendu réel.",
+"out_partner_p": "Les partenaires transport et douane gèrent leurs dossiers attribués sur leur propre tableau de bord.",
+"out_visit": "Ouvrir →"
 }

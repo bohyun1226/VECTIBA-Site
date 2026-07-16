@@ -7,7 +7,7 @@
 <meta name="description" content="Vectiba connects your car with the dealer who pays the most, even in another country. We handle inspection, shipping and customs. Dubai HQ, Seoul tech team."/>
 <style>
   /* 브랜드 시트(2026-07-16 확정, ~/VECTIBA/DESIGN_GUIDE.md): Poppins 600=워드마크 전용,
-     Cormorant Garamond 700=헤드라인, Hanken Grotesk=본문 / Emerald·Light Sand·Gold·Gold Light */
+     헤드라인·본문 모두 Hanken Grotesk(기본 산세리프, 2026-07-16 대표 지시로 세리프 제거) / Emerald·Light Sand·Gold·Gold Light */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
   :root{--bg:#FBF6EC;--card:#FFFFFF;--panel:#F4EEE1;--line:#E7E0D2;--txt:#183028;--sub:#5F6B62;--green:#12564B;--green2:#0E4A3E;--gold:#C68A3E;--goldlight:#E3B25F;--wa:#25D366;}
   *{box-sizing:border-box}
@@ -55,22 +55,6 @@
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
-  /* 딜러 데모 대체용 대시보드 스크린샷 2장 */
-  /* 셀러 × 딜러 비교 밴드 (레퍼런스 레이아웃, 브랜드 색: Emerald #12564B / Gold Light #E3B25F) */
-  .cmpband{background:#12564B;padding:64px 0}
-  .cmpgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch}
-  .cmpx{align-self:center;color:#E3B25F;font-size:44px;font-weight:900;line-height:1}
-  .cmppanel{background:#F0F1F3;border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-  .cmphead{background:#10231F;color:#fff;text-align:center;font-weight:800;font-size:17px;padding:15px 12px}
-  .cmprows{padding:10px 26px 22px}
-  .cmprow{padding:18px 0;border-bottom:2px solid rgba(16,35,31,.18)}
-  .cmprow:last-child{border-bottom:none}
-  .cmprow h4{margin:0 0 6px;font-size:17px;color:var(--txt)}
-  .cmprow p{margin:0;color:var(--sub);font-size:14.5px}
-  .cmpimg{padding:22px 22px 0}
-  .cmpimg img{width:100%;display:block;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.2)}
-  .cmpnote{margin:16px 22px 22px;background:#10231F;color:#fff;font-size:13.5px;padding:12px 16px;border-radius:6px}
-  @media(max-width:860px){.cmpgrid{grid-template-columns:1fr}.cmpx{justify-self:center}}
   .hero{position:relative;z-index:1;padding:56px 0 48px;display:flex;flex-direction:column}
   .kicker{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
   h1{font-size:48px;line-height:1.12;font-weight:700;margin:0 0 18px;letter-spacing:0}
@@ -92,16 +76,6 @@
   .card .ic{font-size:22px;margin-bottom:10px}
   .card h3{margin:0 0 6px;font-size:17px}
   .card p{margin:0;color:var(--sub);font-size:14.5px}
-  /* 문제 섹션: 딥그린 다크 밴드 + 큰 골드 제목 + 흰색 번호 카드 (메가스터디 레이아웃, 벡티바 색) */
-  .probband{background:#10231F;color:#fff;padding:64px 0}
-  .probband h2{font-size:38px;line-height:1.3;color:var(--goldlight);text-align:center;margin:0 0 14px;letter-spacing:0}
-  .probband .probsub{color:rgba(255,255,255,.75);font-size:16px;text-align:center;max-width:720px;margin:0 auto 36px}
-  .probband .pcard{position:relative;background:#fff;border-radius:4px;padding:34px 24px 26px;text-align:center}
-  .probband .pcard .pnum{position:absolute;top:-14px;left:14px;background:var(--green);color:#fff;font-weight:800;font-size:15px;padding:6px 14px;border-radius:3px}
-  .probband .pcard h3{margin:0 0 8px;font-size:17px;color:var(--txt)}
-  .probband .pcard p{margin:0;color:var(--sub);font-size:14.5px}
-  .probband .probnow{margin:34px auto 0;color:var(--goldlight);font-weight:600;font-size:15.5px;text-align:center;max-width:840px}
-  @media(max-width:820px){.probband h2{font-size:26px}}
   /* 섹션마다 배경색을 다르게 — 스크롤할 때 화면이 바뀐 걸 바로 알 수 있게.
      순서: 샌드(히어로) → 흰색(셀러) → 다크잉크(문제) → 샌드(바이어) → 에메랄드(비교) → 다크잉크(팀) → 흰색(문의) → 샌드(푸터) */
   .band{background:#10231F;color:#fff}
@@ -113,23 +87,15 @@
   .story p{font-size:18px;line-height:1.65;margin:0}
   .story .by{margin-top:16px;color:var(--gold);font-weight:700;font-size:14px}
   .note{margin-top:24px;font-size:16px;font-weight:600;color:#fff;max-width:760px;line-height:1.55}
-  .demoWrap{display:flex;justify-content:center;margin-top:24px}
-  .demoFrame{width:430px;max-width:100%;height:900px;border:0;border-radius:22px;background:transparent}
   .flowlabel{font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:7px 16px;display:inline-block;margin:6px 0 14px}
   .connector{text-align:center;color:rgba(255,255,255,.9);font-weight:600;font-size:15px;margin:26px 0 18px}
-  .demorow{display:grid;gap:36px;align-items:center;margin-top:28px}
-  .demorow.seller{grid-template-columns:1fr 430px}
-  .demorow.dealer{grid-template-columns:1.6fr 1fr}
-  .demorow .demoWrap{margin:0}
-  .demotext{font-size:16.5px;color:var(--txt);line-height:1.65;font-weight:500}
-  @media(max-width:860px){.demorow.seller,.demorow.dealer{grid-template-columns:1fr}}
   /* 팀 섹션: 글 왼쪽·사진 오른쪽 + 사진 뒤 골드 블록 (2026-07-16 시안 승인, RTL은 그리드가 자동 반전) */
   .founder2{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;margin-top:8px}
   .fphoto{position:relative}
   .fphoto::before{content:'';position:absolute;right:-20px;top:-20px;width:170px;height:170px;border-radius:24px;background:var(--gold);opacity:.9}
   [dir=rtl] .fphoto::before{right:auto;left:-20px}
   .fphoto img{position:relative;width:100%;display:block;border-radius:16px;box-shadow:0 22px 54px rgba(0,0,0,.32)}
-  .fname{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:700;line-height:1.1;color:#FBF6EC}
+  .fname{font-size:36px;font-weight:700;line-height:1.1;color:#FBF6EC}
   .ftitle{color:var(--goldlight);font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;margin:5px 0 12px}
   .teamnote{margin-top:26px;color:var(--sub);font-size:15px;max-width:760px}
   .teamquote{margin:22px 0 4px;padding-left:16px;border-left:3px solid var(--gold);font-size:17px;font-weight:600;line-height:1.6;color:#fff;max-width:640px}
@@ -156,6 +122,12 @@
   .formdone{background:#EAF3EF;color:var(--green);font-weight:700;font-size:14px;padding:12px 14px;border-radius:10px}
   /* section backgrounds — white sections signal a new screen on scroll */
   .white{background:#fff}
+  /* 결과물(서비스 허브) 카드 — inc는 sell/buy/partner로 이어주는 관문 */
+  .svcCard{display:flex;flex-direction:column;gap:8px}
+  .svcCard .svcName{font-weight:800;font-size:24px;color:var(--green);letter-spacing:.5px}
+  .svcCard .svcDomain{color:var(--gold);font-weight:700;font-size:14px}
+  .svcCard p{margin:4px 0 16px}
+  .svcCard .btn{margin-top:auto;align-self:flex-start}
   /* service: text left, phone right */
   .svcsplit{display:grid;grid-template-columns:1fr 420px;gap:44px;align-items:center;margin-bottom:8px}
   @media(max-width:860px){.svcsplit{grid-template-columns:1fr;gap:20px}}
@@ -186,9 +158,8 @@
   </a>
   <div class="nlinks">
     <a href="#top" data-i18n="nav_about">Vectiba?</a>
-    <a href="#seller" data-i18n="nav_seller">For sellers</a>
-    <a href="#dealer" data-i18n="nav_buyer">For buyers</a>
     <a href="#team" data-i18n="nav_team">Team</a>
+    <a href="#services" data-i18n="nav_service">Services</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
     <div class="langpick" id="langpick">
       <button type="button" class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Language">
@@ -211,9 +182,8 @@
 </div>
 <div class="mobileMenu" id="mobileMenu">
   <a href="#top" data-i18n="nav_about" onclick="closeMobileMenu()">Vectiba?</a>
-  <a href="#seller" data-i18n="nav_seller" onclick="closeMobileMenu()">For sellers</a>
-  <a href="#dealer" data-i18n="nav_buyer" onclick="closeMobileMenu()">For dealers</a>
   <a href="#team" data-i18n="nav_team" onclick="closeMobileMenu()">Team</a>
+  <a href="#services" data-i18n="nav_service" onclick="closeMobileMenu()">Services</a>
   <a href="#contact" data-i18n="nav_contact" onclick="closeMobileMenu()">Contact</a>
 </div>
 </nav>
@@ -235,73 +205,6 @@
   </div>
 </div>
 
-<section id="seller" class="white">
-  <div class="wrap">
-    <div class="demorow seller">
-      <div>
-        <div class="stag" data-i18n="why_tag">For sellers</div>
-        <h2 data-i18n="why_h2">Am I selling my car for too little?</h2>
-        <p style="font-size:17px;font-weight:600;color:var(--green);margin:0 0 12px" data-i18n="why_lead">The same car is worth different amounts in different countries — and that difference should be yours.</p>
-        <p style="font-size:16px;color:var(--txt);margin:0 0 14px;line-height:1.6" data-i18n="why_story">Every few years, when it's time to sell, there's always that nagging doubt. The same car is valued differently in every country, and the real selling price differs too. Somewhere there is always a dealer who would value your car higher. Even if that dealer is abroad, all you need is to reach them — remotely. Until now, language, distance, customs and paperwork simply kept you from ever meeting. Vectiba connects the two of you directly, with AI.</p>
-        <p class="demotext" data-i18n="seller_how">The Vectiba AI agent packages your car so dealers abroad can trust it and bid high, then opens it as an auction. You only need one dealer who really wants your car — you just pick the highest price, within 48 to 72 hours.</p>
-      </div>
-      <div class="demoWrap"><iframe class="demoFrame" loading="lazy" title="Vectiba seller demo"></iframe></div>
-    </div>
-  </div>
-</section>
-
-<section class="probband">
-  <div class="wrap">
-    <h2 data-i18n="prob_h2">The person who'd pay the most never gets to see the car.</h2>
-    <p class="probsub" data-i18n="prob_sub">A dealer in another country can pay far more than the one nearby. But that dealer has no way to find this car — so the difference goes to middlemen.</p>
-    <div class="grid3">
-      <div class="pcard"><span class="pnum">01</span><h3 data-i18n="prob_c1h">Sellers settle for the local price</h3><p data-i18n="prob_c1p">Most people take the first easy offer nearby, before a buyer in another country ever hears about the car.</p></div>
-      <div class="pcard"><span class="pnum">02</span><h3 data-i18n="prob_c2h">The best buyer is far away</h3><p data-i18n="prob_c2p">Distance, language and complicated paperwork keep the seller and the buyer who'd pay most from ever meeting.</p></div>
-      <div class="pcard"><span class="pnum">03</span><h3 data-i18n="prob_c3h">Middlemen take the difference</h3><p data-i18n="prob_c3p">Referrals and brokers move cars, but the seller and the buyer never connect directly — so the extra money goes to the middle.</p></div>
-    </div>
-    <p class="probnow" data-i18n="why_now">Why now: AI can finally inspect a car remotely, translate across languages, and work out the full landed cost — so this works today.</p>
-  </div>
-</section>
-
-<section id="dealer">
-  <div class="wrap">
-    <div class="stag" data-i18n="buyer_tag">For buyers</div>
-    <h2 data-i18n="buyer_h2">Reach every used car in the world.</h2>
-    <p class="ssub" style="max-width:860px" data-i18n="buyer_sub">Still sending staff out to inspect cars? Still buying only through people you happen to know? Have language, distance, customs and paperwork been holding you back?</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 6px">
-      <a class="btn" href="https://buy.vectiba.com/dealer" data-i18n="buyer_login_cta">Dealer login</a>
-      <a class="btn ghost" href="https://partner.vectiba.com/partner" data-i18n="partner_login_cta">Partner / forwarder login</a>
-    </div>
-    <div class="grid3" style="margin-top:22px">
-      <div class="card"><div class="ic">🌐</div><h3 data-i18n="buyer_c1h">Reach cars worldwide</h3><p data-i18n="buyer_c1p">Access used cars anywhere in the world and deal directly with the owner, remotely — no agencies, no introductions in between.</p></div>
-      <div class="card"><div class="ic">🔍</div><h3 data-i18n="buyer_c2h">AI inspection checklist</h3><p data-i18n="buyer_c2p">Ask Vectiba AI to check exactly what matters before you buy to resell. You're the pro — the AI backs your judgment.</p></div>
-      <div class="card"><div class="ic">🚢</div><h3 data-i18n="buyer_c3h">Logistics handled</h3><p data-i18n="buyer_c3p">Language, distance, duties, customs and sea freight — all solved. Vectiba was built by a dealer who sold more cars than anyone.</p></div>
-    </div>
-    <p class="ssub" style="margin-top:26px;font-weight:600;color:var(--green);max-width:860px" data-i18n="buyer_note">Shorten the chain, and sellers earn more while buyers land a more reasonable end cost.</p>
-  </div>
-</section>
-
-<section class="cmpband">
-  <div class="wrap">
-    <div class="cmpgrid">
-      <div class="cmppanel">
-        <div class="cmphead" data-i18n="svc_seller_label">① Seller — lists from a phone</div>
-        <div class="cmprows">
-          <div class="cmprow"><h4 data-i18n="sol_c1h">We verify the car</h4><p data-i18n="sol_c1p">Photos, mileage, history — checked so a faraway dealer can trust it without visiting.</p></div>
-          <div class="cmprow"><h4 data-i18n="sol_c2h">We show the full cost</h4><p data-i18n="sol_c2p">Shipping, customs and fees per country — everyone sees the real landed cost before bidding.</p></div>
-          <div class="cmprow"><h4 data-i18n="sol_c3h">Dealers bid, you choose</h4><p data-i18n="sol_c3p">Dealers from several countries make offers. You see your real take-home on each, and pick.</p></div>
-        </div>
-      </div>
-      <div class="cmpx">✕</div>
-      <div class="cmppanel">
-        <div class="cmphead" data-i18n="svc_dealer_label">② Dealer — bids from a PC dashboard</div>
-        <div class="cmpimg"><img src="img/dash-auctions.jpg" alt="Vectiba dealer auctions dashboard" loading="lazy"/></div>
-        <p class="cmpnote" data-i18n="svc_dealer_sub">The dealer works out the landed cost in their own currency at today's rate and sends a sealed quote — no one sees anyone else's.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="team" class="band">
   <div class="wrap">
     <div class="stag" data-i18n="team_tag">The team</div>
@@ -319,7 +222,35 @@
   </div>
 </section>
 
-<section id="contact" class="white">
+<section id="services" class="white">
+  <div class="wrap">
+    <div class="stag" data-i18n="out_tag">What we built</div>
+    <h2 data-i18n="out_h2">Vectiba runs as three services.</h2>
+    <!-- 영상 자리: 대표님 Canva 소개 영상 완성되면 여기 삽입 -->
+    <div class="grid3" style="margin-top:26px">
+      <div class="card svcCard">
+        <div class="svcName">SELL</div>
+        <div class="svcDomain">vectiba.com</div>
+        <p data-i18n="out_sell_p">A car owner lists from a phone, and dealers from many countries bid in an auction.</p>
+        <a class="btn" href="https://vectiba.com" data-i18n="out_visit">Visit →</a>
+      </div>
+      <div class="card svcCard">
+        <div class="svcName">BUY</div>
+        <div class="svcDomain">buy.vectiba.com</div>
+        <p data-i18n="out_buy_p">Dealers browse cars worldwide on a PC dashboard and place sealed bids at real landed cost.</p>
+        <a class="btn" href="https://buy.vectiba.com" data-i18n="out_visit">Visit →</a>
+      </div>
+      <div class="card svcCard">
+        <div class="svcName">PARTNER</div>
+        <div class="svcDomain">partner.vectiba.com</div>
+        <p data-i18n="out_partner_p">Shipping and customs partners handle their assigned deals on their own dashboard.</p>
+        <a class="btn" href="https://partner.vectiba.com" data-i18n="out_visit">Visit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
   <div class="wrap">
     <div class="stag" data-i18n="info_tag">Contact</div>
     <h2 data-i18n="info_h2">Let's talk.</h2>
@@ -382,8 +313,6 @@ function applyLang(lang){
   var lb = LANGS.languages.filter(function(l){ return l.code===lang; })[0];
   if(lb){ var bf=document.getElementById('langBtnFlag'), bl=document.getElementById('langBtnLabel'); if(bf) bf.textContent=lb.flag||''; if(bl) bl.textContent=lb.label; }
   var lp=document.getElementById('langPanel'); if(lp){ lp.querySelectorAll('.langopt').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang')===lang); }); }
-  var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=__BUILD__'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }

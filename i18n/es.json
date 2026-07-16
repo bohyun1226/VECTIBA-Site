@@ -131,7 +131,7 @@
 "nav_team": "Equipo",
 "info_tag": "Contacto",
 "info_h2": "Hablemos.",
-"info_sub": "Contacta directamente con el fundador.",
+"info_sub": "Las consultas de asociación e inversión llegan directamente al fundador.",
 "info_cta": "Solicitar materiales",
 "team_tag": "El equipo",
 "team_h2": "Las personas que lo hicieron posible.",
@@ -139,5 +139,11 @@
 "why_by": "Dustin Yoo · Fundador y CEO",
 "why_now": "Por qué ahora: la IA ya puede inspeccionar un coche a distancia, traducir entre idiomas y calcular el coste total en destino — así que esto funciona hoy.",
 "why_story": "Cada pocos años, cuando llega el momento de vender, te preguntas si el precio es el correcto. El mismo coche se valora de forma distinta en cada país, y el precio de venta real también difiere — así que en algún lugar siempre hay un concesionario dispuesto a pagar más por tu coche. Hasta ahora, el vendedor y ese concesionario nunca se conocían directamente: la distancia, el idioma, la aduana y el papeleo se interponían. Vectiba conecta a ambos directamente, con IA — se encarga de la inspección, la traducción y el cálculo del coste total en destino, para que un vendedor y concesionarios de todo el mundo se encuentren por primera vez.",
-"hero_accent": "TECNOLOGÍA IA"
+"hero_accent": "TECNOLOGÍA IA",
+"out_tag": "Lo que construimos",
+"out_h2": "Vectiba funciona con tres servicios.",
+"out_sell_p": "El dueño publica desde el móvil y concesionarios de muchos países pujan en una subasta.",
+"out_buy_p": "Los concesionarios ven coches de todo el mundo en un panel de PC y pujan en sobre cerrado al coste real en destino.",
+"out_partner_p": "Los socios de transporte y aduanas gestionan sus operaciones asignadas en su propio panel.",
+"out_visit": "Abrir →"
 }
