@@ -101,6 +101,18 @@
   section{padding:54px 0}
   .stag{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
   h2{font-size:34px;font-weight:700;margin:0 0 12px;letter-spacing:0}
+  /* 중앙 강조 헤드라인 + 두꺼운 밑줄 (다상다독 레퍼런스) */
+  .stag.centered{text-align:center}
+  h2.centerh{display:table;margin:0 auto 12px;text-align:center;padding-bottom:8px;border-bottom:3.5px solid var(--txt)}
+  /* 인물 배너 띠 (레퍼런스의 "영상 보러가기" 스트립): 사진 + 한 줄 + 화살표 → 문의로 이동 */
+  .founderbar{display:flex;align-items:center;gap:14px;max-width:560px;margin:38px auto 0;background:#FBF6EC;
+              border:1px solid rgba(198,138,62,.45);border-radius:12px;padding:12px 22px;
+              font-size:16.5px;font-weight:700;color:#183028;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+  .founderbar:hover{background:#fff}
+  .founderbar img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top}
+  .founderbar span:nth-child(2){flex:1;text-align:center}
+  .founderbar .fbarrow{color:var(--gold);font-size:14px}
+  [dir=rtl] .founderbar .fbarrow{transform:scaleX(-1)}
   .ssub{color:var(--sub);font-size:16px;max-width:680px;margin:0 0 28px}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
@@ -269,8 +281,8 @@
 
 <section id="services">
   <div class="wrap">
-    <div class="stag" data-i18n="out_tag">What we built</div>
-    <h2 data-i18n="out_h2">Vectiba runs as three services.</h2>
+    <div class="stag centered" data-i18n="out_tag">What we built</div>
+    <h2 class="centerh" data-i18n="out_h2">Vectiba runs as three services.</h2>
     <!-- 영상 자리: 대표님 Canva 소개 영상 완성되면 여기 삽입 -->
     <div style="margin-top:26px">
       <div class="rolerow">
@@ -339,6 +351,11 @@
       </div>
       <div class="fphoto"><img src="img/dustin.jpg" alt="Dustin Yoo, Founder &amp; CEO of Vectiba"/></div>
     </div>
+    <a class="founderbar" href="#contact">
+      <img src="img/dustin.jpg" alt=""/>
+      <span data-i18n="info_sub">Reach the founder directly.</span>
+      <span class="fbarrow">▶</span>
+    </a>
   </div>
 </section>
 
