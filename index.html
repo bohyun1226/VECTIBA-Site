@@ -47,11 +47,27 @@
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
-  /* 타이틀 밴드(공지 스트립): 흰 헤더 아래 에메랄드 얇은 띠, 한 문장만 */
-  .heroBand{background:var(--green);padding:20px 24px;text-align:center}
-  .heroBand h1{color:#fff;margin:0;font-size:27px;line-height:1.35}
-  .heroBand .stripAcc{color:var(--goldlight);font-weight:800;margin-right:10px}
-  [dir=rtl] .heroBand .stripAcc{margin-right:0;margin-left:10px}
+  /* 투톤 분할 히어로 (다상다독 레퍼런스, 2026-07-16): 왼쪽 에메랄드=셀러 / 오른쪽 샌드=바이어,
+     초대형 워드가 경계(정중앙 50%)를 물고 넘어가며 색 반전 — 같은 글자 두 겹을 좌/우 절반씩 clip */
+  .splithero{position:relative;background:linear-gradient(90deg,var(--green) 50%,var(--bg) 50%);padding:64px 0 56px;overflow:hidden}
+  .sword{position:relative;height:1em;margin:14px 0;text-align:center;font-weight:800;
+         font-size:clamp(58px,11vw,168px);line-height:1;letter-spacing:2px;white-space:nowrap}
+  .sword span{position:absolute;left:0;right:0;top:0}
+  .sword .lcol{color:#FBF6EC;clip-path:inset(-0.1em 50% -0.1em 0)}
+  .sword .rcol{color:var(--green);clip-path:inset(-0.1em 0 -0.1em 50%)}
+  .sword.w2 .rcol{color:#183028}
+  .srule{position:relative;height:3px;margin:30px 8% 26px;background:var(--gold)}
+  .srule::after{content:'';position:absolute;left:50%;top:-11px;margin-left:-2px;width:0;height:0;
+                border-left:14px solid var(--gold);border-top:12px solid transparent;border-bottom:12px solid transparent}
+  .scap{position:absolute;font-size:15px;line-height:1.6;font-weight:600;max-width:240px}
+  .scap.l{left:4%;top:88px;color:rgba(251,246,236,.92)}
+  .scap.r{right:4%;bottom:150px;color:var(--sub);text-align:right}
+  .sstrip{position:relative;margin:44px auto 0;max-width:760px;background:#fff;border-radius:6px;
+          box-shadow:0 14px 36px rgba(24,48,40,.16);padding:20px 34px;text-align:center}
+  .sstrip h1{margin:0;font-size:22px;line-height:1.4;color:var(--txt)}
+  .sstrip .stripAcc{color:var(--gold);font-weight:800;margin-right:10px}
+  [dir=rtl] .sstrip .stripAcc{margin-right:0;margin-left:10px}
+  @media(max-width:720px){.scap{display:none}.sstrip{margin:30px 18px 0}.splithero{padding:44px 0 40px}}
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
   /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
   .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:760/268;pointer-events:none}
@@ -175,7 +191,7 @@
 <body>
 <script>
 /* auto-refresh when a newer build is live (kills stale-cache "old screen") */
-(function(){var B="1784208554";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
+(function(){var B="1784208862";try{fetch('version.txt?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.text();}).then(function(v){v=(v||'').trim();if(v&&v!==B){var m=location.search.match(/[?&]b=([^&]+)/);if(!m||m[1]!==v){location.replace(location.pathname+'?b='+v);}}}).catch(function(){});}catch(e){}})();
 </script>
 
 <nav><div class="wrap nav">
@@ -217,8 +233,15 @@
 
 <a id="top"></a>
 <div class="heroSection">
-  <div class="heroBand">
-    <h1><span class="stripAcc" data-i18n="hero_accent">AI TECHNOLOGY</span> <span data-i18n="hero_h1">We connect people who could never meet.</span></h1>
+  <div class="splithero">
+    <div class="scap l" data-i18n="art_s1">Seller — a higher price</div>
+    <div class="sword w1" aria-hidden="true"><span class="lcol">SELL&nbsp;HIGH</span><span class="rcol">SELL&nbsp;HIGH</span></div>
+    <div class="srule"></div>
+    <div class="sword w2" aria-hidden="true"><span class="lcol">BUY&nbsp;SMART</span><span class="rcol">BUY&nbsp;SMART</span></div>
+    <div class="scap r" data-i18n="art_s2">Dealer — fair purchase, real margin</div>
+    <div class="sstrip">
+      <h1><span class="stripAcc" data-i18n="hero_accent">AI TECHNOLOGY</span> <span data-i18n="hero_h1">We connect people who could never meet.</span></h1>
+    </div>
   </div>
   <div class="heroMap" id="heroMap"></div>
   <div class="wrap heroWin">
@@ -386,7 +409,7 @@ function applyLang(lang){
 }
 function syncDemoFrame(lang){
   var df = document.querySelector('.demoFrame');
-  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784208554'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
+  if(df){ var ns = 'demo/?lang=' + lang + '&b=1784208862'; if(df.getAttribute('src') !== ns) df.setAttribute('src', ns); }
 }
 function toggleMobileMenu(){ document.getElementById('mobileMenu').classList.toggle('on'); }
 function closeMobileMenu(){ document.getElementById('mobileMenu').classList.remove('on'); }
