@@ -41,8 +41,8 @@
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
   /* 겹침 없는 3단 구조: 헤드라인 → 지도 띠(선명) → 카드 */
-  .heroMap{position:relative;height:400px;pointer-events:none}
-  @media(max-width:820px){.heroMap{height:260px}}
+  /* 지도 비율(2:1)을 그대로 유지 — 카드가 지도를 가리지 않게 잘림 없이 전체 표시 */
+  .heroMap{position:relative;width:min(100%,1240px);margin:0 auto;aspect-ratio:2/1;pointer-events:none}
   /* 딜러 데모 대체용 대시보드 스크린샷 2장 */
   .dashShots{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1280px;margin:26px auto 0;padding:0 20px}
   .dashShots img{width:100%;display:block;border-radius:16px;border:1px solid var(--line);box-shadow:0 14px 44px rgba(0,0,0,.18)}
