@@ -154,5 +154,12 @@
 "biz_c2p": "Przy ekspansji lokalne firmy operacyjne przejmują stery i dzielą zysk operacyjny jako premię.",
 "biz_c3h": "Rynki ekspansji",
 "biz_c3p": "Zaczynając od aut używanych, te same tory prowadzą do nowych aut, finansowania, ubezpieczeń, leasingu i wynajmu.",
-"biz_note": "Dotychczas: wstępne wywiady z ok. 50 dealerami w 6 krajach, we współpracy z ludźmi z Hyundai Motor, SK, KGM i Kia."
+"biz_note": "Dotychczas: wstępne wywiady z ok. 50 dealerami w 6 krajach, we współpracy z ludźmi z Hyundai Motor, SK, KGM i Kia.",
+"out_st1": "Z telefonu",
+"out_st2": "Aukcja AI",
+"out_st3": "Najwyższa cena",
+"out_bt2": "Inspekcja AI",
+"out_pt1": "Więcej zleceń",
+"out_pt2": "Bezpośrednie zapytania",
+"out_pt3": "Większy przychód"
 }
