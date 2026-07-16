@@ -47,8 +47,12 @@
   .mobileMenu a:last-child{border-bottom:none}
   @media(max-width:940px){.nlinks a{display:none}.hamburger{display:flex}}
   .heroSection{position:relative;overflow:hidden}
-  /* 투톤 분할 히어로 (다상다독 레퍼런스, 2026-07-16): 왼쪽 에메랄드=셀러 / 오른쪽 샌드=바이어,
-     초대형 워드가 경계(정중앙 50%)를 물고 넘어가며 색 반전 — 같은 글자 두 겹을 좌/우 절반씩 clip */
+  /* 타이틀 밴드(공지 스트립): 흰 헤더 아래 에메랄드 얇은 띠, 한 문장만 (첫 화면 — 대표 지시로 원복) */
+  .heroBand{background:var(--green);padding:20px 24px;text-align:center}
+  .heroBand h1{color:#fff;margin:0;font-size:27px;line-height:1.35}
+  .heroBand .stripAcc{color:var(--goldlight);font-weight:800;margin-right:10px}
+  [dir=rtl] .heroBand .stripAcc{margin-right:0;margin-left:10px}
+  /* 투톤 분할 밴드 (다상다독 레퍼런스): 첫 화면이 아니라 서비스 섹션 위 중간 밴드로 배치 (2026-07-16 대표 지시) */
   .splithero{position:relative;background:linear-gradient(90deg,var(--green) 50%,var(--bg) 50%);padding:64px 0 56px;overflow:hidden}
   .sword{position:relative;height:1em;margin:14px 0;text-align:center;font-weight:800;
          font-size:clamp(58px,11vw,168px);line-height:1;letter-spacing:2px;white-space:nowrap}
@@ -250,15 +254,8 @@
 
 <a id="top"></a>
 <div class="heroSection">
-  <div class="splithero">
-    <div class="scap l" data-i18n="art_s1">Seller — a higher price</div>
-    <div class="sword w1" aria-hidden="true"><span class="lcol">SELL&nbsp;HIGH</span><span class="rcol">SELL&nbsp;HIGH</span></div>
-    <div class="srule"></div>
-    <div class="sword w2" aria-hidden="true"><span class="lcol">BUY&nbsp;SMART</span><span class="rcol">BUY&nbsp;SMART</span></div>
-    <div class="scap r" data-i18n="art_s2">Dealer — fair purchase, real margin</div>
-    <div class="sstrip">
-      <h1><span class="stripAcc" data-i18n="hero_accent">AI TECHNOLOGY</span> <span data-i18n="hero_h1">We connect people who could never meet.</span></h1>
-    </div>
+  <div class="heroBand">
+    <h1><span class="stripAcc" data-i18n="hero_accent">AI TECHNOLOGY</span> <span data-i18n="hero_h1">We connect people who could never meet.</span></h1>
   </div>
   <div class="heroMap" id="heroMap"></div>
   <div class="wrap heroWin">
